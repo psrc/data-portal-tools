@@ -6,11 +6,12 @@ import os
 import geopandas as gpd
 import fiona
 from shapely import wkt
+import time
 
 class portal_connector():
-	def __init__(self, username, pw, db_server, database, portal_url="https://psregcncl.maps.arcgis.com"):
+	def __init__(self, portal_username, portal_pw, db_server, database, portal_url="https://psregcncl.maps.arcgis.com"):
 		"""
-		Initialization method.
+		Define the parameters by which the portal_connector can connect a database to a data portal.
 		Parameters:
 			username: ArcGIS Online/Data Portal username
 			pw: ArcGIS Online/Data Portal password
@@ -19,8 +20,8 @@ class portal_connector():
 			portal_url: An ArcGIS Online portal or Enterprise
 		"""
 		try:
-			self.username = username
-			self.pw = pw
+			self.username = portal_username
+			self.pw = portal_pw
 			self.db_server = db_server
 			self.database = database
 			self.portal_url = portal_url
@@ -77,7 +78,7 @@ class portal_resource():
 		Requires no knowlege of SQL on the user's part.
 		"""
 		try:
-			self.sql='select * from {}.{}'.format(in_schema, in_recordset_name),
+			self.sql='select * from {}.{}'.format(in_schema, in_recordset_name)
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -91,17 +92,7 @@ class portal_resource():
 		"""
 		try:
 			self.sql = sql_query
-		except Exception as e:
-			print(e.args[0])
-			raise
 
-
-	def define_source_from_sql(self, sql):
-		"""
-		Sets the data source as a user-defined SQL query
-		"""
-		try:
-			self.sql=sql
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -117,19 +108,23 @@ class portal_resource():
 			out_type = "CSV"
 			csv_name = r'.\temp_data_export_csv.csv'
 			connector = self.portal_connector
-			in_schema = self.in_schema
-			in_recordset_name = self.in_recordset_name
 			df = pd.read_sql(
 				sql=self.sql,
 				con=connector.sql_conn)
+			working_dir = 'working'
+			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
+			if not os.path.exists(working_dir):
+				os.makedirs(working_dir)
+			if os.path.isfile(csv_name):
+				os.remove(csv_name)
 			df.to_csv(csv_name)
-			resource_properties['type'] = out_type
-			exported = connector.gis.content.add(resource_properties, data=csv_name)
+			self.resource_properties['type'] = out_type
+			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
 			published_csv = exported.publish()
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
-			os.remove(csv_name)
+			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
 
@@ -140,30 +135,41 @@ class portal_spatial_resource(portal_resource):
 		self.resource_properties['type'] = 'GeoJson'
 
 
-	def define_spatial_source(self, layer_name, list_of_col_names):
+	def define_spatial_source_layer(self, layer_name):
+		"""
+		Produce a SQL query for a layer's versioned view in the geodatabase
+		Parameters:
+			layer_name: the name of the layer in the geodatabase (without an *_evw suffix)
+		Output:
+			self.sql: a SQL string that can be used to build a geodataframe
+		"""
 		try:
-			l = list_of_col_names
-			l.append('Shape') if 'Shape' not in l else l
-			l = ['Shape.STAsText() as Shape_wkt' if x=='Shape' else x for x in l]
-			columns_clause = ','.join(l)
+			self.column_list = self.get_columns_for_recordset(layer_name)
+			self.get_columns_clause()
 			self.sql = 'SELECT {} FROM dbo.{}_evw'.format(
-				columns_clause,
+				self.columns_clause,
 				layer_name)
 
 		except Exception as e:
 			print(e.args[0])
 			raise
 
+
 	def export(self):
+		"""
+		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+		"""
 		try:
 			df = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf.crs = 'EPSG:2285'
-			file_name = 'working\\' + self.resource_properties['title'] + '.json'
-			#MOREMORE check for file existence before executing this next line:
-			if not os.path.exists('working'):
-				os.makedirs('working')
+			working_dir = 'working'
+			file_name = working_dir + '\\' + self.resource_properties['title'] + '.json'
+			if not os.path.exists(working_dir):
+				os.makedirs(working_dir)
+			if os.path.exists(file_name):
+				os.remove(file_name)
 			gdf.to_file(file_name, driver='GeoJSON')
 			connector = self.portal_connector
 			exported = connector.gis.content.add(
@@ -176,3 +182,43 @@ class portal_spatial_resource(portal_resource):
 			print(e.args[0])
 			raise
 
+
+	def get_columns_for_recordset(self, layer_name):
+		"""
+		Get a list of columns for a table or view in a database,
+		minus the system columns GDB_GEOMATTR_DATA and SDE_STATE_ID, if they exists.
+		Parameters:
+			layer_name: the name of a table or view in a database
+		Returns a list of strings representing column names.
+		"""
+		try:
+			col_sql = "SELECT COLUMN_NAME FROM {} WHERE TABLE_NAME = '{}'".format(
+				'INFORMATION_SCHEMA.COLUMNS',
+				layer_name)
+			df = pd.read_sql(sql=col_sql, con=self.portal_connector.sql_conn)
+			l = []
+			for n in df.COLUMN_NAME:
+				l.append(n) if n not in ['GDB_GEOMATTR_DATA', 'SDE_STATE_ID'] else l
+			return l
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def get_columns_clause(self):
+		"""
+		Constructs a string representing column names, which can be inserted into
+		a SQL query.
+		Column "Shape" gets wrapped in a function to produce its wlt representation.
+		Depends on the existence of self.column_list, a list of strings representing column names.
+		Produces self.columns_clause, which can be used in a SQL query.
+		"""
+		try:
+			l = self.column_list
+			l = ['Shape.STAsText() as Shape_wkt' if x=='Shape' else x for x in l]
+			self.columns_clause = ','.join(l)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
