@@ -4,5 +4,5 @@ This repo is intended to house classes to be used for import and export to PSRC'
 
 See the module `PortalExporter` for classes to use for import and export from our internally-facing SQL Server databases.  The module contains several classes:
  * __portal_connector__ provides a connection object that binds an internally-facing database to the data portal.
- * __portal_resource__ defines a resource (a table, view, or user-defined query) on an internally-facing database, and provides an `export` method that allows that data to be easily published to the data portal as a single CSV.
- * __portal_spatial_resource__ is similar to __portal_resource__, but is for versioned spatial data layers such as those in ElmerGeo.  The `export` method in this class publishes a spatial layer on the data portal in GeoJSON format.
+ * __portal_resource__ defines a resource (a table, view, or user-defined query) on an internally-facing database, and provides an *export* method that allows that data to be easily published to the data portal as a single CSV.
+ * __portal_spatial_resource__ is similar to __portal_resource__, but is for versioned spatial data layers such as those in ElmerGeo.  The *export* method in this class publishes a spatial layer on the data portal in GeoJSON format.
