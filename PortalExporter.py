@@ -49,7 +49,7 @@ class PortalConnector(object):
 			raise
 
 
-class PortalResource():
+class PortalResource(object):
 	"""
 	A publishable resource (e.g. CSV, Geodatabase layer)
 	"""
