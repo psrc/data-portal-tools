@@ -12,22 +12,30 @@ def to_SpatiallyEnabledDataFrame(self, spatial_reference=None):
                        If None, the spatial reference will be extracted
                        from the GeoDataFrame if it is defined using an
                        EPSG code.
+
+    Cribbed from from user jrmatchett on ESRI GeoNet:
+    https://community.esri.com/thread/228904-creating-updating-feature-layer-in-arcgis-online-from-geopandas-geodataframe
     """
-    if not spatial_reference:
-        crs = self.crs
-        epsg_code = crs.to_epsg()
-        if epsg_code:
-            spatial_reference = {'wkid': epsg_code}
+    try:
+        if not spatial_reference:
+            crs = self.crs
+            epsg_code = crs.to_epsg()
+            if epsg_code:
+                spatial_reference = {'wkid': epsg_code}
+            else:
+                spatial_reference = {'wkid': 4326}
+                warnings.warn('Unable to extract a spatial reference, assuming latitude/longitude (EPSG 4326).')
         else:
-            spatial_reference = {'wkid': 4326}
-            warnings.warn('Unable to extract a spatial reference, assuming latitude/longitude (EPSG 4326).')
-    else:
-        spatial_reference = {'wkid': spatial_reference}
+            spatial_reference = {'wkid': spatial_reference}
 
-    sdf = DataFrame(data=self.drop(self.geometry.name, axis=1))
-    sdf['SHAPE'] = [Geometry.from_shapely(g, spatial_reference) for g in self.geometry.tolist()]
-    sdf.spatial.set_geometry('SHAPE')
+        sdf = DataFrame(data=self.drop(self.geometry.name, axis=1))
+        sdf['SHAPE'] = [Geometry.from_shapely(g, spatial_reference) for g in self.geometry.tolist()]
+        sdf.spatial.set_geometry('SHAPE')
 
-    return sdf
+        return sdf
+
+    except Exception as e:
+        print(e.args[0])
+        raise
 
 GeoDataFrame.to_SpatiallyEnabledDataFrame = to_SpatiallyEnabledDataFrame
