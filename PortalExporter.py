@@ -10,7 +10,7 @@ import time
 import json
 import to_SpatiallyEnabledDataFrame
 
-class portal_connector():
+class PortalConnector(object):
 	def __init__(self, portal_username, portal_pw, db_server, database, portal_url="https://psregcncl.maps.arcgis.com"):
 		"""
 		Define the parameters by which the portal_connector can connect a database to a data portal.
@@ -49,7 +49,7 @@ class portal_connector():
 			raise
 
 
-class portal_resource():
+class PortalResource(object):
 	"""
 	A publishable resource (e.g. CSV, Geodatabase layer)
 	"""
@@ -130,7 +130,7 @@ class portal_resource():
 			raise
 
 
-class portal_spatial_resource(portal_resource):
+class PortalSpatialResource(PortalResource):
 
 	def __init__(self, p_connector, title, tags):
 		super().__init__(p_connector, title, tags)
@@ -173,24 +173,6 @@ class portal_spatial_resource(portal_resource):
 				gis=self.portal_connector.gis,
 				tags=self.tags)
 			layer_shared = layer.share(everyone=True)
-			# gdf.crs = 'EPSG:2285'
-			# fc = connector.gis.content.import_data(gdf)
-			# fc_dict = (fc.properties)
-			# fc_json - json.dumps({"featureCollection": {"layers": [fc_dict]}})
-			# self.resource_properties['text'] = fc_json
-			# self.resource_properties['type'] = 'Feature Collection'
-			# working_dir = 'working'
-			# file_name = working_dir + '\\' + self.resource_properties['title'] + '.json'
-			# if not os.path.exists(working_dir):
-			# 	os.makedirs(working_dir)
-			# if os.path.exists(file_name):
-			# 	os.remove(file_name)
-			# gdf.to_file(file_name, driver='GeoJSON')
-			# exported = connector.gis.content.add(
-			# 	self.resource_properties,
-			# 	data = file_name)
-			# published_shape = exported.publish()
-			# os.remove(file_name)
 
 		except Exception as e:
 			print(e.args[0])

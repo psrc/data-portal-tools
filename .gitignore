@@ -1,3 +1,4 @@
 Config/config.py
 *.sublime-project
 test_exporter.py
+__pycache__/*.pyc
