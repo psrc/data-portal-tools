@@ -7,6 +7,8 @@ import geopandas as gpd
 import fiona
 from shapely import wkt
 import time
+import json
+import to_SpatiallyEnabledDataFrame
 
 class portal_connector():
 	def __init__(self, portal_username, portal_pw, db_server, database, portal_url="https://psregcncl.maps.arcgis.com"):
@@ -132,7 +134,9 @@ class portal_spatial_resource(portal_resource):
 
 	def __init__(self, p_connector, title, tags):
 		super().__init__(p_connector, title, tags)
-		self.resource_properties['type'] = 'GeoJson'
+		# self.resource_properties['type'] = 'GeoJson'
+		self.title = title
+		self.tags = tags
 
 
 	def define_spatial_source_layer(self, layer_name):
@@ -160,23 +164,33 @@ class portal_spatial_resource(portal_resource):
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""
 		try:
+			connector = self.portal_connector
 			df = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			gdf.crs = 'EPSG:2285'
-			working_dir = 'working'
-			file_name = working_dir + '\\' + self.resource_properties['title'] + '.json'
-			if not os.path.exists(working_dir):
-				os.makedirs(working_dir)
-			if os.path.exists(file_name):
-				os.remove(file_name)
-			gdf.to_file(file_name, driver='GeoJSON')
-			connector = self.portal_connector
-			exported = connector.gis.content.add(
-				self.resource_properties,
-				data = file_name)
-			published_shape = exported.publish()
-			os.remove(file_name)
+			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+			layer = sdf.spatial.to_featurelayer(self.title,
+				gis=self.portal_connector.gis,
+				tags=self.tags)
+			layer_shared = layer.share(everyone=True)
+			# gdf.crs = 'EPSG:2285'
+			# fc = connector.gis.content.import_data(gdf)
+			# fc_dict = (fc.properties)
+			# fc_json - json.dumps({"featureCollection": {"layers": [fc_dict]}})
+			# self.resource_properties['text'] = fc_json
+			# self.resource_properties['type'] = 'Feature Collection'
+			# working_dir = 'working'
+			# file_name = working_dir + '\\' + self.resource_properties['title'] + '.json'
+			# if not os.path.exists(working_dir):
+			# 	os.makedirs(working_dir)
+			# if os.path.exists(file_name):
+			# 	os.remove(file_name)
+			# gdf.to_file(file_name, driver='GeoJSON')
+			# exported = connector.gis.content.add(
+			# 	self.resource_properties,
+			# 	data = file_name)
+			# published_shape = exported.publish()
+			# os.remove(file_name)
 
 		except Exception as e:
 			print(e.args[0])
