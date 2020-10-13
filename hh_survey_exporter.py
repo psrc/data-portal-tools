@@ -19,7 +19,7 @@ try:
 		pub = PortalResource(portal_conn, title=title, tags=tags)
 		pub.define_simple_source(in_schema='HHSurvey', in_recordset_name=view)
 		pub.export()
-		print('finished exporting {}'.format(k))
+		print('...finished exporting {}'.format(k))
 
 except Exception as e:
 	print(e)

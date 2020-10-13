@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"porta",
+				"portal_connector"
+			],
+			[
+				"to_",
+				"to_SpatiallyEnabledDataFrame"
+			],
+			[
 				"resour",
 				"resource_properties"
 			],
@@ -211,6 +219,51 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/C/Users/cpeak/OneDrive - Puget Sound Regional Council/Admin/today.txt",
+			"settings":
+			{
+				"buffer_size": 246990,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 69,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "to_SpatiallyEnabledDataFrame.py",
+			"settings":
+			{
+				"buffer_size": 1564,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "simport pandas as pd\nfrom arcgis.gis import GIS\nimport urllib\nimport pyodbc\nimport os\nimport geopandas as gpd\nimport fiona\nfrom shapely import wkt\nimport time\nimport json\nimport to_SpatiallyEnabledDataFrame\n\nclass PortalConnector(object):\n\tdef __init__(self, portal_username, portal_pw, db_server, database, portal_url=\"https://psregcncl.maps.arcgis.com\"):\n\t\t\"\"\"\n\t\tDefine the parameters by which the portal_connector can connect a database to a data portal.\n\t\tParameters:\n\t\t\tusername: ArcGIS Online/Data Portal username\n\t\t\tpw: ArcGIS Online/Data Portal password\n\t\t\tdb_server: PSRC's db server to export from\n\t\t\tdatabase: PSRC's database to export from\n\t\t\tportal_url: An ArcGIS Online portal or Enterprise\n\t\t\"\"\"\n\t\ttry:\n\t\t\tself.username = portal_username\n\t\t\tself.pw = portal_pw\n\t\t\tself.db_server = db_server\n\t\t\tself.database = database\n\t\t\tself.portal_url = portal_url\n\t\t\tself.connect()\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef connect(self):\n\t\t\"\"\"\n\t\tMake connections to the PSRC database and the data portal\n\t\t\"\"\"\n\t\ttry:\n\t\t\tconn_string = \"DRIVER={{ODBC Driver 17 for SQL Server}}; \" \\\n\t\t\t\t\"SERVER={}; DATABASE={}; trusted_connection=yes\".format(\n\t\t\t\t\tself.db_server,\n\t\t\t\t\tself.database)\n\t\t\tself.sql_conn = pyodbc.connect(conn_string)\n\t\t\tself.gis = GIS(self.portal_url, self.username, self.pw)\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\nclass PortalResource(object):\n\t\"\"\"\n\tA publishable resource (e.g. CSV, Geodatabase layer)\n\t\"\"\"\n\n\tdef __init__(self, p_connector, title, tags):\n\t\t\"\"\"\n\t\tParameters:\n\t\t\tp_connector: a portal_connector object\n\t\t\tin_schema (string): the schema for the data set in the database.\n\t\t\tin_recordset_name (string): the name of the table or view\n\t\t\ttitle (string): the name to be used for the published dataset\n\t\t\ttags (string): a comma-delimited list of tags to be used for the published data source\n\t\t\"\"\"\n\t\ttry:\n\t\t\tself.portal_connector = p_connector\n\t\t\tself.resource_properties = {\n\t\t\t\t'title': title,\n\t\t\t\t'tags': tags\n\t\t\t}\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\tdef define_simple_source(self, in_schema, in_recordset_name):\n\t\t\"\"\"\n\t\tSets the data source table or view in the PSRC database.\n\t\tIncludes all rows and all columns in the set.\n\t\tRequires no knowlege of SQL on the user's part.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tself.sql='select * from {}.{}'.format(in_schema, in_recordset_name)\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef define_source_from_query(self, sql_query):\n\t\t\"\"\"\n\t\tSets the data source table or view in the PSRC database.\n\t\tIncludes all rows and all columns in the set.\n\t\tRequires no knowlege of SQL on the user's part.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tself.sql = sql_query\n\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef export(self):\n\t\t\"\"\"\n\t\tRead a recordset (a table or a view) in the database,\n\t\twrite it to a CSV locally,\n\t\tthen publish the CSV to the data portal.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tout_type = \"CSV\"\n\t\t\tcsv_name = r'.\\temp_data_export_csv.csv'\n\t\t\tconnector = self.portal_connector\n\t\t\tdf = pd.read_sql(\n\t\t\t\tsql=self.sql,\n\t\t\t\tcon=connector.sql_conn)\n\t\t\tworking_dir = 'working'\n\t\t\tcsv_name = working_dir + '\\\\' + self.resource_properties['title'] + '.csv'\n\t\t\tif not os.path.exists(working_dir):\n\t\t\t\tos.makedirs(working_dir)\n\t\t\tif os.path.isfile(csv_name):\n\t\t\t\tos.remove(csv_name)\n\t\t\tdf.to_csv(csv_name)\n\t\t\tself.resource_properties['type'] = out_type\n\t\t\texported = connector.gis.content.add(self.resource_properties, data=csv_name)\n\t\t\tpublished_csv = exported.publish()\n\t\t\tos.remove(csv_name)\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\tif os.path.exists(csv_name): os.remove(csv_name)\n\t\t\traise\n\n\nclass PortalSpatialResource(PortalResource):\n\n\tdef __init__(self, p_connector, title, tags):\n\t\tsuper().__init__(p_connector, title, tags)\n\t\t# self.resource_properties['type'] = 'GeoJson'\n\t\tself.title = title\n\t\tself.tags = tags\n\n\n\tdef define_spatial_source_layer(self, layer_name):\n\t\t\"\"\"\n\t\tProduce a SQL query for a layer's versioned view in the geodatabase\n\t\tParameters:\n\t\t\tlayer_name: the name of the layer in the geodatabase (without an *_evw suffix)\n\t\tOutput:\n\t\t\tself.sql: a SQL string that can be used to build a geodataframe\n\t\t\"\"\"\n\t\ttry:\n\t\t\tself.column_list = self.get_columns_for_recordset(layer_name)\n\t\t\tself.get_columns_clause()\n\t\t\tself.sql = 'SELECT {} FROM dbo.{}_evw'.format(\n\t\t\t\tself.columns_clause,\n\t\t\t\tlayer_name)\n\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef export(self):\n\t\t\"\"\"\n\t\tExport a resource from a geodatabase to a GeoJSON layer on the data portal.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tconnector = self.portal_connector\n\t\t\tdf = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)\n\t\t\tdf['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)\n\t\t\tgdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')\n\t\t\tsdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)\n\t\t\tlayer = sdf.spatial.to_featurelayer(self.title,\n\t\t\t\tgis=self.portal_connector.gis,\n\t\t\t\ttags=self.tags)\n\t\t\tlayer_shared = layer.share(everyone=True)\n\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef get_columns_for_recordset(self, layer_name):\n\t\t\"\"\"\n\t\tGet a list of columns for a table or view in a database,\n\t\tminus the system columns GDB_GEOMATTR_DATA and SDE_STATE_ID, if they exists.\n\t\tParameters:\n\t\t\tlayer_name: the name of a table or view in a database\n\t\tReturns a list of strings representing column names.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tcol_sql = \"SELECT COLUMN_NAME FROM {} WHERE TABLE_NAME = '{}'\".format(\n\t\t\t\t'INFORMATION_SCHEMA.COLUMNS',\n\t\t\t\tlayer_name)\n\t\t\tdf = pd.read_sql(sql=col_sql, con=self.portal_connector.sql_conn)\n\t\t\tl = []\n\t\t\tfor n in df.COLUMN_NAME:\n\t\t\t\tl.append(n) if n not in ['GDB_GEOMATTR_DATA', 'SDE_STATE_ID'] else l\n\t\t\treturn l\n\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n\n\n\tdef get_columns_clause(self):\n\t\t\"\"\"\n\t\tConstructs a string representing column names, which can be inserted into\n\t\ta SQL query.\n\t\tColumn \"Shape\" gets wrapped in a function to produce its wlt representation.\n\t\tDepends on the existence of self.column_list, a list of strings representing column names.\n\t\tProduces self.columns_clause, which can be used in a SQL query.\n\t\t\"\"\"\n\t\ttry:\n\t\t\tl = self.column_list\n\t\t\tl = ['Shape.STAsText() as Shape_wkt' if x=='Shape' else x for x in l]\n\t\t\tself.columns_clause = ','.join(l)\n\n\t\texcept Exception as e:\n\t\t\tprint(e.args[0])\n\t\t\traise\n",
+			"file": "PortalExporter.py",
+			"file_size": 6473,
+			"file_write_time": 132465022965496191,
+			"settings":
+			{
+				"buffer_size": 6254,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test_exporter.py",
+			"settings":
+			{
+				"buffer_size": 485,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -322,6 +375,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/cpeak/Documents/Repos/data-portal-tools/PortalExporter.py",
 		"/C/Users/cpeak/OneDrive - Puget Sound Regional Council/Projects/2020/census/api_variables_html/ACS5/variables2016.json",
 		"/C/Users/cpeak/Documents/Repos/Elmer/ETLScripts/General/Importer/Code/Libraries/Database/ETLDatabase.py",
 		"/C/Users/cpeak/Documents/Repos/Elmer/ETLScripts/General/Importer/Code/Libraries/Staging.py",
@@ -424,7 +478,7 @@
 		"replace_history":
 		[
 		],
-		"reverse": true,
+		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -433,14 +487,160 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/cpeak/OneDrive - Puget Sound Regional Council/Admin/today.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 246990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1069,
+								1069
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 69,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "to_SpatiallyEnabledDataFrame.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1434,
+								1434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "PortalExporter.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2565.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "test_exporter.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								485,
+								485
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 40.8
 	},
 	"input":
 	{
@@ -519,7 +719,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 256.0,
+	"side_bar_width": 182.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

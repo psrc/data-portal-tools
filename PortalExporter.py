@@ -99,8 +99,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
-
-	def export(self):
+	def publish_as_new(self):
 		"""
 		Read a recordset (a table or a view) in the database,
 		write it to a CSV locally,
@@ -128,6 +127,27 @@ class PortalResource(object):
 		except Exception as e:
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
+
+
+	def export(self):
+		"""
+		check if self is already published on the data portal.
+		  If yes then delete resource, then publish as new
+		  If no then publish as new
+		"""
+		try:
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
+			content_list = gis.content.search(query='title:{}'.format(title))
+			if len(content_list) > 0:
+				#delete title?
+				for item in content_list:
+					i_deleted = gis.content.get(item.id).delete()
+			self.publish_as_new()
+
+		except Exception as e:
+			print(e.args[0])
 			raise
 
 
@@ -159,8 +179,7 @@ class PortalSpatialResource(PortalResource):
 			print(e.args[0])
 			raise
 
-
-	def export(self):
+	def publish_as_new(self):
 		"""
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""
@@ -178,6 +197,25 @@ class PortalSpatialResource(PortalResource):
 		except Exception as e:
 			print(e.args[0])
 			raise
+
+	# def export(self):
+	# 	"""
+	# 	Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+	# 	"""
+	# 	try:
+	# 		connector = self.portal_connector
+	# 		df = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)
+	# 		df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+	# 		gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+	# 		sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+	# 		layer = sdf.spatial.to_featurelayer(self.title,
+	# 			gis=self.portal_connector.gis,
+	# 			tags=self.tags)
+	# 		layer_shared = layer.share(everyone=True)
+
+	# 	except Exception as e:
+	# 		print(e.args[0])
+	# 		raise
 
 
 	def get_columns_for_recordset(self, layer_name):
