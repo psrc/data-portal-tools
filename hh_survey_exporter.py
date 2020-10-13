@@ -12,12 +12,14 @@ try:
 					'vehicles':'v_vehicles_2017_2019_public'}
 
 	for k in public_views.keys():
+		print('exporting {} now...'.format(k))
 		title = 'hhsurvey_' + k + '_2019'
 		view = public_views[k]
 		tags = 'test,household survey,' + k
 		pub = PortalResource(portal_conn, title=title, tags=tags)
 		pub.define_simple_source(in_schema='HHSurvey', in_recordset_name=view)
 		pub.export()
+		print('finished exporting {}'.format(k))
 
 except Exception as e:
 	print(e)
