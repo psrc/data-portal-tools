@@ -123,6 +123,7 @@ class PortalResource(object):
 			self.resource_properties['type'] = out_type
 			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
 			published_csv = exported.publish()
+			published_csv.share(everyone=True)
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
