@@ -73,6 +73,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def define_simple_source(self, in_schema, in_recordset_name):
 		"""
 		Sets the data source table or view in the PSRC database.
@@ -99,6 +100,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def publish_as_new(self):
 		"""
 		Read a recordset (a table or a view) in the database,
@@ -120,9 +122,29 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
+
+			#Adding publishParams per documentation at
+			#https://developers.arcgis.com/rest/users-groups-and-items/publish-item.htm
+			editor_tracking_dict = {
+			    "enableEditorTracking": False,
+			    "enableOwnershipAccessControl": False,
+			    "allowOthersToQuery": True,
+			    "allowOthersToUpdate": False,
+			    "allowOthersToDelete": False,
+			    "allowAnonymousToUpdate": False,
+			    "allowAnonymousToDelete": False
+			  }
+			publish_params = {"editorTrackingInfo": editor_tracking_dict}
+			publish_params['type'] = 'csv'
+			publish_params['name'] = 'testname'
+			publish_params['locationType'] = None
+			publish_params_json = json.dumps(publish_params, indent=4)
+			print(publish_params_json)
+
 			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
-			published_csv = exported.publish()
+			published_csv = exported.publish(publish_parameters = publish_params_json)
 			published_csv.share(everyone=True)
+			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
