@@ -1,5 +1,6 @@
 import pandas as pd
 from arcgis.gis import GIS
+from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
 import os
@@ -122,27 +123,11 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
-
-			#Adding publishParams per documentation at
-			#https://developers.arcgis.com/rest/users-groups-and-items/publish-item.htm
-			editor_tracking_dict = {
-			    "enableEditorTracking": False,
-			    "enableOwnershipAccessControl": False,
-			    "allowOthersToQuery": True,
-			    "allowOthersToUpdate": False,
-			    "allowOthersToDelete": False,
-			    "allowAnonymousToUpdate": False,
-			    "allowAnonymousToDelete": False
-			  }
-			publish_params = {"editorTrackingInfo": editor_tracking_dict}
-			publish_params['type'] = 'csv'
-			publish_params['name'] = 'testname'
-			publish_params['locationType'] = None
-			publish_params_json = json.dumps(publish_params, indent=4)
-			print(publish_params_json)
-
+			capabilities_dict = {'capabilities':'Query', 'syncEnabled': False}
 			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
-			published_csv = exported.publish(publish_parameters = publish_params_json)
+			published_csv = exported.publish()
+			published_flc = FeatureLayerCollection.fromitem(published_csv)
+			published_flc.manager.update_definition(capabilities_dict)
 			published_csv.share(everyone=True)
 			print('title: {}'.format(exported.title))
 			os.remove(csv_name)

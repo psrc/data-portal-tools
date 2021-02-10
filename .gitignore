@@ -3,3 +3,6 @@ Config/config.py
 *.sublime-workspace
 test_exporter.py
 __pycache__/*.pyc
+.ipynb_checkpoints*
+*.ipynb
+working/*
