@@ -1,15 +1,16 @@
 from PortalExporter import PortalResource
 from PortalExporter import PortalSpatialResource
 from PortalExporter import PortalConnector
-from Config import config
 import yaml
 
 
 ##############################################################################
 # Setup: construct connector (for Examples 1 and 2)
 ##############################################################################
-my_p_conn = PortalConnector(portal_username=config.arc_gis_online['username'],
-	portal_pw=config.arc_gis_online['pw'],
+with open(r'Config\\auth.yml') as file:
+	auth = yaml.load(file, Loader=yaml.FullLoader)
+my_p_conn = PortalConnector(portal_username=auth['arc_gis_online']['username'],
+	portal_pw=auth['arc_gis_online']['pw'],
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
 

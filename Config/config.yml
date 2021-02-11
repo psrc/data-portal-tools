@@ -3,7 +3,7 @@ cpeak_parking_vintage_test:
     tags: test
     allow_edits: False
     share_level: everyone
-    description: cold, dark, deep, and absolutely clear
+    description: cold dark deep and absolutely clear
   source:
     schema_name: parking_inventory
     table_name: vintage_dim
