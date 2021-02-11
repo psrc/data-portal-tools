@@ -3,6 +3,7 @@ from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
+import yaml
 import os
 import geopandas as gpd
 import fiona
@@ -55,7 +56,7 @@ class PortalResource(object):
 	A publishable resource (e.g. CSV, Geodatabase layer)
 	"""
 
-	def __init__(self, p_connector, title, tags):
+	def __init__(self, p_connector, title, tags, description='', share_level='everyone'):
 		"""
 		Parameters:
 			p_connector: a portal_connector object
@@ -68,8 +69,10 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.resource_properties = {
 				'title': title,
-				'tags': tags
+				'tags': tags,
+				'description': description
 			}
+			self.share_level = share_level
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -128,7 +131,8 @@ class PortalResource(object):
 			published_csv = exported.publish()
 			published_flc = FeatureLayerCollection.fromitem(published_csv)
 			published_flc.manager.update_definition(capabilities_dict)
-			published_csv.share(everyone=True)
+			#published_csv.share(everyone=True)
+			self.share(published_csv)
 			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
@@ -136,6 +140,18 @@ class PortalResource(object):
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
+
+	def share(self, layer):
+		try:
+			sl = self.share_level
+			if sl == 'everyone':
+				layer.share(everyone=True)
+			elif sl == 'org':
+				layer.share(everyone=False, org=True)
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
 
 	def export(self):
 		"""
@@ -204,25 +220,6 @@ class PortalSpatialResource(PortalResource):
 		except Exception as e:
 			print(e.args[0])
 			raise
-
-	# def export(self):
-	# 	"""
-	# 	Export a resource from a geodatabase to a GeoJSON layer on the data portal.
-	# 	"""
-	# 	try:
-	# 		connector = self.portal_connector
-	# 		df = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)
-	# 		df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
-	# 		gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-	# 		sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-	# 		layer = sdf.spatial.to_featurelayer(self.title,
-	# 			gis=self.portal_connector.gis,
-	# 			tags=self.tags)
-	# 		layer_shared = layer.share(everyone=True)
-
-	# 	except Exception as e:
-	# 		print(e.args[0])
-	# 		raise
 
 
 	def get_columns_for_recordset(self, layer_name):

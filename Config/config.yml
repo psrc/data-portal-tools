@@ -1,0 +1,20 @@
+cpeak_parking_vintage_test:
+  layer_params:
+    tags: test
+    allow_edits: False
+    share_level: everyone
+    description: cold, dark, deep, and absolutely clear
+  source:
+    schema_name: parking_inventory
+    table_name: vintage_dim
+
+cpeak_ofm_publication_test:
+  layer_params:
+    tags: test, and, stuff
+    allow_edits: False
+    share_level: org
+    description: a description
+  source:
+    schema_name: ofm
+    table_name: publication_dim
+
