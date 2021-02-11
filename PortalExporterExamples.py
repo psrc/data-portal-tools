@@ -1,12 +1,12 @@
-from PortalExporter import portal_resource
-from PortalExporter import portal_spatial_resource
-from PortalExporter import portal_connector
+from PortalExporter import PortalResource
+from PortalExporter import PortalSpatialResource
+from PortalExporter import PortalConnector
 from Config import config
 
 ##############################################################################
 # Setup: construct connector (for Examples 1 and 2)
 ##############################################################################
-my_p_conn = portal_connector(portal_username=config.arc_gis_online['username'],
+my_p_conn = PortalConnector(portal_username=config.arc_gis_online['username'],
 	portal_pw=config.arc_gis_online['pw'],
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
@@ -15,7 +15,7 @@ my_p_conn = portal_connector(portal_username=config.arc_gis_online['username'],
 ##############################################################################
 #Example 1: export a table or view using define_simple_source
 ##############################################################################
-my_pub = portal_resource(my_p_conn,
+my_pub = PortalResource(my_p_conn,
 	title='test_data_from_simple_source',
 	tags='test')
 my_pub.define_simple_source(
@@ -28,7 +28,7 @@ print("exported test_data_from_simple_source")
 ##############################################################################
 #Example 2: export data through an ad-hoc query:
 ##############################################################################
-my_pub = portal_resource(my_p_conn,
+my_pub = PortalResource(my_p_conn,
 	title='test_data_from_query',
 	tags='test')
 
@@ -44,11 +44,11 @@ print("exported test_data_from_query")
 ##############################################################################
 #example 3: export a spatial layer from ElmerGeo
 ##############################################################################
-spatial_conn = portal_connector(portal_username=config.arc_gis_online['username'],
+spatial_conn = PortalConnector(portal_username=config.arc_gis_online['username'],
 	portal_pw=config.arc_gis_online['pw'],
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='ElmerGeo')
-my_pub = portal_spatial_resource(spatial_conn,
+my_pub = PortalSpatialResource(spatial_conn,
 	title='test_spatial_layer',
 	tags='test')
 my_pub.define_spatial_source_layer('rural')

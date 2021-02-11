@@ -1,7 +1,9 @@
 import pandas as pd
 from arcgis.gis import GIS
+from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
+import yaml
 import os
 import geopandas as gpd
 import fiona
@@ -54,7 +56,7 @@ class PortalResource(object):
 	A publishable resource (e.g. CSV, Geodatabase layer)
 	"""
 
-	def __init__(self, p_connector, title, tags):
+	def __init__(self, p_connector, title, tags, description='', share_level='everyone'):
 		"""
 		Parameters:
 			p_connector: a portal_connector object
@@ -67,11 +69,14 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.resource_properties = {
 				'title': title,
-				'tags': tags
+				'tags': tags,
+				'description': description
 			}
+			self.share_level = share_level
 		except Exception as e:
 			print(e.args[0])
 			raise
+
 
 	def define_simple_source(self, in_schema, in_recordset_name):
 		"""
@@ -100,7 +105,7 @@ class PortalResource(object):
 			raise
 
 
-	def export(self):
+	def publish_as_new(self):
 		"""
 		Read a recordset (a table or a view) in the database,
 		write it to a CSV locally,
@@ -121,12 +126,51 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
+			capabilities_dict = {'capabilities':'Query', 'syncEnabled': False}
 			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
 			published_csv = exported.publish()
+			published_flc = FeatureLayerCollection.fromitem(published_csv)
+			published_flc.manager.update_definition(capabilities_dict)
+			#published_csv.share(everyone=True)
+			self.share(published_csv)
+			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
+
+
+	def share(self, layer):
+		try:
+			sl = self.share_level
+			if sl == 'everyone':
+				layer.share(everyone=True)
+			elif sl == 'org':
+				layer.share(everyone=False, org=True)
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
+
+	def export(self):
+		"""
+		check if self is already published on the data portal.
+		  If yes then delete resource, then publish as new
+		  If no then publish as new
+		"""
+		try:
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
+			content_list = gis.content.search(query='title:{}'.format(title))
+			if len(content_list) > 0:
+				#delete title?
+				for item in content_list:
+					i_deleted = gis.content.get(item.id).delete()
+			self.publish_as_new()
+
+		except Exception as e:
+			print(e.args[0])
 			raise
 
 
@@ -158,8 +202,7 @@ class PortalSpatialResource(PortalResource):
 			print(e.args[0])
 			raise
 
-
-	def export(self):
+	def publish_as_new(self):
 		"""
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""

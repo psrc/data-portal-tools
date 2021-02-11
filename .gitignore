@@ -1,4 +1,8 @@
-Config/config.py
+Config/auth.yml
 *.sublime-project
+*.sublime-workspace
 test_exporter.py
 __pycache__/*.pyc
+.ipynb_checkpoints*
+*.ipynb
+working/*
