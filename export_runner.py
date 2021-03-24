@@ -35,7 +35,8 @@ for l in layers:
 		title=title,
 		tags=tags,
 		description=description,
-		share_level=share_level
+		share_level=share_level,
+		allow_edits = params['allow_edits']
 		)
 	source = config[l]['source']
 	schema = source['schema_name']

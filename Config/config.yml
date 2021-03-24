@@ -1,20 +1,39 @@
-cpeak_parking_vintage_test:
+macroeconomic_population:
   layer_params:
-    tags: test
+    tags: macroeconomic forecast population regional
     allow_edits: False
     share_level: everyone
-    description: cold dark deep and absolutely clear
+    description: Regional population forecasts from the macroeconomic model
   source:
-    schema_name: parking_inventory
-    table_name: vintage_dim
+    schema_name: macroeconomic
+    table_name: v_pop
 
-cpeak_ofm_publication_test:
+macroeconomic_employment:
   layer_params:
-    tags: test, and, stuff
+    tags: macroeconomic forecast employment regional
     allow_edits: False
-    share_level: org
-    description: a description
+    share_level: everyone
+    description: Regional employment forecasts from the macroeconomic model
   source:
-    schema_name: ofm
-    table_name: publication_dim
+    schema_name: macroeconomic
+    table_name: v_employment
 
+macroeconomic_households:
+  layer_params:
+    tags: macroeconomic forecast households regional
+    allow_edits: False
+    share_level: everyone
+    description: Regional households forecasts from the macroeconomic model
+  source:
+    schema_name: macroeconomic
+    table_name: v_households
+
+macroeconomic_income:
+  layer_params:
+    tags: macroeconomic forecast income regional
+    allow_edits: False
+    share_level: everyone
+    description: Regional income forecasts from the macroeconomic model
+  source:
+    schema_name: macroeconomic
+    table_name: v_income

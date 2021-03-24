@@ -56,7 +56,13 @@ class PortalResource(object):
 	A publishable resource (e.g. CSV, Geodatabase layer)
 	"""
 
-	def __init__(self, p_connector, title, tags, description='', share_level='everyone'):
+	def __init__(self,
+			p_connector,
+			title,
+			tags,
+			description='',
+			share_level='everyone',
+			allow_edits=False):
 		"""
 		Parameters:
 			p_connector: a portal_connector object
@@ -73,6 +79,7 @@ class PortalResource(object):
 				'description': description
 			}
 			self.share_level = share_level
+			self.allow_edits = allow_edits
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -126,18 +133,33 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
-			capabilities_dict = {'capabilities':'Query', 'syncEnabled': False}
 			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
 			published_csv = exported.publish()
-			published_flc = FeatureLayerCollection.fromitem(published_csv)
-			published_flc.manager.update_definition(capabilities_dict)
-			#published_csv.share(everyone=True)
+			self.set_editability(published_csv)
 			self.share(published_csv)
 			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
+
+	def set_editability(self, layer):
+		'''
+		Disallow edits if self.allow_edits is set to False
+		'''
+		try:
+			if self.allow_edits == False:
+				capabilities_dict = {'capabilities':'Query', 'syncEnabled': False}
+				published_flc = FeatureLayerCollection.fromitem(layer)
+				published_flc.manager.update_definition(capabilities_dict)
+			elif self.allow_edits == True:
+				capabilities_dict = {'capabilities':'Create,Delete,Query,Update,Editing',
+									'syncEnabled': False}
+				published_flc = FeatureLayerCollection.fromitem(layer)
+				published_flc.manager.update_definition(capabilities_dict)
+		except Exception as e:
+			print(e.args[0])
 			raise
 
 
@@ -150,7 +172,6 @@ class PortalResource(object):
 				layer.share(everyone=False, org=True)
 		except Exception as e:
 			print(e.args[0])
-			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
 	def export(self):
