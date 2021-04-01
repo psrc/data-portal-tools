@@ -13,7 +13,7 @@ import json
 import to_SpatiallyEnabledDataFrame
 
 class PortalConnector(object):
-	def __init__(self, portal_username, portal_pw, db_server, database, portal_url="https://psregcncl.maps.arcgis.com"):
+	def __init__(self, portal_username, portal_pw, portal_url="https://psregcncl.maps.arcgis.com"):
 		"""
 		Define the parameters by which the portal_connector can connect a database to a data portal.
 		Parameters:
@@ -26,8 +26,6 @@ class PortalConnector(object):
 		try:
 			self.username = portal_username
 			self.pw = portal_pw
-			self.db_server = db_server
-			self.database = database
 			self.portal_url = portal_url
 			self.connect()
 		except Exception as e:
@@ -37,7 +35,34 @@ class PortalConnector(object):
 
 	def connect(self):
 		"""
-		Make connections to the PSRC database and the data portal
+		Make connections to the data portal
+		"""
+		try:
+			self.gis = GIS(self.portal_url, self.username, self.pw)
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+class DatabaseConnector(object):
+	def __init__(self, db_server, database):
+		"""
+		Define the parameters by which the database_connector can connect a database.
+		Parameters:
+			db_server: PSRC's db server to export from
+			database: PSRC's database to export from
+		"""
+		try:
+			self.db_server = db_server
+			self.database = database
+			self.connect()
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def connect(self):
+		"""
+		Make connections to the PSRC database
 		"""
 		try:
 			conn_string = "DRIVER={{ODBC Driver 17 for SQL Server}}; " \
@@ -45,11 +70,9 @@ class PortalConnector(object):
 					self.db_server,
 					self.database)
 			self.sql_conn = pyodbc.connect(conn_string)
-			self.gis = GIS(self.portal_url, self.username, self.pw)
 		except Exception as e:
 			print(e.args[0])
 			raise
-
 
 class PortalResource(object):
 	"""
@@ -58,6 +81,7 @@ class PortalResource(object):
 
 	def __init__(self,
 			p_connector,
+			db_connector,
 			title,
 			tags,
 			description='',
@@ -65,7 +89,8 @@ class PortalResource(object):
 			allow_edits=False):
 		"""
 		Parameters:
-			p_connector: a portal_connector object
+			p_connector: a PortalConnector object
+			db_connector: a DatabaseConnector object
 			in_schema (string): the schema for the data set in the database.
 			in_recordset_name (string): the name of the table or view
 			title (string): the name to be used for the published dataset
@@ -73,6 +98,7 @@ class PortalResource(object):
 		"""
 		try:
 			self.portal_connector = p_connector
+			self.db_connector = db_connector
 			self.resource_properties = {
 				'title': title,
 				'tags': tags,
@@ -121,10 +147,12 @@ class PortalResource(object):
 		try:
 			out_type = "CSV"
 			csv_name = r'.\temp_data_export_csv.csv'
-			connector = self.portal_connector
+			portal_connector = self.portal_connector
+			db_connector = self.db_connector
 			df = pd.read_sql(
 				sql=self.sql,
-				con=connector.sql_conn)
+				con=db_connector.sql_conn)
+			self.df = df
 			working_dir = 'working'
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
@@ -133,7 +161,7 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
-			exported = connector.gis.content.add(self.resource_properties, data=csv_name)
+			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
 			published_csv = exported.publish()
 			self.set_editability(published_csv)
 			self.share(published_csv)
@@ -143,6 +171,18 @@ class PortalResource(object):
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
+
+
+	def print_df(self):
+		try:
+			print("printing dataframe:")
+			print(self.df)
+			print("finished printing dataframe")
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
+
 
 	def set_editability(self, layer):
 		'''
@@ -197,8 +237,8 @@ class PortalResource(object):
 
 class PortalSpatialResource(PortalResource):
 
-	def __init__(self, p_connector, title, tags):
-		super().__init__(p_connector, title, tags)
+	def __init__(self, p_connector, db_connector, title, tags):
+		super().__init__(p_connector, db_connector, title, tags)
 		# self.resource_properties['type'] = 'GeoJson'
 		self.title = title
 		self.tags = tags
@@ -228,8 +268,9 @@ class PortalSpatialResource(PortalResource):
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""
 		try:
-			connector = self.portal_connector
-			df = pd.read_sql(sql=self.sql, con=self.portal_connector.sql_conn)
+			portal_connector = self.portal_connector
+			db_connector = self.db_connector
+			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
@@ -255,7 +296,7 @@ class PortalSpatialResource(PortalResource):
 			col_sql = "SELECT COLUMN_NAME FROM {} WHERE TABLE_NAME = '{}'".format(
 				'INFORMATION_SCHEMA.COLUMNS',
 				layer_name)
-			df = pd.read_sql(sql=col_sql, con=self.portal_connector.sql_conn)
+			df = pd.read_sql(sql=col_sql, con=self.db_connector.sql_conn)
 			l = []
 			for n in df.COLUMN_NAME:
 				l.append(n) if n not in ['GDB_GEOMATTR_DATA', 'SDE_STATE_ID'] else l

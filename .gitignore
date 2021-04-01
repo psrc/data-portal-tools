@@ -1,4 +1,5 @@
 Config/auth.yml
+Config/config_test.yml
 *.sublime-project
 *.sublime-workspace
 test_exporter.py

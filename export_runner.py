@@ -1,6 +1,7 @@
 from PortalExporter import PortalResource
 from PortalExporter import PortalSpatialResource
 from PortalExporter import PortalConnector
+from PortalExporter import DatabaseConnector
 import yaml
 
 
@@ -9,8 +10,10 @@ import yaml
 ##############################################################################
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
-my_p_conn = PortalConnector(portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'],
+my_p_conn = PortalConnector(
+	portal_username=auth['arc_gis_online']['username'],
+	portal_pw=auth['arc_gis_online']['pw'])
+my_db_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
 
@@ -31,7 +34,9 @@ for l in layers:
 	tags = params['tags']
 	description = params['description']
 	share_level = params['share_level']
-	my_pub = PortalResource(my_p_conn,
+	my_pub = PortalResource(
+		p_connector=my_p_conn,
+		db_connector=my_db_conn,
 		title=title,
 		tags=tags,
 		description=description,
@@ -45,5 +50,6 @@ for l in layers:
 		in_schema=schema,
 		in_recordset_name=table
 		)
-	my_pub.export();
+	my_pub.export()
+	my_pub.print_df()
 	print("exported {}".format(title))
