@@ -1,17 +1,26 @@
-from PortalExporter import portal_spatial_resource
-from PortalExporter import portal_connector
-from Config import config
+from PortalExporter import PortalSpatialResource
+from PortalExporter import PortalConnector
+from PortalExporter import DatabaseConnector
+import yaml
 
-#example 3: export a spatial layer from ElmerGeo
-spatial_conn = portal_connector(portal_username=config.arc_gis_online['username'],
-	portal_pw=config.arc_gis_online['pw'],
+with open(r'Config\\auth.yml') as file:
+	auth = yaml.load(file, Loader=yaml.FullLoader)
+
+spatial_conn = PortalConnector(
+	portal_username=auth['arc_gis_online']['username'],
+	portal_pw=auth['arc_gis_online']['pw'])
+db_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='ElmerGeo')
 
-my_pub = portal_spatial_resource(spatial_conn,
-	title='test_spatial_layer2',
+#example 3: export a spatial layer from ElmerGeo
+
+my_pub = PortalSpatialResource(
+	spatial_conn,
+	db_conn,
+	title='test_spatial_layer4',
 	tags='test')
 
-my_pub.define_spatial_source_layer('rural')
+my_pub.define_spatial_source_layer('county_background')
 
 my_pub.export()
