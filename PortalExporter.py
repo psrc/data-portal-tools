@@ -248,14 +248,14 @@ class PortalSpatialResource(PortalResource):
 		"""
 		Produce a SQL query for a layer's versioned view in the geodatabase
 		Parameters:
-			layer_name: the name of the layer in the geodatabase (without an *_evw suffix)
+			layer_name: the name of the layer in the geodatabase 
 		Output:
 			self.sql: a SQL string that can be used to build a geodataframe
 		"""
 		try:
 			self.column_list = self.get_columns_for_recordset(layer_name)
 			self.get_columns_clause()
-			self.sql = 'SELECT {} FROM dbo.{}_evw'.format(
+			self.sql = 'SELECT {} FROM dbo.{}'.format(
 				self.columns_clause,
 				layer_name)
 
