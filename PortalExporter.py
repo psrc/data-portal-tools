@@ -104,6 +104,8 @@ class PortalResource(object):
 				'tags': tags,
 				'description': description
 			}
+			self.title = title
+			self.tags = tags
 			self.share_level = share_level
 			self.allow_edits = allow_edits
 		except Exception as e:
@@ -136,6 +138,48 @@ class PortalResource(object):
 		except Exception as e:
 			print(e.args[0])
 			raise
+
+
+	def define_spatial_source_layer(self, layer_name):
+		"""
+		Produce a SQL query for a layer's versioned view in the geodatabase
+		Parameters:
+			layer_name: the name of the layer in the geodatabase (without an *_evw suffix)
+		Output:
+			self.sql: a SQL string that can be used to build a geodataframe
+		"""
+		try:
+			self.column_list = self.get_columns_for_recordset(layer_name)
+			self.get_columns_clause()
+			self.sql = 'SELECT {} FROM dbo.{}_evw'.format(
+				self.columns_clause,
+				layer_name)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def publish_spatial_as_new(self):
+		"""
+		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+		"""
+		try:
+			portal_connector = self.portal_connector
+			db_connector = self.db_connector
+			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+			layer = sdf.spatial.to_featurelayer(self.title,
+				gis=self.portal_connector.gis,
+				tags=self.tags)
+			layer_shared = layer.share(everyone=True)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
 
 
 	def publish_as_new(self):
@@ -235,55 +279,6 @@ class PortalResource(object):
 			raise
 
 
-class PortalSpatialResource(PortalResource):
-
-	def __init__(self, p_connector, db_connector, title, tags):
-		super().__init__(p_connector, db_connector, title, tags)
-		# self.resource_properties['type'] = 'GeoJson'
-		self.title = title
-		self.tags = tags
-
-
-	def define_spatial_source_layer(self, layer_name):
-		"""
-		Produce a SQL query for a layer's versioned view in the geodatabase
-		Parameters:
-			layer_name: the name of the layer in the geodatabase (without an *_evw suffix)
-		Output:
-			self.sql: a SQL string that can be used to build a geodataframe
-		"""
-		try:
-			self.column_list = self.get_columns_for_recordset(layer_name)
-			self.get_columns_clause()
-			self.sql = 'SELECT {} FROM dbo.{}_evw'.format(
-				self.columns_clause,
-				layer_name)
-
-		except Exception as e:
-			print(e.args[0])
-			raise
-
-	def publish_as_new(self):
-		"""
-		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
-		"""
-		try:
-			portal_connector = self.portal_connector
-			db_connector = self.db_connector
-			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
-			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
-			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			layer = sdf.spatial.to_featurelayer(self.title,
-				gis=self.portal_connector.gis,
-				tags=self.tags)
-			layer_shared = layer.share(everyone=True)
-
-		except Exception as e:
-			print(e.args[0])
-			raise
-
-
 	def get_columns_for_recordset(self, layer_name):
 		"""
 		Get a list of columns for a table or view in a database,
@@ -323,3 +318,7 @@ class PortalSpatialResource(PortalResource):
 		except Exception as e:
 			print(e.args[0])
 			raise
+
+
+
+

@@ -22,7 +22,7 @@ my_db_conn = DatabaseConnector(
 #Example 1: export tables and/or view using define_simple_source
 #  Use the config info in config\config.yml
 ##############################################################################
-with open(r'Config\config.yml') as file:
+with open(r'Config\config_test.yml') as file:
 	config = yaml.load(file, Loader=yaml.FullLoader)
 
 layers = config.keys()
