@@ -51,5 +51,5 @@ for l in layers:
 		in_recordset_name=table
 		)
 	my_pub.export()
-	my_pub.print_df()
+	#my_pub.print_df()
 	print("exported {}".format(title))
