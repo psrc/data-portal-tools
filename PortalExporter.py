@@ -4,6 +4,7 @@ from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
 import yaml
+import xmltodict
 import os
 import geopandas as gpd
 import fiona
@@ -105,6 +106,7 @@ class PortalResource(object):
 				'accessInformation': params['accessInformation'],
 				'licenseInfo': params['licenseInfo']
 			}
+			self.contact_name = params['contact_name']
 			self.share_level = params['share_level']
 			self.allow_edits = params['allow_edits']
 		except Exception as e:
@@ -166,6 +168,7 @@ class PortalResource(object):
 			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
 			params = {"type":"csv","locationType":"none"}
 			published_csv = exported.publish(publish_parameters=params)
+			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
 			print('title: {}'.format(exported.title))
@@ -175,6 +178,44 @@ class PortalResource(object):
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
+	def set_and_update_metadata(self, item):
+		try:
+			metadata_file = r'./workspace/metadata.xml'
+			if not os.path.exists(metadata_file):
+				self.initialize_metadata_file(item)
+			metadata = item.metadata
+			print('metadata: {}'.format(metadata))
+			doc = xmltodict.parse(metadata)
+			doc['metadata']['mdContact']['rpIndName'] = self.contact_name
+			new_metadata = xmltodict.unparse(doc)
+			textfile = open(metadata_file,'w')
+			a = textfile.write(new_metadata)
+			textfile.close()
+			item.update(metadata=metadata_file)
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+			raise
+
+	def initialize_metadata_file(self, item):
+		try:
+			metadata_template = r'./metadata_template.xml'
+			metadata_file = r'./workspace/metadata.xml'
+			if not os.path.exists(r'./workspace'):
+				os.mkdir(r'./workspace')
+			with open(metadata_template) as f:
+				content = f.read()
+			file = open(metadata_file, 'w')
+			a = file.write(content)
+			file.close()
+			item.update(metadata=metadata_file)
+
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+			raise
 
 	def print_df(self):
 		try:
