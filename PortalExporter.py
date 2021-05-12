@@ -84,9 +84,7 @@ class PortalResource(object):
 			db_connector,
 			title,
 			tags,
-			description='',
-			share_level='everyone',
-			allow_edits=False):
+			params):
 		"""
 		Parameters:
 			p_connector: a PortalConnector object
@@ -100,12 +98,15 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.db_connector = db_connector
 			self.resource_properties = {
-				'title': title,
-				'tags': tags,
-				'description': description
+				'title': params['title'],
+				'tags': params['tags'],
+				'description': params['description'],
+				'snippet': params['snippet'],
+				'accessInformation': params['accessInformation'],
+				'licenseInfo': params['licenseInfo']
 			}
-			self.share_level = share_level
-			self.allow_edits = allow_edits
+			self.share_level = params['share_level']
+			self.allow_edits = params['allow_edits']
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -119,6 +120,7 @@ class PortalResource(object):
 		"""
 		try:
 			self.sql='select * from {}.{}'.format(in_schema, in_recordset_name)
+
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -162,7 +164,8 @@ class PortalResource(object):
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
 			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
-			published_csv = exported.publish(publish_parameters={"locationType":"none"})
+			params = {"type":"csv","locationType":"none"}
+			published_csv = exported.publish(publish_parameters=params)
 			self.set_editability(published_csv)
 			self.share(published_csv)
 			print('title: {}'.format(exported.title))
@@ -234,6 +237,9 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def get_sql(self):
+		return self.sql
+
 
 class PortalSpatialResource(PortalResource):
 
@@ -277,7 +283,8 @@ class PortalSpatialResource(PortalResource):
 			layer = sdf.spatial.to_featurelayer(self.title,
 				gis=self.portal_connector.gis,
 				tags=self.tags)
-			layer_shared = layer.share(everyone=True)
+			self.share(layer)
+			self.set_editability(layer)
 
 		except Exception as e:
 			print(e.args[0])
