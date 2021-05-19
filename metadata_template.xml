@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><metadata xml:lang="en">
+    	
+    <Esri>
+        		
+        <CreaDate></CreaDate>
+        		
+        <CreaTime></CreaTime>
+        		
+        <ModDate></ModDate>
+        		
+        <ModTime></ModTime>
+        		
+        <PublishStatus>editor:esri.dijit.metadata.editor</PublishStatus>
+        		
+        <ArcGISFormat>1.0</ArcGISFormat>
+        		
+        <ArcGISstyle>FGDC CSDGM Metadata</ArcGISstyle>
+        		
+        <ArcGISProfile>FGDC</ArcGISProfile>
+        		
+        <MapLyrSync>false</MapLyrSync>
+        	
+    </Esri>
+    	
+    <mdFileID></mdFileID>
+    	
+    <mdChar>
+        		
+        <CharSetCd value="004"/>
+        	
+    </mdChar>
+    	
+    <mdContact>
+        		
+        <role>
+            			
+            <RoleCd value="007"/>
+            		
+        </role>
+        	
+    </mdContact>
+    	
+    <mdDateSt></mdDateSt>
+    	
+    <mdTimeSt></mdTimeSt>
+    	
+    <dataIdInfo>
+        		
+        <idCitation>
+            			
+            <resTitle></resTitle>
+            			
+            <citRespParty>
+                				
+                <role>
+                    					
+                    <RoleCd value="006"/>
+                    				
+                </role>
+                			
+            </citRespParty>
+            		
+        </idCitation>
+        		
+        <idAbs></idAbs>
+        		
+        <idCredit></idCredit>
+        		
+        <dataChar>
+            			
+            <CharSetCd value="004"/>
+            		
+        </dataChar>
+        		
+        <searchKeys>
+            			
+            
+            		
+        <keyword></keyword></searchKeys>
+        		
+        <resConst>
+            			
+            <LegConsts>
+                				
+                <accessConsts>
+                    					
+                    <RestrictCd value="008"/>
+                    				
+                </accessConsts>
+                				
+                <othConsts></othConsts>
+                			
+            </LegConsts>
+            		
+        </resConst>
+        		
+        <resConst>
+            			
+            <LegConsts>
+                				
+                <useConsts>
+                    					
+                    <RestrictCd value="008"/>
+                    				
+                </useConsts>
+                				
+                <othConsts></othConsts>
+                			
+            </LegConsts>
+            		
+        </resConst>
+        		
+        <resConst>
+            			
+            <LegConsts>
+                				
+                <accessConsts>
+                    					
+                    <RestrictCd value="008"/>
+                    				
+                </accessConsts>
+                				
+                <othConsts></othConsts>
+                			
+            </LegConsts>
+            		
+        </resConst>
+        		
+        <resConst>
+            			
+            <LegConsts>
+                				
+                <useConsts>
+                    					
+                    <RestrictCd value="008"/>
+                    				
+                </useConsts>
+                				
+                <othConsts></othConsts>
+                			
+            </LegConsts>
+            		
+        </resConst>
+        	
+    </dataIdInfo>
+    	
+    <distInfo>
+        		
+        <distTranOps>
+            			
+            <onLineSrc>
+                				
+                <linkage></linkage>
+                			
+            </onLineSrc>
+            		
+        </distTranOps>
+        	
+    </distInfo>
+    
+</metadata>

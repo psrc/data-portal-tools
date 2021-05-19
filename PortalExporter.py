@@ -83,8 +83,6 @@ class PortalResource(object):
 	def __init__(self,
 			p_connector,
 			db_connector,
-			title,
-			tags,
 			params):
 		"""
 		Parameters:
@@ -106,9 +104,13 @@ class PortalResource(object):
 				'accessInformation': params['accessInformation'],
 				'licenseInfo': params['licenseInfo']
 			}
-			self.contact_name = params['contact_name']
+			self.metadata = params['metadata']
+			# self.contact_name = params['contact_name']
+			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
 			self.allow_edits = params['allow_edits']
+			# self.organization_name = params['organization_name']
+			# self.constraints = params['constraints']
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -178,15 +180,56 @@ class PortalResource(object):
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
+	def update_xml_node(self, doc, tag_list, value):
+		"""
+		find a tag (defined by tag_list) in a parsed xml document,
+		and update its value
+		"""
+		try:
+			pass
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 	def set_and_update_metadata(self, item):
 		try:
 			metadata_file = r'./workspace/metadata.xml'
 			if not os.path.exists(metadata_file):
 				self.initialize_metadata_file(item)
 			metadata = item.metadata
-			print('metadata: {}'.format(metadata))
 			doc = xmltodict.parse(metadata)
-			doc['metadata']['mdContact']['rpIndName'] = self.contact_name
+			doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
+
+			dataIdInfo = doc['metadata']['dataIdInfo']
+			dataIdInfo['idCitation']['resTitle'] = self.resource_properties['title']
+			dataIdInfo['idCitation']['citRespParty']['rpIndName'] = self.metadata['contact_name']
+			dataIdInfo['idCitation']['citRespParty']['rpOrgName'] = self.metadata['organization_name']
+			dataIdInfo['idCitation']['date'] = {}
+			dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
+			dataIdInfo['resConst'] = {'Consts':{'useLimit':None}}
+			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+
+			doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
+			rpCntInfo = doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo']
+			rpCntInfo['cntAddress']['eMailAdd'] = self.metadata['contact_email']
+			rpCntInfo['cntAddress']['delPoint'] = self.metadata['contact_street_address']
+			rpCntInfo['cntAddress']['city'] = self.metadata['contact_city']
+			rpCntInfo['cntAddress']['adminArea'] = self.metadata['contact_state']
+			rpCntInfo['cntAddress']['postCode'] = self.metadata['contact_zip']
+			rpCntInfo['cntPhone']['voiceNum'] = self.metadata['contact_phone']
+			rpCntInfo['cntOnlineRes']['linkage'] = self.metadata['psrc_website']
+
+			dataIdInfo['idAbs'] = self.metadata['abstract']
+			dataIdInfo['idPurp'] = self.metadata['summary_purpose']
+			dataIdInfo['idCredit'] = self.metadata['data_source']
+
+			dataIdInfo['resConst'] = {'Consts':{}}
+			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+
+			doc['metadata']['dqInfo'] = {'dataLineage':{}}
+			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+
 			new_metadata = xmltodict.unparse(doc)
 			textfile = open(metadata_file,'w')
 			a = textfile.write(new_metadata)
@@ -284,11 +327,11 @@ class PortalResource(object):
 
 class PortalSpatialResource(PortalResource):
 
-	def __init__(self, p_connector, db_connector, title, tags):
-		super().__init__(p_connector, db_connector, title, tags)
+	def __init__(self, p_connector, db_connector, params):
+		super().__init__(p_connector, db_connector, params)
 		# self.resource_properties['type'] = 'GeoJson'
-		self.title = title
-		self.tags = tags
+		self.title = params['title']
+		self.tags = params['tags']
 
 
 	def define_spatial_source_layer(self, layer_name):

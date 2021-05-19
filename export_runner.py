@@ -31,32 +31,17 @@ for l in layers:
 	params = config[l]['layer_params']
 	source = config[l]['source']
 	simple_source = source['is_simple']
-	tags = params['tags']
-	title = params['title']
-	allow_edits = params['allow_edits']
 	spatial_data = params['spatial_data']
-	description = params['description']
-	share_level = params['share_level']
-	snippet = params['snippet']
-	access_information = params['accessInformation']
-	license_info = params['licenseInfo']
 	if spatial_data:
 		portal_resource = PortalSpatialResource(
 			p_connector=my_p_conn,
 			db_connector=my_db_conn,
-			params = params,
-			title=title,
-			tags=tags,
-			description=description,
-			share_level=share_level,
-			allow_edits = allow_edits
+			params = params
 			)
 	else:
 		portal_resource = PortalResource(
 			p_connector=my_p_conn,
 			db_connector=my_db_conn,
-			title=title,
-			tags=tags,
 			params= params
 			)
 		if simple_source:
@@ -69,4 +54,4 @@ for l in layers:
 
 	portal_resource.export()
 	#portal_resource.print_df()
-	print("exported {}".format(title))
+	print("exported {}".format(params['title']))
