@@ -1,8 +1,9 @@
 from PortalExporter import PortalResource
-from PortalExporter import PortalSpatialResource
+#from PortalExporter import PortalSpatialResource
 from PortalExporter import PortalConnector
 from PortalExporter import DatabaseConnector
 import yaml
+import os
 
 
 ##############################################################################
@@ -18,38 +19,49 @@ my_db_conn = DatabaseConnector(
 	database='Elmer')
 
 
+
+
+def export(config):
+	layers = config.keys()
+
+	for l in layers:
+		title = l
+		params = config[l]['layer_params']
+		source = config[l]['source']
+		tags = params['tags']
+		description = params['description']
+		share_level = params['share_level']
+		my_pub = PortalResource(
+			p_connector=my_p_conn,
+			db_connector=my_db_conn,
+			title=title,
+			tags=tags,
+			description=description,
+			share_level=share_level,
+			allow_edits = params['allow_edits']
+			)
+		source = config[l]['source']
+		schema = source['schema_name']
+		table = source['table_name']
+		my_pub.define_simple_source(
+			in_schema=schema,
+			in_recordset_name=table
+			)
+		my_pub.export()
+		my_pub.print_df()
+		print("exported {}".format(title))
+
 ##############################################################################
 #Example 1: export tables and/or view using define_simple_source
 #  Use the config info in config\config.yml
 ##############################################################################
-with open(r'Config\config_test.yml') as file:
-	config = yaml.load(file, Loader=yaml.FullLoader)
+# for each yaml file in folder
+run_files = os.listdir('./Config/run_files/')
+for f in run_files:
+	f_path = './Config/run_files/' + f
+	with open(f_path) as file:
+		config = yaml.load(file, Loader=yaml.FullLoader)
+		export(config)
 
-layers = config.keys()
-
-for l in layers:
-	title = l
-	params = config[l]['layer_params']
-	source = config[l]['source']
-	tags = params['tags']
-	description = params['description']
-	share_level = params['share_level']
-	my_pub = PortalResource(
-		p_connector=my_p_conn,
-		db_connector=my_db_conn,
-		title=title,
-		tags=tags,
-		description=description,
-		share_level=share_level,
-		allow_edits = params['allow_edits']
-		)
-	source = config[l]['source']
-	schema = source['schema_name']
-	table = source['table_name']
-	my_pub.define_simple_source(
-		in_schema=schema,
-		in_recordset_name=table
-		)
-	my_pub.export()
-	my_pub.print_df()
-	print("exported {}".format(title))
+#with open(r'Config\config_test.yml') as file:
+#	config = yaml.load(file, Loader=yaml.FullLoader)
