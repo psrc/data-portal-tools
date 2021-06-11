@@ -4,6 +4,7 @@ from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
 import yaml
+import xmltodict
 import os
 import geopandas as gpd
 import fiona
@@ -82,11 +83,7 @@ class PortalResource(object):
 	def __init__(self,
 			p_connector,
 			db_connector,
-			title,
-			tags,
-			description='',
-			share_level='everyone',
-			allow_edits=False):
+			params):
 		"""
 		Parameters:
 			p_connector: a PortalConnector object
@@ -100,14 +97,20 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.db_connector = db_connector
 			self.resource_properties = {
-				'title': title,
-				'tags': tags,
-				'description': description
+				'title': params['title'],
+				'tags': params['tags'],
+				'description': params['description'],
+				'snippet': params['snippet'],
+				'accessInformation': params['accessInformation'],
+				'licenseInfo': params['licenseInfo']
 			}
-			self.title = title
-			self.tags = tags
-			self.share_level = share_level
-			self.allow_edits = allow_edits
+			self.metadata = params['metadata']
+			# self.contact_name = params['contact_name']
+			# self.contact_email = params['contact_email']
+			self.share_level = params['share_level']
+			self.allow_edits = params['allow_edits']
+			# self.organization_name = params['organization_name']
+			# self.constraints = params['constraints']
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -121,6 +124,7 @@ class PortalResource(object):
 		"""
 		try:
 			self.sql='select * from {}.{}'.format(in_schema, in_recordset_name)
+
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -206,7 +210,9 @@ class PortalResource(object):
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
 			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
-			published_csv = exported.publish()
+			params = {"type":"csv","locationType":"none"}
+			published_csv = exported.publish(publish_parameters=params)
+			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
 			print('title: {}'.format(exported.title))
@@ -216,6 +222,85 @@ class PortalResource(object):
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
+	def update_xml_node(self, doc, tag_list, value):
+		"""
+		find a tag (defined by tag_list) in a parsed xml document,
+		and update its value
+		"""
+		try:
+			pass
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def set_and_update_metadata(self, item):
+		try:
+			metadata_file = r'./workspace/metadata.xml'
+			if not os.path.exists(metadata_file):
+				self.initialize_metadata_file(item)
+			metadata = item.metadata
+			doc = xmltodict.parse(metadata)
+			doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
+
+			dataIdInfo = doc['metadata']['dataIdInfo']
+			dataIdInfo['idCitation']['resTitle'] = self.resource_properties['title']
+			dataIdInfo['idCitation']['citRespParty']['rpIndName'] = self.metadata['contact_name']
+			dataIdInfo['idCitation']['citRespParty']['rpOrgName'] = self.metadata['organization_name']
+			dataIdInfo['idCitation']['date'] = {}
+			dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
+			dataIdInfo['resConst'] = {'Consts':{'useLimit':None}}
+			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+
+			doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
+			rpCntInfo = doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo']
+			rpCntInfo['cntAddress']['eMailAdd'] = self.metadata['contact_email']
+			rpCntInfo['cntAddress']['delPoint'] = self.metadata['contact_street_address']
+			rpCntInfo['cntAddress']['city'] = self.metadata['contact_city']
+			rpCntInfo['cntAddress']['adminArea'] = self.metadata['contact_state']
+			rpCntInfo['cntAddress']['postCode'] = self.metadata['contact_zip']
+			rpCntInfo['cntPhone']['voiceNum'] = self.metadata['contact_phone']
+			rpCntInfo['cntOnlineRes']['linkage'] = self.metadata['psrc_website']
+
+			dataIdInfo['idAbs'] = self.metadata['abstract']
+			dataIdInfo['idPurp'] = self.metadata['summary_purpose']
+			dataIdInfo['idCredit'] = self.metadata['data_source']
+
+			dataIdInfo['resConst'] = {'Consts':{}}
+			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+
+			doc['metadata']['dqInfo'] = {'dataLineage':{}}
+			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+
+			new_metadata = xmltodict.unparse(doc)
+			textfile = open(metadata_file,'w')
+			a = textfile.write(new_metadata)
+			textfile.close()
+			item.update(metadata=metadata_file)
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+			raise
+
+	def initialize_metadata_file(self, item):
+		try:
+			metadata_template = r'./metadata_template.xml'
+			metadata_file = r'./workspace/metadata.xml'
+			if not os.path.exists(r'./workspace'):
+				os.mkdir(r'./workspace')
+			with open(metadata_template) as f:
+				content = f.read()
+			file = open(metadata_file, 'w')
+			a = file.write(content)
+			file.close()
+			item.update(metadata=metadata_file)
+
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(metadata_file): os.remove(metadata_file)
+			raise
 
 	def print_df(self):
 		try:
@@ -277,6 +362,9 @@ class PortalResource(object):
 		except Exception as e:
 			print(e.args[0])
 			raise
+
+	def get_sql(self):
+		return self.sql
 
 
 	def get_columns_for_recordset(self, layer_name):

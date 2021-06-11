@@ -34,11 +34,12 @@ def export(config):
 		my_pub = PortalResource(
 			p_connector=my_p_conn,
 			db_connector=my_db_conn,
-			title=title,
-			tags=tags,
-			description=description,
-			share_level=share_level,
-			allow_edits = params['allow_edits']
+			params=params
+			#title=title,
+			# tags=tags,
+			# description=description,
+			# share_level=share_level,
+			# allow_edits = params['allow_edits']
 			)
 		source = config[l]['source']
 		schema = source['schema_name']

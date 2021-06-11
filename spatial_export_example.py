@@ -1,5 +1,3 @@
-from PortalExporter import PortalResource
-from PortalExporter import PortalConnector
 from PortalExporter import DatabaseConnector
 import yaml
 
@@ -21,6 +19,6 @@ my_pub = PortalResource(
 	title='test_spatial_layer3',
 	tags='test')
 
-my_pub.define_spatial_source_layer('rural')
+my_pub.define_spatial_source_layer('county_background')
 
 my_pub.export()

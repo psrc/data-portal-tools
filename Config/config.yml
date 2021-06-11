@@ -2,6 +2,7 @@ macroeconomic_population:
   layer_params:
     tags: macroeconomic forecast population regional
     allow_edits: False
+    spatial_data: False
     share_level: everyone
     description: Regional population forecasts from the macroeconomic model
   source:
@@ -12,6 +13,7 @@ macroeconomic_employment:
   layer_params:
     tags: macroeconomic forecast employment regional
     allow_edits: False
+    spatial_data: False
     share_level: everyone
     description: Regional employment forecasts from the macroeconomic model
   source:
@@ -22,6 +24,7 @@ macroeconomic_households:
   layer_params:
     tags: macroeconomic forecast households regional
     allow_edits: False
+    spatial_data: False
     share_level: everyone
     description: Regional households forecasts from the macroeconomic model
   source:
@@ -32,6 +35,7 @@ macroeconomic_income:
   layer_params:
     tags: macroeconomic forecast income regional
     allow_edits: False
+    spatial_data: False
     share_level: everyone
     description: Regional income forecasts from the macroeconomic model
   source:
