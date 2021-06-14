@@ -16,9 +16,7 @@ my_p_conn = PortalConnector(
 	portal_pw=auth['arc_gis_online']['pw'])
 my_db_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
-	database='Elmer')
-
-
+	database='ElmerGeo')
 
 
 def export(config):
@@ -31,6 +29,7 @@ def export(config):
 		tags = params['tags']
 		description = params['description']
 		share_level = params['share_level']
+		is_spatial = params['spatial_data']
 		my_pub = PortalResource(
 			p_connector=my_p_conn,
 			db_connector=my_db_conn,
@@ -44,12 +43,15 @@ def export(config):
 		source = config[l]['source']
 		schema = source['schema_name']
 		table = source['table_name']
-		my_pub.define_simple_source(
-			in_schema=schema,
-			in_recordset_name=table
-			)
+		if is_spatial:
+			my_pub.define_spatial_source_layer(
+				layer_name=table)
+		else:	
+			my_pub.define_simple_source(
+				in_schema=schema,
+				in_recordset_name=table)
 		my_pub.export()
-		my_pub.print_df()
+		#my_pub.print_df()
 		print("exported {}".format(title))
 
 ##############################################################################

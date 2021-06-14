@@ -105,10 +105,12 @@ class PortalResource(object):
 				'licenseInfo': params['licenseInfo']
 			}
 			self.metadata = params['metadata']
+			self.title = params['title']
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
 			self.allow_edits = params['allow_edits']
+			self.is_spatial = params['spatial_data']
 			# self.organization_name = params['organization_name']
 			# self.constraints = params['constraints']
 		except Exception as e:
@@ -155,7 +157,7 @@ class PortalResource(object):
 		try:
 			self.column_list = self.get_columns_for_recordset(layer_name)
 			self.get_columns_clause()
-			self.sql = 'SELECT {} FROM dbo.{}_evw'.format(
+			self.sql = 'SELECT {} FROM dbo.{}'.format(
 				self.columns_clause,
 				layer_name)
 
@@ -176,7 +178,7 @@ class PortalResource(object):
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			layer = sdf.spatial.to_featurelayer(self.title,
 				gis=self.portal_connector.gis,
-				tags=self.tags)
+				tags=self.resource_properties['tags'])
 			layer_shared = layer.share(everyone=True)
 
 		except Exception as e:
@@ -357,7 +359,10 @@ class PortalResource(object):
 				#delete title?
 				for item in content_list:
 					i_deleted = gis.content.get(item.id).delete()
-			self.publish_as_new()
+			if self.is_spatial:
+				self.publish_spatial_as_new()
+			else:
+				self.publish_as_new()
 
 		except Exception as e:
 			print(e.args[0])
