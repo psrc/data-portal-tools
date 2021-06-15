@@ -212,7 +212,7 @@ class PortalResource(object):
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
 			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
-			params = {"type":"csv","locationType":"none"}
+			params = {"type":"csv","locationType":"none","name":self.title}
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)

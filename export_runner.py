@@ -16,7 +16,7 @@ my_p_conn = PortalConnector(
 	portal_pw=auth['arc_gis_online']['pw'])
 my_db_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
-	database='ElmerGeo')
+	database='Elmer')
 
 
 def export(config):
