@@ -11,13 +11,15 @@ import os
 ##############################################################################
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
-my_p_conn = PortalConnector(
+portal_conn = PortalConnector(
 	portal_username=auth['arc_gis_online']['username'],
 	portal_pw=auth['arc_gis_online']['pw'])
-my_db_conn = DatabaseConnector(
+elmer_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
-
+elmergeo_conn = DatabaseConnector(
+	db_server='AWS-PROD-SQL\Sockeye',
+	database='ElmerGeo')
 
 def export(config):
 	layers = config.keys()
@@ -26,32 +28,24 @@ def export(config):
 		title = l
 		params = config[l]['layer_params']
 		source = config[l]['source']
-		tags = params['tags']
-		description = params['description']
-		share_level = params['share_level']
 		is_spatial = params['spatial_data']
+		if is_spatial:
+			db_conn = elmergeo_conn
+		else:
+			db_conn = elmer_conn
 		my_pub = PortalResource(
-			p_connector=my_p_conn,
-			db_connector=my_db_conn,
+			p_connector=portal_conn,
+			db_connector=db_conn,
 			params=params
-			#title=title,
-			# tags=tags,
-			# description=description,
-			# share_level=share_level,
-			# allow_edits = params['allow_edits']
 			)
-		source = config[l]['source']
-		schema = source['schema_name']
-		table = source['table_name']
 		if is_spatial:
 			my_pub.define_spatial_source_layer(
-				layer_name=table)
+				layer_name=source['table_name'])
 		else:	
 			my_pub.define_simple_source(
-				in_schema=schema,
-				in_recordset_name=table)
+				in_schema=source['schema_name'],
+				in_recordset_name=source['table_name'])
 		my_pub.export()
-		#my_pub.print_df()
 		print("exported {}".format(title))
 
 ##############################################################################
