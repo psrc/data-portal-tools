@@ -1,19 +1,17 @@
-covered_employment_by_city_by_major_sector:
+macroeconomic_datasets:
   layer_params:
-    title: covered_employment_by_city_by_major_sector
-    tags: covered employment,regional
+    title: macro_datasets
+    tags: regional, macroeconomic, test
     allow_edits: False
     spatial_data: False
     share_level: everyone
-    description: |
-        Regional city-level covered employment summaries for major sectors <br>
-        this is
+    description: Regional macroeconomic layer
     snippet: This should be a very short description of the data.
     accessInformation: The person to appear under the credits in AGOL
     licenseInfo: The text to appear under Terms of Use in AGOL
     metadata:
-        contact_name: Oliver Cromwell
-        contact_email: ocromwell@psrc.org
+        contact_name: test contact name
+        contact_email: testname@psrc.org
         contact_street_address: 1011 Western Ave. Ste 500
         contact_city: Seattle
         contact_state: Washington
@@ -30,7 +28,7 @@ covered_employment_by_city_by_major_sector:
         summary_purpose: 'This should go in Resource:Details:Description:Summary(Purpose)'
   source:
     is_simple: true
-    schema_name: employment_summaries
-    table_name: v_covered_employment_by_city_by_major_sector
-    sql_query: select data_year, Total from employment_summaries.v_covered_employment_by_city_by_major_sector
+    schema_name: macroeconomic
+    table_name: dataset_dims
+    sql_query: select dataset_name, dataset_dim_id from macroeconomic.dataset_dims
 
