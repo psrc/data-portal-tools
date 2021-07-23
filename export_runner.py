@@ -42,9 +42,14 @@ def export(config):
 			my_pub.define_spatial_source_layer(
 				layer_name=source['table_name'])
 		else:	
-			my_pub.define_simple_source(
-				in_schema=source['schema_name'],
-				in_recordset_name=source['table_name'])
+			if source['is_simple']:
+				my_pub.define_simple_source(
+					in_schema=source['schema_name'],
+					in_recordset_name=source['table_name'])
+			else: 
+				my_pub.define_source_from_query(
+					sql_query=source['sql_query']
+				)
 		my_pub.export()
 		print("exported {}".format(title))
 
