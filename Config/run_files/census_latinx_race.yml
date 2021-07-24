@@ -5,7 +5,6 @@ dataset:
     allow_edits: False
     spatial_data: False
     share_level: owner
-    description: "2019 ACS Census 5-year data: Hispanic or Latino Origin By Race.  Geographic level: County"
     snippet: Hispanic or Latino Origin by Race
     accessInformation: A Data Science Team Member
     licenseInfo: The text to appear under Terms of Use in AGOL
@@ -19,7 +18,7 @@ dataset:
         contact_phone: (206)464-7536
         organization_name: PSRC
         psrc_website: www.psrc.org
-        abstract: "2019 ACS Census 5-year data: Hispanic or Latino Origin By Race Group. Geographic level: County"
+        description: "2019 ACS Census 5-year data: Hispanic or Latino Origin By Race Group. Geographic level: County"
         data_source: This data was derived from Source X, published by Agency Y.
         date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
         constraints: 'this text should be in resource:Constraints:General:Use Limitations'

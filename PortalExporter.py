@@ -99,7 +99,7 @@ class PortalResource(object):
 			self.resource_properties = {
 				'title': params['title'],
 				'tags': params['tags'],
-				'description': params['description'],
+				#'description': params['description'],
 				'snippet': params['snippet'],
 				'accessInformation': params['accessInformation'],
 				'licenseInfo': params['licenseInfo']
@@ -264,7 +264,7 @@ class PortalResource(object):
 			rpCntInfo['cntPhone']['voiceNum'] = self.metadata['contact_phone']
 			rpCntInfo['cntOnlineRes']['linkage'] = self.metadata['psrc_website']
 
-			dataIdInfo['idAbs'] = self.metadata['abstract']
+			dataIdInfo['idAbs'] = self.metadata['description']
 			dataIdInfo['idPurp'] = self.metadata['summary_purpose']
 			dataIdInfo['idCredit'] = self.metadata['data_source']
 
