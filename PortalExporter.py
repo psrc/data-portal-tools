@@ -185,8 +185,44 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def republish(self):
+		try: 
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
+			content_list = gis.content.search(query='title:{}'.format(title))
+			out_type = "CSV"
+			csv_name = r'.\temp_data_export_csv.csv'
+			portal_connector = self.portal_connector
+			db_connector = self.db_connector
+			df = pd.read_sql(
+				sql=self.sql,
+				con=db_connector.sql_conn)
+			self.df = df
+			working_dir = 'working'
+			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
+			if not os.path.exists(working_dir):
+				os.makedirs(working_dir)
+			if os.path.isfile(csv_name):
+				os.remove(csv_name)
+			df.to_csv(csv_name)
+			self.resource_properties['type'] = out_type
+			# use something like this:
+			exported = content_list.pop()
+			exported.update(data=csv_name)
+			# exported = FeatureLayerCollection.fromitem(item)
+			# exported.manager.overwrite(csv_name)
+			params = {"type":"csv","locationType":"none","name":self.title}
+			published_csv = exported.publish(publish_parameters=params, overwrite=True)
+			self.set_and_update_metadata(published_csv)
+			self.set_editability(published_csv)
+			self.share(published_csv)
+			print('title: {}'.format(exported.title))
+			os.remove(csv_name)
 
-
+		except Exception as e:
+			print(e.args[0])
+			if os.path.exists(csv_name): os.remove(csv_name)
+			raise
 
 	def publish_as_new(self):
 		"""
@@ -357,12 +393,17 @@ class PortalResource(object):
 			content_list = gis.content.search(query='title:{}'.format(title))
 			if len(content_list) > 0:
 				#delete title?
-				for item in content_list:
-					i_deleted = gis.content.get(item.id).delete()
-			if self.is_spatial:
-				self.publish_spatial_as_new()
-			else:
-				self.publish_as_new()
+				#for item in content_list:
+				#	i_deleted = gis.content.get(item.id).delete()
+				if self.is_spatial:
+					self.publish_spatial_as_new()
+				else:
+					self.republish()
+			else: 
+				if self.is_spatial:
+					self.publish_spatial_as_new()
+				else:
+					self.publish_as_new()
 
 		except Exception as e:
 			print(e.args[0])
