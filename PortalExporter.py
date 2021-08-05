@@ -189,10 +189,10 @@ class PortalResource(object):
 		try: 
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			content_list = gis.content.search(query='title:{}'.format(title))
+			search_query = 'title:{}; type:CSV'.format(title)
+			content_list = gis.content.search(query=search_query)
 			out_type = "CSV"
 			csv_name = r'.\temp_data_export_csv.csv'
-			portal_connector = self.portal_connector
 			db_connector = self.db_connector
 			df = pd.read_sql(
 				sql=self.sql,
@@ -206,11 +206,8 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
-			# use something like this:
 			exported = content_list.pop()
 			exported.update(data=csv_name)
-			# exported = FeatureLayerCollection.fromitem(item)
-			# exported.manager.overwrite(csv_name)
 			params = {"type":"csv","locationType":"none","name":self.title}
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
@@ -247,8 +244,9 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
+			title = self.resource_properties['title']
 			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
-			params = {"type":"csv","locationType":"none","name":self.title}
+			params = {"name":title,"type":"csv","locationType":"none"}
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
