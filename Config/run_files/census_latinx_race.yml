@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: LatinX by Race by County
+    title: LatinX_by_Race_by_County
     tags: census, race
     allow_edits: False
     spatial_data: False
