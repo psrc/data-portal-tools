@@ -9,6 +9,7 @@ import os
 import geopandas as gpd
 import fiona
 from shapely import wkt
+from shapely.geometry.polygon import Polygon
 import time
 import json
 import to_SpatiallyEnabledDataFrame
@@ -165,6 +166,24 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def close_holes(self, poly: Polygon) -> Polygon:
+			"""
+			Close polygon holes by limitation to the exterior ring.
+			Args:
+				poly: Input shapely Polygon
+			Example:
+				df.geometry.apply(lambda p: close_holes(p))
+			"""
+			try: 
+				if poly.interiors:
+					return Polygon(list(poly.exterior.coords))
+				else:
+					return poly
+
+			except Exception as e:
+				print(e.args[0])
+				raise
+
 	def publish_spatial_as_new(self):
 		"""
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
@@ -175,6 +194,7 @@ class PortalResource(object):
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			layer = sdf.spatial.to_featurelayer(self.title,
 				gis=self.portal_connector.gis,
