@@ -1,7 +1,7 @@
 dataset:
   layer_params:
-    title: regional_growth_centers
-    tags: Portal, data-portal
+    title: manufacturing_industrial_centers
+    tags: portal
     allow_edits: False
     spatial_data: True
     share_level: everyone
@@ -28,6 +28,6 @@ dataset:
   source:
     is_simple: true
     schema_name: dbo
-    table_name: URBAN_CENTERS 
+    table_name:  micen
     sql_query: 
 
