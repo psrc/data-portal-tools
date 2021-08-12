@@ -194,6 +194,7 @@ class PortalResource(object):
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			gdf = gdf.explode()
 			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			layer = sdf.spatial.to_featurelayer(self.title,
