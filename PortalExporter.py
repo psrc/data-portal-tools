@@ -199,6 +199,7 @@ class PortalResource(object):
 			layer = sdf.spatial.to_featurelayer(self.title,
 				gis=self.portal_connector.gis,
 				tags=self.resource_properties['tags'])
+			self.set_and_update_metadata(layer)
 			layer_shared = layer.share(everyone=True)
 
 		except Exception as e:
