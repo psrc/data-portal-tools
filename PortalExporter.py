@@ -184,6 +184,33 @@ class PortalResource(object):
 				print(e.args[0])
 				raise
 
+	def replublish_spatial(self):
+		try:
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
+			portal_connector = self.portal_connector
+			db_connector = self.db_connector
+			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			gdf = gdf.explode()
+			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
+			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+			search_query = 'title:{}; type:Feature Service'.format(title)
+			content_list = gis.content.search(query=search_query)
+			print("content_list in replublish_spatial={}".format(content_list))
+			working_dir = 'working'
+			shape_name = working_dir + '\\' + title 
+			if not os.path.exists(working_dir):
+				os.makedirs(working_dir)
+			if os.path.isfile(shape_name):
+				os.remove(shape_name)
+			sdf.spatial.to_featureclass(location=shape_name)
+			print("{} exported to {}".format(shape_name, working_dir))
+
+		except Exception as e:
+			print(e.args[0])
+			raise
 	def publish_spatial_as_new(self):
 		"""
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
@@ -235,7 +262,6 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 
 		except Exception as e:
@@ -415,7 +441,7 @@ class PortalResource(object):
 				#for item in content_list:
 				#	i_deleted = gis.content.get(item.id).delete()
 				if self.is_spatial:
-					self.publish_spatial_as_new()
+					self.replublish_spatial()
 				else:
 					self.republish()
 			else: 
