@@ -25,8 +25,8 @@ def export(config):
 	layers = config.keys()
 
 	for l in layers:
-		title = l
 		params = config[l]['layer_params']
+		title = params['title']
 		source = config[l]['source']
 		is_spatial = params['spatial_data']
 		if is_spatial:

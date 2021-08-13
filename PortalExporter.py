@@ -273,7 +273,6 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
