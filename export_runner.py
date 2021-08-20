@@ -39,8 +39,13 @@ def export(config):
 			params=params
 			)
 		if is_spatial:
-			my_pub.define_spatial_source_layer(
-				layer_name=source['table_name'])
+			if source['is_simple']:
+				my_pub.define_spatial_source_layer(
+					layer_name=source['table_name'])
+			else:
+				my_pub.define_source_from_query(
+					sql_query=source['sql_query']
+				)
 		else:	
 			if source['is_simple']:
 				my_pub.define_simple_source(

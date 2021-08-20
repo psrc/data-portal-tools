@@ -3,6 +3,8 @@ from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
+import zipfile
+import glob
 import yaml
 import xmltodict
 import os
@@ -184,6 +186,40 @@ class PortalResource(object):
 				print(e.args[0])
 				raise
 
+	def add_to_zip(self, raw_file, zip_file, overwrite=False):
+		try:
+			if overwrite == True:
+				with zipfile.ZipFile(zip_file, 'a') as myzip:
+					myzip.write(raw_file)
+			else: 
+				with zipfile.ZipFile(zip_file, 'w') as myzip:
+					myzip.write(raw_file)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def shape_to_zip(self, shape_name):
+		"""
+		Compress the constituent files within a shapefile into a zip file on disk.
+		Parameter:
+			shape_name: the name of the shapefile, without suffix
+		"""
+		try:
+			zip_name = shape_name + '.zip'
+			#get list of files > files
+			files = glob.glob(shape_name + '*')
+			f = files.pop()
+			self.add_to_zip(f, zip_name, overwrite=True)
+			for f in files:
+				self.add_to_zip(f, zip_name)
+			return zip_name
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 	def replublish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -205,12 +241,16 @@ class PortalResource(object):
 				os.makedirs(working_dir)
 			if os.path.isfile(shape_name):
 				os.remove(shape_name)
+			exported = content_list.pop()
 			sdf.spatial.to_featureclass(location=shape_name)
+			#exported.update(data=shape_name)
 			print("{} exported to {}".format(shape_name, working_dir))
 
 		except Exception as e:
 			print(e.args[0])
 			raise
+
+
 	def publish_spatial_as_new(self):
 		"""
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
