@@ -15,6 +15,7 @@ from shapely.geometry.polygon import Polygon
 import time
 import json
 import to_SpatiallyEnabledDataFrame
+from pathlib import Path
 
 class PortalConnector(object):
 	def __init__(self, portal_username, portal_pw, portal_url="https://psregcncl.maps.arcgis.com"):
@@ -109,6 +110,7 @@ class PortalResource(object):
 			}
 			self.metadata = params['metadata']
 			self.title = params['title']
+			self.working_folder = 'workspace'
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
@@ -189,10 +191,10 @@ class PortalResource(object):
 	def add_to_zip(self, raw_file, zip_file, overwrite=False):
 		try:
 			if overwrite == True:
-				with zipfile.ZipFile(zip_file, 'a') as myzip:
+				with zipfile.ZipFile(zip_file, 'w') as myzip:
 					myzip.write(raw_file)
 			else: 
-				with zipfile.ZipFile(zip_file, 'w') as myzip:
+				with zipfile.ZipFile(zip_file, 'a') as myzip:
 					myzip.write(raw_file)
 
 		except Exception as e:
@@ -232,18 +234,26 @@ class PortalResource(object):
 			gdf = gdf.explode()
 			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			search_query = 'title:{}; type:Feature Service'.format(title)
+			search_query = 'title:{}; type:shapefile'.format(title)
 			content_list = gis.content.search(query=search_query)
 			print("content_list in replublish_spatial={}".format(content_list))
-			working_dir = 'working'
-			shape_name = working_dir + '\\' + title 
-			if not os.path.exists(working_dir):
+			working_dir = Path(self.working_folder)
+			shape_name = '.\\' +  title + '.shp'
+			if os.path.exists(working_dir): #clear the working directory
+				files = glob.glob(str(working_dir / '*'))
+				for f in files:
+					os.remove(f)
+			else:
 				os.makedirs(working_dir)
-			if os.path.isfile(shape_name):
-				os.remove(shape_name)
 			exported = content_list.pop()
-			sdf.spatial.to_featureclass(location=shape_name)
-			#exported.update(data=shape_name)
+			os.chdir(self.working_folder)
+			shapefile = sdf.spatial.to_featureclass(location=shape_name)
+			if shapefile.endswith('.shp'):
+				shapefile = shapefile[:-4]
+			zipfile = self.shape_to_zip(shape_name = shapefile)
+			exported.update(data=zipfile)
+			published = exported.publish(overwrite=True)
+			os.chdir('..')
 			print("{} exported to {}".format(shape_name, working_dir))
 
 		except Exception as e:
@@ -256,7 +266,7 @@ class PortalResource(object):
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""
 		try:
-			portal_connector = self.portal_connector
+			gis = self.portal_connector.gis
 			db_connector = self.db_connector
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
@@ -264,11 +274,28 @@ class PortalResource(object):
 			gdf = gdf.explode()
 			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			layer = sdf.spatial.to_featurelayer(self.title,
-				gis=self.portal_connector.gis,
-				tags=self.resource_properties['tags'])
+			# layer = sdf.spatial.to_featurelayer(self.title,
+			# 	gis=self.portal_connector.gis,
+			# 	tags=self.resource_properties['tags'])
+			fldr = Path(self.working_folder)
+			fldr = Path('.')
+			os.chdir(self.working_folder)
+			ttl = self.title + '.shp'
+			shape_file_name = fldr / ttl
+			#shape_file_name = '.\cities_test.shp'
+			shape_file_string = '.\\' + str(shape_file_name)
+			shapefile = sdf.spatial.to_featureclass(shape_file_string)
+			if shapefile.endswith('.shp'):
+				shapefile = shapefile[:-4]
+			zipfile = self.shape_to_zip(shape_name = shapefile)
+			exported = gis.content.add(self.resource_properties, data=zipfile)
+			os.chdir('..')
+			params = {"name":self.title}
+			layer = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(layer)
+			self.set_editability(layer)
 			layer_shared = layer.share(everyone=True)
+			os.chdir('../')
 
 		except Exception as e:
 			print(e.args[0])
@@ -287,7 +314,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'working'
+			working_dir = 'workspace'
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
@@ -324,7 +351,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'working'
+			working_dir = 'workspace'
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
