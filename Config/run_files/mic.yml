@@ -1,0 +1,33 @@
+dataset:
+  layer_params:
+    title: manufacturing_industrial_centers
+    tags: portal
+    allow_edits: False
+    spatial_data: True
+    share_level: everyone
+    snippet: 
+    accessInformation: A Data Science Team Member
+    licenseInfo: The text to appear under Terms of Use in AGOL
+    metadata:
+        contact_name: Chris Peak
+        contact_email: cpeak@psrc.org
+        contact_street_address: 1011 Western Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98104
+        contact_phone: (206)464-7536
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: 
+        data_source: 
+        date_last_updated: 
+        constraints: 
+        data_lineage: 
+        assessment: 
+        summary_purpose: 
+  source:
+    is_simple: true
+    schema_name: dbo
+    table_name:  micen
+    sql_query: 
+
