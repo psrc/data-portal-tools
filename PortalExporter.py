@@ -254,6 +254,7 @@ class PortalResource(object):
 			exported.update(data=zipfile)
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
+			self.set_editability(published)
 			print("{} exported to {}".format(shape_name, working_dir))
 
 		except Exception as e:
