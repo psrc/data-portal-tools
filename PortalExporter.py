@@ -236,7 +236,6 @@ class PortalResource(object):
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			search_query = 'title:{}; type:shapefile'.format(title)
 			content_list = gis.content.search(query=search_query)
-			print("content_list in replublish_spatial={}".format(content_list))
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
 			if os.path.exists(working_dir): #clear the working directory
