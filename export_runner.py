@@ -25,8 +25,8 @@ def export(config):
 	layers = config.keys()
 
 	for l in layers:
-		title = l
 		params = config[l]['layer_params']
+		title = params['title']
 		source = config[l]['source']
 		is_spatial = params['spatial_data']
 		if is_spatial:
@@ -39,8 +39,13 @@ def export(config):
 			params=params
 			)
 		if is_spatial:
-			my_pub.define_spatial_source_layer(
-				layer_name=source['table_name'])
+			if source['is_simple']:
+				my_pub.define_spatial_source_layer(
+					layer_name=source['table_name'])
+			else:
+				my_pub.define_source_from_query(
+					sql_query=source['sql_query']
+				)
 		else:	
 			if source['is_simple']:
 				my_pub.define_simple_source(
@@ -59,7 +64,8 @@ def export(config):
 ##############################################################################
 # for each yaml file in folder
 run_files = os.listdir('./Config/run_files/')
-for f in run_files:
+#for f in run_files:
+for f in ['cities_test.yml']:
 	f_path = './Config/run_files/' + f
 	with open(f_path) as file:
 		config = yaml.load(file, Loader=yaml.FullLoader)

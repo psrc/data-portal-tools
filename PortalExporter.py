@@ -3,6 +3,8 @@ from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection
 import urllib
 import pyodbc
+import zipfile
+import glob
 import yaml
 import xmltodict
 import os
@@ -13,6 +15,7 @@ from shapely.geometry.polygon import Polygon
 import time
 import json
 import to_SpatiallyEnabledDataFrame
+from pathlib import Path
 
 class PortalConnector(object):
 	def __init__(self, portal_username, portal_pw, portal_url="https://psregcncl.maps.arcgis.com"):
@@ -107,6 +110,7 @@ class PortalResource(object):
 			}
 			self.metadata = params['metadata']
 			self.title = params['title']
+			self.working_folder = 'workspace'
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
@@ -184,22 +188,115 @@ class PortalResource(object):
 				print(e.args[0])
 				raise
 
-	def publish_spatial_as_new(self):
+	def add_to_zip(self, raw_file, zip_file, overwrite=False):
+		try:
+			if overwrite == True:
+				with zipfile.ZipFile(zip_file, 'w') as myzip:
+					myzip.write(raw_file)
+			else: 
+				with zipfile.ZipFile(zip_file, 'a') as myzip:
+					myzip.write(raw_file)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def shape_to_zip(self, shape_name):
 		"""
-		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+		Compress the constituent files within a shapefile into a zip file on disk.
+		Parameter:
+			shape_name: the name of the shapefile, without suffix
 		"""
 		try:
+			zip_name = shape_name + '.zip'
+			#get list of files > files
+			files = glob.glob(shape_name + '*')
+			f = files.pop()
+			self.add_to_zip(f, zip_name, overwrite=True)
+			for f in files:
+				self.add_to_zip(f, zip_name)
+			return zip_name
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def replublish_spatial(self):
+		try:
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
 			portal_connector = self.portal_connector
 			db_connector = self.db_connector
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			gdf = gdf.explode()
 			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			layer = sdf.spatial.to_featurelayer(self.title,
-				gis=self.portal_connector.gis,
-				tags=self.resource_properties['tags'])
+			search_query = 'title:{}; type:shapefile'.format(title)
+			content_list = gis.content.search(query=search_query)
+			print("content_list in replublish_spatial={}".format(content_list))
+			working_dir = Path(self.working_folder)
+			shape_name = '.\\' +  title + '.shp'
+			if os.path.exists(working_dir): #clear the working directory
+				files = glob.glob(str(working_dir / '*'))
+				for f in files:
+					os.remove(f)
+			else:
+				os.makedirs(working_dir)
+			exported = content_list.pop()
+			os.chdir(self.working_folder)
+			shapefile = sdf.spatial.to_featureclass(location=shape_name)
+			if shapefile.endswith('.shp'):
+				shapefile = shapefile[:-4]
+			zipfile = self.shape_to_zip(shape_name = shapefile)
+			exported.update(data=zipfile)
+			published = exported.publish(overwrite=True)
+			os.chdir('..')
+			self.set_editability(published)
+			print("{} exported to {}".format(shape_name, working_dir))
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def publish_spatial_as_new(self):
+		"""
+		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+		"""
+		try:
+			gis = self.portal_connector.gis
+			db_connector = self.db_connector
+			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+			gdf = gdf.explode()
+			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
+			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+			# layer = sdf.spatial.to_featurelayer(self.title,
+			# 	gis=self.portal_connector.gis,
+			# 	tags=self.resource_properties['tags'])
+			fldr = Path(self.working_folder)
+			fldr = Path('.')
+			os.chdir(self.working_folder)
+			ttl = self.title + '.shp'
+			shape_file_name = fldr / ttl
+			#shape_file_name = '.\cities_test.shp'
+			shape_file_string = '.\\' + str(shape_file_name)
+			shapefile = sdf.spatial.to_featureclass(shape_file_string)
+			if shapefile.endswith('.shp'):
+				shapefile = shapefile[:-4]
+			zipfile = self.shape_to_zip(shape_name = shapefile)
+			exported = gis.content.add(self.resource_properties, data=zipfile)
+			os.chdir('..')
+			params = {"name":self.title}
+			layer = exported.publish(publish_parameters=params)
+			self.set_and_update_metadata(layer)
+			self.set_editability(layer)
 			layer_shared = layer.share(everyone=True)
+			os.chdir('../')
 
 		except Exception as e:
 			print(e.args[0])
@@ -218,7 +315,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'working'
+			working_dir = 'workspace'
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
@@ -233,7 +330,6 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 
 		except Exception as e:
@@ -256,7 +352,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'working'
+			working_dir = 'workspace'
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
@@ -271,7 +367,6 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			print('title: {}'.format(exported.title))
 			os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
@@ -414,7 +509,7 @@ class PortalResource(object):
 				#for item in content_list:
 				#	i_deleted = gis.content.get(item.id).delete()
 				if self.is_spatial:
-					self.publish_spatial_as_new()
+					self.replublish_spatial()
 				else:
 					self.republish()
 			else: 
