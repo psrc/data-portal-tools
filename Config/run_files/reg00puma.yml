@@ -24,7 +24,7 @@ dataset:
         constraints: 'this text should be in resource:Constraints:General:Use Limitations'
         data_lineage: This should be a description of the data collection process?
         assessment: 'This should go in Quality:Data Quality: Report'
-        summary_purpose: County-level estimates of different race groups
+        summary_purpose: Public Use Microdata Areas for use with PUMS data from 2000 to 2009
   source:
     is_simple: true
     schema_name: dbo

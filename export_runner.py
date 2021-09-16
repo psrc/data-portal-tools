@@ -64,8 +64,8 @@ def export(config):
 ##############################################################################
 # for each yaml file in folder
 run_files = os.listdir('./Config/run_files/')
-#for f in run_files:
-for f in ['cities_test.yml']:
+for f in run_files:
+#for f in ['cities_test.yml']:
 	f_path = './Config/run_files/' + f
 	with open(f_path) as file:
 		config = yaml.load(file, Loader=yaml.FullLoader)
