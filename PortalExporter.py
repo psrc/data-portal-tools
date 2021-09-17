@@ -315,7 +315,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'workspace'
+			working_dir = self.working_folder
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
@@ -352,7 +352,7 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = 'workspace'
+			working_dir = self.working_folder
 			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
