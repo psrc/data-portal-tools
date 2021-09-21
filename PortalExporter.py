@@ -222,6 +222,18 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def simplify_gdf(self, gdf):
+		try:
+			geo_type = gdf.Shape_wkt.geom_type.unique()[0]
+			if geo_type == 'Polygon':
+				gdf = gdf.explode()
+				gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
+			return gdf
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 	def replublish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -231,8 +243,7 @@ class PortalResource(object):
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			gdf = gdf.explode()
-			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
+			gdf = self.simplify_gdf(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			search_query = 'title:{}; type:shapefile'.format(title)
 			content_list = gis.content.search(query=search_query)
@@ -271,8 +282,7 @@ class PortalResource(object):
 			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			gdf = gdf.explode()
-			gdf['Shape_wkt'] = gdf.geometry.apply(lambda p: self.close_holes(p))
+			gdf = self.simplify_gdf(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			# layer = sdf.spatial.to_featurelayer(self.title,
 			# 	gis=self.portal_connector.gis,
