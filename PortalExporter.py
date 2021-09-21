@@ -236,7 +236,6 @@ class PortalResource(object):
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			search_query = 'title:{}; type:shapefile'.format(title)
 			content_list = gis.content.search(query=search_query)
-			print("content_list in replublish_spatial={}".format(content_list))
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
 			if os.path.exists(working_dir): #clear the working directory
@@ -290,13 +289,13 @@ class PortalResource(object):
 				shapefile = shapefile[:-4]
 			zipfile = self.shape_to_zip(shape_name = shapefile)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
-			os.chdir('..')
+			#os.chdir('..')
 			params = {"name":self.title}
 			layer = exported.publish(publish_parameters=params)
+			os.chdir('../')
 			self.set_and_update_metadata(layer)
 			self.set_editability(layer)
 			layer_shared = layer.share(everyone=True)
-			os.chdir('../')
 
 		except Exception as e:
 			print(e.args[0])
@@ -503,7 +502,8 @@ class PortalResource(object):
 		try:
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			content_list = gis.content.search(query='title:{}'.format(title))
+			spatial_layer_pred = '; type:Shapefile' if self.is_spatial else ''
+			content_list = gis.content.search(query='title:{}{}'.format(title, spatial_layer_pred))
 			if len(content_list) > 0:
 				#delete title?
 				#for item in content_list:
