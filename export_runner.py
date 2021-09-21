@@ -66,10 +66,11 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 for f in run_files:
 #for f in ['cities_test.yml']:
-	f_path = './Config/run_files/' + f
-	with open(f_path) as file:
-		config = yaml.load(file, Loader=yaml.FullLoader)
-		export(config)
+	if f >= 'tracts2010.yml':
+		f_path = './Config/run_files/' + f
+		with open(f_path) as file:
+			config = yaml.load(file, Loader=yaml.FullLoader)
+			export(config)
 
 #with open(r'Config\config_test.yml') as file:
 #	config = yaml.load(file, Loader=yaml.FullLoader)
