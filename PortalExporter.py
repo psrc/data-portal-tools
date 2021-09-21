@@ -245,8 +245,6 @@ class PortalResource(object):
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			search_query = 'title:{}; type:shapefile'.format(title)
-			content_list = gis.content.search(query=search_query)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
 			if os.path.exists(working_dir): #clear the working directory
@@ -255,7 +253,7 @@ class PortalResource(object):
 					os.remove(f)
 			else:
 				os.makedirs(working_dir)
-			exported = content_list.pop()
+			exported = self.search_by_title()
 			os.chdir(self.working_folder)
 			shapefile = sdf.spatial.to_featureclass(location=shape_name)
 			if shapefile.endswith('.shp'):
@@ -315,8 +313,6 @@ class PortalResource(object):
 		try: 
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			search_query = 'title:{}; type:CSV'.format(title)
-			content_list = gis.content.search(query=search_query)
 			out_type = "CSV"
 			csv_name = r'.\temp_data_export_csv.csv'
 			db_connector = self.db_connector
@@ -332,7 +328,7 @@ class PortalResource(object):
 				os.remove(csv_name)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
-			exported = content_list.pop()
+			exported = self.search_by_title()
 			exported.update(data=csv_name)
 			params = {"type":"csv","locationType":"none","name":self.title}
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
@@ -503,6 +499,36 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
+	def search_by_title(self):
+		"""
+		Search self.gis for layers with a given title (self.title),
+		which is of the same type (Shapefile or tabular CSV) as self,
+		and which is also owned by the current user. 
+		Return the first layer that is an exact match.
+		If no match is found, returns the string "no item"
+		"""
+		try:
+			return_item = "no item"
+			title = self.resource_properties['title']
+			gis = self.portal_connector.gis
+			layer_type_pred = '; type:Shapefile' if self.is_spatial else '; type:CSV'
+			owner_clause = '; owner:{}'.format(gis.users.me.username)
+			content_list = gis.content.search(
+				query='title:{}{}{}'.format(title, layer_type_pred, owner_clause),
+				max_items=1
+				)
+			for item in content_list:
+				if item['title'] == title:
+					return_item = item
+					break	
+			return return_item
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
 	def export(self):
 		"""
 		check if self is already published on the data portal.
@@ -510,14 +536,8 @@ class PortalResource(object):
 		  If no then publish as new
 		"""
 		try:
-			title = self.resource_properties['title']
-			gis = self.portal_connector.gis
-			spatial_layer_pred = '; type:Shapefile' if self.is_spatial else ''
-			content_list = gis.content.search(query='title:{}{}'.format(title, spatial_layer_pred))
-			if len(content_list) > 0:
-				#delete title?
-				#for item in content_list:
-				#	i_deleted = gis.content.get(item.id).delete()
+			found_item = self.search_by_title()
+			if found_item != "no item":
 				if self.is_spatial:
 					self.replublish_spatial()
 				else:
