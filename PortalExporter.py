@@ -289,13 +289,13 @@ class PortalResource(object):
 				shapefile = shapefile[:-4]
 			zipfile = self.shape_to_zip(shape_name = shapefile)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
-			os.chdir('..')
+			#os.chdir('..')
 			params = {"name":self.title}
 			layer = exported.publish(publish_parameters=params)
+			os.chdir('../')
 			self.set_and_update_metadata(layer)
 			self.set_editability(layer)
 			layer_shared = layer.share(everyone=True)
-			os.chdir('../')
 
 		except Exception as e:
 			print(e.args[0])
@@ -502,7 +502,8 @@ class PortalResource(object):
 		try:
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			content_list = gis.content.search(query='title:{}'.format(title))
+			spatial_layer_pred = '; type:Shapefile' if self.is_spatial else ''
+			content_list = gis.content.search(query='title:{}{}'.format(title, spatial_layer_pred))
 			if len(content_list) > 0:
 				#delete title?
 				#for item in content_list:
