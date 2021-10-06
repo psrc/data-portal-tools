@@ -516,7 +516,6 @@ class PortalResource(object):
 			owner_clause = '; owner:{}'.format(gis.users.me.username)
 			content_list = gis.content.search(
 				query='title:{}{}{}'.format(title, layer_type_pred, owner_clause),
-				max_items=1
 				)
 			for item in content_list:
 				if item['title'] == title:
