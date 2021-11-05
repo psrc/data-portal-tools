@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: urban_growth_area
+    title: urban_growth_area2
     tags: portal
     allow_edits: False
     spatial_data: True

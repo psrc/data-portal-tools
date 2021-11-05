@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: cities
+    title: taz2000
     tags: portal
     allow_edits: False
     spatial_data: True
@@ -18,7 +18,7 @@ dataset:
         contact_phone: (206)464-7536
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: Cities in the region
+        description: 
         data_source: 
         date_last_updated: 
         constraints: 
@@ -28,6 +28,6 @@ dataset:
   source:
     is_simple: true
     schema_name: dbo
-    table_name:  cities
+    table_name:  taz2000
     sql_query: 
 

@@ -1,7 +1,7 @@
 dataset:
   layer_params:
-    title: cities
-    tags: portal
+    title: its_signals
+    tags: portal, transportation, its
     allow_edits: False
     spatial_data: True
     share_level: everyone
@@ -18,16 +18,16 @@ dataset:
         contact_phone: (206)464-7536
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: Cities in the region
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+        description: At-grade crossings, for freight
+        data_source: Data Source to be added at a later date
+        date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
+        constraints: 'this text should be in resource:Constraints:General:Use Limitations'
+        data_lineage: This should be a description of the data collection process?
+        assessment: 'This should go in Quality:Data Quality: Report'
+        summary_purpose: The Region's ITS signals
   source:
     is_simple: true
     schema_name: dbo
-    table_name:  cities
+    table_name:  its_signals
     sql_query: 
 

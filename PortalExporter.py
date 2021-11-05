@@ -234,7 +234,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
-	def replublish_spatial(self):
+	def republish_spatial(self):
 		try:
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
@@ -538,7 +538,7 @@ class PortalResource(object):
 			found_item = self.search_by_title()
 			if found_item != "no item":
 				if self.is_spatial:
-					self.replublish_spatial()
+					self.republish_spatial()
 				else:
 					self.republish()
 			else: 
