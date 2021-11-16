@@ -234,6 +234,38 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
+	def shorten_column_names(self, gdf):
+		''' 
+		Create a dictionary of column names, with the keys being a short abstracted reference to the full-length col names.
+		Set this dictionary as self.column_dict
+		Resets gdf.columns to the list of new abstracted columns names ['col1', 'col2'...] 
+		'''
+		try:
+			col_list = gdf.columns.to_list()
+			i = 0
+			new_col_list = []
+			d = {}
+			for c in col_list:
+				new_col = 'col' + str(i)
+				if c != 'Shape_wkt':
+					d[new_col] = c
+					new_col_list.append(new_col)
+				else:
+					d[c] = c 
+					new_col_list.append(c)
+				i+=1
+			self.column_dict = d
+			self.long_col_names = col_list
+			gdf.columns = new_col_list
+			return gdf
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+
 	def republish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -244,6 +276,7 @@ class PortalResource(object):
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
+			gdf = self.shorten_column_names(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
@@ -260,6 +293,7 @@ class PortalResource(object):
 				shapefile = shapefile[:-4]
 			zipfile = self.shape_to_zip(shape_name = shapefile)
 			exported.update(data=zipfile)
+			self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
 			self.set_editability(published)
@@ -465,7 +499,6 @@ class PortalResource(object):
 			print("finished printing dataframe")
 		except Exception as e:
 			print(e.args[0])
-			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
 
