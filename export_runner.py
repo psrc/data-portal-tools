@@ -66,8 +66,8 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 for f in run_files:
 #for f in ['cities_test.yml']:
-	#if f  in ['parking_inventory.yml']:
-	if 'employment_summaries_' in  f:
+	if f  in ['military_bases.yml']:
+	#if 'hhsurvey_' in  f:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
