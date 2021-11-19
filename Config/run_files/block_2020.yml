@@ -26,8 +26,14 @@ dataset:
         assessment: 
         summary_purpose: 
   source:
-    is_simple: true
-    schema_name: dbo
-    table_name:  block2020
-    sql_query: 
+    is_simple: false
+    schema_name:
+    table_name: 
+    sql_query: "select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp as statefp20, countyfp as countyfp20,
+	countyname,
+	tractce as tract20,
+	blockce as block20,
+	geoid20,
+	aland as acres
+from dbo.BLOCK2020_NOWATER"
 

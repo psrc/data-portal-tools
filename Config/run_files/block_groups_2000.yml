@@ -26,8 +26,20 @@ dataset:
         assessment: 
         summary_purpose: 
   source:
-    is_simple: true
-    schema_name: dbo
-    table_name:  blockgrp2000
-    sql_query: 
+    is_simple: false
+    schema_name: 
+    table_name: 
+    sql_query: "select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2) as statefp00, right(fipsstco, 3) as countyfp00,
+	case fipsstco	
+		when '53053' then 'Pierce'
+		when '53033' then 'King'
+		when '53035' then 'Kitsap'
+		when '53061' then 'Snohomish'
+	end as countyname,
+	tract as tract00,
+	group_ as bg00,
+	tract_bg as tract_bg00,
+	stfid as geoid00,
+	acres
+from dbo.blockgrp2000_land_only"
 

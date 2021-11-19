@@ -26,8 +26,20 @@ dataset:
         assessment: 
         summary_purpose: 
   source:
-    is_simple: true
-    schema_name: dbo
-    table_name:  block2000
-    sql_query: 
+    is_simple: false
+    schema_name:
+    table_name:
+    sql_query: "
+    select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp00, countyfp00, 
+	case countyfp00	
+		when '053' then 'Pierce'
+		when '033' then 'King'
+		when '035' then 'Kitsap'
+		when '061' then 'Snohomish'
+	end as countyname,
+	tractce00 as tract00,
+	blockce00 as block00,
+	blkidfp00 as geoid00,
+	aland00 as acres
+from dbo.block2000_nowater"
 
