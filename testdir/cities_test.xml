@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>2021-10-19</CreaDate>
+		<CreaTime>14:17:50.53</CreaTime>
+		<ModDate>2021-11-15</ModDate>
+		<ModTime>16:43:53.82</ModTime>
+		<PublishStatus>editor:esri.dijit.metadata.editor</PublishStatus>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<ArcGISstyle>FGDC CSDGM Metadata</ArcGISstyle>
+		<ArcGISProfile>FGDC</ArcGISProfile>
+		<MapLyrSync>false</MapLyrSync>
+	</Esri>
+	<mdFileID>1634678271820r9819639874884227</mdFileID>
+	<mdChar>
+		<CharSetCd value="004"/>
+	</mdChar>
+	<mdContact>
+		<rpIndName>Chris Peak</rpIndName>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<mdDateSt>2021-10-19</mdDateSt>
+	<mdTimeSt>14:17:50.53</mdTimeSt>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>cities_test</resTitle>
+			<date>
+				<pubDate>This will ultimately be derived automatically but for the moment is entered in the datasource yml.</pubDate>
+			</date>
+			<citRespParty>
+				<rpIndName>Chris Peak</rpIndName>
+				<rpOrgName>PSRC</rpOrgName>
+				<role>
+					<RoleCd value="006"/>
+				</role>
+				<rpCntInfo>
+					<cntAddress>
+						<eMailAdd>cpeak@psrc.org</eMailAdd>
+						<delPoint>1011 Western Ave. Ste 500</delPoint>
+						<city>Seattle</city>
+						<adminArea>Washington</adminArea>
+						<postCode>98104</postCode>
+					</cntAddress>
+					<cntPhone>
+						<voiceNum>(206)464-7536</voiceNum>
+					</cntPhone>
+					<cntOnlineRes>
+						<linkage>withheld</linkage>
+					</cntOnlineRes>
+				</rpCntInfo>
+			</citRespParty>
+		</idCitation>
+		<idAbs>The region&apos;s cities and towns</idAbs>
+		<idPurp>County-level estimates of different race groups</idPurp>
+		<idCredit>This data was derived from Source X, published by Agency Y.</idCredit>
+		<dataChar>
+			<CharSetCd value="004"/>
+		</dataChar>
+		<resConst>
+			<Consts>
+				<useLimit>this text should be in resource:Constraints:General:Use Limitations</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+		<resConst>
+			<LegConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+				<othConsts>Other Constraints</othConsts>
+			</LegConsts>
+		</resConst>
+	</dataIdInfo>
+	<dqInfo>
+		<dataLineage>
+			<statement>This should be a description of the data collection process?</statement>
+		</dataLineage>
+	</dqInfo>
+	<distInfo>
+		<distTranOps>
+			<onLineSrc>
+				<linkage>withheld</linkage>
+			</onLineSrc>
+		</distTranOps>
+	</distInfo>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>City_name_</enttypl>
+				<enttypd>name of city</enttypd>
+			</enttyp>
+		</detailed>
+		<detailed>
+			<enttyp>
+				<enttypl>city_fips_</enttypl>
+				<enttypd>US FIPS code for city</enttypd>
+			</enttyp>
+		</detailed>
+	</eainfo>
+</metadata>

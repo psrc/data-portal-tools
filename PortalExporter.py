@@ -462,6 +462,10 @@ class PortalResource(object):
 			doc['metadata']['dqInfo'] = {'dataLineage':{}}
 			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
 
+			fields = self.metadata['fields']
+			for f in fields:
+				doc['metadata']['eaInfo']['detailed']['etnttyp']
+
 			new_metadata = xmltodict.unparse(doc)
 			textfile = open(metadata_file,'w')
 			a = textfile.write(new_metadata)

@@ -25,6 +25,9 @@ dataset:
         data_lineage: This should be a description of the data collection process?
         assessment: 'This should go in Quality:Data Quality: Report'
         summary_purpose: County-level estimates of different race groups
+        fields:
+          city_name: name of city
+          city_fips: the fips code for the city
   source:
     is_simple: true
     schema_name: dbo
