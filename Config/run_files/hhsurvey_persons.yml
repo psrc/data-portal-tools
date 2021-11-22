@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: household_travel_survey_persons
+    title: hhsurvey_persons_2019
     tags: portal, household travel survey
     allow_edits: False
     spatial_data: False
