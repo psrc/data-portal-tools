@@ -64,14 +64,13 @@ def export(config):
 ##############################################################################
 # for each yaml file in folder
 run_files = os.listdir('./Config/run_files/')
-for f in run_files:
-#for f in ['cities_test.yml']:
+#for f in run_files:
+for f in ['cities_test.yml']:
 	#if f  in ['parking_inventory.yml']:
-	if 'tracts20' in  f:
-		f_path = './Config/run_files/' + f
-		with open(f_path) as file:
-			config = yaml.load(file, Loader=yaml.FullLoader)
-			export(config)
+	f_path = './Config/run_files/' + f
+	with open(f_path) as file:
+		config = yaml.load(file, Loader=yaml.FullLoader)
+		export(config)
 
 #with open(r'Config\config_test.yml') as file:
 #	config = yaml.load(file, Loader=yaml.FullLoader)

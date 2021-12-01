@@ -7,6 +7,7 @@ import zipfile
 import glob
 import yaml
 import xmltodict
+import dicttoxml
 import os
 import geopandas as gpd
 import fiona
@@ -296,6 +297,7 @@ class PortalResource(object):
 			self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
+			self.set_and_update_metadata(exported)
 			self.set_editability(published)
 			print("{} exported to {}".format(shape_name, working_dir))
 
@@ -430,7 +432,7 @@ class PortalResource(object):
 			if not os.path.exists(metadata_file):
 				self.initialize_metadata_file(item)
 			metadata = item.metadata
-			doc = xmltodict.parse(metadata)
+			doc = xmltodict.parse(metadata, )
 			doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
 
 			dataIdInfo = doc['metadata']['dataIdInfo']
@@ -463,10 +465,27 @@ class PortalResource(object):
 			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
 
 			fields = self.metadata['fields']
+			flist = []
+			my_item_func = lambda x: 'detailed'
 			for f in fields:
-				doc['metadata']['eaInfo']['detailed']['etnttyp']
+				eainfodict = {'enttyp':{}}
+				eainfodict['enttyp']['enttypl'] = f['title']
+				eainfodict['enttyp']['enttypd'] = f['description']
+				#eaxml = xmltodict.unparse(eainfodict)
+				flist.append(eainfodict)
+			doc['metadata']['eainfo'] = flist
 
-			new_metadata = xmltodict.unparse(doc)
+			print(flist)
+			print('--------')
+
+			#new_metadata = xmltodict.unparse(doc, pretty=True)
+
+			#new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
+			new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
+			new_metadata = str(new_metadata.decode())
+			new_metadata = new_metadata.replace('<root>','')
+			new_metadata = new_metadata.replace('</root>','')
+			#print(new_metadata)
 			textfile = open(metadata_file,'w')
 			a = textfile.write(new_metadata)
 			textfile.close()
