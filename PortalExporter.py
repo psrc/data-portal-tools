@@ -435,29 +435,20 @@ class PortalResource(object):
 				self.initialize_metadata_file(item)
 			tree = ET.parse(metadata_file)
 			root = tree.getroot()
-			# metadata = item.metadata
-			# doc = xmltodict.parse(metadata, )
 			node = root.iter('mdContact')
-			# rpIndName = ET.SubElement(root, 'rpIndName').text = self.metadata['contact_name']
 			dataIdInfo = root.find('./dataIdInfo')
 			citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
 			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
 			rpIndName.text = self.metadata['contact_name']
-			#doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
 
-			#dataIdInfo = doc['metadata']['dataIdInfo']
 			root.find('./dataIdInfo/idCitation/resTitle').text = self.resource_properties['title']
 			idCitation = root.find('./dataIdInfo/idCitation')
-			# rpOrgName = ET.SubElement(citRespParty, 'rpOrgName').text = self.metadata['organization_name']
 			date = ET.SubElement(idCitation, 'date')
-			# pubDate = ET.SubElement(dataIdInfo, 'date')
 			pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
-			# dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
 			resConst = ET.SubElement(dataIdInfo, 'resConst')
 			consts = ET.SubElement(resConst, 'Consts')
 			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['constraints']
 
-			#doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
 			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
 			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
 			cntPhone = ET.SubElement(rpCntInfo, 'cntPhone')
@@ -470,29 +461,30 @@ class PortalResource(object):
 			voiceNum = ET.SubElement(cntPhone, 'voiceNum').text = self.metadata['contact_phone']
 			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
-			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = self.metadata['description']
+
+			idAbs = root.find('./dataIdInfo/idAbs')
+			idAbs.text = self.metadata['description']
 			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
-			idCredit = ET.SubElement(dataIdInfo, 'idCredit').text = self.metadata['data_source']
+			idCredit = root.find('./dataIdInfo/idCredit')
+			idCredit.text = self.metadata['data_source']
 
 			Consts = ET.SubElement(resConst, 'Consts')
 			useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
 
-			# doc['metadata']['dqInfo'] = {'dataLineage':{}}
-			# doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+			fields = self.metadata['fields']
+			eainfo = ET.SubElement(root, 'eainfo')
+			for f in fields:
+				detailed = ET.SubElement(eainfo, 'detailed')
+				enttyp = ET.SubElement(detailed, 'enttyp')
+				enttypl = ET.SubElement(enttyp, 'enttypl')
+				enttypl.text = f['title']
+				enttypd = ET.SubElement(enttyp, 'enttypd')
+				enttypd.text = f['description']
+
 			dqInfo = ET.SubElement(root, 'dqInfo')
 			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
 			statement = ET.SubElement(dataLineage, 'statement').text = self.metadata['data_lineage']
 
-			fields = self.metadata['fields']
-			flist = []
-			my_item_func = lambda x: 'detailed'
-			for f in fields:
-				eainfodict = {'enttyp':{}}
-				eainfodict['enttyp']['enttypl'] = f['title']
-				eainfodict['enttyp']['enttypd'] = f['description']
-				#eaxml = xmltodict.unparse(eainfodict)
-				flist.append(eainfodict)
-			# doc['metadata']['eainfo'] = flist
 
 			# print(flist)
 			# print('--------')
