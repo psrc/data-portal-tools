@@ -17,6 +17,8 @@ import time
 import json
 import to_SpatiallyEnabledDataFrame
 from pathlib import Path
+import xml.etree.ElementTree as ET
+
 
 class PortalConnector(object):
 	def __init__(self, portal_username, portal_pw, portal_url="https://psregcncl.maps.arcgis.com"):
@@ -431,38 +433,55 @@ class PortalResource(object):
 			metadata_file = r'./workspace/metadata.xml'
 			if not os.path.exists(metadata_file):
 				self.initialize_metadata_file(item)
-			metadata = item.metadata
-			doc = xmltodict.parse(metadata, )
-			doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
+			tree = ET.parse(metadata_file)
+			root = tree.getroot()
+			# metadata = item.metadata
+			# doc = xmltodict.parse(metadata, )
+			node = root.iter('mdContact')
+			# rpIndName = ET.SubElement(root, 'rpIndName').text = self.metadata['contact_name']
+			dataIdInfo = root.find('./dataIdInfo')
+			citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
+			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
+			rpIndName.text = self.metadata['contact_name']
+			#doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
 
-			dataIdInfo = doc['metadata']['dataIdInfo']
-			dataIdInfo['idCitation']['resTitle'] = self.resource_properties['title']
-			dataIdInfo['idCitation']['citRespParty']['rpIndName'] = self.metadata['contact_name']
-			dataIdInfo['idCitation']['citRespParty']['rpOrgName'] = self.metadata['organization_name']
-			dataIdInfo['idCitation']['date'] = {}
-			dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
-			dataIdInfo['resConst'] = {'Consts':{'useLimit':None}}
-			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+			#dataIdInfo = doc['metadata']['dataIdInfo']
+			root.find('./dataIdInfo/idCitation/resTitle').text = self.resource_properties['title']
+			idCitation = root.find('./dataIdInfo/idCitation')
+			# rpOrgName = ET.SubElement(citRespParty, 'rpOrgName').text = self.metadata['organization_name']
+			date = ET.SubElement(idCitation, 'date')
+			# pubDate = ET.SubElement(dataIdInfo, 'date')
+			pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
+			# dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
+			resConst = ET.SubElement(dataIdInfo, 'resConst')
+			consts = ET.SubElement(resConst, 'Consts')
+			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['constraints']
 
-			doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
-			rpCntInfo = doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo']
-			rpCntInfo['cntAddress']['eMailAdd'] = self.metadata['contact_email']
-			rpCntInfo['cntAddress']['delPoint'] = self.metadata['contact_street_address']
-			rpCntInfo['cntAddress']['city'] = self.metadata['contact_city']
-			rpCntInfo['cntAddress']['adminArea'] = self.metadata['contact_state']
-			rpCntInfo['cntAddress']['postCode'] = self.metadata['contact_zip']
-			rpCntInfo['cntPhone']['voiceNum'] = self.metadata['contact_phone']
-			rpCntInfo['cntOnlineRes']['linkage'] = self.metadata['psrc_website']
+			#doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
+			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
+			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
+			cntPhone = ET.SubElement(rpCntInfo, 'cntPhone')
+			cntOnlineRes = ET.SubElement(rpCntInfo, 'cntOnlineRes')
+			eMailAdd = ET.SubElement(cntAddress, 'eMailAdd').text = self.metadata['contact_email']
+			delPoint = ET.SubElement(cntAddress, 'delPoint').text = self.metadata['contact_street_address']
+			city = ET.SubElement(cntAddress, 'city').text = self.metadata['contact_city']
+			adminArea = ET.SubElement(cntAddress, 'adminArea').text = self.metadata['contact_state']
+			postCode = ET.SubElement(cntAddress, 'postCode').text = str(self.metadata['contact_zip'])
+			voiceNum = ET.SubElement(cntPhone, 'voiceNum').text = self.metadata['contact_phone']
+			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
-			dataIdInfo['idAbs'] = self.metadata['description']
-			dataIdInfo['idPurp'] = self.metadata['summary_purpose']
-			dataIdInfo['idCredit'] = self.metadata['data_source']
+			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = self.metadata['description']
+			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
+			idCredit = ET.SubElement(dataIdInfo, 'idCredit').text = self.metadata['data_source']
 
-			dataIdInfo['resConst'] = {'Consts':{}}
-			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+			Consts = ET.SubElement(resConst, 'Consts')
+			useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
 
-			doc['metadata']['dqInfo'] = {'dataLineage':{}}
-			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+			# doc['metadata']['dqInfo'] = {'dataLineage':{}}
+			# doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+			dqInfo = ET.SubElement(root, 'dqInfo')
+			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
+			statement = ET.SubElement(dataLineage, 'statement').text = self.metadata['data_lineage']
 
 			fields = self.metadata['fields']
 			flist = []
@@ -473,24 +492,25 @@ class PortalResource(object):
 				eainfodict['enttyp']['enttypd'] = f['description']
 				#eaxml = xmltodict.unparse(eainfodict)
 				flist.append(eainfodict)
-			doc['metadata']['eainfo'] = flist
+			# doc['metadata']['eainfo'] = flist
 
-			print(flist)
-			print('--------')
+			# print(flist)
+			# print('--------')
 
 			#new_metadata = xmltodict.unparse(doc, pretty=True)
 
 			#new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
-			new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
-			new_metadata = str(new_metadata.decode())
-			new_metadata = new_metadata.replace('<root>','')
-			new_metadata = new_metadata.replace('</root>','')
+			# new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
+			# new_metadata = str(new_metadata.decode())
+			# new_metadata = new_metadata.replace('<root>','')
+			# new_metadata = new_metadata.replace('</root>','')
 			#print(new_metadata)
-			textfile = open(metadata_file,'w')
-			a = textfile.write(new_metadata)
-			textfile.close()
+			# textfile = open(metadata_file,'w')
+			# a = textfile.write(new_metadata)
+			# textfile.close()
+			tree.write(metadata_file, encoding='UTF-8', xml_declaration=True)
 			item.update(metadata=metadata_file)
-			if os.path.exists(metadata_file): os.remove(metadata_file)
+			#if os.path.exists(metadata_file): os.remove(metadata_file)
 
 		except Exception as e:
 			print(e.args[0])
