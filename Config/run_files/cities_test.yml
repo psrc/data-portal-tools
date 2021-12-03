@@ -46,6 +46,11 @@ dataset:
       organization_name: PSRC
       psrc_website: www.psrc.org
       summary_purpose: summary purpose
+      fields:
+        - title: city_name
+          description: name of city
+        - title: city_fips
+          description: the fips code for the city
     share_level: everyone
     snippet: null
     spatial_data: true

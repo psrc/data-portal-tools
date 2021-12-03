@@ -7,6 +7,7 @@ import zipfile
 import glob
 import yaml
 import xmltodict
+import dicttoxml
 import os
 import geopandas as gpd
 import fiona
@@ -16,6 +17,8 @@ import time
 import json
 import to_SpatiallyEnabledDataFrame
 from pathlib import Path
+import xml.etree.ElementTree as ET
+
 
 class PortalConnector(object):
 	def __init__(self, portal_username, portal_pw, portal_url="https://psregcncl.maps.arcgis.com"):
@@ -234,6 +237,38 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
+	def shorten_column_names(self, gdf):
+		''' 
+		Create a dictionary of column names, with the keys being a short abstracted reference to the full-length col names.
+		Set this dictionary as self.column_dict
+		Resets gdf.columns to the list of new abstracted columns names ['col1', 'col2'...] 
+		'''
+		try:
+			col_list = gdf.columns.to_list()
+			i = 0
+			new_col_list = []
+			d = {}
+			for c in col_list:
+				new_col = 'col' + str(i)
+				if c != 'Shape_wkt':
+					d[new_col] = c
+					new_col_list.append(new_col)
+				else:
+					d[c] = c 
+					new_col_list.append(c)
+				i+=1
+			self.column_dict = d
+			self.long_col_names = col_list
+			gdf.columns = new_col_list
+			return gdf
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+
 	def republish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -244,6 +279,7 @@ class PortalResource(object):
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
+			gdf = self.shorten_column_names(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
@@ -260,8 +296,10 @@ class PortalResource(object):
 				shapefile = shapefile[:-4]
 			zipfile = self.shape_to_zip(shape_name = shapefile)
 			exported.update(data=zipfile)
+			self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
+			self.set_and_update_metadata(exported)
 			self.set_editability(published)
 			print("{} exported to {}".format(shape_name, working_dir))
 
@@ -395,45 +433,76 @@ class PortalResource(object):
 			metadata_file = r'./workspace/metadata.xml'
 			if not os.path.exists(metadata_file):
 				self.initialize_metadata_file(item)
-			metadata = item.metadata
-			doc = xmltodict.parse(metadata)
-			doc['metadata']['mdContact']['rpIndName'] = self.metadata['contact_name']
+			tree = ET.parse(metadata_file)
+			root = tree.getroot()
+			node = root.iter('mdContact')
+			dataIdInfo = root.find('./dataIdInfo')
+			citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
+			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
+			rpIndName.text = self.metadata['contact_name']
 
-			dataIdInfo = doc['metadata']['dataIdInfo']
-			dataIdInfo['idCitation']['resTitle'] = self.resource_properties['title']
-			dataIdInfo['idCitation']['citRespParty']['rpIndName'] = self.metadata['contact_name']
-			dataIdInfo['idCitation']['citRespParty']['rpOrgName'] = self.metadata['organization_name']
-			dataIdInfo['idCitation']['date'] = {}
-			dataIdInfo['idCitation']['date']['pubDate'] = self.metadata['date_last_updated']
-			dataIdInfo['resConst'] = {'Consts':{'useLimit':None}}
-			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+			root.find('./dataIdInfo/idCitation/resTitle').text = self.resource_properties['title']
+			idCitation = root.find('./dataIdInfo/idCitation')
+			date = ET.SubElement(idCitation, 'date')
+			pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
+			resConst = ET.SubElement(dataIdInfo, 'resConst')
+			consts = ET.SubElement(resConst, 'Consts')
+			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['constraints']
 
-			doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo'] = {'cntAddress':{},'cntPhone':{},'cntOnlineRes':{}}
-			rpCntInfo = doc['metadata']['dataIdInfo']['idCitation']['citRespParty']['rpCntInfo']
-			rpCntInfo['cntAddress']['eMailAdd'] = self.metadata['contact_email']
-			rpCntInfo['cntAddress']['delPoint'] = self.metadata['contact_street_address']
-			rpCntInfo['cntAddress']['city'] = self.metadata['contact_city']
-			rpCntInfo['cntAddress']['adminArea'] = self.metadata['contact_state']
-			rpCntInfo['cntAddress']['postCode'] = self.metadata['contact_zip']
-			rpCntInfo['cntPhone']['voiceNum'] = self.metadata['contact_phone']
-			rpCntInfo['cntOnlineRes']['linkage'] = self.metadata['psrc_website']
+			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
+			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
+			cntPhone = ET.SubElement(rpCntInfo, 'cntPhone')
+			cntOnlineRes = ET.SubElement(rpCntInfo, 'cntOnlineRes')
+			eMailAdd = ET.SubElement(cntAddress, 'eMailAdd').text = self.metadata['contact_email']
+			delPoint = ET.SubElement(cntAddress, 'delPoint').text = self.metadata['contact_street_address']
+			city = ET.SubElement(cntAddress, 'city').text = self.metadata['contact_city']
+			adminArea = ET.SubElement(cntAddress, 'adminArea').text = self.metadata['contact_state']
+			postCode = ET.SubElement(cntAddress, 'postCode').text = str(self.metadata['contact_zip'])
+			voiceNum = ET.SubElement(cntPhone, 'voiceNum').text = self.metadata['contact_phone']
+			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
-			dataIdInfo['idAbs'] = self.metadata['description']
-			dataIdInfo['idPurp'] = self.metadata['summary_purpose']
-			dataIdInfo['idCredit'] = self.metadata['data_source']
 
-			dataIdInfo['resConst'] = {'Consts':{}}
-			dataIdInfo['resConst']['Consts']['useLimit'] = self.metadata['constraints']
+			idAbs = root.find('./dataIdInfo/idAbs')
+			idAbs.text = self.metadata['description']
+			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
+			idCredit = root.find('./dataIdInfo/idCredit')
+			idCredit.text = self.metadata['data_source']
 
-			doc['metadata']['dqInfo'] = {'dataLineage':{}}
-			doc['metadata']['dqInfo']['dataLineage']['statement'] = self.metadata['data_lineage']
+			Consts = ET.SubElement(resConst, 'Consts')
+			useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
 
-			new_metadata = xmltodict.unparse(doc)
-			textfile = open(metadata_file,'w')
-			a = textfile.write(new_metadata)
-			textfile.close()
+			fields = self.metadata['fields']
+			eainfo = ET.SubElement(root, 'eainfo')
+			for f in fields:
+				detailed = ET.SubElement(eainfo, 'detailed')
+				enttyp = ET.SubElement(detailed, 'enttyp')
+				enttypl = ET.SubElement(enttyp, 'enttypl')
+				enttypl.text = f['title']
+				enttypd = ET.SubElement(enttyp, 'enttypd')
+				enttypd.text = f['description']
+
+			dqInfo = ET.SubElement(root, 'dqInfo')
+			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
+			statement = ET.SubElement(dataLineage, 'statement').text = self.metadata['data_lineage']
+
+
+			# print(flist)
+			# print('--------')
+
+			#new_metadata = xmltodict.unparse(doc, pretty=True)
+
+			#new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
+			# new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
+			# new_metadata = str(new_metadata.decode())
+			# new_metadata = new_metadata.replace('<root>','')
+			# new_metadata = new_metadata.replace('</root>','')
+			#print(new_metadata)
+			# textfile = open(metadata_file,'w')
+			# a = textfile.write(new_metadata)
+			# textfile.close()
+			tree.write(metadata_file, encoding='UTF-8', xml_declaration=True)
 			item.update(metadata=metadata_file)
-			if os.path.exists(metadata_file): os.remove(metadata_file)
+			#if os.path.exists(metadata_file): os.remove(metadata_file)
 
 		except Exception as e:
 			print(e.args[0])
@@ -465,7 +534,6 @@ class PortalResource(object):
 			print("finished printing dataframe")
 		except Exception as e:
 			print(e.args[0])
-			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
 
