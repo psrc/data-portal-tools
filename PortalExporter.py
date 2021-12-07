@@ -279,7 +279,7 @@ class PortalResource(object):
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
-			gdf = self.shorten_column_names(gdf)
+			# gdf = self.shorten_column_names(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
@@ -296,7 +296,7 @@ class PortalResource(object):
 				shapefile = shapefile[:-4]
 			zipfile = self.shape_to_zip(shape_name = shapefile)
 			exported.update(data=zipfile)
-			self.long_col_names.remove('Shape_wkt')
+			#self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
 			self.set_and_update_metadata(exported)

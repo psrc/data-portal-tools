@@ -1,0 +1,36 @@
+dataset:
+  layer_params:
+    accessInformation: This shapefile includes boundaries for all counties in the
+      state of Washington.
+    allow_edits: false
+    licenseInfo: some text here
+    metadata:
+      assessment: The information contained herein was developed for general regional
+        land use and transportation planning purposes. The users of this information
+        must determine its suitability for any other purpose. Some of this data may
+        have been compiled from other sources. The PSRC does not accept responsibility
+        for the quality of third-party data or data contributed by others. Locations
+        of all facilities are approximate.
+      constraints: The information contained herein was developed for general regional
+        land use and transportation planning purposes. The users of this information
+        must determine its suitability for any other purpose. Some of this data may
+        have been compiled from other sources. The PSRC does not accept responsibility
+        for the quality of third-party data or data contributed by others. Locations
+        of all facilities are approximate.
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      data_lineage: nan
+      data_source: Puget Sound Regional Council
+      date_last_updated: 04/2018
+      description: This shapefile includes boundaries for all counties in the state
+        of Washington.
+      summary_purpose: summary purpose
+    share_level: everyone
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: county_background
+  source:
+    is_simple: false
+    schema_name: n/a
+    sql_query: select * from some_table
+    table_name: n/a
