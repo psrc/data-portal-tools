@@ -6,18 +6,18 @@ import pyodbc
 import zipfile
 import glob
 import yaml
-import xmltodict
-import dicttoxml
 import os
-import geopandas as gpd
-import fiona
 from shapely import wkt
 from shapely.geometry.polygon import Polygon
 import time
 import json
 import to_SpatiallyEnabledDataFrame
 from pathlib import Path
+import geopandas as gpd
+#import fiona
 import xml.etree.ElementTree as ET
+import arcpy
+import shutil
 
 
 class PortalConnector(object):
@@ -225,6 +225,20 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def gdb_to_zip(self, file_gdb_name):
+		try:
+			if '.gdb' in file_gdb_name:
+				zip_name = file_gdb_name[:-4] + '.zip'
+			else:
+				zip_name = file_gdb_name + '.zip'
+			shutil.make_archive(zip_name, 'zip', file_gdb_name)
+			return zip_name
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
 	def simplify_gdf(self, gdf):
 		try:
 			geo_type = gdf.Shape_wkt.geom_type.unique()[0]
@@ -279,10 +293,11 @@ class PortalResource(object):
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
-			# gdf = self.shorten_column_names(gdf)
+			#gdf = self.shorten_column_names(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
+			gdb_name = 'output.gdb'
 			if os.path.exists(working_dir): #clear the working directory
 				files = glob.glob(str(working_dir / '*'))
 				for f in files:
@@ -291,10 +306,13 @@ class PortalResource(object):
 				os.makedirs(working_dir)
 			exported = self.search_by_title()
 			os.chdir(self.working_folder)
-			shapefile = sdf.spatial.to_featureclass(location=shape_name)
-			if shapefile.endswith('.shp'):
-				shapefile = shapefile[:-4]
-			zipfile = self.shape_to_zip(shape_name = shapefile)
+			arcpy.management.CreateFileGDB('.\\', gdb_name)
+			feat_class_name = gdb_name + '\\' + title
+			out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
+			# if shapefile.endswith('.shp'):
+			# 	shapefile = shapefile[:-4]
+			#zipfile = self.shape_to_zip(shape_name = shapefile)
+			zipfile = self.gdb_to_zip(gdb_name)
 			exported.update(data=zipfile)
 			#self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
@@ -328,12 +346,14 @@ class PortalResource(object):
 			os.chdir(self.working_folder)
 			ttl = self.title + '.shp'
 			shape_file_name = fldr / ttl
+			gdb_name = 'output.gdb'
 			#shape_file_name = '.\cities_test.shp'
-			shape_file_string = '.\\' + str(shape_file_name)
-			shapefile = sdf.spatial.to_featureclass(shape_file_string)
-			if shapefile.endswith('.shp'):
-				shapefile = shapefile[:-4]
-			zipfile = self.shape_to_zip(shape_name = shapefile)
+			arcpy.management.CreateFileGDB('.\\', gdb_name)
+			feat_class_name = '.\\' + gdb_name + '\\' + self.title
+			feat_class = sdf.spatial.to_featureclass(feat_class_name)
+			# if shapefile.endswith('.shp'):
+			# 	shapefile = shapefile[:-4]
+			zipfile = self.gdb_to_zip(gdb_name)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
 			#os.chdir('..')
 			params = {"name":self.title}
