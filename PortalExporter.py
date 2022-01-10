@@ -1,6 +1,6 @@
 import pandas as pd
 from arcgis.gis import GIS
-from arcgis.features import FeatureLayerCollection
+from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
 import urllib
 import pyodbc
 import zipfile
@@ -226,13 +226,18 @@ class PortalResource(object):
 			raise
 
 	def gdb_to_zip(self, file_gdb_name):
+		"""
+		file_gdb_name: a Path object
+		"""
 		try:
-			if '.gdb' in file_gdb_name:
-				zip_name = file_gdb_name[:-4] + '.zip'
+			if '.gdb' in str(file_gdb_name):
+				zip_name = file_gdb_name.stem
+				folder_to_be_zipped = str(file_gdb_name.parents[0])
 			else:
 				zip_name = file_gdb_name + '.zip'
-			shutil.make_archive(zip_name, 'zip', file_gdb_name)
-			return zip_name
+				folder_to_be_zipped = str(file_gdb_name)
+			out_zip_name = shutil.make_archive(zip_name, 'zip', folder_to_be_zipped)
+			return out_zip_name
 
 		except Exception as e:
 			print(e.args[0])
@@ -338,19 +343,24 @@ class PortalResource(object):
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+			res_properties = self.resource_properties
+			res_properties['type'] = 'File Geodatabase'
 			# layer = sdf.spatial.to_featurelayer(self.title,
 			# 	gis=self.portal_connector.gis,
 			# 	tags=self.resource_properties['tags'])
 			fldr = Path(self.working_folder)
-			fldr = Path('.')
+			fldr = Path('.') / 'gdb'
 			os.chdir(self.working_folder)
-			ttl = self.title + '.shp'
-			shape_file_name = fldr / ttl
-			gdb_name = 'output.gdb'
+			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
+			ttl = self.title + '.gdb'
+			# shape_file_name = fldr / ttl
+			gdb_name = fldr / 'output.gdb'
 			#shape_file_name = '.\cities_test.shp'
-			arcpy.management.CreateFileGDB('.\\', gdb_name)
-			feat_class_name = '.\\' + gdb_name + '\\' + self.title
-			feat_class = sdf.spatial.to_featureclass(feat_class_name)
+			if os.path.exists(gdb_path):
+				shutil.rmtree(gdb_path)
+			arcpy.management.CreateFileGDB(str(gdb_path.parent), gdb_path.stem)
+			feat_class_name =  gdb_name / self.title
+			feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
 			# if shapefile.endswith('.shp'):
 			# 	shapefile = shapefile[:-4]
 			zipfile = self.gdb_to_zip(gdb_name)

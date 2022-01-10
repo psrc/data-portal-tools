@@ -1,8 +1,9 @@
+import yaml
 from PortalExporter import PortalResource
+# from PortalExporter import PortalResource
 #from PortalExporter import PortalSpatialResource
 from PortalExporter import PortalConnector
 from PortalExporter import DatabaseConnector
-import yaml
 import os
 
 
