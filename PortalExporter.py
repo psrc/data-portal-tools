@@ -286,6 +286,23 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def prepare_working_dir(self, dir_path):
+		try:
+			if os.path.exists(dir_path):
+				files = glob.glob(str(dir_path / '*'))
+				for f in files:
+					if '.gdb' in f:
+						shutil.rmtree(f)
+					elif f != 'workspace\\gdb':
+						os.remove(f)
+			else: 
+				os.makedirs(dir_path)
+				os.makedirs(dir_path / 'gdb')
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 
 
 	def republish_spatial(self):
@@ -298,28 +315,18 @@ class PortalResource(object):
 			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 			gdf = self.simplify_gdf(gdf)
-			#gdf = self.shorten_column_names(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			shape_name = '.\\' +  title + '.shp'
-			gdb_name = 'output.gdb'
-			if os.path.exists(working_dir): #clear the working directory
-				files = glob.glob(str(working_dir / '*'))
-				for f in files:
-					os.remove(f)
-			else:
-				os.makedirs(working_dir)
+			self.prepare_working_dir(working_dir)
 			exported = self.search_by_title()
 			os.chdir(self.working_folder)
-			arcpy.management.CreateFileGDB('.\\', gdb_name)
-			feat_class_name = gdb_name + '\\' + title
+			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
+			self.make_file_gdb(gdb_path)
+			feat_class_name = gdb_path / title
 			out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
-			# if shapefile.endswith('.shp'):
-			# 	shapefile = shapefile[:-4]
-			#zipfile = self.shape_to_zip(shape_name = shapefile)
-			zipfile = self.gdb_to_zip(gdb_name)
+			zipfile = self.gdb_to_zip(gdb_path)
 			exported.update(data=zipfile)
-			#self.long_col_names.remove('Shape_wkt')
 			published = exported.publish(overwrite=True)
 			os.chdir('..')
 			self.set_and_update_metadata(exported)
@@ -330,6 +337,17 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
+	def make_file_gdb(self, gdb_path):
+		try:
+			if os.path.exists(gdb_path):
+				shutil.rmtree(gdb_path)
+			arcpy.management.CreateFileGDB(str(gdb_path.parent), gdb_path.stem)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+		
 
 	def publish_spatial_as_new(self):
 		"""
@@ -345,27 +363,16 @@ class PortalResource(object):
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			res_properties = self.resource_properties
 			res_properties['type'] = 'File Geodatabase'
-			# layer = sdf.spatial.to_featurelayer(self.title,
-			# 	gis=self.portal_connector.gis,
-			# 	tags=self.resource_properties['tags'])
 			fldr = Path(self.working_folder)
 			fldr = Path('.') / 'gdb'
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
 			ttl = self.title + '.gdb'
-			# shape_file_name = fldr / ttl
-			gdb_name = fldr / 'output.gdb'
-			#shape_file_name = '.\cities_test.shp'
-			if os.path.exists(gdb_path):
-				shutil.rmtree(gdb_path)
-			arcpy.management.CreateFileGDB(str(gdb_path.parent), gdb_path.stem)
-			feat_class_name =  gdb_name / self.title
+			self.make_file_gdb(gdb_path)
+			feat_class_name =  gdb_path / self.title
 			feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
-			# if shapefile.endswith('.shp'):
-			# 	shapefile = shapefile[:-4]
-			zipfile = self.gdb_to_zip(gdb_name)
+			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
-			#os.chdir('..')
 			params = {"name":self.title}
 			layer = exported.publish(publish_parameters=params)
 			os.chdir('../')
@@ -610,7 +617,7 @@ class PortalResource(object):
 			return_item = "no item"
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			layer_type_pred = '; type:Shapefile' if self.is_spatial else '; type:CSV'
+			layer_type_pred = '; type:File Geodatabase' if self.is_spatial else '; type:CSV'
 			owner_clause = '; owner:{}'.format(gis.users.me.username)
 			content_list = gis.content.search(
 				query='title:{}{}{}'.format(title, layer_type_pred, owner_clause),
