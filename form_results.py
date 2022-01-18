@@ -17,7 +17,8 @@ class FormResults(object):
     """
     def __init__(self, 
         in_file_name,
-        in_file_dir = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2021\data_portal\metadata_pipeline', 
+        in_sheet_name = 'Sheet1',
+        in_file_dir = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2022\data_portal\metadata_pipeline', 
         config_dir = r'.\Config\run_files',
         shared_column_def_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Question 1'
         ):
@@ -25,7 +26,7 @@ class FormResults(object):
             # self.path = metadata_dir
             self.form_results_path = in_file_dir + '\\' + in_file_name
             self.shared_column_def_path = shared_column_def_path
-            self.df = pd.read_excel(self.form_results_path)
+            self.df = pd.read_excel(self.form_results_path, sheet_name=in_sheet_name)
             self.set_column_dict()
             self.config_dir = config_dir
             self.rename_columns()

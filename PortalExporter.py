@@ -510,13 +510,14 @@ class PortalResource(object):
 
 			fields = self.metadata['fields']
 			eainfo = ET.SubElement(root, 'eainfo')
-			for f in fields:
-				detailed = ET.SubElement(eainfo, 'detailed')
-				enttyp = ET.SubElement(detailed, 'enttyp')
-				enttypl = ET.SubElement(enttyp, 'enttypl')
-				enttypl.text = f['title']
-				enttypd = ET.SubElement(enttyp, 'enttypd')
-				enttypd.text = f['description']
+			if fields is not None:
+				for f in fields:
+					detailed = ET.SubElement(eainfo, 'detailed')
+					enttyp = ET.SubElement(detailed, 'enttyp')
+					enttypl = ET.SubElement(enttyp, 'enttypl')
+					enttypl.text = f['title']
+					enttypd = ET.SubElement(enttyp, 'enttypd')
+					enttypd.text = f['description']
 
 			dqInfo = ET.SubElement(root, 'dqInfo')
 			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
