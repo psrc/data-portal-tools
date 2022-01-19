@@ -60,7 +60,6 @@ class FormResults(object):
                 title: {}
                 tags: {}
                 allow_edits: False
-                spatial_data: True
                 share_level: everyone
                 accessInformation: {}
                 licenseInfo: some text here
