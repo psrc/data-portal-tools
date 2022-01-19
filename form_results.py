@@ -197,7 +197,11 @@ class FormResults(object):
             field_list = []
             for i, r in in_df.iterrows():
                 if r.Remove_Field != 'Yes':
-                    f_dict = {'title': r['Field_Name'], 'description': r['Description ']}
+                    if r['Description '] == r['Description ']:
+                        desc = r['Description '] 
+                    else:
+                        desc = '(no description)'
+                    f_dict = {'title': r['Field_Name'], 'description': desc}
                     field_list.append(f_dict)
             return field_list
 
