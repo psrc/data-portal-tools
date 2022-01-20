@@ -61,17 +61,23 @@ class FormResults(object):
                 tags: {}
                 allow_edits: False
                 share_level: everyone
+                snippet: null
                 accessInformation: {}
-                licenseInfo: some text here
+                licenseInfo: null
                 metadata:
                     contact_name: {}
                     contact_email: {}
+                    contact_street_address: 1011 Western Ave. Ste. 500
+                    contact_city: Seattle
+                    contact_state: Washington
+                    contact_zip: 98101
                     description: {}
                     data_source: {}
                     date_last_updated: {}
                     constraints: {}
                     data_lineage: {}
                     assessment: {}
+                    psrc_website: www.psrc.org
                     summary_purpose: {}
         """.format(ser['Title'],
                     ser['Tags'],
