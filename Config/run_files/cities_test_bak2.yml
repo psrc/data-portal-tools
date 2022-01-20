@@ -48,9 +48,10 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;
-    title: cities_test
+    title: cities_test_bak
   source:
-    is_simple: true
-    schema_name: dbo
-    sql_query: null
-    table_name: cities
+    is_simple: false
+    schema_name: n/a
+    sql_query: select OBJECTID, Shape.STAsText() as Shape_wkt, city_name as full_name_of_city,
+      city_fips as city_fips_code2 from dbo.cities
+    table_name: n/a
