@@ -295,6 +295,10 @@ class PortalResource(object):
 						shutil.rmtree(f)
 					elif f != 'workspace\\gdb':
 						os.remove(f)
+				gdb_path = dir_path / 'gdb'
+				gdb_files = glob.glob(str(gdb_path / '*.gdb'))
+				for f in gdb_files:
+					shutil.rmtree(f)
 			else: 
 				os.makedirs(dir_path)
 				os.makedirs(dir_path / 'gdb')
@@ -328,8 +332,8 @@ class PortalResource(object):
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported.update(data=zipfile)
 			published = exported.publish(overwrite=True)
-			os.chdir('..')
-			self.set_and_update_metadata(exported)
+			os.chdir('../')
+			self.set_and_update_metadata(published)
 			self.set_editability(published)
 			print("{} exported to {}".format(shape_name, working_dir))
 
@@ -364,7 +368,8 @@ class PortalResource(object):
 			res_properties = self.resource_properties
 			res_properties['type'] = 'File Geodatabase'
 			fldr = Path(self.working_folder)
-			fldr = Path('.') / 'gdb'
+			#fldr = Path('.') / 'gdb'
+			self.prepare_working_dir(fldr)
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
 			ttl = self.title + '.gdb'
