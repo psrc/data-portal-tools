@@ -71,6 +71,7 @@ class FormResults(object):
                     contact_city: Seattle
                     contact_state: Washington
                     contact_zip: 98101
+                    contact_phone: {}
                     description: {}
                     data_source: {}
                     date_last_updated: {}
@@ -84,6 +85,7 @@ class FormResults(object):
                     ser['Abstract'],
                     ser['ContactName'],
                     ser['ContactEmail'],
+                    ser['ContactPhone'],
                     ser['Abstract'],
                     ser['DataSource'],
                     ser['DateLastUpdated'],
