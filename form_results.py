@@ -30,6 +30,18 @@ class FormResults(object):
             self.set_column_dict()
             self.config_dir = config_dir
             self.rename_columns()
+            self.standardize_cols()
+
+        except Exception as e:
+            print(e.args[0])
+            raise
+
+
+    def standardize_cols(self):
+        try:
+            df = self.df
+            df = df.replace('\'', '`', regex=True)
+            self.df = df
 
         except Exception as e:
             print(e.args[0])
@@ -54,6 +66,7 @@ class FormResults(object):
         in_series = a row from self.df
         """
         ser = in_series
+        
         out_yaml = yaml.load("""
         dataset:
             layer_params:
@@ -62,7 +75,7 @@ class FormResults(object):
                 allow_edits: False
                 share_level: everyone
                 snippet: null
-                accessInformation: {}
+                accessInformation: '{}'
                 licenseInfo: null
                 metadata:
                     contact_name: {}
@@ -71,16 +84,16 @@ class FormResults(object):
                     contact_city: Seattle
                     contact_state: Washington
                     contact_zip: 98101
-                    contact_phone: {}
-                    description: {}
-                    data_source: {}
-                    date_last_updated: {}
-                    constraints: {}
-                    data_lineage: {}
-                    assessment: {}
+                    contact_phone: '{}'
+                    description: '{}'
+                    data_source: '{}'
+                    date_last_updated: '{}'
+                    constraints: '{}'
+                    data_lineage: '{}'
+                    assessment: '{}'
                     psrc_website: www.psrc.org
-                    summary_purpose: {}
-        """.format(ser['Title'],
+                    summary_purpose: '{}'
+        """.format(ser['Title'].replace(' ','_'),
                     ser['Tags'],
                     ser['Abstract'],
                     ser['ContactName'],
