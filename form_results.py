@@ -30,6 +30,18 @@ class FormResults(object):
             self.set_column_dict()
             self.config_dir = config_dir
             self.rename_columns()
+            self.standardize_cols()
+
+        except Exception as e:
+            print(e.args[0])
+            raise
+
+
+    def standardize_cols(self):
+        try:
+            df = self.df
+            df = df.replace('\'', '`', regex=True)
+            self.df = df
 
         except Exception as e:
             print(e.args[0])
@@ -54,6 +66,7 @@ class FormResults(object):
         in_series = a row from self.df
         """
         ser = in_series
+        
         out_yaml = yaml.load("""
         dataset:
             layer_params:
@@ -62,7 +75,7 @@ class FormResults(object):
                 allow_edits: False
                 share_level: everyone
                 snippet: null
-                accessInformation: {}
+                accessInformation: '{}'
                 licenseInfo: null
                 metadata:
                     contact_name: {}
@@ -71,16 +84,19 @@ class FormResults(object):
                     contact_city: Seattle
                     contact_state: Washington
                     contact_zip: 98101
-                    contact_phone: {}
-                    description: {}
-                    data_source: {}
-                    date_last_updated: {}
-                    constraints: {}
-                    data_lineage: {}
-                    assessment: {}
-                    psrc_website: www.psrc.org
-                    summary_purpose: {}
-        """.format(ser['Title'],
+                    contact_phone: '{}'
+                    description: '{}'
+                    data_source: '{}'
+                    date_last_updated: '{}'
+                    constraints: '{}'
+                    data_lineage: '{}'
+                    assessment: '{}'
+                    psrc_website: '{}'
+                    summary_purpose: '{}'
+                    time_period: '{}'
+                    tech_note_link: '{}'
+                    update_cadence: '{}'
+        """.format(ser['Title'].replace(' ','_'),
                     ser['Tags'],
                     ser['Abstract'],
                     ser['ContactName'],
@@ -92,7 +108,11 @@ class FormResults(object):
                     ser['Assessment'], #is this in the form?
                     ser['DataLineage'],
                     ser['Assessment'],
-                    'summary purpose'
+                    ser['Webpage'],
+                    'summary purpose',
+                    ser['TimePeriod'],
+                    ser['TechNoteLink'],
+                    ser['UpdateCadence']
                     ),
                 yaml.FullLoader)
         
@@ -155,7 +175,8 @@ class FormResults(object):
             raise
 
     def find_config_file(self, target_title):
-        """look through yaml files in run_files directory.
+        """look through yaml files in run_files directory for a file with a 
+            dataset.layer-params.title value equal to target_title.
         If one is found, returns a dict with two keys:
             filepath (the path to the yaml file)
             yamldict (the contents of that yaml file, in dictionary form)
@@ -237,6 +258,18 @@ class FormResults(object):
             print(e.args[0])
             raise
 
+    def get_title_from_metadata(self, metadata_yaml):
+        try:
+            title = metadata_yaml['dataset']['layer_params']['title']
+            title = title.replace(' ','_')
+            title = title.replace('-','_')
+            title = title.lower()
+            return title
+
+        except Exception as e:
+            print(e.args[0])
+            raise
+
 
     def integrate_fields(self):
         """
@@ -250,10 +283,9 @@ class FormResults(object):
         try:
             for i, r in self.df.iterrows():
                 new_metadata = self.yamlize(r)
-                # MOREMORE add field definitions to new_metadata
                 fd = self.get_field_data(r)
                 new_metadata['dataset']['layer_params']['metadata']['fields'] = fd
-                title = new_metadata['dataset']['layer_params']['title']
+                title = self.get_title_from_metadata(new_metadata)
                 print('title: {}'.format(title))
                 config_file = self.find_config_file(title)
                 if config_file:
