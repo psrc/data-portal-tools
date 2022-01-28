@@ -65,13 +65,14 @@ def export(config):
 ##############################################################################
 # for each yaml file in folder
 run_files = os.listdir('./Config/run_files/')
-# for f in run_files:
-for f in ['cities.yml', 'county_background.yml', 'mic.yml', 'park_and_ride.yml']:
+for f in run_files:
+# for f in ['parking_inventory.yml']:
 	#if 'hhsurvey_' in  f and '_households' not in f and '_days' not in f:
-	f_path = './Config/run_files/' + f
-	with open(f_path) as file:
-		config = yaml.load(file, Loader=yaml.FullLoader)
-		export(config)
+	if ('tracts' in f and 'equity_' not in f):
+		f_path = './Config/run_files/' + f
+		with open(f_path) as file:
+			config = yaml.load(file, Loader=yaml.FullLoader)
+			export(config)
 
 #with open(r'Config\config_test.yml') as file:
 #	config = yaml.load(file, Loader=yaml.FullLoader)
