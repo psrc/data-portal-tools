@@ -1,3 +1,4 @@
+from numpy import NaN
 import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
@@ -470,6 +471,27 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
+	def upsert_element(self, existing_element, new_element_tag, new_element_text = ''):
+		"""Looks within existing_element for an element (new_element_tag).
+		If found, it updates its text value according to new_element_text.
+		If not found, it adds it as a subElement and update its text according to new_element_text.
+		Returns the new elmement."""
+		try:
+			sub_el = existing_element.find(new_element_tag)
+			if sub_el is None:
+				new_element = ET.SubElement(existing_element, new_element_tag)
+			else:
+				new_element = existing_element.find(new_element_tag)
+			if new_element_text > '':
+				new_element.text = new_element_text
+			return new_element
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
 	def set_and_update_metadata(self, item):
 		try:
 			metadata_file = r'./workspace/metadata.xml'
@@ -479,17 +501,48 @@ class PortalResource(object):
 			root = tree.getroot()
 			node = root.iter('mdContact')
 			dataIdInfo = root.find('./dataIdInfo')
-			citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
+			# citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
+			idCitation = self.upsert_element(dataIdInfo, 'idCitation')
+			citRespParty = self.upsert_element(idCitation, 'citRespParty')
 			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
 			rpIndName.text = self.metadata['contact_name']
 
+			for n in idCitation.findall('citOnlineRes'):
+				idCitation.remove(n)
+			citOnlineRes = self.upsert_element(idCitation, 'citOnlineRes')
+			linkage = self.upsert_element(citOnlineRes, 'linkage', self.metadata['psrc_website'])
+			orName = self.upsert_element(citOnlineRes, 'orName', 'Data on PSRC Webpage')
+			citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
+			linkageBackground = self.upsert_element(citOnlineResBackground, 
+													'linkage', 
+													self.metadata['tech_note_link'])
+			orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
+
+			dq_assessment = self.metadata['assessment']
+			suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
+
+			time_period_text = "time period: {}".format(self.metadata['time_period'])
+			other_details = self.upsert_element(idCitation, 'otherCitDet', time_period_text)
+
+			resMaint = self.upsert_element(dataIdInfo, 'resMaint')
+			usrDefFreq = self.upsert_element(resMaint, 'usrDefFreq')
+			duration = self.upsert_element(usrDefFreq, 'duration', self.metadata['update_cadence'])
+
 			root.find('./dataIdInfo/idCitation/resTitle').text = self.resource_properties['title']
-			idCitation = root.find('./dataIdInfo/idCitation')
-			date = ET.SubElement(idCitation, 'date')
-			pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
+			# idCitation = root.find('./dataIdInfo/idCitation')
+			# date = ET.SubElement(idCitation, 'date')
+			# date = idCitation.find('./date')
+			date = self.upsert_element(idCitation, 'date')
+			pubDate = self.upsert_element(date, 'pubDate', self.metadata['date_last_updated'])
+			# pubDate = date.find('./pubDate')
+			# pubDate.text = self.metadata['date_last_updated']
+			# pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
+
+			for n in dataIdInfo.findall('resConst'):
+				dataIdInfo.remove(n)
 			resConst = ET.SubElement(dataIdInfo, 'resConst')
 			consts = ET.SubElement(resConst, 'Consts')
-			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['constraints']
+			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['assessment']
 
 			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
 			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
@@ -510,8 +563,8 @@ class PortalResource(object):
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
 
-			Consts = ET.SubElement(resConst, 'Consts')
-			useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
+			# Consts = ET.SubElement(resConst, 'Consts')
+			# useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
 
 			fields = self.metadata['fields']
 			eainfo = ET.SubElement(root, 'eainfo')
