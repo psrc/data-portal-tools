@@ -23,41 +23,46 @@ elmergeo_conn = DatabaseConnector(
 	database='ElmerGeo')
 
 def export(config):
-	layers = config.keys()
+	try:
+		layers = config.keys()
 
-	for l in layers:
-		params = config[l]['layer_params']
-		title = params['title']
-		source = config[l]['source']
-		is_spatial = params['spatial_data']
-		if is_spatial:
-			db_conn = elmergeo_conn
-		else:
-			db_conn = elmer_conn
-		my_pub = PortalResource(
-			p_connector=portal_conn,
-			db_connector=db_conn,
-			params=params
-			)
-		if is_spatial:
-			if source['is_simple']:
-				my_pub.define_spatial_source_layer(
-					layer_name=source['table_name'])
+		for l in layers:
+			params = config[l]['layer_params']
+			title = params['title'].lower()
+			source = config[l]['source']
+			is_spatial = params['spatial_data']
+			if is_spatial:
+				db_conn = elmergeo_conn
 			else:
-				my_pub.define_source_from_query(
-					sql_query=source['sql_query']
+				db_conn = elmer_conn
+			my_pub = PortalResource(
+				p_connector=portal_conn,
+				db_connector=db_conn,
+				params=params
 				)
-		else:	
-			if source['is_simple']:
-				my_pub.define_simple_source(
-					in_schema=source['schema_name'],
-					in_recordset_name=source['table_name'])
-			else: 
-				my_pub.define_source_from_query(
-					sql_query=source['sql_query']
-				)
-		my_pub.export()
-		print("exported {}".format(title))
+			if is_spatial:
+				if source['is_simple']:
+					my_pub.define_spatial_source_layer(
+						layer_name=source['table_name'])
+				else:
+					my_pub.define_source_from_query(
+						sql_query=source['sql_query']
+					)
+			else:	
+				if source['is_simple']:
+					my_pub.define_simple_source(
+						in_schema=source['schema_name'],
+						in_recordset_name=source['table_name'])
+				else: 
+					my_pub.define_source_from_query(
+						sql_query=source['sql_query']
+					)
+			my_pub.export()
+			print("exported {}".format(title))
+
+	except Exception as e:
+		print('Error for layer {}'.format(title))
+		print(e.args[0])
 
 ##############################################################################
 #Example 1: export tables and/or view using define_simple_source
@@ -67,8 +72,9 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 for f in run_files:
 # for f in ['parking_inventory.yml']:
-	#if 'hhsurvey_' in  f and '_households' not in f and '_days' not in f:
-	if ('tracts' in f and 'equity_' not in f):
+	# if 'block' not in f and f != '_flu.yml' and 'tract' not in f:
+	# if f >= 'reg00puma.yml':
+	if f == 'equity_tracts_2019.yml':
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)

@@ -322,7 +322,6 @@ class PortalResource(object):
 			gdf = self.simplify_gdf(gdf)
 			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
-			shape_name = '.\\' +  title + '.shp'
 			self.prepare_working_dir(working_dir)
 			exported = self.search_by_title()
 			os.chdir(self.working_folder)
@@ -336,7 +335,6 @@ class PortalResource(object):
 			os.chdir('../')
 			self.set_and_update_metadata(published)
 			self.set_editability(published)
-			print("{} exported to {}".format(shape_name, working_dir))
 
 		except Exception as e:
 			print(e.args[0])
@@ -438,16 +436,18 @@ class PortalResource(object):
 				sql=self.sql,
 				con=db_connector.sql_conn)
 			self.df = df
-			working_dir = self.working_folder
-			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
-			if not os.path.exists(working_dir):
-				os.makedirs(working_dir)
-			if os.path.isfile(csv_name):
-				os.remove(csv_name)
+			working_dir = Path(self.working_folder)
+			filename = self.resource_properties['title'] + '.csv'
+			csv_name = working_dir / filename
+			# if not os.path.exists(working_dir):
+			# 	os.makedirs(working_dir)
+			# if os.path.isfile(csv_name):
+			# 	os.remove(csv_name)
+			self.prepare_working_dir(working_dir)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
 			title = self.resource_properties['title']
-			exported = portal_connector.gis.content.add(self.resource_properties, data=csv_name)
+			exported = portal_connector.gis.content.add(self.resource_properties, data=str(csv_name))
 			params = {"name":title,"type":"csv","locationType":"none"}
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
@@ -483,7 +483,7 @@ class PortalResource(object):
 				new_element = ET.SubElement(existing_element, new_element_tag)
 			else:
 				new_element = existing_element.find(new_element_tag)
-			if new_element_text > '':
+			if new_element_text is not None and  new_element_text > '':
 				new_element.text = new_element_text
 			return new_element
 
