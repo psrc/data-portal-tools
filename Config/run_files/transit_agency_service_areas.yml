@@ -1,0 +1,61 @@
+dataset:
+  layer_params:
+    accessInformation: The Transit District Boundary Maps layer represents general
+      service district boundaries of public transit agencies (except ferry agencies)
+      in the central Puget Sound, including Community Transit, Everett Transit, King
+      County Metro, Kitsap Transit, Pierce Transit, and Sound Transit.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: nan
+      contact_city: Seattle
+      contact_email: jkim@psrc.org
+      contact_name: Jean Kim
+      contact_phone: 206-971-3052
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'Transit agencies, except ferry agencies, send information on
+        their service district boundaries, as needed to PSRC. Transit districts are
+        determined by Public Transit Benefit Areas (PTBAs are granted the authority
+        to impose a voter-authorized sales tax), City/County boundaries, and other
+        service areas.  The majority of transit systems in the region are operated
+        by PTBAs, with the exception of King County Metro and Sound Transit (a regional
+        transit authority). '
+      data_source: Input from transit (bus) agencies
+      date_last_updated: '2018'
+      description: The Transit District Boundary Maps layer represents general service
+        district boundaries of public transit agencies (except ferry agencies) in
+        the central Puget Sound, including Community Transit, Everett Transit, King
+        County Metro, Kitsap Transit, Pierce Transit, and Sound Transit.
+      fields:
+      - description: Unique ID for each field
+        title: FID
+      - description: Type of shape
+        title: Shape
+      - description: Area
+        title: AREA
+      - description: Perimeter
+        title: Perimeter
+      - description: Layer name
+        title: Name
+      - description: City ID for each layer
+        title: City
+      - description: Shape length
+        title: Shape_Leng
+      - description: Shape area
+        title: Shape_Area
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: '2018'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    tags: Geographic Boundaries;Transit;
+    title: Transit_Agency_Service_Areas
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: transit_districts

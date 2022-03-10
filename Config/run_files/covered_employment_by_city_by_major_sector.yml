@@ -1,0 +1,92 @@
+dataset:
+  layer_params:
+    accessInformation: Covered Employment Estimates summarize employment from PSRC`s
+      point-level workplace employment dataset. The data represents a census of covered
+      employers within the Puget Sound Region.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'These employment estimates are based on the Washington State Employment
+        Security Department`s (ESD) Quarterly Census of Employment and Wages (QCEW)
+        series (formerly known as ES-202). This series consists of employment for
+        those firms, organizations and individuals whose employees are covered by
+        the Washington Unemployment Insurance Act. Covered employment excludes self-employed
+        workers, proprietors, CEOs, etc., and other non-insured workers. Typically,
+        covered employment has represented 85-90% of total employment. Note that this
+        includes part-time and temporary employment, and if a worker holds more than
+        one job, each job would appear in the database.
+
+        The Puget Sound Regional Council protects confidential employer information
+        through data suppression, as stipulated by ESD. Data from individual employers
+        is not shared; where aggregate employment values represent fewer than three
+        reporting firms, or when a single employer accounts for more than 80 percent
+        of jobs, the value is withheld. Additionally, since grand totals are included
+        in the table, an additional suppression is made in any industrial category
+        or geography with a single suppressed value, to prevent disclosure through
+        subtraction.'
+      contact_city: Seattle
+      contact_email: ggibson@psrc.org
+      contact_name: Grant Gibson
+      contact_phone: 206-971-3272
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: Data is received near year end from the State Employment Security
+        Department (ESD) for the first quarter of that same year. Supplemental information
+        from Boeing, Microsoft, OSPI, and governmental units from the same period
+        are collected directly by PSRC and used as distributions of the jobs totals
+        reported by ESD. Duplicates, temporary staffing agencies, ski resorts, out-of-area
+        records, and unlocatable records are removed from the dataset. Major sector
+        employment totals by county from the initial ESD dataset are used as control
+        totals, and applied proportionally to each record`s employment data to arrive
+        at a total matching that of ESD.
+      data_source: Washington State Employment Security Department (ESD), Boeing,
+        Microsoft, Washington Office of Superintendent of Public Instruction (OSPI)
+      date_last_updated: 07/2021
+      description: Covered Employment Estimates summarize employment from PSRC`s point-level
+        workplace employment dataset. The data represents a census of covered employers
+        within the Puget Sound Region.
+      fields:
+      - description: The year the source data was collected
+        title: data_year
+      - description: (no description)
+        title: County
+      - description: (no description)
+        title: City
+      - description: 'Construction and Resources: NAICS 11, 21, 23'
+        title: Const_Res
+      - description: 'Finance, Insurance, and Real Estate Services: NAICS 52-53'
+        title: FIRE
+      - description: 'Manufacturing: NAICS 31-33'
+        title: Manufacturing
+      - description: 'Retail Trade: NAICS 44-45'
+        title: Retail
+      - description: 'Services: NAICS 51, 54-56, 61 (private-sector portion), 62,
+          71, 72, 81'
+        title: Services
+      - description: 'Wholesale Trade, Transportation, and Utilities: NAICS 22, 42,
+          48, 49'
+        title: WTU
+      - description: Public sector employment, excluding education
+        title: Government
+      - description: 'Public Education: NAICS 61 (public-sector portion)'
+        title: Education
+      - description: Sum total of all covered jobs in a particular city or county
+        title: Total
+      - description: (no description)
+        title: ObjectId
+      psrc_website: https://www.psrc.org/covered-employment-estimates
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: 2000-2020
+      update_cadence: Every year
+    share_level: everyone
+    snippet: null
+    spatial_data: false
+    tags: Employment;
+    title: Covered_Employment_by_City_by_Major_Sector
+  source:
+    is_simple: true
+    schema_name: employment_summaries
+    sql_query: null
+    table_name: v_covered_employment_by_city_by_major_sector

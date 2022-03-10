@@ -1,0 +1,62 @@
+dataset:
+  layer_params:
+    accessInformation: This layer represents tribal land boundaries in King, Snohomish,
+      Pierce, and Kitsap counties. The boundaries are recognized by the U.S. Bureau
+      of Indian Affairs.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: The Washington State Department of Transportation shall not be liable
+        for any activity involving this data with regard to lost profits or savings
+        or any other consequential damages; or the fitness for use of the data for
+        a particular purpose; or the installation of the data, its use, or the results
+        obtained.
+      constraints: The Washington State Department of Transportation shall not be
+        liable for any activity involving this data with regard to lost profits or
+        savings or any other consequential damages; or the fitness for use of the
+        data for a particular purpose; or the installation of the data, its use, or
+        the results obtained.
+      contact_city: Seattle
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'Data was originally obtained from the Washington Department of
+        Transportation. '
+      data_source: Washington State Department of Transportation
+      date_last_updated: 02/2018
+      description: This layer represents tribal land boundaries in King, Snohomish,
+        Pierce, and Kitsap counties. The boundaries are recognized by the U.S. Bureau
+        of Indian Affairs.
+      fields:
+      - description: (no description)
+        title: FID
+      - description: Tribe name (short version)
+        title: tribe_shor
+      - description: Tribe name (full version)
+        title: tribe_full
+      - description: Land description
+        title: tribal_lan
+      - description: Land type
+        title: triballa_1
+      - description: (no description)
+        title: lastupdate
+      - description: (no description)
+        title: globalid
+      - description: (no description)
+        title: shape_star
+      - description: (no description)
+        title: shape_stle
+      - description: Acreage
+        title: acres
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: '2021'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    tags: Geographic Boundaries;
+    title: tribal_lands

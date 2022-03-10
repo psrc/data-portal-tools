@@ -1,0 +1,32 @@
+dataset:
+  layer_params:
+    title: regional_pumas_2000
+    tags: portal, census, puma
+    allow_edits: False
+    spatial_data: True
+    share_level: owner
+    snippet: Regional 2000 PUMA geographies 
+    accessInformation: A Data Science Team Member
+    licenseInfo: The text to appear under Terms of Use in AGOL
+    metadata:
+        contact_name: Chris Peak
+        contact_email: cpeak@psrc.org
+        contact_street_address: 1011 Western Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98104
+        contact_phone: (206)464-7536
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: The region's Public Use Microdata Area geographies for 2000 PUMS data
+        data_source: This data was derived from Census Bureau PUMA definitions
+        date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
+        constraints: 'this text should be in resource:Constraints:General:Use Limitations'
+        data_lineage: This should be a description of the data collection process?
+        assessment: 'This should go in Quality:Data Quality: Report'
+        summary_purpose: Public Use Microdata Areas for use with PUMS data from 2000 to 2009
+  source:
+    is_simple: true
+    schema_name: dbo
+    table_name: REG10PUMA
+    sql_query: 

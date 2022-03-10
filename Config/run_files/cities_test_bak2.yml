@@ -1,0 +1,57 @@
+dataset:
+  layer_params:
+    accessInformation: The cities shapefile includes geographic boundaries for all
+      cities located in King, Snohomish, Pierce, and Kitsap counties. This dataset
+      also includes VISION 2050 regional geography classifications.
+    allow_edits: false
+    licenseInfo: some text here
+    metadata:
+      assessment: nan
+      constraints: nan
+      contact_city: Seattle
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: (206)464-7536
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste 500
+      contact_zip: 98104
+      data_lineage: The city boundaries are updated on a quarterly basis using annexation
+        information from OFM (https://ofm.wa.gov/washington-data-research/annexations-and-municipal-boundary-changes).
+        VISION 2050 regional geography classifications were added to the dataset in
+        2020.
+      data_source: Puget Sound Regional Council
+      date_last_updated: 06/2001
+      description: The cities shapefile includes geographic boundaries for all cities
+        located in King, Snohomish, Pierce, and Kitsap counties. This dataset also
+        includes VISION 2050 regional geography classifications.
+      fields:
+      - description: Name of city
+        title: city_name
+      - description: Name of county
+        title: cnty_name
+      - description: Federal Information Processing Standard Publication ID for city
+        title: city_fips
+      - description: Federal Information Processing Standard Publication ID for county
+        title: cnty_fips
+      - description: Geography type assigned by PSRC
+        title: feat_type
+      - description: VISION 2050 regional geography ID
+        title: rgeo_class
+      - description: VISION 2050 regional geography description
+        title: class_desc
+      - description: Acreage
+        title: acres_gis
+      organization_name: PSRC
+      psrc_website: www.psrc.org
+      summary_purpose: summary purpose
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: cities_test_bak
+  source:
+    is_simple: false
+    schema_name: n/a
+    sql_query: select OBJECTID, Shape.STAsText() as Shape_wkt, city_name as full_name_of_city,
+      city_fips as city_fips_code2 from dbo.cities
+    table_name: n/a
