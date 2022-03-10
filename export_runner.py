@@ -74,7 +74,7 @@ for f in run_files:
 # for f in ['parking_inventory.yml']:
 	# if 'block' not in f and f != '_flu.yml' and 'tract' not in f:
 	# if f >= 'reg00puma.yml':
-	if f == 'equity_tracts_2019.yml':
+	if f in ['private_truck_stops.yml']:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
