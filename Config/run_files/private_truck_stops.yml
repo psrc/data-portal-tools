@@ -1,0 +1,70 @@
+dataset:
+  layer_params:
+    accessInformation: The Private Truck Stop dataset includes privately-owned
+      truck parking facilities, including numbers of stalls and types of amenities
+      included on-site.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: nan
+      contact_city: Seattle
+      contact_email: gsimonson@psrc.org
+      contact_name: Gary Simonson
+      contact_phone: 206-971-3276
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: This data is collected by WSDOT
+      data_source: WSDOT
+      date_last_updated: 02/2021
+      description: The Private Truck Stop dataset includes privately-owned truck
+        parking facilities, including numbers of stalls and types of amenities included
+        on-site.
+      fields:
+      - description: (no description)
+        title: stop_name
+      - description: (no description)
+        title: name
+      - description: (no description)
+        title: corridor
+      - description: (no description)
+        title: lat
+      - description: (no description)
+        title: long_
+      - description: What is the exit number?
+        title: exit_
+      - description: (no description)
+        title: street_add
+      - description: (no description)
+        title: city
+      - description: (no description)
+        title: direction
+      - description: How many parking spaces?
+        title: parking_sp
+      - description: Does it have fuel?
+        title: fuel
+      - description: Does it have restrooms?
+        title: restrooms
+      - description: Does it have food service?
+        title: food_servi
+      - description: Does it have showers?
+        title: showers
+      - description: (no description)
+        title: exit_displ
+      - description: (no description)
+        title: electrific
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: '2021'
+      update_cadence: Every few years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Trucks;Traffic/Congestion;Parking;
+    title: Private_Truck_Stops
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: private_truck_stop

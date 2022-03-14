@@ -1,0 +1,63 @@
+dataset:
+  layer_params:
+    accessInformation: This layer represents the urban growth area boundary for King,
+      Snohomish, Pierce, and Kitsap counties. Urban growth areas are determined by
+      each county as mandated under the Growth Management Act (GMA). These are areas
+      where urban growth shall be encouraged and outside of which growth can only
+      occur if it is not urban in nature.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'The information contained herein was developed for general regional
+        land use and transportation planning purposes. The users of this information
+        must determine its suitability for any other purpose. Some of this data may
+        have been compiled from other sources. The PSRC does not accept responsibility
+        for the quality of third-party data or data contributed by others. Locations
+        of all facilities are approximate. '
+      constraints: 'The information contained herein was developed for general regional
+        land use and transportation planning purposes. The users of this information
+        must determine its suitability for any other purpose. Some of this data may
+        have been compiled from other sources. The PSRC does not accept responsibility
+        for the quality of third-party data or data contributed by others. Locations
+        of all facilities are approximate. '
+      contact_city: Seattle
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: PSRC updates regional geography layers based on quarterly reports
+        from the Office of Financial Management (OFM).
+      data_source: Puget Sound Regional Council
+      date_last_updated: 06/2020
+      description: This layer represents the urban growth area boundary for King,
+        Snohomish, Pierce, and Kitsap counties. Urban growth areas are determined
+        by each county as mandated under the Growth Management Act (GMA). These are
+        areas where urban growth shall be encouraged and outside of which growth can
+        only occur if it is not urban in nature.
+      fields:
+      - description: (no description)
+        title: OBJECTID_1
+      - description: Name of county
+        title: county_nam
+      - description: acreage
+        title: sum_acres
+      - description: (no description)
+        title: Shape_STAr
+      - description: (no description)
+        title: Shape_STLe
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: https://mrsc.org/Home/Explore-Topics/Planning/General-Planning-and-Growth-Management/Comprehensive-Planning-Growth-Management.aspx#futuregrowth
+      time_period: '2021'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    tags: Geographic Boundaries;
+    title: urban_growth_area
+  source:
+    is_simple: true
+    schema_name: dbo
+    table_name:  urban_growth_area
+    sql_query: 

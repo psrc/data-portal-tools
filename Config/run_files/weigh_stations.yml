@@ -1,0 +1,69 @@
+dataset:
+  layer_params:
+    accessInformation: The weigh stations dataset contains all of the truck weigh
+      stations locations, as well as information about parking and amenities at the
+      facilities.
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: nan
+      constraints: nan
+      contact_city: Seattle
+      contact_email: gsimonson@psrc.org
+      contact_name: Gary Simonson
+      contact_phone: 206-971-3276
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: WSDOT surveys all weigh stations across the state
+      data_source: WSDOT
+      date_last_updated: 01/2020
+      description: The weigh stations dataset contains all of the truck weigh stations
+        locations, as well as information about parking and amenities at the facilities.
+      fields:
+      - description: (no description)
+        title: OBJECTID
+      - description: (no description)
+        title: name
+      - description: Scale ID Number
+        title: scale_hous
+      - description: (no description)
+        title: corridor
+      - description: (no description)
+        title: lat
+      - description: (no description)
+        title: long_
+      - description: (no description)
+        title: mile_post
+      - description: (no description)
+        title: mp_display
+      - description: (no description)
+        title: city
+      - description: (no description)
+        title: county
+      - description: (no description)
+        title: srid
+      - description: (no description)
+        title: srmp
+      - description: (no description)
+        title: parking_st
+      - description: Does it have restrooms?
+        title: amenities
+      - description: (no description)
+        title: latlong
+      organization_name: PSRC
+      psrc_website: www.psrc.org
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: 
+      update_cadence: 
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Trucks;Parking;
+    title: Weigh_Stations
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: weigh_station

@@ -88,7 +88,6 @@ class FormResults(object):
                     description: '{}'
                     data_source: '{}'
                     date_last_updated: '{}'
-                    constraints: '{}'
                     data_lineage: '{}'
                     assessment: '{}'
                     psrc_website: '{}'
@@ -105,7 +104,6 @@ class FormResults(object):
                     ser['Abstract'],
                     ser['DataSource'],
                     ser['DateLastUpdated'],
-                    ser['Assessment'], #is this in the form?
                     ser['DataLineage'],
                     ser['Assessment'],
                     ser['Webpage'],
