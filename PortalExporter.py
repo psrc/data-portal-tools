@@ -488,6 +488,9 @@ class PortalResource(object):
 			return new_element
 
 		except Exception as e:
+			print("error in upsert_element.  existing_element = {}, new_element_tag = {}".format(
+				existing_element, 
+				new_element_tag))
 			print(e.args[0])
 			raise
 
@@ -499,13 +502,31 @@ class PortalResource(object):
 				self.initialize_metadata_file(item)
 			tree = ET.parse(metadata_file)
 			root = tree.getroot()
-			node = root.iter('mdContact')
+			mdContact = root.find('mdContact')
 			dataIdInfo = root.find('./dataIdInfo')
 			# citRespParty = root.find('./dataIdInfo/idCitation/citRespParty')
 			idCitation = self.upsert_element(dataIdInfo, 'idCitation')
 			citRespParty = self.upsert_element(idCitation, 'citRespParty')
 			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
 			rpIndName.text = self.metadata['contact_name']
+
+			#contact info
+			contact_rpIndName = self.upsert_element(mdContact, 'rpIndName')
+			contact_rpIndName.text = self.metadata['contact_name']
+			rpOrgName = self.upsert_element(mdContact, 'rpOrgName')
+			rpOrgName.text = self.metadata['psrc_website']
+			rpCntInfo = self.upsert_element(mdContact, 'rpCntInfo')
+			cntAddress = self.upsert_element(rpCntInfo, 'cntAddress')
+			eMailAdd = self.upsert_element(cntAddress, 'eMailAdd')
+			eMailAdd.text = self.metadata['contact_email']
+			city = self.upsert_element(cntAddress, 'city')
+			city.text = 'Seattle'
+			postCode = self.upsert_element(cntAddress, 'postCode')
+			postCode.text = '98104'
+			cntPhone = self.upsert_element(rpCntInfo, 'cntPhone')
+			voiceNum = self.upsert_element(cntPhone, 'voiceNum')
+			voiceNum.text = self.metadata['contact_phone']
+
 
 			for n in idCitation.findall('citOnlineRes'):
 				idCitation.remove(n)

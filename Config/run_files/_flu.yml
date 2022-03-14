@@ -25,6 +25,10 @@ dataset:
         data_lineage: 
         assessment: 
         summary_purpose: 
+        tech_note_link: nan
+        time_period: 
+        update_cadence: 
+        fields:
   source:
     is_simple: true
     schema_name: dbo
