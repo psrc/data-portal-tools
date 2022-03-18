@@ -35,11 +35,9 @@ dataset:
         the results of ongoing urbanization.'
       constraints: this text should be in resource:Constraints:General:Use Limitations
       contact_city: Seattle
-      contact_email:
-      - new planner
-      contact_name:
-      - new planner
-      contact_phone: '[new planner]'
+      contact_email: new planner
+      contact_name: new planner
+      contact_phone: 'new planner'
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
