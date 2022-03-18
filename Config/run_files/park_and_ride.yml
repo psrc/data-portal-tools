@@ -79,8 +79,11 @@ dataset:
       - description: (no description)
         title: ObjectId
       organization_name: PSRC
-      psrc_website: www.psrc.org
+      psrc_website: https://www.psrc.org/park-and-ride-database
       summary_purpose: summary purpose
+      tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
+      time_period: 2002-2020
+      update_cadence: Every year
     share_level: everyone
     snippet: null
     spatial_data: false

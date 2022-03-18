@@ -1,33 +1,62 @@
 dataset:
   layer_params:
-    title: taz_2010
-    tags: portal
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: TAZ 2010 shapefile - Traffic Analysis Zones.  TAZs are the
+      geographies used in the travel demand modeling process.  Demographic inputs
+      are supplied at the TAZ level and the resulting model outputs include zone-to-zone
+      trip tables and time or distance matrices.  The TAZ 2010 system has 3700 zones
+      and was constructed using aggregations of 2010 Census Blocks.  It is the current
+      TAZ system.
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: This particular shapefile extends out into the water so be aware
+        that the zonal areas and lengths are not representative of the land area in
+        all cases.  There is another version that has the boundaries clipped at the
+        shoreline - taz2010nowater.shp.
+      constraints: null
+      contact_city: Seattle
+      contact_email: koverby@psrc.org
+      contact_name: Kris Overby
+      contact_phone: 206-464-6661
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'There is no data per se for the TAZ shapefile.  Demographic data,
+        model outputs or other can be joined to it for purposes of display or q/c.  '
+      data_source: The TAZs were assembled using aggregations of 2010 Census Blocks.
+      date_last_updated: '2010'
+      description: TAZ 2010 shapefile - Traffic Analysis Zones.  TAZs are the geographies
+        used in the travel demand modeling process.  Demographic inputs are supplied
+        at the TAZ level and the resulting model outputs include zone-to-zone trip
+        tables and time or distance matrices.  The TAZ 2010 system has 3700 zones
+        and was constructed using aggregations of 2010 Census Blocks.  It is the current
+        TAZ system.
+      fields:
+      - description: zone number (1-3700)
+        title: taz
+      - description: old parking cost subarea flag
+        title: park
+      - description: zonal area (acres)
+        title: acres
+      - description: global_id
+        title: global_id
+      - description: zonal area (square feet)
+        title: Shape_Area
+      - description: zonal perimeter (feet)
+        title: Shape_Length
+      organization_name: PSRC
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: 2011-2022
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;Employment;Population;
+    title: taz_2010
   source:
     is_simple: true
     schema_name: dbo
-    table_name:  taz2010
-    sql_query: 
-
+    sql_query: null
+    table_name: taz2010

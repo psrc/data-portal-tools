@@ -1,45 +1,151 @@
 dataset:
   layer_params:
-    title: blocks_2000
-    tags: portal, census
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: 'Census blocks are statistical areas bounded on all sides by
+      visible features (e.g., streets, roads, streams, and railroad tracks), and by
+      non-visible boundaries (e.g., city, town, township, county limits, and short
+      line-of-sight extensions of streets and roads). Generally, census blocks are
+      small in area (e.g., a block in a city). Census blocks in suburban and rural
+      areas may be large, irregular and bounded by a variety of features (e.g., roads,
+      streams, and/or transmission line rights-of-way). In remote areas, census blocks
+      may encompass hundreds of square miles. Census blocks cover all territory in
+      the United States, Puerto Rico, and the Island areas. Blocks are the smallest
+      geographic areas for which the Census Bureau publishes data from the decennial
+      census. A block may consist of one or more faces.
+
+      Blocks never cross county or census tract boundaries. They do not cross the
+      boundaries of any entity for which the Census Bureau tabulates data, including
+      American Indian, Alaska Native, and Native Hawaiian areas, congressional districts,
+      county subdivisions, places, state legislative districts, urbanized areas, urban
+      clusters, school districts, voting districts, or ZIP Code Tabulation Areas (ZCTAs)
+      or some special administrative areas such as military installations, and national
+      parks and monuments.
+
+      Census 2000 blocks are numbered uniquely within the 2010 boundaries of each
+      state/county/census tract with a 4-character census block number. The first
+      character of the tabulation block number identifies the block group.'
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: 'Since the release of the Census 2000 versions of the TIGER/Line
+        files, the Census Bureau has shifted and reshaped most linear features, including
+        those that form legal or statistical area boundaries.
+
+        The boundary information in the TIGER/Line Shapefiles is for statistical data
+        collection and tabulation purposes only. Their depiction and designation for
+        statistical purposes does not constitute a determination of jurisdictional
+        authority or rights of ownership or entitlement and they are not legal land
+        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
+        places, but the positional accuracy of these coordinates is not as great as
+        the six decimal places suggest.
+
+        A block number can only be unique by using the decennial census state, county,
+        census tract, and block or STATEFP00 + COUNTYFP00 + TRACTCE00 + BLOCKCE10.
+        There is no consistency in block numbers from census to census.
+
+        A common misunderstanding is that data users think census blocks are used
+        geographically to build all other census geographic areas, rather all other
+        census geographic areas are updated and then used as the primary constraints,
+        along with roads and water features, to delineate the tabulation blocks.  As
+        a result, all 2000 Census blocks nest within every other 2000 Census geographic
+        area, so that Census Bureau statistical data can be tabulated at the block
+        level and aggregated up to the appropriate geographic areas.'
+      constraints: null
+      contact_city: Seattle
+      contact_email: dhanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The TIGER/Line Files are shapefiles and related database files
+        (.dbf) that are an extract of selected geographic and cartographic information
+        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
+        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
+        represents a seamless national file with no overlaps or gaps between parts,
+        however, each TIGER/Line File is designed to stand alone as an independent
+        data set, or they can be combined to cover the entire nation.
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: 'Census blocks are statistical areas bounded on all sides by visible
+        features (e.g., streets, roads, streams, and railroad tracks), and by non-visible
+        boundaries (e.g., city, town, township, county limits, and short line-of-sight
+        extensions of streets and roads). Generally, census blocks are small in area
+        (e.g., a block in a city). Census blocks in suburban and rural areas may be
+        large, irregular and bounded by a variety of features (e.g., roads, streams,
+        and/or transmission line rights-of-way). In remote areas, census blocks may
+        encompass hundreds of square miles. Census blocks cover all territory in the
+        United States, Puerto Rico, and the Island areas. Blocks are the smallest
+        geographic areas for which the Census Bureau publishes data from the decennial
+        census. A block may consist of one or more faces.
+
+        Blocks never cross county or census tract boundaries. They do not cross the
+        boundaries of any entity for which the Census Bureau tabulates data, including
+        American Indian, Alaska Native, and Native Hawaiian areas, congressional districts,
+        county subdivisions, places, state legislative districts, urbanized areas,
+        urban clusters, school districts, voting districts, or ZIP Code Tabulation
+        Areas (ZCTAs) or some special administrative areas such as military installations,
+        and national parks and monuments.
+
+        Census 2000 blocks are numbered uniquely within the 2010 boundaries of each
+        state/county/census tract with a 4-character census block number. The first
+        character of the tabulation block number identifies the block group.'
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: OBJECTID
+      - description: 2000 Census state FIPS code
+        title: statefp00
+      - description: 2000 Census county FIPS code
+        title: countyfp00
+      - description: 2000 Census tract code
+        title: tractce00
+      - description: 2000 Census tabulation block number
+        title: blockce00
+      - description: Census block identifier; a concatenation of 2000 Census state
+          FIPS code, 2000 Census county FIPS code, 2000 Census tract code, and 2000
+          Census block number
+        title: blkidfp00
+      - description: 2010 Census tabulation block name; a concatenation of 'Block'
+          and the tabulation block number
+        title: name00
+      - description: MAF/TIGER feature class code (G5040)
+        title: mtfc00
+      - description: 2000 Census urban/rural indicator
+        title: ur00
+      - description: 2000 Census urban area code
+        title: uace00
+      - description: 2000 Census funtional status
+        title: funcstat00
+      - description: 2000 Census land area (meters)
+        title: aland00
+      - description: 2000 Census water area (meters)
+        title: awater00
+      - description: 2000 Census latitude of the internal point
+        title: intptlat00
+      - description: 2000 Census longitude of the internal point
+        title: intptlon00
+      - description: Default total area of the polygon's perimeter (meters)
+        title: Shape__Area
+      - description: Default total length of the polygon's perimeter (meters)
+        title: Shape__Length
+      organization_name: PSRC
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
+      time_period: 2000-2009
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: blocks_2000
   source:
     is_simple: false
-    schema_name:
-    table_name:
-    sql_query: "
-    select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp00, countyfp00, 
-	case countyfp00	
-		when '053' then 'Pierce'
-		when '033' then 'King'
-		when '035' then 'Kitsap'
-		when '061' then 'Snohomish'
-	end as countyname,
-	tractce00 as tract00,
-	blockce00 as block00,
-	blkidfp00 as geoid00,
-	aland00 as acres
-from dbo.block2000_nowater"
-
+    schema_name: null
+    sql_query: ' select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp00, countyfp00,
+      case countyfp00 when ''053'' then ''Pierce'' when ''033'' then ''King'' when
+      ''035'' then ''Kitsap'' when ''061'' then ''Snohomish'' end as countyname, tractce00
+      as tract00, blockce00 as block00, blkidfp00 as geoid00, aland00 as acres from
+      dbo.block2000_nowater'
+    table_name: null

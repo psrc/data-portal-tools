@@ -1,48 +1,127 @@
 dataset:
   layer_params:
-    title: block_groups_2010
-    tags: portal, census
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: 'Block groups are clusters of blocks within the same census
+      tract that have the same first digit of their 4-character census block number
+      from the same decennial census.
+
+      Block groups delineated for the 2010 Census generally contain between 600 and
+      3,000 people. Local participants delineated most block groups as part of the
+      Census Bureau`s Participant Statistical Areas Program (PSAP). The Census Bureau
+      delineated block groups only where a local or tribal government declined to
+      participate or where the Census Bureau could not identify a potential local
+      participant.
+
+      A block group usually covers a contiguous area. Each census tract contains at
+      least one block group and block groups are uniquely numbered within census tract.
+      Within the standard census geographic hierarchy, block groups never cross county
+      or census tract boundaries, but may cross the boundaries of county subdivisions,
+      places, urban areas, voting districts, congressional districts, and American
+      Indian, Alaska Native, and Native Hawaiian areas.'
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Drew Hanson
-        contact_email: dhanson@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206) 971-3269
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        fields:
-        assessment: 
-        summary_purpose: 
-        tech_note_link: 
-        time_period: '2010'
-        update_cadence: Every decade
+      assessment: 'Since the release of the Census 2000 versions of the TIGER/Line
+        files, the Census Bureau has shifted and reshaped most linear features, including
+        those that form legal or statistical area boundaries.
+
+        The boundary information in the TIGER/Line Shapefiles is for statistical data
+        collection and tabulation purposes only. Their depiction and designation for
+        statistical purposes does not constitute a determination of jurisdictional
+        authority or rights of ownership or entitlement and they are not legal land
+        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
+        places, but the positional accuracy of these coordinates is not as great as
+        the six decimal places suggest.
+
+        BGs have a valid code range of 0 through 9.  BGs coded 0 were intended to
+        only include water area, no land area, and they are generally in territorial
+        seas, coastal water, and Great Lakes water areas. '
+      constraints: null
+      contact_city: Seattle
+      contact_email: dhanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3273
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The TIGER/Line Files are shapefiles and related database files
+        (.dbf) that are an extract of selected geographic and cartographic information
+        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
+        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
+        represents a seamless national file with no overlaps or gaps between parts,
+        however, each TIGER/Line File is designed to stand alone as an independent
+        data set, or they can be combined to cover the entire nation.
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: 'Block groups are clusters of blocks within the same census tract
+        that have the same first digit of their 4-character census block number from
+        the same decennial census.
+
+        Block groups delineated for the 2010 Census generally contain between 600
+        and 3,000 people. Local participants delineated most block groups as part
+        of the Census Bureau`s Participant Statistical Areas Program (PSAP). The Census
+        Bureau delineated block groups only where a local or tribal government declined
+        to participate or where the Census Bureau could not identify a potential local
+        participant.
+
+        A block group usually covers a contiguous area. Each census tract contains
+        at least one block group and block groups are uniquely numbered within census
+        tract. Within the standard census geographic hierarchy, block groups never
+        cross county or census tract boundaries, but may cross the boundaries of county
+        subdivisions, places, urban areas, voting districts, congressional districts,
+        and American Indian, Alaska Native, and Native Hawaiian areas.'
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: OBJECTID
+      - description: 2010 Census state FIPS code
+        title: statefp10
+      - description: 2010 Census county FIPS code
+        title: countyfp10
+      - description: 2010 Census census tract code
+        title: tractce10
+      - description: 2010 Census block group number
+        title: blkgrpce10
+      - description: 2010 Census block group identifier; a concatenation of the current
+          state FIPS code, county FIPS code, census tract code, and block group number.
+        title: geoid10
+      - description: 2010 Census translated legal/statistical area description and
+          the block group number
+        title: namelsad10
+      - description: MAF/TIGER feature class code (G5030)
+        title: mtfcc10
+      - description: 2010 Census functional status
+        title: funcstat10
+      - description: 2010 Census land area
+        title: aland10
+      - description: 2010 Census water area
+        title: awater10
+      - description: 2010 Census latitude of the internal point
+        title: intptlat10
+      - description: 2010 Census longitude of the internal point
+        title: intptlon10
+      - description: 2010 Census population by block group
+        title: population
+      - description: Default total area of the polygon's perimeter (meters)
+        title: SHAPE_Length
+      - description: Default total length of the polygon's perimeter (meters)
+        title: SHAPE_Area
+      organization_name: PSRC
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2010/TGRSHP10SF1.pdf'
+      time_period: 2010-2019
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: block_groups_2010
   source:
     is_simple: false
-    schema_name:
-    table_name: 
-    sql_query: "select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp10, countyfp10,
-	case countyfp10	
-		when '053' then 'Pierce'
-		when '033' then 'King'
-		when '035' then 'Kitsap'
-		when '061' then 'Snohomish'
-	end as countyname,
-	tractce10 as tract10,
-	blkgrpce10 as bg10,
-	geoid10,
-	aland10 as acres
-from dbo.BLOCKGRP2010_NOWATER"
-
+    schema_name: null
+    sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp10, countyfp10,
+      case countyfp10 when '053' then 'Pierce' when '033' then 'King' when '035' then
+      'Kitsap' when '061' then 'Snohomish' end as countyname, tractce10 as tract10,
+      blkgrpce10 as bg10, geoid10, aland10 as acres from dbo.BLOCKGRP2010_NOWATER
+    table_name: null

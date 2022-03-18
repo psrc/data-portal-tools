@@ -1,58 +1,130 @@
 dataset:
   layer_params:
-    title: regional_bikeped
-    tags: Portal, data-portal, bikeped, active transportation
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: 'This shapefile documents the existence of pedestrian and bicycle
+      facilities on minor and principal arterials in the PSRC region according to
+      completeness and facility type. The coding is based on the sidewalk and bicycle
+      facility data provided by local jurisdictions in 2019 and 2020, along with supplementary
+      data from aerial imagery where jurisdictional data was not available. All arterial
+      roadway segments were coded to indicate the presence and completeness of facilities
+      on each side of the road (IJ and JI directions). On-road bicycle facilities
+      were also coded according to facility type. '
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        fields:
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: 'The shapefile is based on datasets collected by different agencies,
+        so the underlying data collection methodologies differ. Also, the datasets
+        were developed between 2015-2020, and so represent different levels of currency. '
+      constraints: null
+      contact_city: Seattle
+      contact_email: kpearson@psrc.org
+      contact_name: Kim Pearson
+      contact_phone: 480-859-2671
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: In May 2019, PSRC conducted a survey of all jurisdictions in the
+        region to learn whether they had available bicycle and/or pedestrian facility
+        data. Based on the survey results, PSRC then collected data from jurisdictions
+        with available data, including digital or static maps. The collected data
+        was used to code all minor and major arterial roadways and shared use paths
+        in the region according to the presence, completeness, and type of facilities.
+        In cases where jurisdictional data was not available or unclear, PSRC used
+        supplementary data from aerial imagery to complete the inventory.
+      data_source: PSRC used jurisdictional data collected in 2019 and 2020, with
+        most datasets produced by the jurisdictions between 2015 and 2019. In cases
+        where jurisdictional data was not available or unclear, in 2020 and 2021 PSRC
+        also reviewed Google Maps to collect supplementary aerial data.
+      date_last_updated: 04/2021
+      description: 'This shapefile documents the existence of pedestrian and bicycle
+        facilities on minor and principal arterials in the PSRC region according to
+        completeness and facility type. The coding is based on the sidewalk and bicycle
+        facility data provided by local jurisdictions in 2019 and 2020, along with
+        supplementary data from aerial imagery where jurisdictional data was not available.
+        All arterial roadway segments were coded to indicate the presence and completeness
+        of facilities on each side of the road (IJ and JI directions). On-road bicycle
+        facilities were also coded according to facility type. '
+      fields:
+      - description: PSRC object ID
+        title: OBJECTID*
+      - description: 'Internal documentation of PSRC roadway edges (segments); useful
+          for referencing in communications to PSRC. '
+        title: psrc_edge_id
+      - description: Type of roadway (Minor/Principal Arterial)
+        title: facility_type
+      - description: 'Presence/completeness of pedestrian facilities on one side of
+          the street. IJ represents one side of the street. '
+        title: ij_ped_facilities
+      - description: Presence/completeness of pedestrian facilities on one side of
+          the street. JI represents one side of the street.
+        title: ji_ped_facilities
+      - description: Notes on the coding of the segment for pedestrian facilities
+        title: sidewalk_notes
+      - description: Source of the data for coding pedestrian facilities, either Jurisdiction2020
+          (for jurisdictional data) or Aerials2020 (for aerial data)
+        title: sidewalk_source
+      - description: "Assessment of whether the street has complete, partial, or no\
+          \ facilities, when looking at both sides of the street together. \n\u2022\
+          \ Complete Facilities: Both sides of the street have complete pedestrian\
+          \ facilities.\n\u2022 Partial Facilities: Facilities are present, at least\
+          \ partially, on one or more sides of the street, but facilities are not\
+          \ complete on both sides of the street.\n\u2022 No Facilities: There are\
+          \ no facilities on either side of the street. "
+        title: ped_complete
+      - description: Presence/completeness of bicycle facilities on one side of the
+          street. IJ represents one side of the street.
+        title: ij_bike_facilities
+      - description: Presence/completeness of bicycle facilities on one side of the
+          street. JI represents one side of the street.
+        title: ji_bike_facilities
+      - description: Type of bicycle facility, if present
+        title: ij_bike_type
+      - description: Type of bicycle facility, if present
+        title: ji_bike_type
+      - description: Notes on the coding of the segment for bicycle facilities
+        title: bike_editor_notes
+      - description: Source of the data for coding bicycle facilities, either Jurisdiction2020
+          (for jurisdictional data) or Aerials2020 (for aerial data)
+        title: bike_source
+      - description: "Assessment of whether the street has complete, partial, or no\
+          \ facilities, when looking at both sides of the street together. \n\u2022\
+          \ Complete Facilities: Both sides of the street have complete bicycle facilities.\n\
+          \u2022 Partial Facilities: Facilities are present, at least partially, on\
+          \ one or more sides of the street, but facilities are not complete on both\
+          \ sides of the street.\n\u2022 No Facilities: There are no facilities on\
+          \ either side of the street. "
+        title: bike_complete
+      - description: Length of the roadway segment (in feet).
+        title: length_ft
+      - description: The name of the roadway
+        title: fullname
+      - description: Length of the roadway segment (in feet).
+        title: shape_length
+      organization_name: PSRC
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: 'Please visit the Data Dictionary for more information on this
+        facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
+      time_period: 2015-2020
+      update_cadence: Every 4 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Bike/Ped;
+    title: regional_bikeped
   source:
     is_simple: false
     schema_name: dbo
-    table_name: REGIONAL_BIKEPED 
-    sql_query: "select 
-	bp.OBJECTID,
-	bp.psrc_edge_id,
-	bp.facility_type,
-	ijpf.[value] as ij_ped_facilities,
-	jipf.[value] as ji_ped_facilities,
-	bp.sidewalk_notes,
-	sws.[value] as sidewalk_source,
-	ijbf.[value] as ij_bike_facilities_value,
-	jibf.[value] as ji_bike_facilities_value,
-	ijbt.[value] as ij_bike_type,
-	jibt.[value] as ji_bike_type,
-	bp.bike_editor_notes,
-	bp.bike_source,
-	bp.bike_complete,
-	bp.ped_complete,
-  bp.Shape.STAsText() as Shape_wkt
-from dbo.REGIONAL_BIKEPED bp
-	join dbo.fn_domain_values('dPedFacilities') as ijpf on bp.ij_ped_facilities = ijpf.code
-	join dbo.fn_domain_values('dPedFacilities') as jipf on bp.ji_ped_facilities = jipf.code
-	join dbo.fn_domain_values('dPedFacilities') as ijbf on bp.ij_bike_facilities = ijbf.code
-	join dbo.fn_domain_values('dPedFacilities') as jibf on bp.ji_bike_facilities = jibf.code
-	join dbo.fn_domain_values('dSideWalkSource') as sws on bp.sidewalk_source = sws.code
-	join dbo.fn_domain_values('dBikeLanes') as ijbt on bp.ij_bike_type = ijbt.code
-	join dbo.fn_domain_values('dBikeLanes') as jibt on bp.ji_bike_type = jibt.code"
-
+    sql_query: select bp.OBJECTID, bp.psrc_edge_id, bp.facility_type, ijpf.[value]
+      as ij_ped_facilities, jipf.[value] as ji_ped_facilities, bp.sidewalk_notes,
+      sws.[value] as sidewalk_source, ijbf.[value] as ij_bike_facilities_value, jibf.[value]
+      as ji_bike_facilities_value, ijbt.[value] as ij_bike_type, jibt.[value] as ji_bike_type,
+      bp.bike_editor_notes, bp.bike_source, bp.bike_complete, bp.ped_complete, bp.Shape.STAsText()
+      as Shape_wkt from dbo.REGIONAL_BIKEPED bp join dbo.fn_domain_values('dPedFacilities')
+      as ijpf on bp.ij_ped_facilities = ijpf.code join dbo.fn_domain_values('dPedFacilities')
+      as jipf on bp.ji_ped_facilities = jipf.code join dbo.fn_domain_values('dPedFacilities')
+      as ijbf on bp.ij_bike_facilities = ijbf.code join dbo.fn_domain_values('dPedFacilities')
+      as jibf on bp.ji_bike_facilities = jibf.code join dbo.fn_domain_values('dSideWalkSource')
+      as sws on bp.sidewalk_source = sws.code join dbo.fn_domain_values('dBikeLanes')
+      as ijbt on bp.ij_bike_type = ijbt.code join dbo.fn_domain_values('dBikeLanes')
+      as jibt on bp.ji_bike_type = jibt.code
+    table_name: REGIONAL_BIKEPED

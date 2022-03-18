@@ -54,8 +54,3 @@ dataset:
     snippet: null
     tags: Geographic Boundaries;Transit;
     title: Transit_Agency_Service_Areas
-  source:
-    is_simple: true
-    schema_name: dbo
-    sql_query: null
-    table_name: transit_districts
