@@ -6,7 +6,7 @@ dataset:
     spatial_data: True
     share_level: everyone
     snippet: 
-    accessInformation: A Data Science Team Member
+    accessInformation: 
     licenseInfo: The text to appear under Terms of Use in AGOL
     metadata:
         contact_name: Gary Simonson 
