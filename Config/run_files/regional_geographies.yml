@@ -1,33 +1,113 @@
 dataset:
   layer_params:
-    title: regional_geographies
-    tags: portal
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: "Regional Geographies, as designated in Vision 2050. Please\
+      \ note that this layer currently only shows areas within the Urban Growth Area.\n\
+      In VISION 2050\u2019s Regional Growth Strategy, the region\u2019s landscape\
+      \ has been divided into nine types of geographies based on their size, function,\
+      \ and access to high-capacity transit: \u2022 Metropolitan Cities (5 cities)\
+      \ and Core Cities (16 cities, including unincorporated Silverdale) include cities\
+      \ that have designated regional growth centers. Most are also connected to the\
+      \ region\u2019s high-capacity transit system. These two groups of cities are\
+      \ and will be the most intensely urban places in the region. \u2022 High Capacity\
+      \ Transit Communities (34 cities and unincorporated communities) are cities\
+      \ and unincorporated areas that are connected to the regional high-capacity\
+      \ transit system. These urban unincorporated areas are also planned for annexation\
+      \ or incorporation. \u2022 Cities and Towns (42 cities) are cities and towns\
+      \ with smaller downtown and local centers, which may be served by local transit.\
+      \ \u2022 Urban Unincorporated Areas capture a wide variety of urban lands, both\
+      \ lightly and heavily developed. These areas may be served by local transit\
+      \ and may include areas identified as potential annexation or incorporation\
+      \ areas. \u2022 Rural Areas and Natural Resources Lands describe the different\
+      \ types of unincorporated areas outside the urban growth area and include very\
+      \ low-density housing, working landscapes, and open space. \u2022 Major Military\
+      \ Installations serve as hubs for both military and civilian employment and\
+      \ population. \u2022 Indian Reservation Lands are permanent homelands of sovereign\
+      \ tribal nations designated through treaty, Executive, or Congressional Acts\
+      \ and are the home of the region\u2019s native cultures and traditions. Tribes\
+      \ also retain interests and ownership of off-reservation land. "
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: 'This dataset currently only includes the regional geographies that
+        are inside the Urban Growth Area. '
+      constraints: null
+      contact_city: Seattle
+      contact_email: dhanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: Regional geography designations were made during the Vision update.
+        The boundaries are based on our psrc region, which is based on city and UGA
+        boundaries. The city boundaries are updated based on the quarterly annexation
+        records provided by OFM.
+      data_source: Office of Financial Management (OFM), Counties
+      date_last_updated: 08/2021
+      description: "Regional Geographies, as designated in Vision 2050. Please note\
+        \ that this layer currently only shows areas within the Urban Growth Area.\n\
+        In VISION 2050\u2019s Regional Growth Strategy, the region\u2019s landscape\
+        \ has been divided into nine types of geographies based on their size, function,\
+        \ and access to high-capacity transit: \u2022 Metropolitan Cities (5 cities)\
+        \ and Core Cities (16 cities, including unincorporated Silverdale) include\
+        \ cities that have designated regional growth centers. Most are also connected\
+        \ to the region\u2019s high-capacity transit system. These two groups of cities\
+        \ are and will be the most intensely urban places in the region. \u2022 High\
+        \ Capacity Transit Communities (34 cities and unincorporated communities)\
+        \ are cities and unincorporated areas that are connected to the regional high-capacity\
+        \ transit system. These urban unincorporated areas are also planned for annexation\
+        \ or incorporation. \u2022 Cities and Towns (42 cities) are cities and towns\
+        \ with smaller downtown and local centers, which may be served by local transit.\
+        \ \u2022 Urban Unincorporated Areas capture a wide variety of urban lands,\
+        \ both lightly and heavily developed. These areas may be served by local transit\
+        \ and may include areas identified as potential annexation or incorporation\
+        \ areas. \u2022 Rural Areas and Natural Resources Lands describe the different\
+        \ types of unincorporated areas outside the urban growth area and include\
+        \ very low-density housing, working landscapes, and open space. \u2022 Major\
+        \ Military Installations serve as hubs for both military and civilian employment\
+        \ and population. \u2022 Indian Reservation Lands are permanent homelands\
+        \ of sovereign tribal nations designated through treaty, Executive, or Congressional\
+        \ Acts and are the home of the region\u2019s native cultures and traditions.\
+        \ Tribes also retain interests and ownership of off-reservation land. "
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: OBJECTID
+      - description: Name of city, if applicable
+        title: city_name
+      - description: Name of County
+        title: cnty_name
+      - description: Indicates whether the area is incorporated, unincorporated or
+          rural
+        title: feat_type
+      - description: Name of city or potential annexation area
+        title: juris
+      - description: Numeric code of regional geography classes. 1=Metro Cities, 2=Core
+          Cities, 3=High Capacity Transit areas, 4=Cities and Towns, 5=Urban Unincorporated,
+          6= Rural
+        title: rgeo_class
+      - description: Regional geography classes. Metro = Metropolitan Cities, Core
+          = Core Cities, HCT= High Capacity Transit Areas, CitiesTowns=Cities & Towns,
+          UU=Urban Unincorporated
+        title: class_desc
+      - description: (no description)
+        title: Shape__Area
+      - description: (no description)
+        title: Shape__Length
+      organization_name: PSRC
+      psrc_website: https://www.psrc.org/sites/default/files/vision-growth-targets-guidance.pdf
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: '2021'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: regional_geographies
   source:
     is_simple: true
     schema_name: dbo
-    table_name:  regional_geographies
-    sql_query: 
-
+    sql_query: null
+    table_name: regional_geographies

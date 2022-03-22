@@ -6,7 +6,6 @@ dataset:
     licenseInfo: null
     metadata:
       assessment: nan
-      constraints: nan
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -50,8 +49,9 @@ dataset:
       - description: (no description)
         title: vending
       - description: (no description)
+        title: 'type '
+      - description: (no description)
         title: shape
-      organization_name: PSRC
       psrc_website: nan
       summary_purpose: summary purpose
       tech_note_link: nan
@@ -59,14 +59,5 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
     tags: Trucks;
     title: Safety_Rest_Area
-  source:
-    is_simple: false
-    schema_name: dbo
-    sql_query: "select OBJECTID, name, cleaned_name, corridor, lat, long_, 
-          milepost, mp_display, location, direction, parking_stall, restroom, 
-          drinking_water, vending, Shape.STAsText() as Shape_wkt 
-        from dbo.safety_rest_area"
-    table_name: safety_rest_area

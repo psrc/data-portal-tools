@@ -267,7 +267,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Trucks;Traffic/Congestion;Bridges;
-    title: at_grade_rail_crossings
+    title: At-Grade_Rail_Crossings
   source:
     is_simple: true
     schema_name: dbo

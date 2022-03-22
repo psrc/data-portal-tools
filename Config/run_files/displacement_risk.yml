@@ -1,33 +1,98 @@
 dataset:
   layer_params:
-    title: displacement_risk
-    tags: portal
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: 'Displacement risk is a composite of indicators representing
+      five elements of neighborhood displacement risks: socio-demographics, transportation
+      qualities, neighborhood characteristics, housing, and civic engagement. The
+      data from these five displacement indicators were compiled into a comprehensive
+      index of displacement risk for all census tracts in the region.'
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      constraints: null
+      contact_city: Seattle
+      contact_email: blee@psrc.org
+      contact_name: Brian Lee
+      contact_phone: 206-971-3270
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      data_source: American Community Survey (ACS), U.S. Census Bureau; Consolidated
+        Housing Affordability Strategy (CHAS), U.S. Department of Housing & Urban
+        Development (HUD); Google; County elections data; Puget Sound Regional Council.
+      date_last_updated: '2018'
+      description: 'Displacement risk is a composite of indicators representing five
+        elements of neighborhood displacement risks: socio-demographics, transportation
+        qualities, neighborhood characteristics, housing, and civic engagement. The
+        data from these five displacement indicators were compiled into a comprehensive
+        index of displacement risk for all census tracts in the region.'
+      fields:
+      - description: this is a shapefile field for census tract data
+        title: FID
+      - description: this is a shapefile field for census tract data
+        title: OBJECTID
+      - description: this is a shapefile field for census tract data
+        title: statefp10
+      - description: this is a shapefile field for census tract data
+        title: countyfp10
+      - description: this is a shapefile field for census tract data
+        title: tractce10
+      - description: this is a shapefile field for census tract data
+        title: geoid10
+      - description: this is a shapefile field for census tract data
+        title: name10
+      - description: this is a shapefile field for census tract data
+        title: namelsad10
+      - description: this is a shapefile field for census tract data
+        title: mtfcc10
+      - description: this is a shapefile field for census tract data
+        title: funcstat10
+      - description: this is a shapefile field for census tract data
+        title: aland10
+      - description: this is a shapefile field for census tract data
+        title: awater10
+      - description: this is a shapefile field for census tract data
+        title: intptlat10
+      - description: this is a shapefile field for census tract data
+        title: intptlon10
+      - description: this is a shapefile field for census tract data
+        title: name_val
+      - description: this is a shapefile field for census tract data
+        title: sq_miles
+      - description: this is a shapefile field for census tract data
+        title: acres
+      - description: this is a shapefile field for census tract data
+        title: geoidstr
+      - description: this is a shapefile field for census tract data
+        title: perc
+      - description: this is a shapefile field for census tract data
+        title: perc_1
+      - description: 11-digit census tract number
+        title: tract_geoi
+      - description: (no description)
+        title: risk_score
+      - description: category of displacement risk - number
+        title: risk_level
+      - description: category of displacement risk - name
+        title: risk_name
+      - description: this is a shapefile field for census tract data
+        title: Shape__Area
+      - description: this is a shapefile field for census tract data
+        title: Shape__Length
+      organization_name: PSRC
+      psrc_website: https://www.psrc.org/displacement-risk-mapping
+      summary_purpose: summary purpose
+      tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      time_period: '2018'
+      update_cadence: Periodically
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Equity;
+    title: displacement_risk
   source:
     is_simple: true
     schema_name: dbo
-    table_name:  displacement_risk
-    sql_query: 
-
+    sql_query: null
+    table_name: displacement_risk

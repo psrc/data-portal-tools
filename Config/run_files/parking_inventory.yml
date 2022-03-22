@@ -1,32 +1,155 @@
 dataset:
   layer_params:
-    title: parking_inventory_by_block_group
-    tags: portal, parking
-    allow_edits: False
-    spatial_data: False
-    share_level: everyone
-    snippet: Parking inventory summaries by block group
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: The parking Inventory dataset contains the number of parking
+      facilities, number of stalls, lot types, and parking costs of off-street parking,
+      public and private, free, and pay-to-park facilities. Data are available for
+      cities (Bellevue, Bremerton, Everette, Seattle, Tacoma), the University District
+      neighborhood, and three ferry terminals (Bainbridge, Kingston, and Southworth).
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: Data Profile 2 from the Census American Community Survey 1-Year Summaries
-        data_source: 
-        date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
-        constraints: 'this text should be in resource:Constraints:General:Use Limitations'
-        data_lineage: This should be a description of the data collection process?
-        assessment: 'This should go in Quality:Data Quality: Report'
-        summary_purpose: Data collected from the periodic Regional Parking Inventory 
+      assessment: "In 2018 the data collection methodology changed significantly.\
+        \ Occupancy counts were no longer collected and PSRC`s internal staff used\
+        \ alternative methods to collect the capacity and costs information (i.e.\
+        \ departed from physical survey collection and moved towards online collection\
+        \ methods such as google maps, SDOT, etc.). In 2018 inventory took advantage\
+        \ of more online data collection strategies and although fieldwork remained\
+        \ a component, slightly different field collection methods were utilized.\_\
+        \nTo compare the 2013 and 2018 parking inventory data, PSRC tabulated and\
+        \ mapped the absolute and relative differences in the number of parking stalls\
+        \ between the two survey years. The tracts with percent increases or decreases\
+        \ in the number of parking stalls greater than 10% were identified as outliers\
+        \ and further examined at the block level. Ten census tracts had parking growth\
+        \ or decline of more than 10%. After closer investigation, the majority of\
+        \ these changes were due to several reasons. First, in some instances, there\
+        \ were differences in the number of surveyed blocks within the same tracks\
+        \ between 2013 and 2018 data collection. Second, some tracks had new developments\
+        \ and added parking capacity. There was one census block [tract 23801, block\
+        \ 1002] identified as an outlier with 629 parking stalls omitted from the\
+        \ 2018 parking inventory. It is important to note that there were survey collection\
+        \ changes between 2013 and 2018, as described above. This inventory took advantage\
+        \ of online data collection strategies. Although fieldwork remained a component,\
+        \ slightly different field collection methods were utilized.\nWhen comparing\
+        \ the changes between 2013 and 2018 parking data, one census block in Bellevue\
+        \ [tract 23801, block 1002] was found to have a decrease of 629 parking stalls.\
+        \ \_ There are 3 potential explanations for this discrepancy: mistake in counting\
+        \ in 2013, a change in status, or unintentional omission in 2018. Further\
+        \ research was conducted to determine the cause for this difference. Based\
+        \ on a search of the PSRC parcels database, there were 629 spaces assigned\
+        \ to this parcel in 2014. Staff at the City of Bellevue confirmed that there\
+        \ were no changes in the parking (structures or number of spaces) between\
+        \ 2013 and 2018. \_ To correct the data that were excluded from the 2018 survey\
+        \ counts, 629 parking spots were manually added to this block in the inventory."
+      constraints: this text should be in resource:Constraints:General:Use Limitations
+      contact_city: Seattle
+      contact_email: mrichards@psrc.org
+      contact_name: Mary Richards
+      contact_phone: 206-464-7090
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: "Prior to 2018, PSRC collected parking facility information every\
+        \ two to five years exclusively through fieldwork. PSRC revised the data collection\
+        \ process in 2018 by designing a new multi-phase approach. The changes include\
+        \ an online research procedure that collects data ahead of fieldwork, the\
+        \ use of Survey123 (ArcGIS) to record the data, and the establishment of an\
+        \ ETL (Extract, Transfer, Load) process to structure 2018 inventory within\
+        \ PSRC\u2019s central database.\nThe updated data collection process indlucded\
+        \ 3 primary steps. The first includes comparing Google Earth satellite imagery\
+        \ from 2013 and 2018 to detect landscape changes on parking properties. The\
+        \ second includes leveraging the availability of the large amounts of easily\
+        \ accessible data to help collect parking information online. This includes\
+        \ information such as parking capacities, rates, locations, and management\
+        \ company information. The third includes field work.\nThe addition of the\
+        \ online research process greatly expedites data collection. The application\
+        \ of these methods are able to capture 80% of parking facilities and spaces\
+        \ within three weeks (without requiring field work).\nPrior to 2018, the Parking\
+        \ Inventory data are collected every two years typically during the months\
+        \ March - June (Spring). However, the 2010 Parking Inventory was collected\
+        \ from September to December. The data collection teams were assigned selected\
+        \ study areas and parking zones within the region. The survey hours are from\
+        \ Monday to Thursday from 8:30 AM to 11:30 AM and 1:00 PM - 3:30 PM.\nThe\
+        \ 2018 Parking Inventory was conducted from May to September, to parallel\
+        \ the 2013 Parking Inventory, which PSRC conducted from March to July."
+      data_source: Puget Sound Regional Council
+      date_last_updated: 02/2020
+      description: The parking Inventory dataset contains the number of parking facilities,
+        number of stalls, lot types, and parking costs of off-street parking, public
+        and private, free, and pay-to-park facilities. Data are available for cities
+        (Bellevue, Bremerton, Everette, Seattle, Tacoma), the University District
+        neighborhood, and three ferry terminals (Bainbridge, Kingston, and Southworth).
+      fields:
+      - description: The year the data was collected
+        title: year_of_survey
+      - description: 2010 Census block group id
+        title: block_group_geoid10
+      - description: The location of the paylot
+        title: city
+      - description: Number of hourly pay parking lots within the block group
+        title: paylots_with_hourly_costs
+      - description: Minimum hourly cost
+        title: min_cost_hourly
+      - description: Maximum hourly cost
+        title: max_cost_hourly
+      - description: Average cost of hourly parking lots (summed costs/number of paylots
+          with hourly costs)
+        title: avg_cost_hourly
+      - description: Number of daily pay parking lots within the block group
+        title: paylots_with_daily_costs
+      - description: Minimum daily cost
+        title: min_cost_daily
+      - description: Maximum daily cost
+        title: max_cost_daily
+      - description: Average cost of daily parking lots (summed costs/number of paylots
+          with daily costs)
+        title: avg_cost_daily
+      - description: Number of monthly pay parking lots within the block group
+        title: paylots_with_monthly_costs
+      - description: Minimum monthly cost
+        title: min_cost_monthly
+      - description: Maximum monthly cost
+        title: max_cost_monthly
+      - description: Average cost of monthly parking lots (summed costs/number of
+          paylots with monthly costs)
+        title: avg_cost_monthly
+      - description: Sum of the lots within the block group
+        title: total_lot_count
+      - description: Sum of all parking stalls within the block group
+        title: total_stalls
+      - description: Total number of cars within the block group in the morning
+        title: total_am_car_count
+      - description: Total number of cars within the block group in the afternoon
+        title: total_pm_car_count
+      - description: Average number of parking stalls within the block group
+        title: average_total_stalls
+      - description: Average number of cars within the block group in the morning
+        title: average_am_car_count
+      - description: Average number of cars within the block group in the afternoon
+        title: average_pm_car_count
+      - description: The percent of parking stalls occupied within the block group
+          in the morning
+        title: am_occupancy_rate
+      - description: The percent of parking stalls occupied within the block group
+          in the afternoon
+        title: pm_occupancy_rate
+      - description: The percent of parking stalls occupied within the block group
+          (average of AM and PM occupancy rates)
+        title: average_daily_occupancy_rate
+      - description: (no description)
+        title: ObjectId
+      organization_name: PSRC
+      psrc_website: https://www.psrc.org/parking-inventory
+      summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: 2002-2018
+      update_cadence: 2-5 years
+    share_level: everyone
+    snippet: null
+    spatial_data: false
+    tags: Parking;
+    title: parking_inventory_by_block_group
   source:
-    is_simple: True
+    is_simple: true
     schema_name: data_portal
+    sql_query: null
     table_name: v_parking_by_block_group
-    sql_query:

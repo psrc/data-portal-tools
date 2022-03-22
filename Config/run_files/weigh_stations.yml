@@ -7,7 +7,6 @@ dataset:
     licenseInfo: null
     metadata:
       assessment: nan
-      constraints: nan
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -51,19 +50,12 @@ dataset:
         title: amenities
       - description: (no description)
         title: latlong
-      organization_name: PSRC
-      psrc_website: www.psrc.org
+      psrc_website: nan
       summary_purpose: summary purpose
       tech_note_link: nan
-      time_period: 
-      update_cadence: 
+      time_period: '2020'
+      update_cadence: Every few years
     share_level: everyone
     snippet: null
-    spatial_data: true
     tags: Trucks;Parking;
     title: Weigh_Stations
-  source:
-    is_simple: true
-    schema_name: dbo
-    sql_query: null
-    table_name: weigh_station

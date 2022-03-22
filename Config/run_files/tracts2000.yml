@@ -1,44 +1,145 @@
 dataset:
   layer_params:
-    title: tracts_2000
-    tags: portal, census
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: "Census tracts are small, relatively permanent statistical\
+      \ subdivisions of a county or equivalent entity, and are reviewed and updated\
+      \ by local participants prior to each decennial census as part of the Census\
+      \ Bureau\u2019s Participant Statistical Areas Program (PSAP). The Census Bureau\
+      \ updates census tracts in situations where no local participant existed or\
+      \ where local or tribal governments declined to participate. The primary purpose\
+      \ of census tracts is to provide a stable set of geographic units for the presentation\
+      \ of decennial census data  and comparison back to previous decennial censuses.\n\
+      Census tracts generally have a population size between 1,200 and 8,000 people\
+      \ with an optimum size of 4,000 people. The spatial size of census tracts varies\
+      \ widely depending on the density of settlement. Ideally, census tract boundaries\
+      \ remain stable over time to facilitate statistical comparisons from census\
+      \ to census. However, physical changes in street patterns caused by highway\
+      \ construction, new development, and so forth, may require boundary revisions.\
+      \ In addition, census tracts occasionally are split due to population growth,\
+      \ or combined as a result of substantial population decline.\nCensus tract boundaries\
+      \ generally follow visible and identifiable features. They may follow legal\
+      \ boundaries such as minor civil division (MCD) or incorporated place boundaries\
+      \ in some states to allow for census tract-to-governmental unit relationships\
+      \ where the governmental boundaries tend to remain unchanged between censuses.\
+      \ State and county boundaries always are census tract boundaries in the standard\
+      \ census geographic hierarchy.\nIn a few rare instances, a census tract may\
+      \ consist of noncontiguous areas. These noncontiguous areas may occur where\
+      \ the census tracts are coextensive with all or parts of legal entities that\
+      \ are themselves noncontiguous. "
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: 'Since the release of the Census 2000 versions of the TIGER/Line
+        files, the Census Bureau has shifted and reshaped most linear features, including
+        those that form legal or statistical area boundaries.
+
+        The boundary information in the TIGER/Line Shapefiles is for statistical data
+        collection and tabulation purposes only. Their depiction and designation for
+        statistical purposes does not constitute a determination of jurisdictional
+        authority or rights of ownership or entitlement and they are not legal land
+        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
+        places, but the positional accuracy of these coordinates is not as great as
+        the six decimal places suggest.'
+      constraints: null
+      contact_city: Seattle
+      contact_email: dhanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3275
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The TIGER/Line Files are shapefiles and related database files
+        (.dbf) that are an extract of selected geographic and cartographic information
+        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
+        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
+        represents a seamless national file with no overlaps or gaps between parts,
+        however, each TIGER/Line File is designed to stand alone as an independent
+        data set, or they can be combined to cover the entire nation.
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: "Census tracts are small, relatively permanent statistical subdivisions\
+        \ of a county or equivalent entity, and are reviewed and updated by local\
+        \ participants prior to each decennial census as part of the Census Bureau\u2019\
+        s Participant Statistical Areas Program (PSAP). The Census Bureau updates\
+        \ census tracts in situations where no local participant existed or where\
+        \ local or tribal governments declined to participate. The primary purpose\
+        \ of census tracts is to provide a stable set of geographic units for the\
+        \ presentation of decennial census data  and comparison back to previous decennial\
+        \ censuses.\nCensus tracts generally have a population size between 1,200\
+        \ and 8,000 people with an optimum size of 4,000 people. The spatial size\
+        \ of census tracts varies widely depending on the density of settlement. Ideally,\
+        \ census tract boundaries remain stable over time to facilitate statistical\
+        \ comparisons from census to census. However, physical changes in street patterns\
+        \ caused by highway construction, new development, and so forth, may require\
+        \ boundary revisions. In addition, census tracts occasionally are split due\
+        \ to population growth, or combined as a result of substantial population\
+        \ decline.\nCensus tract boundaries generally follow visible and identifiable\
+        \ features. They may follow legal boundaries such as minor civil division\
+        \ (MCD) or incorporated place boundaries in some states to allow for census\
+        \ tract-to-governmental unit relationships where the governmental boundaries\
+        \ tend to remain unchanged between censuses. State and county boundaries always\
+        \ are census tract boundaries in the standard census geographic hierarchy.\n\
+        In a few rare instances, a census tract may consist of noncontiguous areas.\
+        \ These noncontiguous areas may occur where the census tracts are coextensive\
+        \ with all or parts of legal entities that are themselves noncontiguous. "
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: OBJECTID
+      - description: (no description)
+        title: id
+      - description: (no description)
+        title: fipsstco
+      - description: 2000 Census census tract code
+        title: trt2000
+      - description: Census tract identifier; a concatenation of Current state FIPS
+          code, county FIPS code, and census tract code
+        title: stfid
+      - description: (no description)
+        title: tract_id
+      - description: (no description)
+        title: source_thm
+      - description: (no description)
+        title: area
+      - description: (no description)
+        title: perimeter
+      - description: (no description)
+        title: acres
+      - description: (no description)
+        title: z_do
+      - description: (no description)
+        title: tract_dec
+      - description: (no description)
+        title: dif7080
+      - description: (no description)
+        title: diff8090
+      - description: (no description)
+        title: diff9000
+      - description: (no description)
+        title: hectares
+      - description: (no description)
+        title: pct_median
+      - description: Default total area of the polygon's perimeter (meters)
+        title: Shape__Area
+      - description: Default total length of the polygon's perimeter (meters)
+        title: Shape__Length
+      organization_name: PSRC
+      psrc_website: nan
+      summary_purpose: summary purpose
+      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
+      time_period: 2000-2009
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;
+    title: tracts_2000
   source:
     is_simple: false
-    schema_name:
-    table_name:
-    sql_query: "select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2) as statefp00, right(fipsstco, 3) as countyfp00,
-	case fipsstco	
-		when '53053' then 'Pierce'
-		when '53033' then 'King'
-		when '53035' then 'Kitsap'
-		when '53061' then 'Snohomish'
-	end as countyname,
-	trt2000 as tract00,
-	tract_id as tract00str,
-	stf_id as geoid00,
-	acres
-from dbo.tract2000_nowater"
-
+    schema_name: null
+    sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2)
+      as statefp00, right(fipsstco, 3) as countyfp00, case fipsstco when '53053' then
+      'Pierce' when '53033' then 'King' when '53035' then 'Kitsap' when '53061' then
+      'Snohomish' end as countyname, trt2000 as tract00, tract_id as tract00str, stf_id
+      as geoid00, acres from dbo.tract2000_nowater
+    table_name: null

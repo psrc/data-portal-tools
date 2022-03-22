@@ -1,33 +1,90 @@
 dataset:
   layer_params:
-    title: regional_growth_centers
-    tags: Portal, data-portal
-    allow_edits: False
-    spatial_data: True
-    share_level: everyone
-    snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
-        contact_street_address: 1011 Western Ave. Ste 500
-        contact_city: Seattle
-        contact_state: Washington
-        contact_zip: 98104
-        contact_phone: (206)464-7536
-        organization_name: PSRC
-        psrc_website: www.psrc.org
-        description: 
-        data_source: 
-        date_last_updated: 
-        constraints: 
-        data_lineage: 
-        assessment: 
-        summary_purpose: 
+      assessment: The information contained herein was developed for general regional
+        land use and transportation planning purposes.  The users of this information
+        must determine its suitability for any other purpose.  Some of this data may
+        have been compiled from other sources.  The PSRC does not accept responsibility
+        for the quality of third-party data or data contributed by others.  Locations
+        of all facilities are approximate.
+      constraints: null
+      contact_city: Seattle
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The data was originally assembled from various cities and counties
+        in the region. If boundary updates occur, PSRC will receive the updated boundary
+        file from the city or county and make updates to this file.
+      data_source: Puget Sound Regional Council
+      date_last_updated: 02/2021
+      description: 'This layer represents boundaries for the 29 designated centers
+        in the central Puget Sound region. Each county or city, through an inter-jurisdictional
+        process, has designated the center boundaries.
+
+        Urban Centers have been defined by the Regional Council as "regionally designated
+        locations that are intended to include a dense mix of business, commercial,
+        residential, and cultural activities within a compact area of up to 1.5 square
+        miles targeted for employment and residential growth, a wide variety of transportation
+        options, including fast and convenient high capacity transit service, as well
+        as investment in major public amenities."'
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: id
+      - description: Name of regional growth center
+        title: name
+      - description: (no description)
+        title: area_feet
+      - description: (no description)
+        title: perimeter_
+      - description: (no description)
+        title: parking
+      - description: (no description)
+        title: popden1996
+      - description: (no description)
+        title: planpop96
+      - description: (no description)
+        title: jobs1994
+      - description: (no description)
+        title: planjobs94
+      - description: (no description)
+        title: houseunits
+      - description: (no description)
+        title: huplan
+      - description: (no description)
+        title: floorspc
+      - description: Acreage
+        title: acres
+      - description: (no description)
+        title: hectares
+      - description: (no description)
+        title: area
+      - description: (no description)
+        title: perimeter
+      - description: (no description)
+        title: adoptdate
+      - description: Type of center
+        title: category
+      organization_name: PSRC
+      psrc_website: https://www.psrc.org/centers
+      summary_purpose: summary purpose
+      tech_note_link: https://www.psrc.org/sites/default/files/final_regional_centers_framework_march_22_version.pdf
+      time_period: '2021'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Centers/MICs;Geographic Boundaries;
+    title: regional_growth_centers
   source:
     is_simple: true
     schema_name: dbo
-    table_name: URBAN_CENTERS 
-    sql_query: 
-
+    sql_query: null
+    table_name: URBAN_CENTERS
