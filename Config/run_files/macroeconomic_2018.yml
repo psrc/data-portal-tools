@@ -1,30 +1,34 @@
 dataset:
   layer_params:
-    title: macroeconomic
+    title: macroeconomic_forecast_2018
     tags: data portal, macroeconomic
     allow_edits: False
     spatial_data: False
     share_level: owner
     snippet: Macroeconomic Forecast (2018)
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: 
+    licenseInfo: 
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
+        contact_name: Michael Jenson
+        contact_email: mjensen@psrc.org
         contact_street_address: 1011 Western Ave. Ste 500
         contact_city: Seattle
         contact_state: Washington
         contact_zip: 98104
-        contact_phone: (206)464-7536
+        contact_phone: 
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The 2018 Macroeconomic Forecast
+        description: PSRC's forecast of the region's households, persons, jobs, and other economic and demographic variables through the year 2050.
         data_source: 
-        date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
+        date_last_updated: '2018'
         constraints: 
-        data_lineage: This should be a description of the data collection process
-        assessment: 'This should go in Quality:Data Quality: Report'
-        summary_purpose: County-level estimates of different race groups
+        data_lineage: The current Regional Macroeconomic Forecast was most recently updated for the 2018 The Macroeconomic Forecast is an input to PSRC's land use and travel forecasting, and provides the growth assumptions used in our regional growth strategy. It is developed by PSRC with help and review by technical staff from state and local government.
+        assessment: 
+        summary_purpose: 
+        fields:
+        tech_note_link:
+        time_period: 2050
+        update_cadence: 
   source:
     is_simple: false
     schema_name: 

@@ -72,9 +72,9 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 for f in run_files:
 # for f in ['parking_inventory.yml']:
-	# if 'block' not in f and f != '_flu.yml' and 'tract' not in f:
+	#if 'census_dp0' in f and f != '_flu.yml' and 'tract' not in f:
 	# if f >= 'reg00puma.yml':
-	if f in ['tribal_lands.yml']:
+	if f in ['macroeconomic_2018.yml']:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
