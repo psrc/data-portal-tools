@@ -1,15 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: 'This layers represents boundaries for the 29 designated centers
-      in the central Puget Sound region. Each county or city, through an inter-jurisdictional
-      process, has designated the center boundaries.
-
-      Urban Centers have been defined by the Regional Council as "regionally designated
-      locations that are intended to include a dense mix of business, commercial,
-      residential, and cultural activities within a compact area of up to 1.5 square
-      miles targeted for employment and residential growth, a wide variety of transportation
-      options, including fast and convenient high capacity transit service, as well
-      as investment in major public amenities."'
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -32,7 +23,7 @@ dataset:
         file from the city or county and make updates to this file.
       data_source: Puget Sound Regional Council
       date_last_updated: 02/2021
-      description: 'This layers represents boundaries for the 29 designated centers
+      description: 'This layer represents boundaries for the 29 designated centers
         in the central Puget Sound region. Each county or city, through an inter-jurisdictional
         process, has designated the center boundaries.
 

@@ -75,7 +75,7 @@ class FormResults(object):
                 allow_edits: False
                 share_level: everyone
                 snippet: null
-                accessInformation: '{}'
+                accessInformation: null 
                 licenseInfo: null
                 metadata:
                     contact_name: {}
@@ -97,7 +97,6 @@ class FormResults(object):
                     update_cadence: '{}'
         """.format(ser['Title'].replace(' ','_'),
                     ser['Tags'],
-                    ser['Abstract'],
                     ser['ContactName'],
                     ser['ContactEmail'],
                     ser['ContactPhone'],

@@ -1,8 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: This layer represents tribal land boundaries in King, Snohomish,
-      Pierce, and Kitsap counties. The boundaries are recognized by the U.S. Bureau
-      of Indian Affairs.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -51,12 +49,18 @@ dataset:
         title: shape_stle
       - description: Acreage
         title: acres
-      psrc_website: nan
+      psrc_website: null
       summary_purpose: summary purpose
-      tech_note_link: nan
+      tech_note_link: 
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Geographic Boundaries;
     title: tribal_lands
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: tribal_land

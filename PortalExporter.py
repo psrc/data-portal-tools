@@ -104,15 +104,16 @@ class PortalResource(object):
 		try:
 			self.portal_connector = p_connector
 			self.db_connector = db_connector
+			self.params = params
+			self.metadata = params['metadata']
 			self.resource_properties = {
 				'title': params['title'],
 				'tags': params['tags'],
 				#'description': params['description'],
 				'snippet': params['snippet'],
-				'accessInformation': params['accessInformation'],
+				#'accessInformation': self.metadata['description'],
 				'licenseInfo': params['licenseInfo']
 			}
-			self.metadata = params['metadata']
 			self.title = params['title']
 			self.working_folder = 'workspace'
 			# self.contact_name = params['contact_name']
@@ -534,13 +535,13 @@ class PortalResource(object):
 			linkage = self.upsert_element(citOnlineRes, 'linkage', self.metadata['psrc_website'])
 			orName = self.upsert_element(citOnlineRes, 'orName', 'Data on PSRC Webpage')
 			citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
-			linkageBackground = self.upsert_element(citOnlineResBackground, 
-													'linkage', 
-													self.metadata['tech_note_link'])
+			#linkageBackground = self.upsert_element(citOnlineResBackground, 
+													# 'linkage', 
+													# self.metadata['tech_note_link'])
 			orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
 
-			dq_assessment = self.metadata['assessment']
-			suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
+			#dq_assessment = self.metadata['assessment']
+			#suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
 
 			time_period_text = "time period: {}".format(self.metadata['time_period'])
 			other_details = self.upsert_element(idCitation, 'otherCitDet', time_period_text)
@@ -563,7 +564,7 @@ class PortalResource(object):
 				dataIdInfo.remove(n)
 			resConst = ET.SubElement(dataIdInfo, 'resConst')
 			consts = ET.SubElement(resConst, 'Consts')
-			useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['assessment']
+			#useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['assessment']
 
 			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
 			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
@@ -578,9 +579,15 @@ class PortalResource(object):
 			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
 
-			idAbs = root.find('./dataIdInfo/idAbs')
-			idAbs.text = self.metadata['description']
-			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
+			abstract = self.metadata['description']
+			sup_info = self.metadata['assessment']
+			tech_note = self.metadata['tech_note_link'] 
+			tech_note_text = tech_note if not tech_note is None else ''
+			summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note_text)
+			#idAbs = root.find('./dataIdInfo/idAbs')
+			#idAbs.text = self.metadata['description']
+			#idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
+			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = summary_purpose_val
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
 
@@ -622,6 +629,7 @@ class PortalResource(object):
 			#if os.path.exists(metadata_file): os.remove(metadata_file)
 
 		except Exception as e:
+			print('error in set_and_update_metadata')
 			print(e.args[0])
 			if os.path.exists(metadata_file): os.remove(metadata_file)
 			raise
