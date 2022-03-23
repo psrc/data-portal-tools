@@ -9,11 +9,7 @@ dataset:
         or any other consequential damages; or the fitness for use of the data for
         a particular purpose; or the installation of the data, its use, or the results
         obtained.
-      constraints: The Washington State Department of Transportation shall not be
-        liable for any activity involving this data with regard to lost profits or
-        savings or any other consequential damages; or the fitness for use of the
-        data for a particular purpose; or the installation of the data, its use, or
-        the results obtained.
+      constraints: This layer represents tribal reservation boundaries and off-reservation trust lands in King, Snohomish, Pierce, and Kitsap counties. The boundaries are recognized by the U.S. Bureau of Indian Affairs.
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
