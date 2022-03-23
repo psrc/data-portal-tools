@@ -81,7 +81,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Bike/Ped;
-    title: regional_sups
+    title: regional_shared_use_paths
   source:
     is_simple: true
     schema_name: dbo
