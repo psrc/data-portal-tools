@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: hhsurvey_vehicles
+    title: household_travel_survey_vehicles
     tags: portal, household travel survey
     allow_edits: False
     spatial_data: False

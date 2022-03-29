@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: LatinX_by_Race_by_County
+    title: latinx_by_race_by_county
     tags: census, race
     allow_edits: False
     spatial_data: False
@@ -21,10 +21,14 @@ dataset:
         description: "2019 ACS Census 5-year data: Hispanic or Latino Origin By Race Group. Geographic level: County"
         data_source: This data was derived from Source X, published by Agency Y.
         date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
+        fields:
         constraints: 'this text should be in resource:Constraints:General:Use Limitations'
         data_lineage: This should be a description of the data collection process?
         assessment: 'This should go in Quality:Data Quality: Report'
         summary_purpose: County-level estimates of different race groups
+        tech_note_link: 
+        time_period: '2019'
+        update_cadence: 
   source:
     is_simple: false
     schema_name: 

@@ -1,6 +1,6 @@
 dataset:
   layer_params:
-    title: hhsurvey_households
+    title: household_travel_survey_households
     tags: portal, household travel survey
     allow_edits: False
     spatial_data: False
@@ -35,7 +35,7 @@ dataset:
     table_name: 
     sql_query: "SELECT [household_id]
         ,[hhid] ,[hhgroup] ,[survey_year] ,[seattle_home] ,[sample_county] ,[final_home_puma10]
-        ,[final_home_uvnum] ,[hhsize] ,[vehicle_count] ,[lifecycle] ,[hhincome_broad] ,[hhincome_detailed]
+        ,[final_home_uvnum] ,[dayofweek], [hhsize] ,[vehicle_count] ,[lifecycle] ,[hhincome_broad] ,[hhincome_detailed]
         ,[hh_race_category] ,[car_share] ,[rent_own] ,[res_dur] ,[res_type] ,[prev_home_wa]
         ,[prev_home_puma10] ,[prev_home_seattle] ,[res_factors_30min] ,[res_factors_afford] ,[res_factors_closefam] ,[res_factors_cultural]
         ,[res_factors_hhchange] ,[res_factors_hwy] ,[res_factors_school] ,[res_factors_space] ,[res_factors_transit] ,[res_factors_walk]

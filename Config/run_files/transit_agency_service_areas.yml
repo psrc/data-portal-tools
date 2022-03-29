@@ -51,6 +51,12 @@ dataset:
       time_period: '2018'
       update_cadence: As needed
     share_level: everyone
+    spatial_data: true
     snippet: null
     tags: Geographic Boundaries;Transit;
     title: Transit_Agency_Service_Areas
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: transit_districts

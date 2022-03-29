@@ -58,6 +58,12 @@ dataset:
       time_period: '2019'
       update_cadence: Periodically
     share_level: everyone
+    spatial_data: true
     snippet: null
     tags: Trucks;
     title: Safety_Rest_Area
+  source:
+    is_simple: true
+    schema_name: dbo
+    table_name: safety_rest_area
+    sql_query: 

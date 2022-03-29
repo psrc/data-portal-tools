@@ -42,7 +42,7 @@ dataset:
         title: psrc
       psrc_website: nan
       summary_purpose: summary purpose
-      tech_note_link: nan
+      tech_note_link: 
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone
@@ -52,6 +52,6 @@ dataset:
     title: county_background
   source:
     is_simple: true
-    schema_name: n/a
+    schema_name: dbo
     sql_query: null
     table_name: COUNTY_BACKGROUND

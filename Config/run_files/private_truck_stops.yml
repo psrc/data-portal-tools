@@ -60,5 +60,11 @@ dataset:
       update_cadence: Every few years
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Trucks;Traffic/Congestion;Parking;
     title: Private_Truck_Stops
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: private_truck_stop

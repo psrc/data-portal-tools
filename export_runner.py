@@ -70,15 +70,18 @@ def export(config):
 ##############################################################################
 # for each yaml file in folder
 run_files = os.listdir('./Config/run_files/')
-for f in run_files:
-# for f in ['parking_inventory.yml']:
+root_dir = os.getcwd()
+#for f in run_files:
+for f in ['urban_growth_area.yml']:
+	os.chdir(root_dir)
 	#if 'census_dp0' in f and f != '_flu.yml' and 'tract' not in f:
-	# if f >= 'reg00puma.yml':
-	if f in ['hhsurvey_days.yml', 'hhsurvey_vehicles.yml']:
-		f_path = './Config/run_files/' + f
-		with open(f_path) as file:
-			config = yaml.load(file, Loader=yaml.FullLoader)
-			export(config)
+	#if f >= 'private_truck_stops.yml' and f <= 'transit_districts.yml':
+	#f 'hhsurvey_' in f:
+	#if f in [ 'equity_tracts_2019.yml' ]:
+	f_path = './Config/run_files/' + f
+	with open(f_path) as file:
+		config = yaml.load(file, Loader=yaml.FullLoader)
+		export(config)
 
 #with open(r'Config\config_test.yml') as file:
 #	config = yaml.load(file, Loader=yaml.FullLoader)

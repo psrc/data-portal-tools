@@ -258,16 +258,16 @@ dataset:
         title: L1_SC_PREV
       - description: (no description)
         title: FUNCTION_C
-      psrc_website: nan
+      psrc_website: 
       summary_purpose: summary purpose
-      tech_note_link: nan
+      tech_note_link: 
       time_period: '2016'
       update_cadence: As needed
     share_level: everyone
     snippet: null
     spatial_data: true
     tags: Trucks;Traffic/Congestion;Bridges;
-    title: At-Grade_Rail_Crossings
+    title: at_grade_rail_crossings
   source:
     is_simple: true
     schema_name: dbo
