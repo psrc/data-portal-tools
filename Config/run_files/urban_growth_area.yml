@@ -54,6 +54,7 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Geographic Boundaries;
     title: urban_growth_area
   source:

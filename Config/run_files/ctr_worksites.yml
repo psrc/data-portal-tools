@@ -160,5 +160,11 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Traffic/Congestion;Employment;
     title: CTR_Worksites
+  source:
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: ctr_work_sites_region
