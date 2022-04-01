@@ -38,7 +38,8 @@ def export(config):
 			my_pub = PortalResource(
 				p_connector=portal_conn,
 				db_connector=db_conn,
-				params=params
+				params=params,
+				source=source
 				)
 			if is_spatial:
 				if source['is_simple']:
@@ -72,7 +73,7 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 #for f in run_files:
-for f in ['urban_growth_area.yml']:
+for f in ['cities_test.yml']:
 	os.chdir(root_dir)
 	#if 'census_dp0' in f and f != '_flu.yml' and 'tract' not in f:
 	#if f >= 'private_truck_stops.yml' and f <= 'transit_districts.yml':

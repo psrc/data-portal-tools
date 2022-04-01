@@ -64,6 +64,7 @@ class DatabaseConnector(object):
 			self.db_server = db_server
 			self.database = database
 			self.connect()
+			self.gdb_sde_conn = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2022\data_portal\data_portal_project\aws-prod-sql.sde'
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -91,7 +92,8 @@ class PortalResource(object):
 	def __init__(self,
 			p_connector,
 			db_connector,
-			params):
+			params,
+			source):
 		"""
 		Parameters:
 			p_connector: a PortalConnector object
@@ -100,6 +102,7 @@ class PortalResource(object):
 			in_recordset_name (string): the name of the table or view
 			title (string): the name to be used for the published dataset
 			tags (string): a comma-delimited list of tags to be used for the published data source
+			source (yaml): a yaml object defining the layer name or sql definition
 		"""
 		try:
 			self.portal_connector = p_connector
@@ -121,6 +124,7 @@ class PortalResource(object):
 			self.share_level = params['share_level']
 			self.allow_edits = params['allow_edits']
 			self.is_spatial = params['spatial_data']
+			self.source = source
 			# self.organization_name = params['organization_name']
 			# self.constraints = params['constraints']
 		except Exception as e:
@@ -310,6 +314,24 @@ class PortalResource(object):
 			raise
 
 
+	def export_remote_featureclass(self, remote_fc, out_gdb, out_fc_name):
+		'''
+		params:
+			in_name: String. The name of a featureclass in a remote geodatbase
+			out_gdb: Path() object. References a file geodatabase
+			out_fc_name: String.  The name of the layer to be exported to out_gdb
+		'''
+		try:
+			conn_path = self.db_connector.gdb_sde_conn
+			arcpy.env.overwriteOutput = True
+			arcpy.env.workspace = conn_path
+			out_fc_path = str(out_gdb / out_fc_name)
+			arcpy.management.CopyFeatures(remote_fc, out_fc_path)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 
 	def republish_spatial(self):
 		try:
@@ -317,20 +339,27 @@ class PortalResource(object):
 			gis = self.portal_connector.gis
 			portal_connector = self.portal_connector
 			db_connector = self.db_connector
-			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
-			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
-			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			gdf = self.simplify_gdf(gdf)
-			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 			working_dir = Path(self.working_folder)
 			self.prepare_working_dir(working_dir)
-			exported = self.search_by_title()
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
 			self.make_file_gdb(gdb_path)
-			feat_class_name = gdb_path / title
-			out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
+			if self.source['is_simple'] and self.source['has_donut_holes']:
+				table_name = self.source['table_name']
+				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
+				self.export_remote_featureclass(table_name,
+					gdb_path,
+					title)
+			else:
+				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+				gdf = self.simplify_gdf(gdf)
+				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+				feat_class_name = gdb_path / title
+				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
 			zipfile = self.gdb_to_zip(gdb_path)
+			exported = self.search_by_title()
 			exported.update(data=zipfile)
 			published = exported.publish(overwrite=True)
 			os.chdir('../')
