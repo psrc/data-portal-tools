@@ -27,6 +27,8 @@ dataset:
         summary_purpose: County-level estimates of different race groups
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     table_name: TRIBAL_LAND
     sql_query: 

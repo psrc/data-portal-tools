@@ -150,6 +150,8 @@ dataset:
     title: parking_inventory_by_block_group
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: data_portal
     sql_query: null
     table_name: v_parking_by_block_group

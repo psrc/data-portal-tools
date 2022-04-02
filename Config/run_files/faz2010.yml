@@ -67,6 +67,8 @@ dataset:
     title: faz_2010
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: faz_2010

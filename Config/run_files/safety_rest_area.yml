@@ -64,6 +64,8 @@ dataset:
     title: Safety_Rest_Area
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     table_name: safety_rest_area
     sql_query: 

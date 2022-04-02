@@ -31,6 +31,8 @@ dataset:
         update_cadence: 
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: 
     table_name: 
     sql_query: select * from data_portal.macroeconomic('2018 Regional Macroeconomic Forecast')

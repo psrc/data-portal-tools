@@ -147,6 +147,8 @@ dataset:
     title: tracts_2020
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt, OBJECTID, statefp AS statefp20,
       countyfp as countyfp20, countyname, [name] as tract20str, tractce as tract20,

@@ -113,6 +113,8 @@ dataset:
     title: regional_bikeped
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: select bp.OBJECTID, bp.psrc_edge_id, bp.facility_type, ijpf.[value]
       as ij_ped_facilities, jipf.[value] as ji_ped_facilities, bp.sidewalk_notes,

@@ -31,6 +31,8 @@ dataset:
         update_cadence: Roughly every two years
   source:
     is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: 
     table_name: 
     sql_query: "SELECT [household_id]

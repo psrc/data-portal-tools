@@ -44,13 +44,18 @@ dataset:
       organization_name: PSRC
       psrc_website: www.psrc.org
       summary_purpose: summary purpose
+      tech_note_link: nan
+      time_period: '2021'
+      update_cadence: Quarterly
     share_level: everyone
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;
     title: cities_test
   source:
+    has_donut_holes: true
     is_simple: true
+    feature_dataset: political
     schema_name: dbo
     sql_query: null
     table_name: cities

@@ -40,6 +40,8 @@ dataset:
     title: military_bases
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select OBJECTID, name, Shape.STAsText() as Shape_wkt from dbo.military_bases
     table_name: null

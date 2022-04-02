@@ -139,6 +139,8 @@ dataset:
     title: block_groups_2000
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2)
       as statefp00, right(fipsstco, 3) as countyfp00, case fipsstco when '53053' then

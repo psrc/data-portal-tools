@@ -270,6 +270,8 @@ dataset:
     title: at_grade_rail_crossings
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: AG_CROSSINGS_STEP1

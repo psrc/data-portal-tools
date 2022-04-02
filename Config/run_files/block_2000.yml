@@ -142,6 +142,8 @@ dataset:
     title: blocks_2000
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: ' select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp00, countyfp00,
       case countyfp00 when ''053'' then ''Pierce'' when ''033'' then ''King'' when

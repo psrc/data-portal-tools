@@ -31,6 +31,8 @@ dataset:
         update_cadence: Roughly every two years
   source:
     is_simple: True
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: hhsurvey
     table_name: v_vehicles
     sql_query:
