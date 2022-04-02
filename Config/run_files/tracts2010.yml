@@ -133,6 +133,8 @@ dataset:
     title: tracts_2010
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp10, countyfp10,
       case countyfp10 when '053' then 'Pierce' when '033' then 'King' when '035' then

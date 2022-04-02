@@ -91,6 +91,8 @@ dataset:
     title: park_and_ride
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select v.[year], v.[name] as park_and_ride_name, v.[address], v.city_name
       as city, v.zip_code, v.county_name as county, v.subarea, v.capacity, v.occupancy,

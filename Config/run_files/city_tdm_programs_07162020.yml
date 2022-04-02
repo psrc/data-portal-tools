@@ -69,6 +69,8 @@ dataset:
     title: city_tdm_programs_07162020
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: city_tdm_programs_07162020

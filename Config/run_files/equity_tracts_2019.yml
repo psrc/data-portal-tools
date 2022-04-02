@@ -141,6 +141,8 @@ dataset:
     title: equity_tracts_2019
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select * from Elmer.data_portal.equity_tracts(2019)
     table_name: null

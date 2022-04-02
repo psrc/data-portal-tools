@@ -131,6 +131,8 @@ dataset:
     title: block_groups_2020
   source:
     is_simple: false
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt, OBJECTID, statefp AS statefp20,
       countyfp as countyfp20, countyname, tractce as tract20, blkgrpce as bg20, geoid20,

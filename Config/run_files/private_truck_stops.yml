@@ -65,6 +65,8 @@ dataset:
     title: Private_Truck_Stops
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: 
     table_name: private_truck_stop

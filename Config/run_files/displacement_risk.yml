@@ -93,6 +93,8 @@ dataset:
     title: displacement_risk
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: displacement_risk

@@ -165,6 +165,8 @@ dataset:
     title: CTR_Worksites
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: ctr_work_sites_region

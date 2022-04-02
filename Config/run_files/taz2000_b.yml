@@ -27,6 +27,8 @@ dataset:
         summary_purpose: 
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     table_name:  taz2000
     sql_query: 

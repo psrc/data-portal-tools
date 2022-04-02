@@ -27,6 +27,8 @@ dataset:
         summary_purpose: The Region's High-Capacity Transit Lines
   source:
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
     table_name:  HCT_TRANS
     sql_query: 
