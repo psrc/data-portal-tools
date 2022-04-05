@@ -389,7 +389,7 @@ class PortalResource(object):
 
 	def publish_spatial_as_new(self):
 		"""
-		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
+		Export a resource from a geodatabase to a File Geodatabase layer on the data portal.
 		"""
 		try:
 			title = self.resource_properties['title']
@@ -538,8 +538,8 @@ class PortalResource(object):
 	def set_and_update_metadata(self, item):
 		try:
 			metadata_file = r'./workspace/metadata.xml'
-			if not os.path.exists(metadata_file):
-				self.initialize_metadata_file(item)
+			#if not os.path.exists(metadata_file):
+			self.initialize_metadata_file(item)
 			tree = ET.parse(metadata_file)
 			root = tree.getroot()
 			mdContact = root.find('mdContact')
@@ -677,6 +677,8 @@ class PortalResource(object):
 		try:
 			metadata_template = r'./metadata_template.xml'
 			metadata_file = r'./workspace/metadata.xml'
+			if os.path.exists(metadata_file):
+				os.remove(metadata_file)
 			if not os.path.exists(r'./workspace'):
 				os.mkdir(r'./workspace')
 			with open(metadata_template) as f:
