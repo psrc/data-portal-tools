@@ -1,13 +1,11 @@
 dataset:
   layer_params:
-    accessInformation: The cities shapefile includes geographic boundaries for all
-      cities located in King, Snohomish, Pierce, and Kitsap counties. This dataset
-      also includes VISION 2050 regional geography classifications.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
-      constraints: nan
+      assessment: N/A
+      constraints: null
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -42,9 +40,9 @@ dataset:
       - description: Acreage
         title: acres_gis
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
+      tech_note_link: ''
       time_period: '2021'
       update_cadence: Quarterly
     share_level: everyone
@@ -53,9 +51,9 @@ dataset:
     tags: Geographic Boundaries;
     title: cities
   source:
+    feature_dataset: political
+    has_donut_holes: true
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: cities
