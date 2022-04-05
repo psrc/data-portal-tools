@@ -293,6 +293,10 @@ class PortalResource(object):
 			raise
 
 	def prepare_working_dir(self, dir_path):
+		"""
+		remove layers in a geodatabase at dir_path (it if exists,
+		then create a nested directory dir_path/gdb
+		"""
 		try:
 			if os.path.exists(dir_path):
 				files = glob.glob(str(dir_path / '*'))
@@ -329,6 +333,7 @@ class PortalResource(object):
 			arcpy.management.CopyFeatures(remote_fc, out_fc_path)
 
 		except Exception as e:
+			print("error in export_remote_featureclass")
 			print(e.args[0])
 			raise
 
@@ -387,24 +392,29 @@ class PortalResource(object):
 		Export a resource from a geodatabase to a GeoJSON layer on the data portal.
 		"""
 		try:
+			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
 			db_connector = self.db_connector
-			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
-			df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
-			gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-			gdf = self.simplify_gdf(gdf)
-			sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-			res_properties = self.resource_properties
-			res_properties['type'] = 'File Geodatabase'
 			fldr = Path(self.working_folder)
-			#fldr = Path('.') / 'gdb'
 			self.prepare_working_dir(fldr)
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
-			ttl = self.title + '.gdb'
 			self.make_file_gdb(gdb_path)
-			feat_class_name =  gdb_path / self.title
-			feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
+			if self.source['is_simple'] and self.source['has_donut_holes']:
+				table_name = self.source['table_name']
+				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
+				self.export_remote_featureclass(table_name, gdb_path, title)
+			else:
+				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
+				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
+				gdf = self.simplify_gdf(gdf)
+				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
+				ttl = self.title + '.gdb'
+				feat_class_name =  gdb_path / self.title
+				feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
+			res_properties = self.resource_properties
+			res_properties['type'] = 'File Geodatabase'
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
 			params = {"name":self.title}
