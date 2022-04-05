@@ -399,6 +399,7 @@ class PortalResource(object):
 			self.prepare_working_dir(fldr)
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
+			self.make_file_gdb(gdb_path)
 			if self.source['is_simple'] and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
@@ -409,12 +410,11 @@ class PortalResource(object):
 				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
 				gdf = self.simplify_gdf(gdf)
 				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-				res_properties = self.resource_properties
-				res_properties['type'] = 'File Geodatabase'
 				ttl = self.title + '.gdb'
-				self.make_file_gdb(gdb_path)
 				feat_class_name =  gdb_path / self.title
 				feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
+			res_properties = self.resource_properties
+			res_properties['type'] = 'File Geodatabase'
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
 			params = {"name":self.title}
