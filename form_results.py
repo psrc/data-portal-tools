@@ -26,7 +26,9 @@ class FormResults(object):
             # self.path = metadata_dir
             self.form_results_path = in_file_dir + '\\' + in_file_name
             self.shared_column_def_path = shared_column_def_path
-            self.df = pd.read_excel(self.form_results_path, sheet_name=in_sheet_name)
+            self.df = pd.read_excel(self.form_results_path, 
+                            sheet_name=in_sheet_name, 
+                            na_filter=False)
             self.set_column_dict()
             self.config_dir = config_dir
             self.rename_columns()
