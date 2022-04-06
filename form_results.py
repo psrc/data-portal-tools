@@ -97,7 +97,7 @@ class FormResults(object):
                     time_period: '{}'
                     tech_note_link: '{}'
                     update_cadence: '{}'
-        """.format(ser['Title'].replace(' ','_'),
+        """.format(ser['Title'].replace(' ','_').lower(),
                     ser['Tags'],
                     ser['ContactName'],
                     ser['ContactEmail'],
@@ -190,6 +190,7 @@ class FormResults(object):
                 with open(fpath) as file:
                     my_yaml = yaml.load(file, Loader=yaml.FullLoader)
                 y_title = my_yaml['dataset']['layer_params']['title']
+                y_title = y_title.lower()
                 if y_title == target_title:
                     ret_dict = {}
                     ret_dict['filepath'] = fpath
