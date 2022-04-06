@@ -1,12 +1,10 @@
 dataset:
   layer_params:
-    accessInformation: The weigh stations dataset contains all of the truck weigh
-      stations locations, as well as information about parking and amenities at the
-      facilities.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
+      assessment: N/A
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -50,12 +48,20 @@ dataset:
         title: amenities
       - description: (no description)
         title: latlong
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
+      tech_note_link: ''
       time_period: '2020'
       update_cadence: Every few years
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Trucks;Parking;
-    title: Weigh_Stations
+    title: weigh_stations
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: weigh_station
