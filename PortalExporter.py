@@ -534,6 +534,19 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def clean_metadata_string(self, str):
+		"""
+		Clean str of any N/A's or None (NULL) values
+		"""
+		try:
+			out_str = '' if str == 'N/A' else str
+			out_str = '' if out_str is None else out_str
+			return out_str
+
+		except Exception as e:
+			print("error in clean_metadata_string")
+			print(e.args[0])
+			raise
 
 	def set_and_update_metadata(self, item):
 		try:
@@ -617,18 +630,18 @@ class PortalResource(object):
 			voiceNum = ET.SubElement(cntPhone, 'voiceNum').text = self.metadata['contact_phone']
 			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
-
+			#add Description (dataIdInfo/idPurp)
 			abstract = self.metadata['description']
+			abstract = self.clean_metadata_string(abstract)
 			sup_info = self.metadata['assessment']
+			sup_info = self.clean_metadata_string(sup_info)
 			tech_note = self.metadata['tech_note_link'] 
-			tech_note_text = tech_note if not tech_note is None else ''
-			summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note_text)
-			#idAbs = root.find('./dataIdInfo/idAbs')
-			#idAbs.text = self.metadata['description']
-			#idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = self.metadata['summary_purpose']
+			tech_note = self.clean_metadata_string(tech_note)
+			summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
 			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = summary_purpose_val
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
+		
 
 			# Consts = ET.SubElement(resConst, 'Consts')
 			# useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
@@ -745,6 +758,7 @@ class PortalResource(object):
 		try:
 			return_item = "no item"
 			title = self.resource_properties['title']
+			title = title.lower()
 			gis = self.portal_connector.gis
 			layer_type_pred = '; type:File Geodatabase' if self.is_spatial else '; type:CSV'
 			owner_clause = '; owner:{}'.format(gis.users.me.username)
