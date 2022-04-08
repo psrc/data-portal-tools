@@ -28,7 +28,7 @@ def export(config):
 
 		for l in layers:
 			params = config[l]['layer_params']
-			title = params['title'].lower()
+			title = params['title']
 			source = config[l]['source']
 			is_spatial = params['spatial_data']
 			if is_spatial:
@@ -73,7 +73,7 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 #for f in run_files:
-for f in ['cities_test.yml']:
+for f in ['weigh_stations.yml']:
 	os.chdir(root_dir)
 	#if 'census_dp0' in f and f != '_flu.yml' and 'tract' not in f:
 	#if f >= 'private_truck_stops.yml' and f <= 'transit_districts.yml':

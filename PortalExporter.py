@@ -366,7 +366,8 @@ class PortalResource(object):
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
 			exported.update(data=zipfile)
-			published = exported.publish(overwrite=True)
+			params = {"name":self.title}
+			published = exported.publish(publish_parameters=params, overwrite=True)
 			os.chdir('../')
 			self.set_and_update_metadata(published)
 			self.set_editability(published)
@@ -540,6 +541,7 @@ class PortalResource(object):
 		"""
 		try:
 			out_str = '' if str == 'N/A' else str
+			out_str = '' if str == 'nan' else str
 			out_str = '' if out_str is None else out_str
 			return out_str
 
@@ -562,12 +564,18 @@ class PortalResource(object):
 			citRespParty = self.upsert_element(idCitation, 'citRespParty')
 			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
 			rpIndName.text = self.metadata['contact_name']
+			rpOrgName = ET.SubElement(citRespParty, 'rpOrgName')
+			#rpOrgName.text = self.metadata['organization_name']
+			rpOrgName.text = 'Puget Snd Regional Cncl'
+			role = ET.SubElement(citRespParty, 'role')
+			RoleCd = ET.SubElement(role, 'RoleCd')
+			RoleCd.set('value', '006')
 
 			#contact info
 			contact_rpIndName = self.upsert_element(mdContact, 'rpIndName')
 			contact_rpIndName.text = self.metadata['contact_name']
 			rpOrgName = self.upsert_element(mdContact, 'rpOrgName')
-			rpOrgName.text = self.metadata['psrc_website']
+			rpOrgName.text = self.metadata['organization_name']
 			rpCntInfo = self.upsert_element(mdContact, 'rpCntInfo')
 			cntAddress = self.upsert_element(rpCntInfo, 'cntAddress')
 			eMailAdd = self.upsert_element(cntAddress, 'eMailAdd')
@@ -586,11 +594,11 @@ class PortalResource(object):
 			citOnlineRes = self.upsert_element(idCitation, 'citOnlineRes')
 			linkage = self.upsert_element(citOnlineRes, 'linkage', self.metadata['psrc_website'])
 			orName = self.upsert_element(citOnlineRes, 'orName', 'Data on PSRC Webpage')
-			citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
+			#citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
 			#linkageBackground = self.upsert_element(citOnlineResBackground, 
 													# 'linkage', 
 													# self.metadata['tech_note_link'])
-			orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
+			#orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
 
 			#dq_assessment = self.metadata['assessment']
 			#suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
@@ -758,7 +766,6 @@ class PortalResource(object):
 		try:
 			return_item = "no item"
 			title = self.resource_properties['title']
-			title = title.lower()
 			gis = self.portal_connector.gis
 			layer_type_pred = '; type:File Geodatabase' if self.is_spatial else '; type:CSV'
 			owner_clause = '; owner:{}'.format(gis.users.me.username)
