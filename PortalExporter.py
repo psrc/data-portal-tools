@@ -641,12 +641,25 @@ class PortalResource(object):
 			#add Description (dataIdInfo/idPurp)
 			abstract = self.metadata['description']
 			abstract = self.clean_metadata_string(abstract)
-			sup_info = self.metadata['assessment']
+			tech_note_link = self.metadata['tech_note_link']
+			tech_note_link = self.clean_metadata_string(tech_note_link)
+			abstract = abstract + tech_note_link
+			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = abstract
+
+			assessment = self.metadata['assessment']
+			assessment = self.clean_metadata_string(assessment)
+			useLimit = ET.SubElement(consts, 'useLimit').text = assessment
+
+			sup_info = self.metadata['supplemental_info']
 			sup_info = self.clean_metadata_string(sup_info)
-			tech_note = self.metadata['tech_note_link'] 
-			tech_note = self.clean_metadata_string(tech_note)
-			summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
-			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = summary_purpose_val
+			suppInfo = ET.SubElement(dataIdInfo, 'suppInfo').text = sup_info
+
+			data_lineage = self.metadata['data_lineage'] 
+			data_lineage = self.clean_metadata_string(data_lineage)
+			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = data_lineage
+
+
+			# summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
 		

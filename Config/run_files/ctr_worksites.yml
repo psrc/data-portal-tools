@@ -1,15 +1,10 @@
 dataset:
   layer_params:
-    accessInformation: The Commute Trip Reduction (CTR) Worksites dataset contains
-      the locations of CTR worksites in the Region and the mode share of trips for
-      each worksite. These are worksites are participating in WSDOT`s CTR program
-      based on several requirements. These worksites implement CTR strategies and
-      provide survey data to WSDOT to track their CTR implementation strategies and
-      progress. This dataset is based on the 2017-2018 survey data.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
+      assessment: N/A
       contact_city: Seattle
       contact_email: mkoch@psrc.org
       contact_name: Mitch Koch
@@ -21,7 +16,7 @@ dataset:
         (contact: Michael Wandler). The survey data is collected by WSDOT from the
         participating CTR worksites every two years. WDOT provided the data in excel,
         as well as geographic data in GIS shapefiles.'
-      data_source: 'WSDOT CTR program - contact:  Michael Wandler'
+      data_source: WSDOT
       date_last_updated: 11/2019
       description: The Commute Trip Reduction (CTR) Worksites dataset contains the
         locations of CTR worksites in the Region and the mode share of trips for each
@@ -153,9 +148,11 @@ dataset:
         title: Baseline
       - description: (no description)
         title: Shape *
-      psrc_website: nan
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: 2017-2018
       update_cadence: As needed
     share_level: everyone
@@ -164,9 +161,9 @@ dataset:
     tags: Traffic/Congestion;Employment;
     title: CTR_Worksites
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: ctr_work_sites_region

@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: N/A
+      assessment: ''
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -13,7 +13,7 @@ dataset:
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
       data_lineage: WSDOT surveys all weigh stations across the state
-      data_source: WSDOT
+      data_source: Washington State Department of Transportation
       date_last_updated: 01/2020
       description: The weigh stations dataset contains all of the truck weigh stations
         locations, as well as information about parking and amenities at the facilities.
@@ -48,15 +48,17 @@ dataset:
         title: amenities
       - description: (no description)
         title: latlong
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: ''
       time_period: '2020'
       update_cadence: Every few years
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Trucks;Parking;
+    tags: Trucks;Parking;Freight;
     title: weigh_stations
   source:
     feature_dataset: ''

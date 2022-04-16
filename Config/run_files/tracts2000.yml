@@ -1,30 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: "Census tracts are small, relatively permanent statistical\
-      \ subdivisions of a county or equivalent entity, and are reviewed and updated\
-      \ by local participants prior to each decennial census as part of the Census\
-      \ Bureau\u2019s Participant Statistical Areas Program (PSAP). The Census Bureau\
-      \ updates census tracts in situations where no local participant existed or\
-      \ where local or tribal governments declined to participate. The primary purpose\
-      \ of census tracts is to provide a stable set of geographic units for the presentation\
-      \ of decennial census data  and comparison back to previous decennial censuses.\n\
-      Census tracts generally have a population size between 1,200 and 8,000 people\
-      \ with an optimum size of 4,000 people. The spatial size of census tracts varies\
-      \ widely depending on the density of settlement. Ideally, census tract boundaries\
-      \ remain stable over time to facilitate statistical comparisons from census\
-      \ to census. However, physical changes in street patterns caused by highway\
-      \ construction, new development, and so forth, may require boundary revisions.\
-      \ In addition, census tracts occasionally are split due to population growth,\
-      \ or combined as a result of substantial population decline.\nCensus tract boundaries\
-      \ generally follow visible and identifiable features. They may follow legal\
-      \ boundaries such as minor civil division (MCD) or incorporated place boundaries\
-      \ in some states to allow for census tract-to-governmental unit relationships\
-      \ where the governmental boundaries tend to remain unchanged between censuses.\
-      \ State and county boundaries always are census tract boundaries in the standard\
-      \ census geographic hierarchy.\nIn a few rare instances, a census tract may\
-      \ consist of noncontiguous areas. These noncontiguous areas may occur where\
-      \ the census tracts are coextensive with all or parts of legal entities that\
-      \ are themselves noncontiguous. "
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -47,13 +23,25 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: The TIGER/Line Files are shapefiles and related database files
-        (.dbf) that are an extract of selected geographic and cartographic information
-        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
-        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
-        represents a seamless national file with no overlaps or gaps between parts,
-        however, each TIGER/Line File is designed to stand alone as an independent
-        data set, or they can be combined to cover the entire nation.
+      data_lineage: 'Census tracts generally have a population size between 1,200
+        and 8,000 people with an optimum size of 4,000 people. The spatial size of
+        census tracts varies widely depending on the density of settlement. Ideally,
+        census tract boundaries remain stable over time to facilitate statistical
+        comparisons from census to census. However, physical changes in street patterns
+        caused by highway construction, new development, and so forth, may require
+        boundary revisions. In addition, census tracts occasionally are split due
+        to population growth, or combined as a result of substantial population decline.
+
+        Census tract boundaries generally follow visible and identifiable features.
+        They may follow legal boundaries such as minor civil division (MCD) or incorporated
+        place boundaries in some states to allow for census tract-to-governmental
+        unit relationships where the governmental boundaries tend to remain unchanged
+        between censuses. State and county boundaries always are census tract boundaries
+        in the standard census geographic hierarchy.
+
+        In a few rare instances, a census tract may consist of noncontiguous areas.
+        These noncontiguous areas may occur where the census tracts are coextensive
+        with all or parts of legal entities that are themselves noncontiguous. '
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
       description: "Census tracts are small, relatively permanent statistical subdivisions\
@@ -64,23 +52,7 @@ dataset:
         \ local or tribal governments declined to participate. The primary purpose\
         \ of census tracts is to provide a stable set of geographic units for the\
         \ presentation of decennial census data  and comparison back to previous decennial\
-        \ censuses.\nCensus tracts generally have a population size between 1,200\
-        \ and 8,000 people with an optimum size of 4,000 people. The spatial size\
-        \ of census tracts varies widely depending on the density of settlement. Ideally,\
-        \ census tract boundaries remain stable over time to facilitate statistical\
-        \ comparisons from census to census. However, physical changes in street patterns\
-        \ caused by highway construction, new development, and so forth, may require\
-        \ boundary revisions. In addition, census tracts occasionally are split due\
-        \ to population growth, or combined as a result of substantial population\
-        \ decline.\nCensus tract boundaries generally follow visible and identifiable\
-        \ features. They may follow legal boundaries such as minor civil division\
-        \ (MCD) or incorporated place boundaries in some states to allow for census\
-        \ tract-to-governmental unit relationships where the governmental boundaries\
-        \ tend to remain unchanged between censuses. State and county boundaries always\
-        \ are census tract boundaries in the standard census geographic hierarchy.\n\
-        In a few rare instances, a census tract may consist of noncontiguous areas.\
-        \ These noncontiguous areas may occur where the census tracts are coextensive\
-        \ with all or parts of legal entities that are themselves noncontiguous. "
+        \ censuses. "
       fields:
       - description: (no description)
         title: FID
@@ -124,20 +96,27 @@ dataset:
       - description: Default total length of the polygon's perimeter (meters)
         title: Shape__Length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: The TIGER/Line Files are shapefiles and related database
+        files (.dbf) that are an extract of selected geographic and cartographic information
+        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
+        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
+        represents a seamless national file with no overlaps or gaps between parts,
+        however, each TIGER/Line File is designed to stand alone as an independent
+        data set, or they can be combined to cover the entire nation.
       tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
       time_period: 2000-2009
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;Census; Tracts;
     title: tracts_2000
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2)
       as statefp00, right(fipsstco, 3) as countyfp00, case fipsstco when '53053' then

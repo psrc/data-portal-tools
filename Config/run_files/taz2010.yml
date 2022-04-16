@@ -1,18 +1,12 @@
 dataset:
   layer_params:
-    accessInformation: TAZ 2010 shapefile - Traffic Analysis Zones.  TAZs are the
-      geographies used in the travel demand modeling process.  Demographic inputs
-      are supplied at the TAZ level and the resulting model outputs include zone-to-zone
-      trip tables and time or distance matrices.  The TAZ 2010 system has 3700 zones
-      and was constructed using aggregations of 2010 Census Blocks.  It is the current
-      TAZ system.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: This particular shapefile extends out into the water so be aware
+      assessment: 'This particular shapefile extends out into the water so be aware
         that the zonal areas and lengths are not representative of the land area in
-        all cases.  There is another version that has the boundaries clipped at the
-        shoreline - taz2010nowater.shp.
+        all cases.  '
       constraints: null
       contact_city: Seattle
       contact_email: koverby@psrc.org
@@ -23,12 +17,12 @@ dataset:
       contact_zip: 98101
       data_lineage: 'There is no data per se for the TAZ shapefile.  Demographic data,
         model outputs or other can be joined to it for purposes of display or q/c.  '
-      data_source: The TAZs were assembled using aggregations of 2010 Census Blocks.
+      data_source: Puget Sound Regional Council
       date_last_updated: '2010'
-      description: TAZ 2010 shapefile - Traffic Analysis Zones.  TAZs are the geographies
-        used in the travel demand modeling process.  Demographic inputs are supplied
-        at the TAZ level and the resulting model outputs include zone-to-zone trip
-        tables and time or distance matrices.  The TAZ 2010 system has 3700 zones
+      description: TAZ 2010 shapefile - Traffic Analysis Zones boundaries.  TAZs are
+        the geographies used in the travel demand modeling process.  Demographic inputs
+        are supplied at the TAZ level and the resulting model outputs include zone-to-zone
+        trip tables and time or distance matrices.  The TAZ 2010 system has 3700 zones
         and was constructed using aggregations of 2010 Census Blocks.  It is the current
         TAZ system.
       fields:
@@ -45,20 +39,21 @@ dataset:
       - description: zonal perimeter (feet)
         title: Shape_Length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
-      time_period: 2011-2022
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: 2010-2022
       update_cadence: As needed
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;Employment;Population;
+    tags: Geographic Boundaries;Employment;Population;Modeling;
     title: taz_2010
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: taz2010

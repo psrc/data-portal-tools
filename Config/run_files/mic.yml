@@ -1,14 +1,10 @@
 dataset:
   layer_params:
-    accessInformation: This shapefile includes boundaries for the ten designated regional
-      manufacturing/industrial centers, which are locations for more intensive industrial
-      activity. Both regional growth centers and regional manufacturing/industrial
-      centers are focal points for planned growth, economic development and transportation
-      infrastructure investments.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
+      assessment: ''
       constraints: nan
       contact_city: Seattle
       contact_email: DHanson@psrc.org
@@ -24,7 +20,7 @@ dataset:
         manufacturing/industrial centers, which are locations for more intensive industrial
         activity. Both regional growth centers and regional manufacturing/industrial
         centers are focal points for planned growth, economic development and transportation
-        infrastructure investments.
+        infrastructure investments. https://www.psrc.org/centers
       fields:
       - description: (no description)
         title: FID
@@ -47,6 +43,7 @@ dataset:
       organization_name: PSRC
       psrc_website: https://www.psrc.org/centers
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: 'Regional Centers Framework Update: https://www.psrc.org/sites/default/files/final_regional_centers_framework_march_22_version.pdf'
       time_period: '2021'
       update_cadence: As needed
@@ -56,9 +53,9 @@ dataset:
     tags: Geographic Boundaries;Centers/MICs;Industrial Lands;
     title: manufacturing_industrial_centers
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: micen

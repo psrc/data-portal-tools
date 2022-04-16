@@ -1,7 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: This shapefile includes boundaries for all counties in the
-      state of Washington.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -24,7 +23,7 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: nan
+      data_lineage: ''
       data_source: Puget Sound Regional Council
       date_last_updated: 04/2018
       description: This shapefile includes boundaries for all counties in the state
@@ -40,20 +39,21 @@ dataset:
         title: county_name
       - description: A 1 denotes a PSRC county and a 0 denotes a non-PSRC county
         title: psrc
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: 
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;Counties;
     title: county_background
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: COUNTY_BACKGROUND

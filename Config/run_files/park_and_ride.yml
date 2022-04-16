@@ -1,9 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: The Park and Ride database contains data on approximately 220
-      park and ride locations in the Puget Sound region. This dataset includes the
-      name and address of the park and ride, yearly capacity, occupancy and utilization
-      rate data and the data source for each of the locations that are surveyed.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -36,8 +33,7 @@ dataset:
         annual capacity counts and monthly, quarterly, and yearly averages for the
         number of utilized parking spaces. Sound Transit provides monthly counts for
         capacity and utilized parking spaces.
-      data_source: Community Transit, King County Metro Transit, Kitsap Transit, Pierce
-        Transit, and Sound Transit
+      data_source: Puget Sound Regional Council
       date_last_updated: 03/2021
       description: The Park and Ride database contains data on approximately 220 park
         and ride locations in the Puget Sound region. This dataset includes the name
@@ -81,6 +77,7 @@ dataset:
       organization_name: PSRC
       psrc_website: https://www.psrc.org/park-and-ride-database
       summary_purpose: summary purpose
+      supplemental_info: 'Supplemental information for the park and ride data'
       tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
       time_period: 2002-2020
       update_cadence: Every year
@@ -90,9 +87,9 @@ dataset:
     tags: Parking;Traffic/Congestion;
     title: park_and_ride
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select v.[year], v.[name] as park_and_ride_name, v.[address], v.city_name
       as city, v.zip_code, v.county_name as county, v.subarea, v.capacity, v.occupancy,

@@ -1,20 +1,12 @@
 dataset:
   layer_params:
-    accessInformation: 'This shapefile documents the existence of pedestrian and bicycle
-      facilities on minor and principal arterials in the PSRC region according to
-      completeness and facility type. The coding is based on the sidewalk and bicycle
-      facility data provided by local jurisdictions in 2019 and 2020, along with supplementary
-      data from aerial imagery where jurisdictional data was not available. All arterial
-      roadway segments were coded to indicate the presence and completeness of facilities
-      on each side of the road (IJ and JI directions). On-road bicycle facilities
-      were also coded according to facility type. '
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
       assessment: 'The shapefile is based on datasets collected by different agencies,
         so the underlying data collection methodologies differ. Also, the datasets
         were developed between 2015-2020, and so represent different levels of currency. '
-      constraints: null
       contact_city: Seattle
       contact_email: kpearson@psrc.org
       contact_name: Kim Pearson
@@ -22,18 +14,19 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: In May 2019, PSRC conducted a survey of all jurisdictions in the
-        region to learn whether they had available bicycle and/or pedestrian facility
-        data. Based on the survey results, PSRC then collected data from jurisdictions
-        with available data, including digital or static maps. The collected data
-        was used to code all minor and major arterial roadways and shared use paths
-        in the region according to the presence, completeness, and type of facilities.
-        In cases where jurisdictional data was not available or unclear, PSRC used
-        supplementary data from aerial imagery to complete the inventory.
-      data_source: PSRC used jurisdictional data collected in 2019 and 2020, with
+      data_lineage: PSRC used jurisdictional data collected in 2019 and 2020, with
         most datasets produced by the jurisdictions between 2015 and 2019. In cases
         where jurisdictional data was not available or unclear, in 2020 and 2021 PSRC
-        also reviewed Google Maps to collect supplementary aerial data.
+        also reviewed Google Maps to collect supplementary aerial data.In May 2019,
+        PSRC conducted a survey of all jurisdictions in the region to learn whether
+        they had available bicycle and/or pedestrian facility data. Based on the survey
+        results, PSRC then collected data from jurisdictions with available data,
+        including digital or static maps. The collected data was used to code all
+        minor and major arterial roadways and shared use paths in the region according
+        to the presence, completeness, and type of facilities. In cases where jurisdictional
+        data was not available or unclear, PSRC used supplementary data from aerial
+        imagery to complete the inventory.
+      data_source: Puget Sound Regional Council
       date_last_updated: 04/2021
       description: 'This shapefile documents the existence of pedestrian and bicycle
         facilities on minor and principal arterials in the PSRC region according to
@@ -100,8 +93,9 @@ dataset:
       - description: Length of the roadway segment (in feet).
         title: shape_length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
       time_period: 2015-2020

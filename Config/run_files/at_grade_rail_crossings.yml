@@ -1,12 +1,10 @@
 dataset:
   layer_params:
-    accessInformation: The At-Grade Rail Crossings dataset highlights the location
-      of 2,180 roadway/railway crossings across the state that are active, public
-      and at-grade.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
+      assessment: ''
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -258,20 +256,22 @@ dataset:
         title: L1_SC_PREV
       - description: (no description)
         title: FUNCTION_C
-      psrc_website: 
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: 
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: '2016'
       update_cadence: As needed
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Trucks;Traffic/Congestion;Bridges;
+    tags: Trucks;Traffic/Congestion;Bridges;Freight;Rail;
     title: at_grade_rail_crossings
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: AG_CROSSINGS_STEP1

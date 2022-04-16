@@ -1,21 +1,11 @@
 dataset:
   layer_params:
-    accessInformation: This shapefile documents the location of regional shared use
-      path facilities in the PSRC region. The non-motorized facilities (Facility Type
-      11 in TransRefEdges) were originally coded based on information provided by
-      local jurisdictions as part of the 2012 Regional Transportation Plan (RTP),
-      then reviewed and updated as part of the 2018 and 2022 RTP updates. The 2022
-      RTP update used jurisdictional data provided in 2019 and 2020, along with supplementary
-      data from aerial imagery and publicly available documents and maps where jurisdictional
-      data was not available. PSRC determined whether facilities qualified as regional
-      facilities based on whether they met the minimum design criteria and provided
-      connections to regional destinations.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
       assessment: Please note that this inventory does not include data regarding
         the conditions or other qualities of facilities.
-      constraints: null
       contact_city: Seattle
       contact_email: kpearson@psrc.org
       contact_name: Kim Pearson
@@ -23,17 +13,18 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: "In consultation with PSRC\u2019s Bicycle and Pedestrian Advisory\
-        \ Committee, PSRC refined the criteria for shared use facilities on separate\
-        \ rights-of-way to only include shared use paths that afford public access\
-        \ to all active transportation users and provide connections between regional\
-        \ destinations, rather than internal circulation. Please note that this inventory\
-        \ does not include data regarding the conditions or other qualities of facilities."
-      data_source: 'PSRC used jurisdictional data collected in 2019 and 2020, with
-        most datasets produced by the jurisdictions between 2015 and 2019. In cases
-        where jurisdictional data was not available or unclear, in 2020 and 2021 PSRC
-        also collected supplementary data by reviewing aerial data from Google Maps
-        and publicly available documents and maps. '
+      data_lineage: "PSRC used jurisdictional data collected in 2019 and 2020, with\
+        \ most datasets produced by the jurisdictions between 2015 and 2019. In cases\
+        \ where jurisdictional data was not available or unclear, in 2020 and 2021\
+        \ PSRC also collected supplementary data by reviewing aerial data from Google\
+        \ Maps and publicly available documents and maps. In consultation with PSRC\u2019\
+        s Bicycle and Pedestrian Advisory Committee, PSRC refined the criteria for\
+        \ shared use facilities on separate rights-of-way to only include shared use\
+        \ paths that afford public access to all active transportation users and provide\
+        \ connections between regional destinations, rather than internal circulation.\
+        \ Please note that this inventory does not include data regarding the conditions\
+        \ or other qualities of facilities."
+      data_source: Puget Sound Regional Council
       date_last_updated: 08/2021
       description: This shapefile documents the location of regional shared use path
         facilities in the PSRC region. The non-motorized facilities (Facility Type
@@ -71,8 +62,9 @@ dataset:
       - description: (no description)
         title: shape.STLength()
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
       time_period: 2015-2021

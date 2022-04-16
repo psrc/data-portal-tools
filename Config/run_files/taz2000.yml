@@ -1,9 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: The TAZ 2000 shapefile (938 zones for the 4-county region)
-      was zone system for PSRC`s travel modeling efforts until 2011 when there was
-      an expansion to 3700-zones (TAZ 2010).  TAZs are Traffic Analysis Zones and
-      are the geographic unit used by the travel model.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -23,7 +20,7 @@ dataset:
         TAZ 2000 system, but there are occasional discrepancies.  The zones were developed
         by PSRC staff and then reviewed by member jurisdictions who provided feedback
         for the process.
-      data_source: 2000 Census Blocks
+      data_source: Puget Sound Regional Council
       date_last_updated: '2002'
       description: The TAZ 2000 shapefile (938 zones for the 4-county region) was
         zone system for PSRC`s travel modeling efforts until 2011 when there was an
@@ -59,8 +56,9 @@ dataset:
       - description: perimeter (square feet)
         title: Shape__Length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: This TAZ shapefile extends out into the water for all shoreline
         zones, so the area and perimeter fields don`t represent the land area of the
         zone in those cases.  There is another version of this shapefile (taz2000_no_water.shp)
@@ -71,12 +69,12 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Employment;Geographic Boundaries;Population;
+    tags: Employment;Geographic Boundaries;Population;Modeling;
     title: taz_2000
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: taz2000

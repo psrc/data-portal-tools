@@ -1,22 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: 'Block groups are clusters of blocks within the same census
-      tract that have the same first digit of their 4-character census block number
-      from the same decennial census.
-
-      Block groups delineated for the 2010 Census generally contain between 600 and
-      3,000 people. Local participants delineated most block groups as part of the
-      Census Bureau`s Participant Statistical Areas Program (PSAP). The Census Bureau
-      delineated block groups only where a local or tribal government declined to
-      participate or where the Census Bureau could not identify a potential local
-      participant.
-
-      A block group usually covers a contiguous area. Each census tract contains at
-      least one block group and block groups are uniquely numbered within census tract.
-      Within the standard census geographic hierarchy, block groups never cross county
-      or census tract boundaries, but may cross the boundaries of county subdivisions,
-      places, urban areas, voting districts, congressional districts, and American
-      Indian, Alaska Native, and Native Hawaiian areas.'
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -43,25 +27,12 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: The TIGER/Line Files are shapefiles and related database files
-        (.dbf) that are an extract of selected geographic and cartographic information
-        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
-        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
-        represents a seamless national file with no overlaps or gaps between parts,
-        however, each TIGER/Line File is designed to stand alone as an independent
-        data set, or they can be combined to cover the entire nation.
-      data_source: U.S. Census Bureau
-      date_last_updated: 11/2021
-      description: 'Block groups are clusters of blocks within the same census tract
-        that have the same first digit of their 4-character census block number from
-        the same decennial census.
-
-        Block groups delineated for the 2010 Census generally contain between 600
-        and 3,000 people. Local participants delineated most block groups as part
-        of the Census Bureau`s Participant Statistical Areas Program (PSAP). The Census
-        Bureau delineated block groups only where a local or tribal government declined
-        to participate or where the Census Bureau could not identify a potential local
-        participant.
+      data_lineage: 'Block groups delineated for the 2010 Census generally contain
+        between 600 and 3,000 people. Local participants delineated most block groups
+        as part of the Census Bureau`s Participant Statistical Areas Program (PSAP).
+        The Census Bureau delineated block groups only where a local or tribal government
+        declined to participate or where the Census Bureau could not identify a potential
+        local participant.
 
         A block group usually covers a contiguous area. Each census tract contains
         at least one block group and block groups are uniquely numbered within census
@@ -69,6 +40,11 @@ dataset:
         cross county or census tract boundaries, but may cross the boundaries of county
         subdivisions, places, urban areas, voting districts, congressional districts,
         and American Indian, Alaska Native, and Native Hawaiian areas.'
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: Block Group boundaries for 2020. Block groups are clusters of blocks
+        within the same census tract that have the same first digit of their 4-character
+        census block number from the same decennial census.
       fields:
       - description: (no description)
         title: FID
@@ -119,20 +95,26 @@ dataset:
       - description: Default total length of the polygon's perimeter (meters)
         title: Shape__Length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: 'Block groups delineated for the 2010 Census generally contain
+        between 600 and 3,000 people. Local participants delineated most block groups
+        as part of the Census Bureau`s Participant Statistical Areas Program (PSAP).
+        The Census Bureau delineated block groups only where a local or tribal government
+        declined to participate or where the Census Bureau could not identify a potential
+        local participant. '
       tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2020/TGRSHP2020_TechDoc.pdf'
       time_period: 2020-2029
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;Census; Block Groups;
     title: block_groups_2020
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt, OBJECTID, statefp AS statefp20,
       countyfp as countyfp20, countyname, tractce as tract20, blkgrpce as bg20, geoid20,

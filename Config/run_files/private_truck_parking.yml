@@ -51,7 +51,6 @@ dataset:
         title: exit_displ
       - description: (no description)
         title: electrific
-      organization_name: PSRC
       psrc_website: ''
       summary_purpose: summary purpose
       supplemental_info: This data is collected by WSDOT
@@ -60,13 +59,5 @@ dataset:
       update_cadence: Every few years
     share_level: everyone
     snippet: null
-    spatial_data: true
     tags: Trucks;Traffic/Congestion;Parking;
-    title: Private_Truck_Stops
-  source:
-    is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
-    schema_name: dbo
-    sql_query: 
-    table_name: private_truck_stop
+    title: private_truck_parking
