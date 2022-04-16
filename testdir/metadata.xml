@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<metadata xml:lang="en">
+    	
+    <Esri>
+        		
+        <CreaDate />
+        		
+        <CreaTime />
+        		
+        <ModDate />
+        		
+        <ModTime />
+        		
+        <PublishStatus>editor:esri.dijit.metadata.editor</PublishStatus>
+        		
+        <ArcGISFormat>1.0</ArcGISFormat>
+        		
+        <ArcGISstyle>FGDC CSDGM Metadata</ArcGISstyle>
+        		
+        <ArcGISProfile>FGDC</ArcGISProfile>
+        		
+        <MapLyrSync>false</MapLyrSync>
+        	
+    </Esri>
+    	
+    <mdFileID />
+    	
+    <mdChar>
+        		
+        <CharSetCd value="004" />
+        	
+    </mdChar>
+    	
+    <mdContact>
+        		
+        <role>
+            			
+            <RoleCd value="007" />
+            		
+        </role>
+        	
+    <rpIndName>Suzanne Childress</rpIndName><rpOrgName>www.psrc.org</rpOrgName><rpCntInfo><cntAddress><eMailAdd>schildress@psrc.org</eMailAdd><city>Seattle</city><postCode>98104</postCode></cntAddress><cntPhone><voiceNum>(206)464-7536</voiceNum></cntPhone></rpCntInfo></mdContact>
+    	
+    <mdDateSt />
+    	
+    <mdTimeSt />
+    	
+    <dataIdInfo>
+        		
+        <idCitation>
+            			
+            <resTitle>household_travel_survey_households</resTitle>
+            			
+            <citRespParty>
+                				
+                <role>
+                    					
+                    <RoleCd value="006" />
+                    				
+                </role>
+                			
+            <rpIndName>Drew Hanson</rpIndName><rpCntInfo><cntAddress><eMailAdd>DHanson@psrc.org</eMailAdd><delPoint>1011 Western Ave. Ste 500</delPoint><city>Seattle</city><adminArea>Washington</adminArea><postCode>98104</postCode></cntAddress><cntPhone><voiceNum>(206)464-7536</voiceNum></cntPhone><cntOnlineRes><linkage>www.psrc.org</linkage></cntOnlineRes></rpCntInfo><rpIndName>Suzanne Childress</rpIndName><rpCntInfo><cntAddress><eMailAdd>schildress@psrc.org</eMailAdd><delPoint>1011 Western Ave. Ste 500</delPoint><city>Seattle</city><adminArea>Washington</adminArea><postCode>98104</postCode></cntAddress><cntPhone><voiceNum>(206)464-7536</voiceNum></cntPhone><cntOnlineRes><linkage>www.psrc.org</linkage></cntOnlineRes></rpCntInfo></citRespParty>
+            		
+        <otherCitDet>time period: 2017 - 2021</otherCitDet><date><pubDate>2022</pubDate></date><citOnlineRes><linkage>www.psrc.org</linkage><orName>Data on PSRC Webpage</orName></citOnlineRes><citOnlineRes><orName>Additional background information</orName></citOnlineRes></idCitation>
+        		
+        <idAbs />
+        		
+        <idCredit>PSRC's Household Travel Survey program</idCredit>
+        		
+        <dataChar>
+            			
+            <CharSetCd value="004" />
+            		
+        </dataChar>
+        		
+        <searchKeys>
+            			
+            
+            		
+        <keyword /></searchKeys>
+        		
+        <resMaint><usrDefFreq><duration>Roughly every two years</duration></usrDefFreq></resMaint><idPurp>The cities shapefile includes geographic boundaries for all cities located in King, Snohomish, Pierce, and Kitsap counties. This dataset also includes VISION 2050 regional geography classifications.  nan  nan</idPurp><resConst><Consts /></resConst><idPurp>The Households table from the combined 2017, 2019 and 2021 Household Travel Survey  None  </idPurp></dataIdInfo>
+    	
+    <distInfo>
+        		
+        <distTranOps>
+            			
+            <onLineSrc>
+                				
+                <linkage />
+                			
+            </onLineSrc>
+            		
+        </distTranOps>
+        	
+    </distInfo>
+    
+<eainfo><detailed><enttyp><enttypl>city_name</enttypl><enttypd>Name of city</enttypd></enttyp></detailed><detailed><enttyp><enttypl>cnty_name</enttypl><enttypd>Name of county</enttypd></enttyp></detailed><detailed><enttyp><enttypl>city_fips</enttypl><enttypd>Federal Information Processing Standard Publication ID for city</enttypd></enttyp></detailed><detailed><enttyp><enttypl>cnty_fips</enttypl><enttypd>Federal Information Processing Standard Publication ID for county</enttypd></enttyp></detailed><detailed><enttyp><enttypl>feat_type</enttypl><enttypd>Geography type assigned by PSRC</enttypd></enttyp></detailed><detailed><enttyp><enttypl>rgeo_class</enttypl><enttypd>VISION 2050 regional geography ID</enttypd></enttyp></detailed><detailed><enttyp><enttypl>class_desc</enttypl><enttypd>VISION 2050 regional geography description</enttypd></enttyp></detailed><detailed><enttyp><enttypl>acres_gis</enttypl><enttypd>Acreage</enttypd></enttyp></detailed></eainfo><dqInfo><dataLineage><statement>The city boundaries are updated on a quarterly basis using annexation information from OFM (https://ofm.wa.gov/washington-data-research/annexations-and-municipal-boundary-changes). VISION 2050 regional geography classifications were added to the dataset in 2020.</statement></dataLineage></dqInfo><eainfo /><dqInfo><dataLineage><statement>The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach.</statement></dataLineage></dqInfo></metadata>

@@ -12,7 +12,6 @@ dataset:
         are included in the table, an additional suppression is made in any industrial
         category or geography with a single suppressed value, to prevent disclosure
         through subtraction.
-      constraints: this text should be in resource:Constraints:General:Use Limitations
       contact_city: Seattle
       contact_email: ggibson@psrc.org
       contact_name: Grant Gibson
@@ -40,10 +39,8 @@ dataset:
         title: data_year
       - description: (no description)
         title: County
-      - description: U.S. Census tract by which employment estimates are aggregated.
-          Data years 2000-2009 use 2000 Census tracts; years 2010-2020 use 2010 Census
-          tracts.
-        title: Tract
+      - description: (no description)
+        title: City
       - description: 'Construction and Resources: NAICS 11, 21, 23'
         title: Const_Res
       - description: 'Finance, Insurance, and Real Estate Services: NAICS 52-53'
@@ -66,22 +63,21 @@ dataset:
         title: Total
       - description: (no description)
         title: ObjectId
-      organization_name: PSRC
       psrc_website: https://www.psrc.org/covered-employment-estimates
       summary_purpose: summary purpose
-      supplemental_info: ''
+      supplemental_info: Data is received near year end from the State Employment
+        Security Department (ESD) for the first quarter of that same year. Supplemental
+        information from Boeing, Microsoft, OSPI, and governmental units from the
+        same period are collected directly by PSRC and used as distributions of the
+        jobs totals reported by ESD. Duplicates, temporary staffing agencies, ski
+        resorts, out-of-area records, and unlocatable records are removed from the
+        dataset. Major sector employment totals by county from the initial ESD dataset
+        are used as control totals, and applied proportionally to each record`s employment
+        data to arrive at a total matching that of ESD.
       tech_note_link: ''
       time_period: 2000-2020
       update_cadence: Every year
     share_level: everyone
     snippet: null
-    spatial_data: false
     tags: Employment;Jobs;
-    title: covered_employment_by_tract_by_major_sector
-  source:
-    feature_dataset: ''
-    has_donut_holes: false
-    is_simple: true
-    schema_name: employment_summaries
-    sql_query: null
-    table_name: v_covered_employment_by_tract_by_major_sector
+    title: covered_employment_city_by_major_sector

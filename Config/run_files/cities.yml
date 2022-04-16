@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: N/A
+      assessment: ''
       constraints: null
       contact_city: Seattle
       contact_email: DHanson@psrc.org
@@ -42,13 +42,14 @@ dataset:
       organization_name: PSRC
       psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'
       update_cadence: Quarterly
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;Cities;
     title: cities
   source:
     feature_dataset: political

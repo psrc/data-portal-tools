@@ -15,10 +15,10 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: Reached out to local jurisdictions and WSDOT and asked for spatial
-        data and various data field for signalized intersections along the National
-        Highway System.
-      data_source: Local jurisdictions and WSDOT
+      data_lineage: Data was collected by reaching out to local jurisdictions and
+        WSDOT and asking for spatial data and various data field for signalized intersections
+        along the National Highway System.
+      data_source: Puget Sound Regional Council
       date_last_updated: 04/2019
       description: 'This dataset includes all signalized intersections along the National
         Highway System within the PSRC region. For each signalized intersection, there
@@ -58,9 +58,10 @@ dataset:
           in non-visual formats?
         title: ped_signal
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: '2018'
       update_cadence: As needed
     share_level: everyone
@@ -69,9 +70,9 @@ dataset:
     tags: Traffic/Congestion;Transit;
     title: its_signals
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: its_signals

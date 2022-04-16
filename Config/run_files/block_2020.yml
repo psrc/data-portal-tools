@@ -1,28 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: 'Census blocks are statistical areas bounded on all sides by
-      visible features (e.g., streets, roads, streams, and railroad tracks), and by
-      non-visible boundaries (e.g., city, town, township, county limits, and short
-      line-of-sight extensions of streets and roads). Generally, census blocks are
-      small in area (e.g., a block in a city). Census blocks in suburban and rural
-      areas may be large, irregular and bounded by a variety of features (e.g., roads,
-      streams, and/or transmission line rights-of-way). In remote areas, census blocks
-      may encompass hundreds of square miles. Census blocks cover all territory in
-      the United States, Puerto Rico, and the Island areas. Blocks are the smallest
-      geographic areas for which the Census Bureau publishes data from the decennial
-      census. A block may consist of one or more faces.
-
-      Blocks never cross county or census tract boundaries. They do not cross the
-      boundaries of any entity for which the Census Bureau tabulates data, including
-      American Indian, Alaska Native, and Native Hawaiian areas, congressional districts,
-      county subdivisions, places, state legislative districts, urbanized areas, urban
-      clusters, school districts, voting districts, or ZIP Code Tabulation Areas (ZCTAs)
-      or some special administrative areas such as military installations, and national
-      parks and monuments.
-
-      Census 2020 blocks are numbered uniquely within the 2020 boundaries of each
-      state/county/census tract with a 4-character census block number. The first
-      character of the tabulation block number identifies the block group.'
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -30,25 +8,13 @@ dataset:
         files, the Census Bureau has shifted and reshaped most linear features, including
         those that form legal or statistical area boundaries.
 
-        The boundary information in the TIGER/Line Shapefiles is for statistical data
-        collection and tabulation purposes only. Their depiction and designation for
-        statistical purposes does not constitute a determination of jurisdictional
-        authority or rights of ownership or entitlement and they are not legal land
-        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
-        places, but the positional accuracy of these coordinates is not as great as
-        the six decimal places suggest.
-
-        A block number can only be unique by using the decennial census state, county,
-        census tract, and block or STATEFP20 + COUNTYFP20 + TRACTCE20 + BLOCKCE20.
-        There is no consistency in block numbers from census to census.
-
-        A common misunderstanding is that data users think census blocks are used
-        geographically to build all other census geographic areas, rather all other
-        census geographic areas are updated and then used as the primary constraints,
-        along with roads and water features, to delineate the tabulation blocks.  As
-        a result, all 2020 Census blocks nest within every other 2020 Census geographic
-        area, so that Census Bureau statistical data can be tabulated at the block
-        level and aggregated up to the appropriate geographic areas.'
+        The TIGER/Line Files are shapefiles and related database files (.dbf) that
+        are an extract of selected geographic and cartographic information from the
+        U.S. Census Bureau`s Master Address File / Topologically Integrated Geographic
+        Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB represents
+        a seamless national file with no overlaps or gaps between parts, however,
+        each TIGER/Line File is designed to stand alone as an independent data set,
+        or they can be combined to cover the entire nation.'
       constraints: null
       contact_city: Seattle
       contact_email: dhanson@psrc.org
@@ -57,16 +23,7 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: The TIGER/Line Files are shapefiles and related database files
-        (.dbf) that are an extract of selected geographic and cartographic information
-        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
-        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
-        represents a seamless national file with no overlaps or gaps between parts,
-        however, each TIGER/Line File is designed to stand alone as an independent
-        data set, or they can be combined to cover the entire nation.
-      data_source: U.S. Census Bureau
-      date_last_updated: 11/2021
-      description: 'Census blocks are statistical areas bounded on all sides by visible
+      data_lineage: 'Census blocks are statistical areas bounded on all sides by visible
         features (e.g., streets, roads, streams, and railroad tracks), and by non-visible
         boundaries (e.g., city, town, township, county limits, and short line-of-sight
         extensions of streets and roads). Generally, census blocks are small in area
@@ -89,6 +46,9 @@ dataset:
         Census 2020 blocks are numbered uniquely within the 2020 boundaries of each
         state/county/census tract with a 4-character census block number. The first
         character of the tabulation block number identifies the block group.'
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: Census block boundaries for 2020
       fields:
       - description: (no description)
         title: FID
@@ -140,20 +100,44 @@ dataset:
       - description: Default total length of the polygon's perimeter (meters)
         title: Shape__Length
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: 'Estimates of urban and rural populations, housing units,
+        and characteristics reflect boundaries of urban areas defined based on Census
+        2010 data. As a result, data for urban and rural areas from the ACS do not
+        necessarily reflect the results of ongoing urbanization.
+
+        The boundary information in the TIGER/Line Shapefiles is for statistical data
+        collection and tabulation purposes only. Their depiction and designation for
+        statistical purposes does not constitute a determination of jurisdictional
+        authority or rights of ownership or entitlement and they are not legal land
+        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
+        places, but the positional accuracy of these coordinates is not as great as
+        the six decimal places suggest.
+
+        A block number can only be unique by using the decennial census state, county,
+        census tract, and block or STATEFP20 + COUNTYFP20 + TRACTCE20 + BLOCKCE20.
+        There is no consistency in block numbers from census to census.
+
+        A common misunderstanding is that data users think census blocks are used
+        geographically to build all other census geographic areas, rather all other
+        census geographic areas are updated and then used as the primary constraints,
+        along with roads and water features, to delineate the tabulation blocks.  As
+        a result, all 2020 Census blocks nest within every other 2020 Census geographic
+        area, so that Census Bureau statistical data can be tabulated at the block
+        level and aggregated up to the appropriate geographic areas.'
       tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2020/TGRSHP2020_TechDoc.pdf'
       time_period: 2020-2029
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;Census; Blocks;
     title: blocks_2020
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp as statefp20,
       countyfp as countyfp20, countyname, tractce as tract20, blockce as block20,

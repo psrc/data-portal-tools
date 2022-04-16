@@ -1,10 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: This layer represents the urban growth area boundary for King,
-      Snohomish, Pierce, and Kitsap counties. Urban growth areas are determined by
-      each county as mandated under the Growth Management Act (GMA). These are areas
-      where urban growth shall be encouraged and outside of which growth can only
-      occur if it is not urban in nature.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -47,20 +43,21 @@ dataset:
         title: Shape_STAr
       - description: (no description)
         title: Shape_STLe
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: https://mrsc.org/Home/Explore-Topics/Planning/General-Planning-and-Growth-Management/Comprehensive-Planning-Growth-Management.aspx#futuregrowth
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;
+    tags: Geographic Boundaries;UGA; GMA;
     title: urban_growth_area
   source:
-    is_simple: true
     feature_dataset: political
     has_donut_holes: true
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: urban_growth_area

@@ -366,7 +366,8 @@ class PortalResource(object):
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
 			exported.update(data=zipfile)
-			published = exported.publish(overwrite=True)
+			params = {"name":self.title}
+			published = exported.publish(publish_parameters=params, overwrite=True)
 			os.chdir('../')
 			self.set_and_update_metadata(published)
 			self.set_editability(published)
@@ -540,6 +541,7 @@ class PortalResource(object):
 		"""
 		try:
 			out_str = '' if str == 'N/A' else str
+			out_str = '' if str == 'nan' else str
 			out_str = '' if out_str is None else out_str
 			return out_str
 
@@ -562,12 +564,18 @@ class PortalResource(object):
 			citRespParty = self.upsert_element(idCitation, 'citRespParty')
 			rpIndName = ET.SubElement(citRespParty, 'rpIndName')
 			rpIndName.text = self.metadata['contact_name']
+			rpOrgName = ET.SubElement(citRespParty, 'rpOrgName')
+			#rpOrgName.text = self.metadata['organization_name']
+			rpOrgName.text = 'Puget Snd Regional Cncl'
+			role = ET.SubElement(citRespParty, 'role')
+			RoleCd = ET.SubElement(role, 'RoleCd')
+			RoleCd.set('value', '006')
 
 			#contact info
 			contact_rpIndName = self.upsert_element(mdContact, 'rpIndName')
 			contact_rpIndName.text = self.metadata['contact_name']
 			rpOrgName = self.upsert_element(mdContact, 'rpOrgName')
-			rpOrgName.text = self.metadata['psrc_website']
+			rpOrgName.text = self.metadata['organization_name']
 			rpCntInfo = self.upsert_element(mdContact, 'rpCntInfo')
 			cntAddress = self.upsert_element(rpCntInfo, 'cntAddress')
 			eMailAdd = self.upsert_element(cntAddress, 'eMailAdd')
@@ -586,11 +594,11 @@ class PortalResource(object):
 			citOnlineRes = self.upsert_element(idCitation, 'citOnlineRes')
 			linkage = self.upsert_element(citOnlineRes, 'linkage', self.metadata['psrc_website'])
 			orName = self.upsert_element(citOnlineRes, 'orName', 'Data on PSRC Webpage')
-			citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
+			#citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
 			#linkageBackground = self.upsert_element(citOnlineResBackground, 
 													# 'linkage', 
 													# self.metadata['tech_note_link'])
-			orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
+			#orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
 
 			#dq_assessment = self.metadata['assessment']
 			#suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
@@ -633,12 +641,25 @@ class PortalResource(object):
 			#add Description (dataIdInfo/idPurp)
 			abstract = self.metadata['description']
 			abstract = self.clean_metadata_string(abstract)
-			sup_info = self.metadata['assessment']
+			tech_note_link = self.metadata['tech_note_link']
+			tech_note_link = self.clean_metadata_string(tech_note_link)
+			abstract = abstract + tech_note_link
+			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = abstract
+
+			assessment = self.metadata['assessment']
+			assessment = self.clean_metadata_string(assessment)
+			useLimit = ET.SubElement(consts, 'useLimit').text = assessment
+
+			sup_info = self.metadata['supplemental_info']
 			sup_info = self.clean_metadata_string(sup_info)
-			tech_note = self.metadata['tech_note_link'] 
-			tech_note = self.clean_metadata_string(tech_note)
-			summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
-			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = summary_purpose_val
+			suppInfo = ET.SubElement(dataIdInfo, 'suppInfo').text = sup_info
+
+			data_lineage = self.metadata['data_lineage'] 
+			data_lineage = self.clean_metadata_string(data_lineage)
+			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = data_lineage
+
+
+			# summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
 		
@@ -758,7 +779,6 @@ class PortalResource(object):
 		try:
 			return_item = "no item"
 			title = self.resource_properties['title']
-			title = title.lower()
 			gis = self.portal_connector.gis
 			layer_type_pred = '; type:File Geodatabase' if self.is_spatial else '; type:CSV'
 			owner_clause = '; owner:{}'.format(gis.users.me.username)

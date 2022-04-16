@@ -24,7 +24,13 @@ dataset:
         constraints: 'this text should be in resource:Constraints:General:Use Limitations'
         data_lineage: This should be a description of the data collection process?
         assessment: 'This should go in Quality:Data Quality: Report'
+        fields: 
+        organization_name: Puget Sound Regional Council
         summary_purpose: The Region's High-Capacity Transit Lines
+        supplemental_info: 
+        tech_note_link: 
+        time_period: 
+        update_cadence: 
   source:
     is_simple: true
     feature_dataset: ''

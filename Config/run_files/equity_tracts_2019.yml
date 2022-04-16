@@ -20,7 +20,7 @@ dataset:
       contact_zip: 98101
       data_lineage: The Equity Focus Area dataset was developed for the 2022-2050
         Regional Transportation Plan analysis.
-      data_source: 5-Year American Community Survey
+      data_source: American Community Survey
       date_last_updated: December/2021
       description: "The Equity Focus Area dataset identifies the census tracts that\
         \ have concentrations of equity populations above the regional average in\
@@ -131,7 +131,8 @@ dataset:
       organization_name: PSRC
       psrc_website: 'https://www.psrc.org/our-work/rtp '
       summary_purpose: summary purpose
-      tech_note_link: nan
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: 2015-2019
       update_cadence: As needed
     share_level: everyone
@@ -140,9 +141,9 @@ dataset:
     tags: Equity;Population;
     title: equity_tracts_2019
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select * from Elmer.data_portal.equity_tracts(2019)
     table_name: null

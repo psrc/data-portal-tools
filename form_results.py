@@ -92,8 +92,10 @@ class FormResults(object):
                     date_last_updated: '{}'
                     data_lineage: '{}'
                     assessment: '{}'
+                    organization_name: Puget Sound Regional Council
                     psrc_website: '{}'
                     summary_purpose: '{}'
+                    supplemental_info: '{}'
                     time_period: '{}'
                     tech_note_link: '{}'
                     update_cadence: '{}'
@@ -109,6 +111,7 @@ class FormResults(object):
                     ser['Assessment'],
                     ser['Webpage'],
                     'summary purpose',
+                    ser['SupplementalInfo'],
                     ser['TimePeriod'],
                     ser['TechNoteLink'],
                     ser['UpdateCadence']
@@ -138,6 +141,7 @@ class FormResults(object):
             'What is the data source?': 'DataSource',
             'Description of the data collection process': 'DataLineage',
             'Assessment of the data': 'Assessment',
+            'Supplemental Information': 'SupplementalInfo',
             'Internal location of GIS dataset': 'InternalLocation',
             'Category': 'Category',
             'Tags': 'Tags',

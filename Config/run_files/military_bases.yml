@@ -1,7 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: This layer includes boundary locations for all military bases
-      in King, Snohomish, Pierce, and Kitsap counties.
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -19,7 +18,7 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: nan
+      data_lineage: ''
       data_source: Puget Sound Regional Council
       date_last_updated: 01/2017
       description: This layer includes boundary locations for all military bases in
@@ -28,9 +27,10 @@ dataset:
       - description: Name of military base
         title: name
       organization_name: PSRC
-      psrc_website: nan
+      psrc_website: ''
       summary_purpose: summary purpose
-      tech_note_link: nan
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone
@@ -39,9 +39,9 @@ dataset:
     tags: Geographic Boundaries;Military;
     title: military_bases
   source:
-    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: false
     schema_name: null
     sql_query: select OBJECTID, name, Shape.STAsText() as Shape_wkt from dbo.military_bases
     table_name: null

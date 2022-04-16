@@ -1,10 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: The parking Inventory dataset contains the number of parking
-      facilities, number of stalls, lot types, and parking costs of off-street parking,
-      public and private, free, and pay-to-park facilities. Data are available for
-      cities (Bellevue, Bremerton, Everette, Seattle, Tacoma), the University District
-      neighborhood, and three ferry terminals (Bainbridge, Kingston, and Southworth).
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -140,7 +136,8 @@ dataset:
       organization_name: PSRC
       psrc_website: https://www.psrc.org/parking-inventory
       summary_purpose: summary purpose
-      tech_note_link: nan
+      supplemental_info: ''
+      tech_note_link: ''
       time_period: 2002-2018
       update_cadence: 2-5 years
     share_level: everyone
@@ -149,9 +146,9 @@ dataset:
     tags: Parking;
     title: parking_inventory_by_block_group
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: data_portal
     sql_query: null
     table_name: v_parking_by_block_group

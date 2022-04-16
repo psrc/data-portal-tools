@@ -1,10 +1,6 @@
 dataset:
   layer_params:
-    accessInformation: 'Displacement risk is a composite of indicators representing
-      five elements of neighborhood displacement risks: socio-demographics, transportation
-      qualities, neighborhood characteristics, housing, and civic engagement. The
-      data from these five displacement indicators were compiled into a comprehensive
-      index of displacement risk for all census tracts in the region.'
+    accessInformation: null
     allow_edits: false
     licenseInfo: null
     metadata:
@@ -17,16 +13,18 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
-      data_source: American Community Survey (ACS), U.S. Census Bureau; Consolidated
-        Housing Affordability Strategy (CHAS), U.S. Department of Housing & Urban
-        Development (HUD); Google; County elections data; Puget Sound Regional Council.
+      data_lineage: 'Data collected from American Community Survey (ACS), U.S. Census
+        Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
+        of Housing & Urban Development (HUD); Google; County elections data; Puget
+        Sound Regional Council. '
+      data_source: Puget Sound Regional Council
       date_last_updated: '2018'
       description: 'Displacement risk is a composite of indicators representing five
         elements of neighborhood displacement risks: socio-demographics, transportation
         qualities, neighborhood characteristics, housing, and civic engagement. The
         data from these five displacement indicators were compiled into a comprehensive
-        index of displacement risk for all census tracts in the region.'
+        index of displacement risk for all census tracts in the region. Refer to Technical
+        Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
       fields:
       - description: this is a shapefile field for census tract data
         title: FID
@@ -83,18 +81,22 @@ dataset:
       organization_name: PSRC
       psrc_website: https://www.psrc.org/displacement-risk-mapping
       summary_purpose: summary purpose
+      supplemental_info: 'Data collected from American Community Survey (ACS), U.S.
+        Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
+        of Housing & Urban Development (HUD); Google; County elections data; Puget
+        Sound Regional Council. '
       tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
       time_period: '2018'
       update_cadence: Periodically
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Equity;
+    tags: Equity; Census;Displacement Risk
     title: displacement_risk
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
     sql_query: null
     table_name: displacement_risk
