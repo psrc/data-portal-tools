@@ -73,19 +73,8 @@ def export(config):
 run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 #for f in run_files:
-for f in [
-	 	#city_tdm_programs_07162020,
-		#its_signals
-		'ctr_worksites.yml',
-		#'hct_trans.yml',
-		#'private_truck_stops.yml',
-		#'regional_bikeped.yml',
-		#'regional_sups.yml',
-		'safety_rest_area.yml',
-		#'transit_districts.yml',
-		#'weigh_stations.yml'
-		]:
-# for f in ['at_grade_rail_crossings.yml']:
+# for f in [ ]:
+for f in ['employment_summaries_cities_major_sector.yml']:
 	os.chdir(root_dir)
 	#if 'census_dp0' in f and f != '_flu.yml' and 'tract' not in f:
 	#if f >= 'private_truck_stops.yml' and f <= 'transit_districts.yml':

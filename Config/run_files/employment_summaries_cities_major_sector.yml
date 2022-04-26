@@ -79,13 +79,14 @@ dataset:
       organization_name: PSRC
       psrc_website: https://www.psrc.org/covered-employment-estimates
       summary_purpose: summary purpose
+      supplemental_info: ''
       tech_note_link: nan
       time_period: 2000-2020
       update_cadence: Every year
     share_level: everyone
     snippet: null
     spatial_data: false
-    tags: Employment;
+    tags: Employment;NAICS
     title: Covered_Employment_by_City_by_Major_Sector
   source:
     is_simple: true
