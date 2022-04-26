@@ -58,7 +58,7 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Trucks;Parking;Freight;
+    tags: Trucks,Parking,Freight
     title: weigh_stations
   source:
     feature_dataset: ''

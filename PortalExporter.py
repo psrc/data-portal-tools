@@ -8,6 +8,7 @@ import zipfile
 import glob
 import yaml
 import os
+import re
 from shapely import wkt
 from shapely.geometry.polygon import Polygon
 import time
@@ -109,9 +110,12 @@ class PortalResource(object):
 			self.db_connector = db_connector
 			self.params = params
 			self.metadata = params['metadata']
+			tag_string = params['tags']
+			tag_string = tag_string[:-1] if tag_string[-1] in [',',';'] else tag_string		
+			tag_list = re.split('[,;]', tag_string)
 			self.resource_properties = {
 				'title': params['title'],
-				'tags': params['tags'],
+				'tags': tag_list,
 				#'description': params['description'],
 				'snippet': params['snippet'],
 				#'accessInformation': self.metadata['description'],
@@ -365,7 +369,7 @@ class PortalResource(object):
 				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
-			exported.update(data=zipfile)
+			exported.update(data=zipfile, item_properties=self.resource_properties)
 			params = {"name":self.title}
 			published = exported.publish(publish_parameters=params, overwrite=True)
 			os.chdir('../')
@@ -449,7 +453,7 @@ class PortalResource(object):
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
 			exported = self.search_by_title()
-			exported.update(data=csv_name)
+			exported.update(data=csv_name, item_properties=self.resource_properties)
 			params = {"type":"csv","locationType":"none","name":self.title}
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
