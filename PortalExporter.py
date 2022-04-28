@@ -570,7 +570,7 @@ class PortalResource(object):
 			rpIndName.text = self.metadata['contact_name']
 			rpOrgName = ET.SubElement(citRespParty, 'rpOrgName')
 			#rpOrgName.text = self.metadata['organization_name']
-			rpOrgName.text = 'Puget Snd Regional Cncl'
+			rpOrgName.text = 'Puget Sound Regional Council'
 			role = ET.SubElement(citRespParty, 'role')
 			RoleCd = ET.SubElement(role, 'RoleCd')
 			RoleCd.set('value', '006')
