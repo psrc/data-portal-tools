@@ -76,6 +76,7 @@ class FormResults(object):
                 tags: {}
                 allow_edits: False
                 share_level: everyone
+                spatial_data: {}
                 snippet: null
                 accessInformation: null 
                 licenseInfo: null
@@ -99,8 +100,9 @@ class FormResults(object):
                     time_period: '{}'
                     tech_note_link: '{}'
                     update_cadence: '{}'
-        """.format(ser['Title'].replace(' ','_').lower(),
+        """.format(ser['Title'],
                     ser['Tags'],
+                    ser['Spatial Data'],
                     ser['ContactName'],
                     ser['ContactEmail'],
                     ser['ContactPhone'],
@@ -127,7 +129,9 @@ class FormResults(object):
             'Completion time': 'Timestamp',
             'Email': 'Email',
             'Name': 'Name',
-            'Dataset Name': 'Title',
+            'Dataset Name': 'dataset name on form',
+            'Suggested name': 'Title',
+            'spatial_data': 'Spatial Data',
             'Abstract': 'Abstract',
             'Time period covered by the data': 'TimePeriod',
             'Link to PSRC webpage': 'Webpage',
@@ -264,9 +268,9 @@ class FormResults(object):
     def get_title_from_metadata(self, metadata_yaml):
         try:
             title = metadata_yaml['dataset']['layer_params']['title']
-            title = title.replace(' ','_')
-            title = title.replace('-','_')
-            title = title.lower()
+            # title = title.replace(' ','_')
+            # title = title.replace('-','_')
+            # title = title.lower()
             return title
 
         except Exception as e:
