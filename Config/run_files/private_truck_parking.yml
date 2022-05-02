@@ -52,7 +52,7 @@ dataset:
       - description: (no description)
         title: electrific
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: This data is collected by WSDOT
       tech_note_link: ''
       time_period: '2021'

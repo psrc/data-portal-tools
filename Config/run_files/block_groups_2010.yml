@@ -84,7 +84,7 @@ dataset:
         title: SHAPE_Area
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: In 2016, changes were made to the computer and Internet use
         questions, involving the wording as well as the response options. A crosswalk
         was used to map pre-2016 data to the post-2016 categories, enabling creation

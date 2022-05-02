@@ -112,7 +112,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
       time_period: 2000-2009

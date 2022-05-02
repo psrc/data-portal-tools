@@ -80,7 +80,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: https://www.psrc.org/displacement-risk-mapping
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: 'Data collected from American Community Survey (ACS), U.S.
         Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
         of Housing & Urban Development (HUD); Google; County elections data; Puget

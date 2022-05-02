@@ -109,7 +109,7 @@ dataset:
       - description: (no description)
         title: ObjectId
       psrc_website: https://www.psrc.org/covered-employment-estimates
-      summary_purpose: summary purpose
+      summary_purpose: 
       tech_note_link: nan
       time_period: 2000-2020
       update_cadence: Every year

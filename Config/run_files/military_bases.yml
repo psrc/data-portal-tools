@@ -28,7 +28,7 @@ dataset:
         title: name
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'
@@ -36,12 +36,12 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;Military;
-    title: military_bases
+    tags: Geographic Boundaries;Military
+    title: Military_Bases
   source:
     feature_dataset: ''
     has_donut_holes: false
     is_simple: false
     schema_name: null
-    sql_query: select OBJECTID, name, Shape.STAsText() as Shape_wkt from dbo.military_bases
+    sql_query: select OBJECTID, name, Shape.STAsText() as Shape_wkt from dbo.military_bases where psrc=1
     table_name: null

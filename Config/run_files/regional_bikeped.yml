@@ -94,7 +94,7 @@ dataset:
         title: shape_length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'

@@ -42,7 +42,7 @@ dataset:
         title: category
       organization_name: PSRC
       psrc_website: https://www.psrc.org/centers
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: 'Regional Centers Framework Update: https://www.psrc.org/sites/default/files/final_regional_centers_framework_march_22_version.pdf'
       time_period: '2021'

@@ -46,7 +46,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: The boundaries for this FAZ shapefile extend out into the water.  For
         display and calculation purposes it would be better to use another version

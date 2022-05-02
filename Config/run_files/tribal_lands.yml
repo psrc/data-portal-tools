@@ -43,7 +43,7 @@ dataset:
       - description: Acreage
         title: acres
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: 'Data was originally obtained from the Washington Department
         of Transportation. '
       tech_note_link: ''

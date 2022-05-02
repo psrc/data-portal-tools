@@ -43,7 +43,7 @@ dataset:
         title: acres_gis
       organization_name: PSRC
       psrc_website: www.psrc.org
-      summary_purpose: summary purpose
+      summary_purpose: 
       tech_note_link: nan
       time_period: '2021'
       update_cadence: Quarterly

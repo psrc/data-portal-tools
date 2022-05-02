@@ -51,7 +51,7 @@ dataset:
         title: shape.STLength()
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2019'

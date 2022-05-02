@@ -64,7 +64,7 @@ dataset:
       - description: (no description)
         title: ObjectId
       psrc_website: https://www.psrc.org/covered-employment-estimates
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: Data is received near year end from the State Employment
         Security Department (ESD) for the first quarter of that same year. Supplemental
         information from Boeing, Microsoft, OSPI, and governmental units from the

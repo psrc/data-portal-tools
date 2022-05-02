@@ -72,7 +72,7 @@ dataset:
         title: category
       organization_name: PSRC
       psrc_website: https://www.psrc.org/centers
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: The data was originally assembled from various cities and
         counties in the region. If boundary updates occur, PSRC will receive the updated
         boundary file from the city or county and make updates to this file.

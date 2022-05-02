@@ -119,7 +119,8 @@ dataset:
         title: ObjectId
       organization_name: PSRC
       psrc_website: https://www.psrc.org/american-community-survey-2019-one-year-estimates
-      summary_purpose: summary purpose
+      summary_purpose:
+      supplemental_info:
       tech_note_link: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
 
         ACS Technical Documentation: https://www.census.gov/programs-surveys/acs/technical-documentation.html'
@@ -129,7 +130,7 @@ dataset:
     snippet: null
     spatial_data: false
     tags: Population;
-    title: acs_1_year_dp02_2019
+    title: Social_Characteristics_from_ACS_2019_1-year_Data_Profiles
   source:
     is_simple: false
     feature_dataset: ''

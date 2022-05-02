@@ -73,7 +73,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: https://www.psrc.org/sites/default/files/vision-growth-targets-guidance.pdf
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'

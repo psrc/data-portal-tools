@@ -84,7 +84,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: 'The boundary information in the TIGER/Line Shapefiles is
         for statistical data collection and tabulation purposes only. Their depiction
         and designation for statistical purposes does not constitute a determination

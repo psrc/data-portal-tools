@@ -99,7 +99,7 @@ dataset:
         title: ObjectId
       organization_name: PSRC
       psrc_website: https://www.psrc.org/covered-employment-estimates
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: ''
       time_period: 2000-2020

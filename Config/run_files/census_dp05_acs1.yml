@@ -85,7 +85,7 @@ dataset:
         title: ObjectId
       organization_name: PSRC
       psrc_website: https://www.psrc.org/census-and-american-community-survey
-      summary_purpose: summary purpose
+      summary_purpose: 
       tech_note_link: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
 
         ACS Technical Documentation: https://www.census.gov/programs-surveys/acs/technical-documentation.html'

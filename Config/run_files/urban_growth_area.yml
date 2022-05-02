@@ -44,7 +44,7 @@ dataset:
       - description: (no description)
         title: Shape_STLe
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: https://mrsc.org/Home/Explore-Topics/Planning/General-Planning-and-Growth-Management/Comprehensive-Planning-Growth-Management.aspx#futuregrowth
       time_period: '2021'

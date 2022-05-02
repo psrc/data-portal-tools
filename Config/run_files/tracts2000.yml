@@ -97,7 +97,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: The TIGER/Line Files are shapefiles and related database
         files (.dbf) that are an extract of selected geographic and cartographic information
         from the U.S. Census Bureau`s Master Address File / Topologically Integrated

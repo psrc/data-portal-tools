@@ -130,7 +130,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: 'https://www.psrc.org/our-work/rtp '
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: ''
       time_period: 2015-2019

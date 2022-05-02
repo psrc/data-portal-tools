@@ -101,7 +101,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: 'Estimates of urban and rural populations, housing units,
         and characteristics reflect boundaries of urban areas defined based on Census
         2010 data. As a result, data for urban and rural areas from the ACS do not

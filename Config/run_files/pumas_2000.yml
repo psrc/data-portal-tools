@@ -56,7 +56,7 @@ dataset:
       - description: Perimeter of feature
         title: Shape_STLe
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: "The delineation of new PUMAs occurs after the completion\
         \ of the decennial census as part of a program involving the State Data Centers\
         \ (SDCs). Decennial census population counts and updated census tracts are\

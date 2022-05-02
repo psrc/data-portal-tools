@@ -57,7 +57,7 @@ dataset:
         title: Shape__Length
       organization_name: PSRC
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: 
       supplemental_info: ''
       tech_note_link: This TAZ shapefile extends out into the water for all shoreline
         zones, so the area and perimeter fields don`t represent the land area of the
