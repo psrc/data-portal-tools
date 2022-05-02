@@ -94,7 +94,7 @@ class FormResults(object):
                     assessment: '{}'
                     organization_name: Puget Sound Regional Council
                     psrc_website: '{}'
-                    summary_purpose: '{}'
+                    summary_purpose: ''
                     supplemental_info: '{}'
                     time_period: '{}'
                     tech_note_link: '{}'
@@ -110,7 +110,6 @@ class FormResults(object):
                     ser['DataLineage'],
                     ser['Assessment'],
                     ser['Webpage'],
-                    'summary purpose',
                     ser['SupplementalInfo'],
                     ser['TimePeriod'],
                     ser['TechNoteLink'],
