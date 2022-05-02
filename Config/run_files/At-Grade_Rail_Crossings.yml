@@ -268,3 +268,10 @@ dataset:
     spatial_data: true
     tags: Trucks;Traffic/Congestion;Bridges;Freight;Rail;
     title: At-Grade_Rail_Crossings
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: AG_CROSSINGS_STEP1
