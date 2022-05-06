@@ -51,9 +51,9 @@ dataset:
         title: exit_displ
       - description: (no description)
         title: electrific
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: This data is collected by WSDOT
       tech_note_link: ''
       time_period: '2021'
@@ -64,9 +64,9 @@ dataset:
     tags: Trucks;Traffic/Congestion;Parking;
     title: Private_Truck_Stops
   source:
-    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
+    is_simple: true
     schema_name: dbo
-    sql_query: 
-    table_name: private_truck_stop
+    sql_query: null
+    table_name: PRIVATE_TRUCK_STOP

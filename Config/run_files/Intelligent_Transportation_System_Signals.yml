@@ -1,0 +1,77 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: The various datasets received were cross-checked with each other
+        and with other resources to make corrections where necessary and minimize
+        errors.
+      contact_city: Seattle
+      contact_email: gsimonson@psrc.org
+      contact_name: Gary Simonson
+      contact_phone: 206-971-3276
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: Data was collected by reaching out to local jurisdictions and
+        WSDOT and asking for spatial data and various data field for signalized intersections
+        along the National Highway System.
+      data_source: Puget Sound Regional Council
+      date_last_updated: 04/2019
+      description: 'This dataset includes all signalized intersections along the National
+        Highway System within the PSRC region. For each signalized intersection, there
+        are a series of flags associated with different ITS tools. '
+      fields:
+      - description: Owner of the signal
+        title: owner
+      - description: Operator of the signal
+        title: operator
+      - description: City where the signal is located
+        title: city_name
+      - description: County where the signal is located
+        title: cnty_name
+      - description: Specifies whether is in a city or unincorporated county
+        title: jur_type
+      - description: Specifies the Vision classification of the city
+        title: city_class
+      - description: Intersection Street 1
+        title: majorst_1
+      - description: Intersection Street 2
+        title: majorst_2
+      - description: Is it a pretimed signal?
+        title: ts_pretime
+      - description: Is it an actuated signal?
+        title: ts_act_sim
+      - description: Is the signal coordinated with other signals?
+        title: ts_coordin
+      - description: Does the signal have Adaptive Signal Control?
+        title: ts_asc
+      - description: Does the signal have Automated Traffic Signal Performance Measures?
+        title: ts_atspm
+      - description: Does the signal have Transit Signal Priority?
+        title: tsp
+      - description: Does the signal have Emergency Vehicle Pre-emption?
+        title: evp_sim
+      - description: Is the signal an Accessible Pedestrian Signal (APS) that communicates
+          in non-visual formats?
+        title: ped_signal
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: '2018'
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Traffic/Congestion;Transit;
+    title: Intelligent_Transportation_System_Signals
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: its_signals

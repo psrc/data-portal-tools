@@ -10,12 +10,6 @@ dataset:
         have been compiled from other sources. The PSRC does not accept responsibility
         for the quality of third-party data or data contributed by others. Locations
         of all facilities are approximate. '
-      constraints: 'The information contained herein was developed for general regional
-        land use and transportation planning purposes. The users of this information
-        must determine its suitability for any other purpose. Some of this data may
-        have been compiled from other sources. The PSRC does not accept responsibility
-        for the quality of third-party data or data contributed by others. Locations
-        of all facilities are approximate. '
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -43,8 +37,9 @@ dataset:
         title: Shape_STAr
       - description: (no description)
         title: Shape_STLe
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: https://mrsc.org/Home/Explore-Topics/Planning/General-Planning-and-Growth-Management/Comprehensive-Planning-Growth-Management.aspx#futuregrowth
       time_period: '2021'
@@ -53,11 +48,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;UGA; GMA;
-    title: urban_growth_area
+    title: Urban_Growth_Area
   source:
-    feature_dataset: political
-    has_donut_holes: true
     is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
     schema_name: dbo
-    sql_query: null
-    table_name: urban_growth_area
+    sql_query: 
+    table_name: URBAN_GROWTH_AREA

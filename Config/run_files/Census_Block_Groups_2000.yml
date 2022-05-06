@@ -24,7 +24,6 @@ dataset:
         boundaries along the shoreline or just offshore.  The Census Bureau assigned
         a default census tract number of 0 and BG of 0 to these offshore, water-only
         areas not included in regularly numbered census tract areas.'
-      constraints: null
       contact_city: Seattle
       contact_email: dhanson@psrc.org
       contact_name: Drew Hanson
@@ -110,9 +109,9 @@ dataset:
         title: Shape__Area
       - description: Default total length of the polygon's perimeter (meters)
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
       time_period: 2000-2009
@@ -121,15 +120,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Census; Block Groups;
-    title: block_groups_2000
+    title: Census_Block_Groups_2000
   source:
-    feature_dataset: ''
-    has_donut_holes: false
-    is_simple: false
-    schema_name: null
-    sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, left(fipsstco, 2)
-      as statefp00, right(fipsstco, 3) as countyfp00, case fipsstco when '53053' then
-      'Pierce' when '53033' then 'King' when '53035' then 'Kitsap' when '53061' then
-      'Snohomish' end as countyname, tract as tract00, group_ as bg00, tract_bg as
-      tract_bg00, stfid as geoid00, acres from dbo.blockgrp2000_land_only
-    table_name: null
+    feature_dataset: census
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: blockgrp2000_land_only

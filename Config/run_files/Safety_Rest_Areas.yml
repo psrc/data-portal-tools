@@ -53,7 +53,7 @@ dataset:
         title: shape
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: WSDOT collects this data
       tech_note_link: ''
       time_period: '2019'
@@ -62,7 +62,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Trucks;Freight;
-    title: Safety_Rest_Area
+    title: Safety_Rest_Areas
   source:
     feature_dataset: ''
     has_donut_holes: false

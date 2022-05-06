@@ -74,12 +74,12 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 # for f in [ ]:
-# for f in ['.yml']:
+# for f in ['At-Grade_Rail_Crossings.yml']:
 	os.chdir(root_dir)
-	if 'acs_' in f and 'census_dp' not in f:
+	if 'Census_Tracts_' in f and 'Equity' not in f:
 	#if f >= 'private_truck_stops.yml' and f <= 'transit_districts.yml':
 	#f 'hhsurvey_' in f:
-	#if f in [ 'equity_tracts_2019.yml' ]:
+	# if f in [ 'equity_tracts_2019.yml' ]:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)

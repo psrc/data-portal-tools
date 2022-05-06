@@ -273,5 +273,5 @@ dataset:
     has_donut_holes: false
     is_simple: true
     schema_name: dbo
-    sql_query: null
-    table_name: AG_CROSSINGS_STEP1
+    sql_query: 
+    table_name: AG_Crossings_Step1

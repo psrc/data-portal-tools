@@ -51,16 +51,16 @@ dataset:
         title: shape.STLength()
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2019'
       update_cadence: Every 4 years
     share_level: everyone
-    spatial_data: true
     snippet: null
+    spatial_data: true
     tags: Transit;Bike/Ped;
-    title: city_tdm_programs_07162020
+    title: TDM_Programs_by_City
   source:
     is_simple: true
     feature_dataset: ''

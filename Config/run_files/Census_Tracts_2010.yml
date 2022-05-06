@@ -15,7 +15,6 @@ dataset:
         descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
         places, but the positional accuracy of these coordinates is not as great as
         the six decimal places suggest.'
-      constraints: null
       contact_city: Seattle
       contact_email: dhanson@psrc.org
       contact_name: Drew Hanson
@@ -92,9 +91,9 @@ dataset:
         title: Shape__Area
       - description: Default total length of the polygon's perimeter (meters)
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: The TIGER/Line Files are shapefiles and related database
         files (.dbf) that are an extract of selected geographic and cartographic information
         from the U.S. Census Bureau`s Master Address File / Topologically Integrated
@@ -109,14 +108,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Census; Tracts;
-    title: tracts_2010
+    title: Census_Tracts_2010
   source:
-    feature_dataset: ''
-    has_donut_holes: false
-    is_simple: false
-    schema_name: null
-    sql_query: select Shape.STAsText() as Shape_wkt,  OBJECTID, statefp10, countyfp10,
-      case countyfp10 when '053' then 'Pierce' when '033' then 'King' when '035' then
-      'Kitsap' when '061' then 'Snohomish' end as countyname, name10 as tract10str,
-      tractce10 as tract10, geoid10, acres from dbo.tract2010_nowater
-    table_name: null
+    feature_dataset: census
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: tract2010_nowater

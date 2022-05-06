@@ -10,7 +10,6 @@ dataset:
         have been compiled from other sources. The PSRC does not accept responsibility
         for the quality of third-party data or data contributed by others. Locations
         of all facilities are approximate.
-      constraints: this text should be in resource:Constraints:General:Use Limitations
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -26,9 +25,9 @@ dataset:
       fields:
       - description: Name of military base
         title: name
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'
@@ -36,12 +35,12 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;Military
+    tags: Geographic Boundaries;Military;
     title: Military_Bases
   source:
-    feature_dataset: ''
-    has_donut_holes: false
-    is_simple: false
-    schema_name: null
-    sql_query: select OBJECTID, name, Shape.STAsText() as Shape_wkt from dbo.military_bases where psrc=1
-    table_name: null
+    feature_dataset: political
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: military_bases

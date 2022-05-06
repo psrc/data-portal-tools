@@ -7,7 +7,6 @@ dataset:
       assessment: Boundaries extend into the water rather than adhere to the shoreline.  Therefore
         for zones with shoreline the areas don`t represent land areas and are inappropriate
         to use for density or other area-based calculations.
-      constraints: null
       contact_city: Seattle
       contact_email: koverby@psrc.org
       contact_name: Kris Overby
@@ -44,9 +43,9 @@ dataset:
         title: Shape__Area
       - description: perimeter (square feet)
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: The boundaries for this FAZ shapefile extend out into the water.  For
         display and calculation purposes it would be better to use another version
@@ -60,7 +59,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Employment;Population;Modeling;
-    title: faz_2010
+    title: FAZ_2010
   source:
     feature_dataset: ''
     has_donut_holes: false

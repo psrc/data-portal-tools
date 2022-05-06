@@ -10,7 +10,6 @@ dataset:
         \ people of color and a tract with 40% people of color would both be counted\
         \ equally as \u201Cpeople of color EFA,\u201D although there is wide variation\
         \ in their proportionate population. "
-      constraints: null
       contact_city: Seattle
       contact_email: jkim@psrc.org
       contact_name: Jean Kim
@@ -128,9 +127,9 @@ dataset:
         title: Shape__Area
       - description: Length of shape
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/our-work/rtp '
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: 2015-2019
@@ -139,7 +138,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Equity;Population;
-    title: equity_tracts_2019
+    title: Equity_Census_Tracts_2019
   source:
     feature_dataset: ''
     has_donut_holes: false

@@ -8,7 +8,6 @@ dataset:
         3700-zone TAZ 2010 system.  One shortcoming due to a desire to follow the
         arterial grid when creating the 2010 zones is that they don`t nest inside
         the 2000 zone system.
-      constraints: null
       contact_city: Seattle
       contact_email: koverby@psrc.org
       contact_name: Kris Overby
@@ -55,9 +54,9 @@ dataset:
         title: Shape__Area
       - description: perimeter (square feet)
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: This TAZ shapefile extends out into the water for all shoreline
         zones, so the area and perimeter fields don`t represent the land area of the
@@ -70,7 +69,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Employment;Geographic Boundaries;Population;Modeling;
-    title: taz_2000
+    title: Transportation_Analysis_Zones_2000
   source:
     feature_dataset: ''
     has_donut_holes: false

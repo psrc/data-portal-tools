@@ -10,12 +10,6 @@ dataset:
         have been compiled from other sources. The PSRC does not accept responsibility
         for the quality of third-party data or data contributed by others. Locations
         of all facilities are approximate.
-      constraints: The information contained herein was developed for general regional
-        land use and transportation planning purposes. The users of this information
-        must determine its suitability for any other purpose. Some of this data may
-        have been compiled from other sources. The PSRC does not accept responsibility
-        for the quality of third-party data or data contributed by others. Locations
-        of all facilities are approximate.
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -39,8 +33,9 @@ dataset:
         title: county_name
       - description: A 1 denotes a PSRC county and a 0 denotes a non-PSRC county
         title: psrc
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'
@@ -49,7 +44,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Counties;
-    title: county_background
+    title: County_Boundaries
   source:
     feature_dataset: ''
     has_donut_holes: false

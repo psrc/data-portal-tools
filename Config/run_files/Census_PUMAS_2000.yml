@@ -1,0 +1,90 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: The data contained in this product are based on the Census 2000
+        sample. The data summarized from these files are estimates of the actual figures
+        that would have been obtained from a complete count. Estimates derived from
+        the census sample files are expected to differ from the100-percent figures
+        because they are subject to sampling and nonsampling errors. Sampling error
+        in data arises from the selection of people and housing units included in
+        the sample. Nonsampling error affects both sample and 100-percent data and
+        is introduced as a result of errors that may occur during the data collection
+        and processing phases of the census. This chapter provides a detailed discussion
+        of both types of errors and a description of the estimation procedures.In
+        the Public Use Microdata Samples (PUMS), the basic unit is an individual housing
+        unit and the people who live in occupied housing units or group quarters.
+        However, microdata records in these samples do not contain names or addresses.
+      contact_city: Seattle
+      contact_email: eclute@psrc.org
+      contact_name: Eric Clute
+      contact_phone: 206-971-3284
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The Census Bureau defines PUMAs for the tabulation and dissemination
+        of decennial census and American Community Survey (ACS) Public Use Microdata
+        Sample (PUMS) data. Additionally, the ACS and Puerto Rico Community Survey
+        use them to disseminate their respective period estimates.
+      data_source: U.S. Census Bureau
+      date_last_updated: 04/2022
+      description: 'Public Use Microdata Areas (PUMAs) are non-overlapping, statistical
+        geographic areas that partition each state or equivalent entity into geographic
+        areas containing no fewer than 100,000 people each. They cover the entirety
+        of the United States, Puerto Rico, Guam, and the U.S. Virgin Islands. '
+      fields:
+      - description: Internal feature number
+        title: OBJECTID
+      - description: '4-digit PUMA ID '
+        title: puma5
+      - description: 5-character PUMA ID (PUMA5 value + leading zero)
+        title: puma5_id
+      - description: PUMA name. These are not official. Always us PUMA5_ID when referencing
+          PUMS data.
+        title: puma_name
+      - description: Super PUMA ID (character). Super PUMAs have minimum population
+          thresholds of 500,000. Discontinued after 2000.
+        title: puma1_id
+      - description: Same as PUMA5_ID
+        title: puma5str
+      - description: Same as PUMA5
+        title: id
+      - description: Area of feature
+        title: Shape_STAr
+      - description: Perimeter of feature
+        title: Shape_STLe
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: "The delineation of new PUMAs occurs after the completion\
+        \ of the decennial census as part of a program involving the State Data Centers\
+        \ (SDCs). Decennial census population counts and updated census tracts are\
+        \ critical inputs into the delineation process.\nEach microdata file is a\
+        \ stratified sample of the population which was created by subsampling the\
+        \ full census sample (approximately 15.8 percent of all housing units) that\
+        \ received census longform questionnaires. Initial sampling was done address-by-address\
+        \ in order to allow the study of family relationships and housing unit characteristics\
+        \ for occupied and vacant units. Sampling of people in institutions and other\
+        \ group quarters was done on a person-by-person basis.\nThere are two independently\
+        \ drawn samples, designated \u2018\u20185 percent\u2019\u2019 and \u2018\u2018\
+        1 percent,\u2019\u2019 each featuring a different geographic scheme. Nationwide,\
+        \ the Census 2000 5-percent sample provides the user records for over 14 million\
+        \ people and over 5 million housing units. For the 1-percentsample, there\
+        \ are records for over 2.8 million people and over 1 million housing units. "
+      tech_note_link: https://usa.ipums.org/usa/resources/codebooks/2000_PUMS_codebook.pdf
+      time_period: 2000-2009
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;Census;PUMA;
+    title: Census_PUMAS_2000
+  source:
+    is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: dbo
+    table_name: REG00PUMA
+    sql_query: 

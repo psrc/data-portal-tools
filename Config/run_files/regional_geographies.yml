@@ -6,7 +6,6 @@ dataset:
     metadata:
       assessment: 'This dataset currently only includes the regional geographies that
         are inside the Urban Growth Area. '
-      constraints: null
       contact_city: Seattle
       contact_email: dhanson@psrc.org
       contact_name: Drew Hanson
@@ -71,9 +70,9 @@ dataset:
         title: Shape__Area
       - description: (no description)
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/sites/default/files/vision-growth-targets-guidance.pdf
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2021'
@@ -82,11 +81,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;VISION;
-    title: regional_geographies
+    title: Regional_Geographies
   source:
     feature_dataset: ''
     has_donut_holes: false
     is_simple: true
     schema_name: dbo
     sql_query: null
-    table_name: regional_geographies
+    table_name: REGIONAL_GEOGRAPHIES

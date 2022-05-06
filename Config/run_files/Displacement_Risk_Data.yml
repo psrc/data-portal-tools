@@ -5,7 +5,6 @@ dataset:
     licenseInfo: null
     metadata:
       assessment: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
-      constraints: null
       contact_city: Seattle
       contact_email: blee@psrc.org
       contact_name: Brian Lee
@@ -78,9 +77,9 @@ dataset:
         title: Shape__Area
       - description: this is a shapefile field for census tract data
         title: Shape__Length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/displacement-risk-mapping
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: 'Data collected from American Community Survey (ACS), U.S.
         Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
         of Housing & Urban Development (HUD); Google; County elections data; Puget
@@ -92,7 +91,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Equity; Census;Displacement Risk
-    title: displacement_risk
+    title: Displacement_Risk_Data
   source:
     feature_dataset: ''
     has_donut_holes: false

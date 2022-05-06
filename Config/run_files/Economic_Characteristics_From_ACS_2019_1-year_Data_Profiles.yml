@@ -134,10 +134,3 @@ dataset:
     spatial_data: false
     tags: Employment;Income;Population;Census;ACS;ACS1yr;
     title: Economic_Characteristics_From_ACS_2019_1-year_Data_Profiles
-  source:
-    is_simple: false
-    feature_dataset: ''
-    has_donut_holes: false
-    schema_name: null
-    sql_query: select * from data_portal.census_data_profile(2019, 'acs1', 'DP03')
-    table_name: null

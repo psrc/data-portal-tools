@@ -66,4 +66,4 @@ dataset:
     has_donut_holes: false
     schema_name: dbo
     sql_query: null
-    table_name: weigh_station
+    table_name: WEIGH_STATION
