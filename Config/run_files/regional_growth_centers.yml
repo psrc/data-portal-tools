@@ -10,7 +10,6 @@ dataset:
         have been compiled from other sources.  The PSRC does not accept responsibility
         for the quality of third-party data or data contributed by others.  Locations
         of all facilities are approximate.
-      constraints: null
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -70,9 +69,9 @@ dataset:
         title: adoptdate
       - description: Type of center
         title: category
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/centers
-      summary_purpose: summary purpose
+      summary_purpose: ''
       supplemental_info: The data was originally assembled from various cities and
         counties in the region. If boundary updates occur, PSRC will receive the updated
         boundary file from the city or county and make updates to this file.
@@ -83,7 +82,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Centers/MICs;Geographic Boundaries;
-    title: regional_growth_centers
+    title: Regional_Growth_Centers
   source:
     feature_dataset: ''
     has_donut_holes: false

@@ -5,9 +5,6 @@ dataset:
     licenseInfo: null
     metadata:
       assessment: ''
-      constraints: This layer represents tribal reservation boundaries and off-reservation
-        trust lands in King, Snohomish, Pierce, and Kitsap counties. The boundaries
-        are recognized by the U.S. Bureau of Indian Affairs.
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
@@ -42,8 +39,9 @@ dataset:
         title: shape_stle
       - description: Acreage
         title: acres
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: summary purpose
+      summary_purpose: ''
       supplemental_info: 'Data was originally obtained from the Washington Department
         of Transportation. '
       tech_note_link: ''
@@ -53,11 +51,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Tribes;
-    title: tribal_lands
+    title: Tribal_Lands
   source:
+    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
-    is_simple: true
     schema_name: dbo
-    sql_query: null
-    table_name: tribal_land
+    sql_query: 
+    table_name: TRIBAL_LAND

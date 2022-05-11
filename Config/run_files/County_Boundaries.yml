@@ -13,18 +13,26 @@ dataset:
       contact_city: Seattle
       contact_email: DHanson@psrc.org
       contact_name: Drew Hanson
-      contact_phone: 206-971-3269
+      contact_phone: '206-971-3269 '
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
       data_lineage: ''
       data_source: Puget Sound Regional Council
-      date_last_updated: 01/2017
-      description: This layer includes boundary locations for all military bases in
-        King, Snohomish, Pierce, and Kitsap counties.
+      date_last_updated: 04/2018
+      description: This shapefile includes boundaries for all counties in the state
+        of Washington.
       fields:
-      - description: Name of military base
-        title: name
+      - description: (no description)
+        title: perimeter
+      - description: (no description)
+        title: county_cod
+      - description: Federal Information Processing Standard Publication ID for county
+        title: county_fip
+      - description: County name
+        title: county_name
+      - description: A 1 denotes a PSRC county and a 0 denotes a non-PSRC county
+        title: psrc
       organization_name: Puget Sound Regional Council
       psrc_website: ''
       summary_purpose: ''
@@ -35,12 +43,12 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: Geographic Boundaries;Military;
-    title: Military_Bases
+    tags: Geographic Boundaries;Counties;
+    title: County_Boundaries
   source:
-    feature_dataset: political
-    has_donut_holes: true
+    feature_dataset: ''
+    has_donut_holes: false
     is_simple: true
     schema_name: dbo
     sql_query: null
-    table_name: military_bases
+    table_name: COUNTY_BACKGROUND

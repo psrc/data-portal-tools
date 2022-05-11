@@ -1,0 +1,132 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'Since the release of the Census 2000 versions of the TIGER/Line
+        files, the Census Bureau has shifted and reshaped most linear features, including
+        those that form legal or statistical area boundaries.
+
+        The boundary information in the TIGER/Line Shapefiles is for statistical data
+        collection and tabulation purposes only. Their depiction and designation for
+        statistical purposes does not constitute a determination of jurisdictional
+        authority or rights of ownership or entitlement and they are not legal land
+        descriptions. Coordinates in the TIGER/Line shapefiles have six implied decimal
+        places, but the positional accuracy of these coordinates is not as great as
+        the six decimal places suggest.'
+      contact_city: Seattle
+      contact_email: dhanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3277
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: ' Census tracts generally have a population size between 1,200
+        and 8,000 people with an optimum size of 4,000 people. The spatial size of
+        census tracts varies widely depending on the density of settlement. Ideally,
+        census tract boundaries remain stable over time to facilitate statistical
+        comparisons from census to census. However, physical changes in street patterns
+        caused by highway construction, new development, and so forth, may require
+        boundary revisions. In addition, census tracts occasionally are split due
+        to population growth, or combined as a result of substantial population decline.
+
+        Census tract boundaries generally follow visible and identifiable features.
+        They may follow legal boundaries such as minor civil division (MCD) or incorporated
+        place boundaries in some states to allow for census tract-to-governmental
+        unit relationships where the governmental boundaries tend to remain unchanged
+        between censuses. State and county boundaries always are census tract boundaries
+        in the standard census geographic hierarchy.
+
+        In a few rare instances, a census tract may consist of noncontiguous areas.
+        These noncontiguous areas may occur where the census tracts are coextensive
+        with all or parts of legal entities that are themselves noncontiguous. '
+      data_source: U.S. Census Bureau
+      date_last_updated: 11/2021
+      description: "Census tracts are small, relatively permanent statistical subdivisions\
+        \ of a county or equivalent entity, and are reviewed and updated by local\
+        \ participants prior to each decennial census as part of the Census Bureau\u2019\
+        s Participant Statistical Areas Program (PSAP). The Census Bureau updates\
+        \ census tracts in situations where no local participant existed or where\
+        \ local or tribal governments declined to participate. The primary purpose\
+        \ of census tracts is to provide a stable set of geographic units for the\
+        \ presentation of decennial census data  and comparison back to previous decennial\
+        \ censuses. "
+      fields:
+      - description: (no description)
+        title: FID
+      - description: (no description)
+        title: OBJECTID
+      - description: 2020 Census state FIPS code
+        title: statefp
+      - description: 2020 Census county FIPS code
+        title: countyfp
+      - description: County in which the census tract is located
+        title: countyname
+      - description: Census tract identifier; a concatenation of Current state FIPS
+          code, county FIPS code, and census tract code
+        title: tractce
+      - description: 2020 Census tract name, this is the census tract code converted
+          to an integer or integer plus 2- character decimal if the last two characters
+          of the code are not both zeros
+        title: geoid20
+      - description: Current census tract name, this is the census tract code converted
+          to an integer or integer with 2- decimals if the last two characters of
+          the code are not both zeros
+        title: name
+      - description: 2020 Census translated legal/statistical area description and
+          the census tract name
+        title: namelsad
+      - description: MAF/TIGER feature class code (G5020)
+        title: mtfcc
+      - description: 2020 Census funtional status
+        title: funcstat
+      - description: 2020 Census land area (meters)
+        title: aland
+      - description: 2020 Census water area (meters)
+        title: awater
+      - description: (no description)
+        title: alandmi
+      - description: (no description)
+        title: awatermi
+      - description: 2020 Census latitude of the internal point
+        title: intptlat
+      - description: 2020 Census longitude of the internal point
+        title: intptlon
+      - description: X coordinate of the centroid (decimal degrees)
+        title: xcoord
+      - description: Y coordinate of the centroid (decimal degrees)
+        title: ycoord
+      - description: (no description)
+        title: shape_leng
+      - description: (no description)
+        title: acres
+      - description: Default total area of the polygon's perimeter (meters)
+        title: SHAPE_Length
+      - description: Default total length of the polygon's perimeter (meters)
+        title: SHAPE_Area
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: The TIGER/Line Files are shapefiles and related database
+        files (.dbf) that are an extract of selected geographic and cartographic information
+        from the U.S. Census Bureau`s Master Address File / Topologically Integrated
+        Geographic Encoding and Referencing (MAF/TIGER) Database (MTDB). The MTDB
+        represents a seamless national file with no overlaps or gaps between parts,
+        however, each TIGER/Line File is designed to stand alone as an independent
+        data set, or they can be combined to cover the entire nation.
+      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2020/TGRSHP2020_TechDoc.pdf'
+      time_period: 2020-2029
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;Census; Tracts;
+    title: Census_Tracts_2020
+  source:
+    feature_dataset: census
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: tract2020_nowater

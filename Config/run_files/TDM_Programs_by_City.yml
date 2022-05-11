@@ -1,0 +1,70 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'The information was based on best available information as of 07/2020,
+        and the dataset is intended to be a snapshot of TDM programs in Central Puget
+        Sound region cities in 2019. '
+      contact_city: Seattle
+      contact_email: kpearson@psrc.org
+      contact_name: Kim Pearson
+      contact_phone: 480-859-2671
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'The TDM Program Inventory conducted by PSRC in 2019 and 2020,
+        in which PSRC surveyed TDM programs in the region. Local TDM programs, including
+        city, county, transit agency, and other agencies responded to a survey about
+        TDM programs in their jurisdiction. '
+      data_source: Puget Sound Regional Council
+      date_last_updated: 07/2020
+      description: 'This shapefile, based on 2019 data, describes to what extent Central
+        Puget Sound cities have access to TDM programs. The TDM field includes data
+        on whether the city only has access to a county/transit agency TDM program
+        but does not administer its own program; whether the city administers one
+        or more local non-CTR programs; whether the city is CTR affected; or whether
+        the city is both CTR affected and administers its own local non-CTR program. '
+      fields:
+      - description: (no description)
+        title: FID*
+      - description: Name of the city
+        title: city_name
+      - description: "To what extent the city has access to one or more TDM programs:\
+          \ \n\u2022\t1 = Jurisdictions (Cities) that only have access to county/transit\
+          \ agency TDM programs, or another local program IE \u201CNo CTR or Local\
+          \ Program(s)\u201D\n\u2022\t2 = Jurisdictions (Cities) that administer one\
+          \ or more local non-CTR programs and have access to county/transit agency\
+          \ TDM programs IE \u201CLocal Program(s) Only\u201D\n\u2022\t3 = Jurisdictions\
+          \ that are CTR-affected and have access to county/transit agency TDM programs,\
+          \ or another local program IE \u201CCTR Program Only\u201D \n\u2022\t4 =\
+          \ Jurisdictions that are CTR-affected, administer one or more local non-CTR\
+          \ programs, and have access to county/transit agency TDM programs IE \u201C\
+          CTR & Local Program(s)\u201D "
+        title: tdm
+      - description: (no description)
+        title: Shape
+      - description: Area of the city
+        title: Shape.STArea()
+      - description: Length of the permiter of the city
+        title: shape.STLength()
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: '2019'
+      update_cadence: Every 4 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Transit;Bike/Ped;
+    title: TDM_Programs_by_City
+  source:
+    is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: dbo
+    sql_query: null
+    table_name: city_tdm_programs_07162020

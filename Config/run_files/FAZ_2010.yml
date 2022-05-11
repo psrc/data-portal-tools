@@ -1,0 +1,69 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: Boundaries extend into the water rather than adhere to the shoreline.  Therefore
+        for zones with shoreline the areas don`t represent land areas and are inappropriate
+        to use for density or other area-based calculations.
+      contact_city: Seattle
+      contact_email: koverby@psrc.org
+      contact_name: Kris Overby
+      contact_phone: 206-464-6661
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The 2010 FAZs are aggregations of 2010 TAZs which were themselves
+        constructed from 2010 Census Blocks.  The FAZs are similar in structure to
+        the 2000 FAZs with some boundary differences due to the 2010 Block geography.  The
+        original 2000 FAZs were constructed from aggregations of 2000 Census Tracts
+        and were constructed by PSRC staff with input by member jurisdictions.
+      data_source: Puget Sound Regional Council
+      date_last_updated: '2011'
+      description: 'FAZ 2010 - Forecast Analysis Zones boundaries.  These are aggregations
+        of TAZs with each FAZ containing between 1 and 20 TAZ.  There are 219 of them
+        in the 4-county region.  FAZs are the units of the geographic boundary system
+        used by PSRC to model and report its small area Forecasts of Population, Households,
+        and Employment. '
+      fields:
+      - description: FAZ (string)
+        title: faz10
+      - description: FAZ (numeric)
+        title: nfaz10
+      - description: large area FAZ resides within
+        title: large_area
+      - description: county flag
+        title: county
+      - description: general location description
+        title: location
+      - description: global_id
+        title: global_id
+      - description: area (square feet)
+        title: Shape__Area
+      - description: perimeter (square feet)
+        title: Shape__Length
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: The boundaries for this FAZ shapefile extend out into the water.  For
+        display and calculation purposes it would be better to use another version
+        that has its boundaries clipped at the shoreline (faz2010_no_water.shp).  Also
+        although the number of FAZs didn`t change (219) from FAZ 2000 to FAZ 2010,
+        the boundaries changed for some zones due to the transition from TAZ 2000
+        to TAZ 2010 geographies.
+      time_period: 2011-2022
+      update_cadence: Periodically
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Geographic Boundaries;Employment;Population;Modeling;
+    title: FAZ_2010
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: faz_2010

@@ -1,0 +1,117 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: The Puget Sound Regional Council protects confidential employer
+        information through data suppression, as stipulated by ESD. Data from individual
+        employers is not shared; where aggregate employment values represent fewer
+        than three reporting firms, or when a single employer accounts for more than
+        80 percent of jobs, the value is withheld. Additionally, since grand totals
+        are included in the table, an additional suppression is made in any industrial
+        category or geography with a single suppressed value, to prevent disclosure
+        through subtraction.
+      contact_city: Seattle
+      contact_email: ggibson@psrc.org
+      contact_name: Grant Gibson
+      contact_phone: 206-971-3272
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: These employment estimates are based on the Washington State Employment
+        Security Department`s (ESD) Quarterly Census of Employment and Wages (QCEW)
+        series (formerly known as ES-202). This series consists of employment for
+        those firms, organizations and individuals whose employees are covered by
+        the Washington Unemployment Insurance Act. Covered employment excludes self-employed
+        workers, proprietors, CEOs, etc., and other non-insured workers. Typically,
+        covered employment has represented 85-90% of total employment. Note that this
+        includes part-time and temporary employment, and if a worker holds more than
+        one job, each job would appear in the database.
+      data_source: Washington State Employment Security Department (ESD), Boeing,
+        Microsoft, Washington Office of Superintendent of Public Instruction (OSPI)
+      date_last_updated: 07/2021
+      description: Covered Employment Estimates summarize employment from PSRC`s point-level
+        workplace employment dataset. The data represents a census of covered employers
+        within the Puget Sound Region.
+      fields:
+      - description: The year the source data was collected
+        title: data_year
+      - description: (no description)
+        title: County
+      - description: (no description)
+        title: City
+      - description: 'NAICS 11: Agriculture, Forestry, Fishing and Hunting'
+        title: naics_11
+      - description: 'NAICS 21: Mining, Quarrying, and Oil and Gas Extraction'
+        title: naics_21
+      - description: 'NAICS 22: Utilities'
+        title: naics_22
+      - description: 'NAICS 23: Construction'
+        title: naics_23
+      - description: 'NAICS 31: Manufacturing'
+        title: naics_31
+      - description: 'NAICS 32: Manufacturing'
+        title: naics_32
+      - description: 'NAICS 33: Manufacturing'
+        title: naics_33
+      - description: 'NAICS 42: Wholesale Trade'
+        title: naics_42
+      - description: 'NAICS 44: Retail Trade'
+        title: naics_44
+      - description: 'NAICS 45: Retail Trade'
+        title: naics_45
+      - description: 'NAICS 48: Transportation and Warehousing'
+        title: naics_48
+      - description: 'NAICS 49: Transportation and Warehousing'
+        title: naics_49
+      - description: 'NAICS 51: Information'
+        title: naics_51
+      - description: 'NAICS 52: Finance and Insurance'
+        title: naics_52
+      - description: 'NAICS 53: Real Estate and Rental and Leasing'
+        title: naics_53
+      - description: 'NAICS 54: Professional, Scientific, and Technical Services'
+        title: naics_54
+      - description: 'NAICS 55: Management of Companies and Enterprises'
+        title: naics_55
+      - description: 'NAICS 56: Administrative and Support and Waste Management and
+          Remediation Services'
+        title: naics_56
+      - description: 'NAICS 61: Educational Services (private-sector portion)'
+        title: naics_61
+      - description: 'NAICS 62: Health Care and Social Assistance'
+        title: naics_62
+      - description: 'NAICS 71: Arts, Entertainment, and Recreation'
+        title: naics_71
+      - description: 'NAICS 72: Accommodation and Food Services'
+        title: naics_72
+      - description: 'NAICS 81: Other Services (except Public Administration)'
+        title: naics_81
+      - description: Public sector employment, excluding education
+        title: Government
+      - description: 'Public Education: NAICS 61 (public-sector portion)'
+        title: Education
+      - description: Sum total of all covered jobs in a particular city or county
+        title: Total
+      - description: (no description)
+        title: ObjectId
+      organization_name: Puget Sound Regional Council
+      psrc_website: https://www.psrc.org/covered-employment-estimates
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: 2000-2020
+      update_cadence: Every year
+    share_level: everyone
+    snippet: null
+    spatial_data: false
+    tags: Employment;Jobs;
+    title: Covered_Employment_by_City_-_NAICS
+  source:
+    is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: employment_summaries
+    sql_query: null
+    table_name: v_covered_employment_by_city_by_naics2

@@ -10,12 +10,6 @@ dataset:
         include the most overlap. When there are overlapping lots, the counts are
         updated based on the values provided by King County, Kitsap, Pierce, and Community
         before Sound Transit is considered.
-      constraints: There are a number of lots that are reported by multiple agencies
-        - often with slightly different capacity and/or utilization numbers depending
-        on the date of the count. The datasets from King County Metro and Sound Transit
-        include the most overlap. When there are overlapping lots, the counts are
-        updated based on the values provided by King County, Kitsap, Pierce, and Community
-        before Sound Transit is considered.
       contact_city: Seattle
       contact_email: mrichards@psrc.org
       contact_name: Mary Richards
@@ -74,25 +68,22 @@ dataset:
         title: notes
       - description: (no description)
         title: ObjectId
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/park-and-ride-database
-      summary_purpose: summary purpose
-      supplemental_info: 'Supplemental information for the park and ride data'
+      summary_purpose: ''
+      supplemental_info: ''
       tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
       time_period: 2002-2020
       update_cadence: Every year
     share_level: everyone
     snippet: null
-    spatial_data: false
+    spatial_data: true
     tags: Parking;Traffic/Congestion;
-    title: park_and_ride
+    title: Park_and_Ride
   source:
     feature_dataset: ''
     has_donut_holes: false
-    is_simple: false
-    schema_name: null
-    sql_query: select v.[year], v.[name] as park_and_ride_name, v.[address], v.city_name
-      as city, v.zip_code, v.county_name as county, v.subarea, v.capacity, v.occupancy,
-      v.utilization_rate, v.[data_source], v.ownership_status, v.notes from park_and_ride.v_park_and_rides
-      v
-    table_name: null
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: PARK_AND_RIDES

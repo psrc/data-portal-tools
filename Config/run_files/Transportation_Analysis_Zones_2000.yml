@@ -1,0 +1,79 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: This is the old TAZ system which has since been replaced by the
+        3700-zone TAZ 2010 system.  One shortcoming due to a desire to follow the
+        arterial grid when creating the 2010 zones is that they don`t nest inside
+        the 2000 zone system.
+      contact_city: Seattle
+      contact_email: koverby@psrc.org
+      contact_name: Kris Overby
+      contact_phone: 206-464-6661
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 2000 Census Block aggregations were the general basis for the
+        TAZ 2000 system, but there are occasional discrepancies.  The zones were developed
+        by PSRC staff and then reviewed by member jurisdictions who provided feedback
+        for the process.
+      data_source: Puget Sound Regional Council
+      date_last_updated: '2002'
+      description: The TAZ 2000 shapefile (938 zones for the 4-county region) was
+        zone system for PSRC`s travel modeling efforts until 2011 when there was an
+        expansion to 3700-zones (TAZ 2010).  TAZs are Traffic Analysis Zones and are
+        the geographic unit used by the travel model.
+      fields:
+      - description: internal ID number
+        title: OBJECTID
+      - description: TAZ number
+        title: id
+      - description: county flag
+        title: county
+      - description: global_id
+        title: ua90
+      - description: zonal area (square feet)
+        title: area
+      - description: zonal perimeter (feet)
+        title: perimeter
+      - description: area (acres)
+        title: acres
+      - description: TAZ (string format)
+        title: taz
+      - description: old random calculation
+        title: sumdiff_no
+      - description: old random calculation
+        title: sumdiff2x
+      - description: TAZ (numeric format)
+        title: tazn
+      - description: global_id
+        title: global_id
+      - description: area (square feet)
+        title: Shape__Area
+      - description: perimeter (square feet)
+        title: Shape__Length
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: This TAZ shapefile extends out into the water for all shoreline
+        zones, so the area and perimeter fields don`t represent the land area of the
+        zone in those cases.  There is another version of this shapefile (taz2000_no_water.shp)
+        which is clipped at the shoreline which should be used in any density or other
+        area-based calculations.
+      time_period: 2002-2011
+      update_cadence: Periodically
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Employment;Geographic Boundaries;Population;Modeling;
+    title: Transportation_Analysis_Zones_2000
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: taz2000

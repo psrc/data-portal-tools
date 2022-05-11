@@ -7,7 +7,6 @@ dataset:
       assessment: The various datasets received were cross-checked with each other
         and with other resources to make corrections where necessary and minimize
         errors.
-      constraints: this text should be in resource:Constraints:General:Use Limitations
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson
@@ -57,9 +56,9 @@ dataset:
       - description: Is the signal an Accessible Pedestrian Signal (APS) that communicates
           in non-visual formats?
         title: ped_signal
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2018'
@@ -68,7 +67,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Traffic/Congestion;Transit;
-    title: its_signals
+    title: Intelligent_Transportation_System_Signals
   source:
     feature_dataset: ''
     has_donut_holes: false

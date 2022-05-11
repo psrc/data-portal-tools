@@ -1,0 +1,148 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: "One caveat of the analysis method used for the Equity Focus Area\
+        \ (EFA) dataset is that it does not account for the relative proportion of\
+        \ populations of interest within the tracts. For example, a tract with 80%\
+        \ people of color and a tract with 40% people of color would both be counted\
+        \ equally as \u201Cpeople of color EFA,\u201D although there is wide variation\
+        \ in their proportionate population. "
+      contact_city: Seattle
+      contact_email: jkim@psrc.org
+      contact_name: Jean Kim
+      contact_phone: 206-971-3052
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The Equity Focus Area dataset was developed for the 2022-2050
+        Regional Transportation Plan analysis.
+      data_source: American Community Survey
+      date_last_updated: December/2021
+      description: "The Equity Focus Area dataset identifies the census tracts that\
+        \ have concentrations of equity populations above the regional average in\
+        \ King, Kitsap, Pierce, and Snohomish counties. The 2015-2019 U.S. Census\
+        \ Bureau\u2019s 5-year American Community Survey data was analyzed for this\
+        \ dataset. Equity focus populations include people of color, people with low\
+        \ incomes (below 200% of federal poverty level), youth (5-17), older adults\
+        \ (65+), people with disabilities, and people with limited English proficiency\
+        \ (who don`t speak English very well). This dataset was used for the 2022-2050\
+        \ Regional Transportation Plan analysis."
+      fields:
+      - description: Object ID
+        title: OBJECTID
+      - description: Geo ID
+        title: geoid
+      - description: Percentage of people with disability per tract
+        title: pct_disabled
+      - description: Percentage of people with disability in the region (regional
+          average)
+        title: regional_pct_disabled
+      - description: '0=percentage of people with disability per tract is less than
+          50%
+
+          1=percentage of people with disability per tract is higher than 50%'
+        title: equity_disabled_vs_50_pct
+      - description: '0=percentage of people with disability per tract is less than
+          the regional average
+
+          1=percentage of people with disability per tract is higher than the regional
+          average'
+        title: equity_disabled_vs_reg_average
+      - description: Percentage of older adults (age 65+) per tract
+        title: pct_older
+      - description: Percentage of older adults in the region (regional average)
+        title: regional_pct_older
+      - description: '0=percentage of older adults per tract is less than 50%
+
+          1=percentage of older adults per tract is higher than 50%'
+        title: equity_older_vs_50_pct
+      - description: '0=percentage of older adults per tract is less than the regional
+          average
+
+          1=percentage of older adults per tract is higher than the regional average'
+        title: equity_older_vs_reg_average
+      - description: Percentage of people with limited English proficiency per tract
+        title: pct_lep
+      - description: Percentage of people with limited English proficiency in the
+          region (regional average)
+        title: regional_pct_lep
+      - description: '0=percentage of  people with limited English proficiency per
+          tract is less than 50%
+
+          1=percentage of  people with limited English proficiency per tract is higher
+          than 50%'
+        title: equity_lep_vs_50_pct
+      - description: '0=percentage of  people with limited English proficiency per
+          tract is less than the regional average
+
+          1=percentage of  people with limited English proficiency per tract is higher
+          than the regional average'
+        title: equity_lep_vs_reg_average
+      - description: Percentage of people with low incomes (below 200% of federal
+          poverty level) per tract
+        title: pct_poverty
+      - description: Percentage of people with low incomes in the region (regional
+          average)
+        title: regional_pct_poverty
+      - description: '0=percentage of people with low incomes per tract is less than
+          50%
+
+          1=percentage of people with low incomes per tract is higher than 50%'
+        title: equity_poverty_vs_50_pct
+      - description: '0=percentage of people with low incomes per tract is less than
+          the regional average
+
+          1=percentage of people with low incomes per tract is higher than the regional
+          average'
+        title: equity_poverty_vs_reg_average
+      - description: Percentage of people of color per tract
+        title: pct_poc
+      - description: Percentage of people of color in the region (regional average)
+        title: regional_pct_poc
+      - description: '0=percentage of people of color per tract is less than 50%
+
+          1=percentage of people of color per tract is higher than 50%'
+        title: equity_poc_vs_50_pct
+      - description: '0=percentage of people of color per tract is less than the regional
+          average
+
+          1=percentage of people of color per tract is higher than the regional average'
+        title: equity_poc_vs_reg_average
+      - description: Percentage of youth (age 5-17) per tract
+        title: pct_youth
+      - description: Percentage of youth in the region (regional average)
+        title: regional_pct_youth
+      - description: '0=percentage of youth per tract is less than 50%
+
+          1=percentage of youth per tract is higher than 50%'
+        title: equity_youth_vs_50_pct
+      - description: '0=percentage of youth per tract is less than the regional average
+
+          1=percentage of youth per tract is higher than the regional average'
+        title: equity_youth_vs_reg_average
+      - description: Area of shape
+        title: Shape__Area
+      - description: Length of shape
+        title: Shape__Length
+      organization_name: Puget Sound Regional Council
+      psrc_website: 'https://www.psrc.org/our-work/rtp '
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: 2015-2019
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Equity;Population;
+    title: Equity_Census_Tracts_2019
+  source:
+    feature_dataset: ''
+    has_donut_holes: false
+    is_simple: false
+    schema_name: null
+    sql_query: select * from Elmer.data_portal.equity_tracts(2019)
+    table_name: null

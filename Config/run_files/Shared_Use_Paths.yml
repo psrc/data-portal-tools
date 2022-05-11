@@ -61,9 +61,9 @@ dataset:
         title: shape
       - description: (no description)
         title: shape.STLength()
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
@@ -73,7 +73,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Bike/Ped;
-    title: regional_shared_use_paths
+    title: Shared_Use_Paths
   source:
     is_simple: true
     feature_dataset: ''

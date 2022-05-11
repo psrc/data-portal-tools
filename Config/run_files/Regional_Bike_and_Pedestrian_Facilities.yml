@@ -92,9 +92,9 @@ dataset:
         title: fullname
       - description: Length of the roadway segment (in feet).
         title: shape_length
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
@@ -104,7 +104,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Bike/Ped;
-    title: regional_bikeped
+    title: Regional_Bike_and_Pedestrian_Facilities
   source:
     is_simple: false
     feature_dataset: ''

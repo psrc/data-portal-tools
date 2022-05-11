@@ -6,7 +6,6 @@ dataset:
     metadata:
       assessment: For most current data, it is best to check with individual transit
         agencies
-      constraints: nan
       contact_city: Seattle
       contact_email: jkim@psrc.org
       contact_name: Jean Kim
@@ -44,9 +43,9 @@ dataset:
         title: Shape_Leng
       - description: Shape area
         title: Shape_Area
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: '2018'
@@ -55,11 +54,11 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Geographic Boundaries;Transit;
-    title: Transit_Agency_Service_Areas
+    title: Public_Transportation_Benefit_Areas
   source:
+    is_simple: true
     feature_dataset: ''
     has_donut_holes: false
-    is_simple: true
     schema_name: dbo
-    sql_query: null
+    sql_query: 
     table_name: transit_districts

@@ -36,7 +36,6 @@ dataset:
         \ were no changes in the parking (structures or number of spaces) between\
         \ 2013 and 2018. \_ To correct the data that were excluded from the 2018 survey\
         \ counts, 629 parking spots were manually added to this block in the inventory."
-      constraints: this text should be in resource:Constraints:General:Use Limitations
       contact_city: Seattle
       contact_email: mrichards@psrc.org
       contact_name: Mary Richards
@@ -133,9 +132,9 @@ dataset:
         title: average_daily_occupancy_rate
       - description: (no description)
         title: ObjectId
-      organization_name: PSRC
+      organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/parking-inventory
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
       time_period: 2002-2018
@@ -144,7 +143,7 @@ dataset:
     snippet: null
     spatial_data: false
     tags: Parking;
-    title: parking_inventory_by_block_group
+    title: Regional_Parking_Inventory
   source:
     feature_dataset: ''
     has_donut_holes: false

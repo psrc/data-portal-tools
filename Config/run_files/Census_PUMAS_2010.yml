@@ -65,8 +65,9 @@ dataset:
         title: Shape_STAr
       - description: Perimeter of feature
         title: Shape_STLe
+      organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: 
+      summary_purpose: ''
       supplemental_info: 'The delineation of new PUMAs occurs after the completion
         of the decennial census as part of a program involving the State Data Centers
         (SDCs). Decennial census population counts and updated census tracts are critical
@@ -82,5 +83,13 @@ dataset:
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
+    spatial_data: true
     tags: Geographic Boundaries;Census;PUMA;
-    title: pumas_2010
+    title: Census_PUMAS_2010
+  source:
+    is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: dbo
+    table_name: REG10PUMA
+    sql_query: 
