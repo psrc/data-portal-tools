@@ -129,6 +129,10 @@ class PortalResource(object):
 			self.allow_edits = params['allow_edits']
 			self.is_spatial = params['spatial_data']
 			self.source = source
+			if 'fields_to_exclude' in self.source:
+				self.source['fields_to_exclude'] = source['fields_to_exclude'].split(',')
+			else:
+				self.source['fields_to_exclude'] = []
 			# self.organization_name = params['organization_name']
 			# self.constraints = params['constraints']
 		except Exception as e:
@@ -322,19 +326,37 @@ class PortalResource(object):
 			raise
 
 
-	def export_remote_featureclass(self, remote_fc, out_gdb, out_fc_name):
+
+	def export_remote_featureclass(self, 
+					remote_fc, 
+					out_gdb, 
+					out_fc_name,
+					fields_to_exclude=[]
+			):
 		'''
 		params:
-			in_name: String. The name of a featureclass in a remote geodatbase
+			remote_fc: String. The name of a featureclass in a remote geodatbase
 			out_gdb: Path() object. References a file geodatabase
 			out_fc_name: String.  The name of the layer to be exported to out_gdb
+			fields_to_exclude: a list of field names to exlude from out_fc_name
 		'''
 		try:
 			conn_path = self.db_connector.gdb_sde_conn
 			arcpy.env.overwriteOutput = True
 			arcpy.env.workspace = conn_path
 			out_fc_path = str(out_gdb / out_fc_name)
-			arcpy.management.CopyFeatures(remote_fc, out_fc_path)
+			temp_fc = remote_fc + "_temp"
+			arcpy.MakeFeatureLayer_management(remote_fc, temp_fc)
+			fields = arcpy.Describe(temp_fc).fieldInfo
+			for i in range(fields.count):
+				field_name = fields.getFieldName(i)
+				if field_name in fields_to_exclude:
+					fields.setVisible(i, 'HIDDEN')
+			temp_fc2 = temp_fc + '2'
+			arcpy.MakeFeatureLayer_management(temp_fc, 
+											temp_fc2, 
+											field_info=fields)
+			arcpy.management.CopyFeatures(temp_fc2, out_fc_path)
 
 		except Exception as e:
 			print("error in export_remote_featureclass")
@@ -356,9 +378,11 @@ class PortalResource(object):
 			if self.source['is_simple'] and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
+				fields_to_exclude = self.source['fields_to_exclude']
 				self.export_remote_featureclass(table_name,
 					gdb_path,
-					title)
+					title,
+					fields_to_exclude)
 			else:
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
@@ -408,7 +432,8 @@ class PortalResource(object):
 			if self.source['is_simple'] and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
-				self.export_remote_featureclass(table_name, gdb_path, title)
+				fields_to_exclude = self.source['fields_to_exclude']
+				self.export_remote_featureclass(table_name, gdb_path, title, fields_to_exclude)
 			else:
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
