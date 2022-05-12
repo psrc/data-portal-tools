@@ -623,14 +623,6 @@ class PortalResource(object):
 			citOnlineRes = self.upsert_element(idCitation, 'citOnlineRes')
 			linkage = self.upsert_element(citOnlineRes, 'linkage', self.metadata['psrc_website'])
 			orName = self.upsert_element(citOnlineRes, 'orName', 'Data on PSRC Webpage')
-			#citOnlineResBackground = ET.SubElement(idCitation, 'citOnlineRes')
-			#linkageBackground = self.upsert_element(citOnlineResBackground, 
-													# 'linkage', 
-													# self.metadata['tech_note_link'])
-			#orNameBackground = self.upsert_element(citOnlineResBackground, 'orName', 'Additional background information')
-
-			#dq_assessment = self.metadata['assessment']
-			#suppInfo = self.upsert_element(dataIdInfo, 'suppInfo', dq_assessment)
 
 			time_period_text = "time period: {}".format(self.metadata['time_period'])
 			other_details = self.upsert_element(idCitation, 'otherCitDet', time_period_text)
@@ -640,20 +632,13 @@ class PortalResource(object):
 			duration = self.upsert_element(usrDefFreq, 'duration', self.metadata['update_cadence'])
 
 			root.find('./dataIdInfo/idCitation/resTitle').text = self.resource_properties['title']
-			# idCitation = root.find('./dataIdInfo/idCitation')
-			# date = ET.SubElement(idCitation, 'date')
-			# date = idCitation.find('./date')
 			date = self.upsert_element(idCitation, 'date')
 			pubDate = self.upsert_element(date, 'pubDate', self.metadata['date_last_updated'])
-			# pubDate = date.find('./pubDate')
-			# pubDate.text = self.metadata['date_last_updated']
-			# pubDate = ET.SubElement(date, 'pubDate').text = self.metadata['date_last_updated']
 
 			for n in dataIdInfo.findall('resConst'):
 				dataIdInfo.remove(n)
 			resConst = ET.SubElement(dataIdInfo, 'resConst')
 			consts = ET.SubElement(resConst, 'Consts')
-			#useLimit = ET.SubElement(consts, 'useLimit').text = self.metadata['assessment']
 
 			rpCntInfo = ET.SubElement(citRespParty, 'rpCntInfo')
 			cntAddress = ET.SubElement(rpCntInfo, 'cntAddress')
@@ -672,7 +657,7 @@ class PortalResource(object):
 			abstract = self.clean_metadata_string(abstract)
 			tech_note_link = self.metadata['tech_note_link']
 			tech_note_link = self.clean_metadata_string(tech_note_link)
-			abstract = abstract + tech_note_link
+			abstract = abstract + '<br/><br/>' + tech_note_link
 			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = abstract
 
 			assessment = self.metadata['assessment']
