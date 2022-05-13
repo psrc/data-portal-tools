@@ -109,6 +109,10 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.db_connector = db_connector
 			self.params = params
+			if 'groups' in params:
+				self.params['groups'] = params['groups'].split(';')
+			else:
+				self.params['groups'] = []
 			self.metadata = params['metadata']
 			tag_string = params['tags']
 			tag_string = tag_string[:-1] if tag_string[-1] in [',',';'] else tag_string		
@@ -364,6 +368,28 @@ class PortalResource(object):
 			raise
 
 
+	def get_group_ids(self):
+		"""
+		Returns a list of ID's of any groups in self.gis
+		that are included in self.params['groups'].
+		"""
+
+		try:
+			gis = self.portal_connector.gis
+			groups = self.params['groups']
+			group_ids = []
+			for grp in gis.groups.search(query=""):
+				if grp.title in groups:
+					group_ids.append(grp.id)
+			return group_ids
+
+		except Exception as e:
+			print("error in get_group_ids")
+			print(e.args[0])
+			raise
+
+
+
 	def republish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -399,6 +425,8 @@ class PortalResource(object):
 			os.chdir('../')
 			self.set_and_update_metadata(published)
 			self.set_editability(published)
+			share_group_ids = self.get_group_ids()
+			layer_shared = published.share(everyone=True,groups=share_group_ids)
 
 		except Exception as e:
 			print(e.args[0])
@@ -452,7 +480,8 @@ class PortalResource(object):
 			os.chdir('../')
 			self.set_and_update_metadata(layer)
 			self.set_editability(layer)
-			layer_shared = layer.share(everyone=True)
+			share_group_ids = self.get_group_ids()
+			layer_shared = layer.share(everyone=True,groups=share_group_ids)
 
 		except Exception as e:
 			print(e.args[0])
@@ -773,10 +802,11 @@ class PortalResource(object):
 	def share(self, layer):
 		try:
 			sl = self.share_level
+			share_group_ids = self.get_group_ids()
 			if sl == 'everyone':
-				layer.share(everyone=True)
+				layer.share(everyone=True,groups=share_group_ids)
 			elif sl == 'org':
-				layer.share(everyone=False, org=True)
+				layer.share(everyone=False, org=True,groups=share_group_ids)
 		except Exception as e:
 			print(e.args[0])
 			raise
