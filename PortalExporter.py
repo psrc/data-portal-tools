@@ -420,7 +420,7 @@ class PortalResource(object):
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
 			exported.update(data=zipfile, item_properties=self.resource_properties)
-			params = {"name":self.title}
+			params = {"name":self.title, 'targetSR':{'wkid':2285}}
 			published = exported.publish(publish_parameters=params, overwrite=True)
 			os.chdir('../')
 			self.set_and_update_metadata(published)
@@ -475,7 +475,7 @@ class PortalResource(object):
 			res_properties['type'] = 'File Geodatabase'
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
-			params = {"name":self.title}
+			params = {"name":self.title, 'targetSR':{'wkid':2285}}
 			layer = exported.publish(publish_parameters=params)
 			os.chdir('../')
 			self.set_and_update_metadata(layer)
