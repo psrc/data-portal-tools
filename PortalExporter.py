@@ -132,6 +132,10 @@ class PortalResource(object):
 			self.share_level = params['share_level']
 			self.allow_edits = params['allow_edits']
 			self.is_spatial = params['spatial_data']
+			if 'params' not in params.keys():
+				self.srid = {'wkid':2285}
+			else:
+				self.srid = {'wkid':int(params['srid'])}
 			self.source = source
 			if 'fields_to_exclude' in self.source:
 				self.source['fields_to_exclude'] = source['fields_to_exclude'].split(',')
@@ -420,7 +424,7 @@ class PortalResource(object):
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
 			exported.update(data=zipfile, item_properties=self.resource_properties)
-			params = {"name":self.title, 'targetSR':{'wkid':2285}}
+			params = {"name":self.title, 'targetSR':self.srid}
 			published = exported.publish(publish_parameters=params, overwrite=True)
 			os.chdir('../')
 			self.set_and_update_metadata(published)
@@ -475,7 +479,7 @@ class PortalResource(object):
 			res_properties['type'] = 'File Geodatabase'
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
-			params = {"name":self.title, 'targetSR':{'wkid':2285}}
+			params = {"name":self.title, 'targetSR':self.srid}
 			layer = exported.publish(publish_parameters=params)
 			os.chdir('../')
 			self.set_and_update_metadata(layer)
