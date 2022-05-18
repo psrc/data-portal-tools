@@ -51,8 +51,8 @@ dataset:
     title: Urban_Growth_Area
   source:
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'political'
+    has_donut_holes: true
     schema_name: dbo
     sql_query: 
     table_name: URBAN_GROWTH_AREA
