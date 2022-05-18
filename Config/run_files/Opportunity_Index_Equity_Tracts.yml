@@ -31,8 +31,8 @@ dataset:
     title: Opportunity_Index_Equity_Tracts
   source:
     is_simple: true
-    has_donut_holes: false
-    feature_dtaset: equity
+    has_donut_holes: true
+    feature_dataset: equity
     schema_name: dbo
     table_name: equity_tracts
     sql_query: 

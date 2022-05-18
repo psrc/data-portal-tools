@@ -270,6 +270,7 @@ dataset:
     title: At_Grade_Rail_Crossings
   source:
     feature_dataset: ''
+    fields_to_exclude: USDOT_NU_1,NUMBER_OF1,NUMBER_O_1,RTU_,ROAD_MARKI,ROAD_MAR_1,ROAD_MAR_2,ROAD_MAR_3,RELFECTORI,RELFECTO_1,RELFECTO_2,RELFECTO_3,REFLECTORI,REFLECTO_1,REFLECTO_2,REFLECTO_3
     has_donut_holes: false
     is_simple: true
     schema_name: dbo

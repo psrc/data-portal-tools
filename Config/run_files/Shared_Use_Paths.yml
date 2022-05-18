@@ -76,8 +76,8 @@ dataset:
     title: Shared_Use_Paths
   source:
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: transportation_nonmotorized
+    has_donut_holes: true
     schema_name: dbo
     sql_query: null
     table_name: REGIONAL_SUPS

@@ -57,8 +57,8 @@ dataset:
     title: Public_Transportation_Benefit_Areas
   source:
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'transportation_transit'
+    has_donut_holes: true
     schema_name: dbo
     sql_query: 
     table_name: transit_districts
