@@ -108,7 +108,8 @@ dataset:
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Census & Demographics
+    spatial_data: True
     tags: Geographic Boundaries;Census; Blocks;
     title: Census_Blocks_2010
   source:

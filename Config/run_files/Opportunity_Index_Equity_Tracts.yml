@@ -26,7 +26,8 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content
+    spatial_data: True
     tags: portal,opportunity,equity
     title: Opportunity_Index_Equity_Tracts
   source:

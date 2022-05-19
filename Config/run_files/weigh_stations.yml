@@ -57,7 +57,8 @@ dataset:
       update_cadence: Every few years
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Trucks;Parking;Freight;
     title: Weigh_Stations
   source:

@@ -77,7 +77,8 @@ dataset:
       update_cadence: Every year
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Parking;Traffic/Congestion;
     title: Park_and_Ride
   source:

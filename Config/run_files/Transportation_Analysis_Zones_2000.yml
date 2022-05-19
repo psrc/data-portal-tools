@@ -67,7 +67,8 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Forecasts and Projections
+    spatial_data: True
     tags: Employment;Geographic Boundaries;Population;Modeling;
     title: Transportation_Analysis_Zones_2000
   source:

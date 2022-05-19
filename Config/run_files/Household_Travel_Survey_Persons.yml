@@ -3,6 +3,7 @@ dataset:
     title: Household_Travel_Survey_Persons
     tags: portal, household travel survey
     allow_edits: False
+    groups: PSRC Data Portal Content
     spatial_data: False
     share_level: everyone
     snippet: Persons table from PSRC's Household Travel Survey, years 2017 and 2019

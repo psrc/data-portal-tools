@@ -60,7 +60,8 @@ dataset:
       update_cadence: Every few years
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Trucks;Traffic/Congestion;Parking;
     title: Private_Truck_Stops
   source:

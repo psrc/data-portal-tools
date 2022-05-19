@@ -52,7 +52,8 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Geographic Boundaries;Transit;
     title: Public_Transportation_Benefit_Areas
   source:

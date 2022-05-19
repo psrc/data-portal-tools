@@ -49,6 +49,7 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
+    groups: hub- GIS;PSRC Data Portal Content;hub- Equity
     spatial_data: true
     tags: Geographic Boundaries;Tribes;
     title: Tribal_Lands

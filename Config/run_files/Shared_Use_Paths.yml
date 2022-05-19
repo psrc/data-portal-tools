@@ -71,7 +71,8 @@ dataset:
       update_cadence: Every 4 years
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Bike/Ped;
     title: Shared_Use_Paths
   source:

@@ -158,7 +158,8 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Traffic/Congestion;Employment;
     title: Commute_Trip_Reduction_Worksites
   source:

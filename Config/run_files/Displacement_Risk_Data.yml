@@ -89,7 +89,8 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Equity
+    spatial_data: True
     tags: Equity; Census;Displacement Risk
     title: Displacement_Risk_Data
   source:

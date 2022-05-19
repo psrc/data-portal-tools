@@ -26,7 +26,8 @@ dataset:
       update_cadence: 
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Employment;
     title: Transit_Stops_2018_RTP
   source:

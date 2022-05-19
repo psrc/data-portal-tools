@@ -46,7 +46,8 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Land Use Data
+    spatial_data: True
     tags: Geographic Boundaries;UGA; GMA;
     title: Urban_Growth_Area
   source:

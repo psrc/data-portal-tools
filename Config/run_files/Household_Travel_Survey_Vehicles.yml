@@ -3,6 +3,7 @@ dataset:
     title: Household_Travel_Survey_Vehicles
     tags: portal, household travel survey
     allow_edits: False
+    groups: PSRC Data Portal Content
     spatial_data: False
     share_level: everyone
     snippet: Vehicles table from PSRC's Household Travel Survey, years 2017, 2019 and 2021
