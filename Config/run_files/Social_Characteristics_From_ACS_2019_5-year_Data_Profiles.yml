@@ -26,7 +26,7 @@ dataset:
         formerly surveyed via the decennial census long-form sample. '
       data_source: American Community Survey
       date_last_updated: 12/2020
-      description: 'This dataset contains ACS 1y estimates for selected social characteristics
+      description: 'This dataset contains ACS 5y estimates for selected social characteristics
         of the population. Topics include education, marital status, relationships,
         fertility, etc. The data are available at a range of geographic levels in
         Washington and within the 4-county PSRC region (King, Kitsap, Pierce, and

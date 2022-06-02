@@ -82,8 +82,8 @@ dataset:
     tags: Parking;Traffic/Congestion;
     title: Park_and_Ride
   source:
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'transportation_roadways'
+    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null
