@@ -600,11 +600,17 @@ class PortalResource(object):
 	def clean_metadata_string(self, str):
 		"""
 		Clean str of any N/A's or None (NULL) values
+		  and wrap any HTTP links in <a> tags
 		"""
 		try:
 			out_str = '' if str == 'N/A' else str
 			out_str = '' if str == 'nan' else str
 			out_str = '' if out_str is None else out_str
+			# url_pattern regex cribbed from guillaumepiot's gist at https://gist.github.com/guillaumepiot/4539986
+			url_pattern =  re.compile(r"(?i)((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]+[^\.\s])", re.MULTILINE|re.UNICODE)
+			out_str = url_pattern.sub(r'<a href="\1" target="_blank">\1</a>', out_str)
+			mailto_pattern = re.compile(r"([\w\-\.]+@(\w[\w\-]+\.)+[\w\-]+)", re.MULTILINE|re.UNICODE)
+			out_str = mailto_pattern.sub(r'<a href="mailto:\1">\1</a>', out_str)
 			return out_str
 
 		except Exception as e:
