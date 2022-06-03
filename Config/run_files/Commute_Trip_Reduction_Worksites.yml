@@ -2,6 +2,7 @@ dataset:
   layer_params:
     accessInformation: null
     allow_edits: false
+    groups: 'hub- GIS;hub- Transportation;PSRC Data Portal Content'
     licenseInfo: null
     metadata:
       assessment: N/A
@@ -157,12 +158,13 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Traffic/Congestion;Employment;
-    title: Commute_Trip_Reduction_(CTR)_Worksites
+    title: Commute_Trip_Reduction_Worksites
   source:
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: transportation_tdm
+    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

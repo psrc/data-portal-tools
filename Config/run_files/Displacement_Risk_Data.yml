@@ -89,12 +89,13 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Equity
+    spatial_data: True
     tags: Equity; Census;Displacement Risk
     title: Displacement_Risk_Data
   source:
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'equity'
+    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

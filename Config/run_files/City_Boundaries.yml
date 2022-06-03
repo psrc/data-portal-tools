@@ -47,7 +47,8 @@ dataset:
       update_cadence: Quarterly
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content
+    spatial_data: True
     tags: Geographic Boundaries;Cities;
     title: City_Boundaries
   source:

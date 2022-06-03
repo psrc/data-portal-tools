@@ -3,6 +3,7 @@ dataset:
     title: high_capacity_transit
     tags: portal, hct, transit, transportation
     allow_edits: False
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
     spatial_data: True
     share_level: everyone
     snippet: 

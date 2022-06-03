@@ -60,7 +60,8 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Trucks;Freight;
     title: Safety_Rest_Areas
   source:

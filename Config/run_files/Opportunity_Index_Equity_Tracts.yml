@@ -26,13 +26,14 @@ dataset:
       update_cadence: As needed
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content
+    spatial_data: True
     tags: portal,opportunity,equity
     title: Opportunity_Index_Equity_Tracts
   source:
     is_simple: true
-    has_donut_holes: false
-    feature_dtaset: equity
+    has_donut_holes: true
+    feature_dataset: equity
     schema_name: dbo
     table_name: equity_tracts
     sql_query: 

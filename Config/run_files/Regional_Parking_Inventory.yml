@@ -141,7 +141,8 @@ dataset:
       update_cadence: 2-5 years
     share_level: everyone
     snippet: null
-    spatial_data: false
+    groups: PSRC Data Portal Content;hub- Transportation
+    spatial_data: False
     tags: Parking;
     title: Regional_Parking_Inventory
   source:

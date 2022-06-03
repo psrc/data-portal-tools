@@ -1,8 +1,9 @@
 dataset:
   layer_params:
-    title: macroeconomic_forecast_2018
+    title: Macroeconomic_Forecast_2018
     tags: data portal, macroeconomic
     allow_edits: False
+    groups: PSRC Data Portal Content;hub- Forecasts and Projections
     spatial_data: False
     share_level: owner
     snippet: Macroeconomic Forecast (2018)

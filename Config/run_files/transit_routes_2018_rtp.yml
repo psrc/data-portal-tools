@@ -26,13 +26,14 @@ dataset:
       update_cadence: 
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Employment;
     title: Transit_Routes_2018_RTP
   source:
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'rtp_2022'
+    has_donut_holes: true
     schema_name: dbo
     sql_query: null
     table_name: transit_routes_2018_rtp

@@ -73,7 +73,7 @@ dataset:
     snippet: null
     spatial_data: true
     tags: Bike/Ped;
-    title: regional_shared_use_paths
+    title: Regional_Shared_Use_Paths
   source:
     is_simple: true
     feature_dataset: ''

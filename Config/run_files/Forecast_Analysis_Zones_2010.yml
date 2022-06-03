@@ -57,12 +57,13 @@ dataset:
       update_cadence: Periodically
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Forecasts and Projections
+    spatial_data: True
     tags: Geographic Boundaries;Employment;Population;Modeling;
-    title: FAZ_2010
+    title: Forecast_Analysis_Zones_2010
   source:
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'forecast'
+    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

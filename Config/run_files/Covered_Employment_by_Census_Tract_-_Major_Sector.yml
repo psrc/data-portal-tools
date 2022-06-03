@@ -74,7 +74,8 @@ dataset:
       update_cadence: Every year
     share_level: everyone
     snippet: null
-    spatial_data: false
+    groups: PSRC Data Portal Content;hub- Economy
+    spatial_data: False
     tags: Employment;Jobs;
     title: Covered_Employment_by_Census_Tract_-_Major_Sector
   source:

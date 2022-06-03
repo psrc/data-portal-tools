@@ -77,12 +77,13 @@ dataset:
       update_cadence: Every year
     share_level: everyone
     snippet: null
-    spatial_data: true
+    groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
+    spatial_data: True
     tags: Parking;Traffic/Congestion;
     title: Park_and_Ride
   source:
-    feature_dataset: ''
-    has_donut_holes: false
+    feature_dataset: 'transportation_roadways'
+    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null
