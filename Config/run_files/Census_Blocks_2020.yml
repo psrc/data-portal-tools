@@ -22,27 +22,12 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: 'Census blocks are statistical areas bounded on all sides by visible
-        features (e.g., streets, roads, streams, and railroad tracks), and by non-visible
-        boundaries (e.g., city, town, township, county limits, and short line-of-sight
-        extensions of streets and roads). Generally, census blocks are small in area
-        (e.g., a block in a city). Census blocks in suburban and rural areas may be
-        large, irregular and bounded by a variety of features (e.g., roads, streams,
-        and/or transmission line rights-of-way). In remote areas, census blocks may
-        encompass hundreds of square miles. Census blocks cover all territory in the
-        United States, Puerto Rico, and the Island areas. Blocks are the smallest
-        geographic areas for which the Census Bureau publishes data from the decennial
-        census. A block may consist of one or more faces.
-
-        Blocks never cross county or census tract boundaries. They do not cross the
-        boundaries of any entity for which the Census Bureau tabulates data, including
-        American Indian, Alaska Native, and Native Hawaiian areas, congressional districts,
-        county subdivisions, places, state legislative districts, urbanized areas,
-        urban clusters, school districts, voting districts, or ZIP Code Tabulation
-        Areas (ZCTAs) or some special administrative areas such as military installations,
-        and national parks and monuments.
-
-        Census 2020 blocks are numbered uniquely within the 2020 boundaries of each
+      data_lineage: 'Census blocks, the smallest geographic area for which the Bureau of 
+        the Census collects and tabulates decennial census data, are formed by streets, 
+        roads, railroads, streams and other bodies of water, other visible physical and 
+        cultural features, and the legal boundaries shown on Census Bureau maps.
+      
+        Census 2000 blocks are numbered uniquely within the 2010 boundaries of each
         state/county/census tract with a 4-character census block number. The first
         character of the tabulation block number identifies the block group.'
       data_source: U.S. Census Bureau

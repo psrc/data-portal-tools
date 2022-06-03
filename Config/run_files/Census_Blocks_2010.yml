@@ -14,10 +14,14 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: may encompass hundreds of square miles. Census blocks cover all
-        territory in the United States, Puerto Rico, and the Island areas. Blocks
-        are the smallest geographic areas for which the Census Bureau publishes data
-        from the decennial census. A block may consist of one or more faces.
+      data_lineage: 'Census blocks, the smallest geographic area for which the Bureau of 
+        the Census collects and tabulates decennial census data, are formed by streets, 
+        roads, railroads, streams and other bodies of water, other visible physical and 
+        cultural features, and the legal boundaries shown on Census Bureau maps.
+
+        Census 2000 blocks are numbered uniquely within the 2010 boundaries of each
+        state/county/census tract with a 4-character census block number. The first
+        character of the tabulation block number identifies the block group.'
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
       description: Census block boundaries for 2010
