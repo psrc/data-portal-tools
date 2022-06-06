@@ -64,7 +64,7 @@ dataset:
     title: TDM_Programs_by_City
   source:
     is_simple: true
-    feature_dataset: ''
+    feature_dataset: transportation_tdm
     has_donut_holes: false
     schema_name: dbo
     sql_query: null

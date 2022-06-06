@@ -70,7 +70,7 @@ dataset:
     tags: Traffic/Congestion;Transit;
     title: Intelligent_Transportation_System_Signals
   source:
-    feature_dataset: ''
+    feature_dataset: transportation_roadways
     has_donut_holes: false
     is_simple: true
     schema_name: dbo
