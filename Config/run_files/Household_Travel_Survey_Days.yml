@@ -3,7 +3,7 @@ dataset:
     title: Household_Travel_Survey_Days
     tags: portal, household travel survey
     allow_edits: False
-    groups: PSRC Data Portal Content
+    groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
     snippet: Days table from PSRC's Household Travel Survey, years 2017, 2019 and 2021
@@ -27,6 +27,7 @@ dataset:
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
         summary_purpose: 
+        supplemental_info: ''
         tech_note_link:
         time_period: "2017 - 2021"
         update_cadence: Roughly every two years
