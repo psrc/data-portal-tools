@@ -34,7 +34,7 @@ dataset:
         update_cadence: 
   source:
     is_simple: true
-    feature_dataset: ''
+    feature_dataset: transportation_transit
     has_donut_holes: false
     schema_name: dbo
     table_name:  HCT_TRANS

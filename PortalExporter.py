@@ -405,7 +405,7 @@ class PortalResource(object):
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
 			self.make_file_gdb(gdb_path)
-			if self.source['is_simple'] and self.source['has_donut_holes']:
+			if self.source['is_simple']:# and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']
@@ -461,7 +461,7 @@ class PortalResource(object):
 			os.chdir(self.working_folder)
 			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
 			self.make_file_gdb(gdb_path)
-			if self.source['is_simple'] and self.source['has_donut_holes']:
+			if self.source['is_simple']: # and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']

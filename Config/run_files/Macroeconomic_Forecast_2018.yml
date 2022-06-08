@@ -3,9 +3,9 @@ dataset:
     title: Macroeconomic_Forecast_2018
     tags: data portal, macroeconomic
     allow_edits: False
-    groups: PSRC Data Portal Content;hub- Forecasts and Projections
+    groups: PSRC Data Portal Content;hub- Forecasts and Projections;hub- Economy
     spatial_data: False
-    share_level: owner
+    share_level: everyone
     snippet: Macroeconomic Forecast (2018)
     accessInformation: 
     licenseInfo: 
@@ -26,6 +26,7 @@ dataset:
         data_lineage: The current Regional Macroeconomic Forecast was most recently updated for the 2018 The Macroeconomic Forecast is an input to PSRC's land use and travel forecasting, and provides the growth assumptions used in our regional growth strategy. It is developed by PSRC with help and review by technical staff from state and local government.
         assessment: 
         summary_purpose: 
+        supplemental_info: ''
         fields:
         tech_note_link:
         time_period: 2050

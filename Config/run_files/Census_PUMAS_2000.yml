@@ -84,7 +84,7 @@ dataset:
     title: Census_PUMAS_2000
   source:
     is_simple: true
-    feature_dataset: ''
+    feature_dataset: census
     has_donut_holes: false
     schema_name: dbo
     table_name: REG00PUMA

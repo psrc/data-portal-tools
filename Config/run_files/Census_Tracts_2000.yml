@@ -22,36 +22,10 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: 'Census tracts generally have a population size between 1,200
-        and 8,000 people with an optimum size of 4,000 people. The spatial size of
-        census tracts varies widely depending on the density of settlement. Ideally,
-        census tract boundaries remain stable over time to facilitate statistical
-        comparisons from census to census. However, physical changes in street patterns
-        caused by highway construction, new development, and so forth, may require
-        boundary revisions. In addition, census tracts occasionally are split due
-        to population growth, or combined as a result of substantial population decline.
-
-        Census tract boundaries generally follow visible and identifiable features.
-        They may follow legal boundaries such as minor civil division (MCD) or incorporated
-        place boundaries in some states to allow for census tract-to-governmental
-        unit relationships where the governmental boundaries tend to remain unchanged
-        between censuses. State and county boundaries always are census tract boundaries
-        in the standard census geographic hierarchy.
-
-        In a few rare instances, a census tract may consist of noncontiguous areas.
-        These noncontiguous areas may occur where the census tracts are coextensive
-        with all or parts of legal entities that are themselves noncontiguous. '
+      data_lineage:
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
-      description: "Census tracts are small, relatively permanent statistical subdivisions\
-        \ of a county or equivalent entity, and are reviewed and updated by local\
-        \ participants prior to each decennial census as part of the Census Bureau\u2019\
-        s Participant Statistical Areas Program (PSAP). The Census Bureau updates\
-        \ census tracts in situations where no local participant existed or where\
-        \ local or tribal governments declined to participate. The primary purpose\
-        \ of census tracts is to provide a stable set of geographic units for the\
-        \ presentation of decennial census data  and comparison back to previous decennial\
-        \ censuses. "
+      description: "Census tracts are small, relatively permanent geographic entities within counties (or the statistical equivalents of counties) delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts are to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions."
       fields:
       - description: (no description)
         title: FID
