@@ -1,8 +1,11 @@
+from attr import NOTHING
 import pandas as pd
 import urllib
 import pyodbc
 import shutil
 import openpyxl
+import yaml
+from copy import copy
 from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
@@ -32,6 +35,7 @@ class DataProfileSpreadsheets(object):
             print(e.args[0])
             raise   
         
+
     def create_data_profile_df(self):
         try:
             conn_string = "DRIVER={ODBC Driver 17 for SQL Server}; SERVER=AWS-PROD-SQL\Sockeye; DATABASE=Elmer; trusted_connection=yes"
@@ -67,8 +71,8 @@ class DataProfileSpreadsheets(object):
             df = self.df
             df = df[df['geography_type'] == geog_type]
             df = df[df['geography_name'] == geog]
-            df = df[['variable_description', 'estimate', 'margin_of_error', 'estimate_percent', 'margin_of_error_percent', 'depth', 'variable_name']]
-            df.columns=['Subject', 'Estimate', 'Margin of Error', 'Percent', 'Percent Margin of Error', 'depth', 'variable_name']
+            df = df[['variable_description', 'estimate', 'margin_of_error', 'estimate_percent', 'margin_of_error_percent', 'depth', 'variable_name', 'category']]
+            df.columns=['Subject', 'Estimate', 'Margin of Error', 'Percent', 'Percent Margin of Error', 'depth', 'variable_name', 'category']
             df[['Estimate','Margin of Error', 'Percent', 'Percent Margin of Error']] = df[['Estimate','Margin of Error', 'Percent', 'Percent Margin of Error']].fillna('(x)')
             idx_range = range(0, len(df.index))
             ilist = []
@@ -107,6 +111,49 @@ class DataProfileSpreadsheets(object):
             raise   
 
 
+    def insert_subheaders(self, ws, df):
+        """
+        insert line breaks whenever the CATEGORY value changes
+        """
+        try:
+            start_row = 2
+            # subheader_dict = self.subheader_vars
+            # subhead_dict_len = len(subheader_dict)
+            subheader_list_len = len(df.category.unique())
+            end_row = len(df.index) + start_row + subheader_list_len
+            for row in range(start_row, end_row):
+                prev_cell_coord = 'H' + str(row-1)
+                cell_coord = 'H' + str(row)
+                this_cat = ws['I' + str(row)].value
+                prev_cat = ws['I' + str(row-1)].value
+                if this_cat != prev_cat and prev_cat is not None and this_cat is not None:
+                    var_desc = ws['B' + str(row)].value
+                    ws.insert_rows(row)
+                    subheader_coord = 'A' + str(row)
+                    ws[subheader_coord] = this_cat.upper()
+                    ws[subheader_coord].font = Font(bold=True)
+                
+        except Exception as e:
+            #print("Error! cell_coord = {}".format(cell_coord))
+            print(e.args[0])
+            raise   
+
+    def clear_columns(self, ws, df, col_names):
+        try:
+            start_row = 1
+            # subheader_dict = self.subheader_vars
+            # subhead_dict_len = len(subheader_dict)
+            subhead_list_len = len(df.category.unique())
+            end_row = len(df.index) + start_row + subhead_list_len + 2
+            for col_name in col_names:
+                for row in range(start_row, end_row):
+                    cell_coord = col_name + str(row)
+                    ws[cell_coord] = None
+
+        except Exception as e:
+            #print("Error! cell_coord = {}".format(cell_coord))
+            print(e.args[0])
+            raise   
     
     def geog_ws(self, geog_type, geog_name, wb):
         """
@@ -121,26 +168,28 @@ class DataProfileSpreadsheets(object):
             f_geog_name = self.format_geo_name(geog_name, geog_type)
             ws = wb.create_sheet(title=f_geog_name)
             filtereddf = self.filtered_df(geog_type, geog_name)
-            finaldf = filtereddf.drop(['depth', 'variable_name'], axis=1)
-            for r in dataframe_to_rows(finaldf, index=False, header=True):
+            #finaldf = filtereddf.drop(['depth', 'variable_name'], axis=1)
+            for r in dataframe_to_rows(filtereddf, index=False, header=True):
+                #self.add_section_header(r, filtereddf, ws)
+                r.insert(0,'')
                 ws.append(r)
 
             #format worksheet body
-            col_widths = {'A':75, 'B':15, 'C':15, 'D':15, 'E':15}
+            col_widths = {'A':2, 'B':75, 'C':15, 'D':15, 'E':15, 'F':15}
             for cw in col_widths.keys():
                 ws.column_dimensions[cw].width = col_widths[cw]
             max_row = len(filtereddf.index) + header_row_size + 1
-            col_styles = {'B':{'align':'center', 'num':'0,##'}, 
-                        'C':{'align':'center', 'num':'0,##'},
-                        'D':{'align':'center', 'num':'0.0'},
-                        'E':{'align':'center', 'num':'0.0'}}
+            col_styles = {'C':{'align':'center', 'num':'0,##'}, 
+                        'D':{'align':'center', 'num':'0,##'},
+                        'E':{'align':'center', 'num':'0.0'},
+                        'F':{'align':'center', 'num':'0.0'}}
             dec_vars = self.decimal_estimate_vars[self.census_table_code]
             for r in range(header_row_size + 1, max_row):
                 if self.census_table_code == 'DP05':
-                    indent_level = filtereddf.depth[r - 2]
+                    indent_level = (filtereddf.depth[r - 2]) * 2
                 else:
-                    indent_level = filtereddf.depth[r - 2] - 1
-                ws['A'+str(r)].alignment = Alignment(indent = indent_level)
+                    indent_level = (filtereddf.depth[r - 2] - 1) * 2
+                ws['B'+str(r)].alignment = Alignment(indent = indent_level)
                 for c in col_styles.keys():
                     cell = ws[c+str(r)]
                     cell.alignment = Alignment(horizontal=col_styles[c]['align']) 
@@ -151,7 +200,7 @@ class DataProfileSpreadsheets(object):
 
             #format worksheet header
             ws.row_dimensions[1].height = 30
-            cols = ['A','B','C','D','E']
+            cols = ['A','B','C','D','E','F']
             for c in cols:
                 cell = ws[c+str(1)]
                 cell.font = Font(bold=True)
@@ -162,6 +211,10 @@ class DataProfileSpreadsheets(object):
                                     left=header_border, 
                                     right=header_border, 
                                     bottom=header_border)
+            
+            
+            self.insert_subheaders(ws, filtereddf)
+            self.clear_columns(ws, filtereddf, ['G','H','I'])
                 
             #insert title row
             ws.insert_rows(1)
@@ -169,11 +222,29 @@ class DataProfileSpreadsheets(object):
             pretty_geog_name = self.prettify_geog_name(geog_name, geog_type)
             title_cell.value = "{}: {}".format(data_profile_name, pretty_geog_name)
             title_cell.font = Font(size=18, bold=True)
+
+            self.merge_cells_a_and_b(ws)
             
         except Exception as e:
             print(e.args[0])
             print("r value: {}".format(r))
             raise   
+    
+    
+    def merge_cells_a_and_b(self, ws):
+        try:
+            cell_a = ws['A2']
+            cell_b = ws['B2']
+            cell_a.value =  cell_b.value
+            cell_a.border =  copy(cell_b.border)
+            cell_a.alignment =  copy(cell_b.alignment)
+            cell_a.fill =  copy(cell_b.fill)
+            ws.merge_cells("A2:B2")
+
+        except Exception as e:
+            print(e.args[0])
+            raise   
+    
     
     
     def add_links_to_index(self, wb, geogs, geog_types, file_name):
@@ -241,6 +312,7 @@ class DataProfileSpreadsheets(object):
             census_table = self.census_table_code
             geog_types = df.geography_type.unique()
             geog_groups = self.geog_groups
+            geog_groups = {'County': ['County']} ## Testing only!!!  Comment this out for production.
             for g_group_name in geog_groups.keys():
                 geog_types = geog_groups[g_group_name]
                 self.create_wb(g_group_name, geog_types)
