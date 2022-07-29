@@ -1,0 +1,6 @@
+general:
+  dataset: American Community Survey
+  datayear: 2019
+  notes:
+    - note: Households not paying cash rent are excluded from the calculation of median gross rent.
+    - note: Telephone service data are not available for certain geographic areas due to problems with data collection of this question that occurred in 2015 and 2016. Both ACS 1-year and ACS 5-year files were affected. It may take several years in the ACS 5-year files until the estimates are available for the geographic areas affected.

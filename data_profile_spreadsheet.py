@@ -5,8 +5,11 @@ import pyodbc
 import shutil
 import openpyxl
 import yaml
+import math
+from pathlib import Path
 from copy import copy
 from openpyxl import Workbook
+from openpyxl.cell.cell import Cell
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
@@ -35,6 +38,41 @@ class DataProfileSpreadsheets(object):
             print(e.args[0])
             raise   
         
+    
+    def build_metadata(self):
+        """
+        builds metadata dict from data_profile.yml and a dataset-specific yaml file.
+        For the latter, it looks for one specific to the [table]-[year]-[data product].yml,
+            if not found then [table]-[year].yml, 
+            if that isn't found then [table].yml
+        """
+
+        try:
+            self.metadata = {}
+            dir_name = Path("./Config")
+            with open("./Config/data_profile.yml") as file:
+                y = yaml.load(file, Loader=yaml.FullLoader)
+            self.metadata['metadata'] = y['root']
+            c_table = self.census_table_code.lower()
+            c_year = str(self.census_year)
+            c_product = self.census_product.lower()
+            f_name = "_".join([c_table, c_year, c_product]) + ".yml"
+            f_path = dir_name / f_name
+            if f_path.is_file():
+                with open(f_path) as file:
+                    y = yaml.load(file, Loader=yaml.FullLoader)
+            elif (dir_name / ("_".join([c_table, c_year]) + ".yml")).is_file():
+                with open(dir_name / ("_".join ([c_table, c_year] + ".yml"))) as file:
+                    y = yaml.load(file, Loader=yaml.FullLoader)
+            else:
+                with open(dir_name / (c_table + ".yml")) as file:
+                    y = yaml.load(file, Loader=yaml.FullLoader)
+            self.metadata['general'] = y['general']
+
+        except Exception as e:
+            print(e.args[0])
+            raise   
+
 
     def create_data_profile_df(self):
         try:
@@ -138,6 +176,7 @@ class DataProfileSpreadsheets(object):
             print(e.args[0])
             raise   
 
+
     def clear_columns(self, ws, df, col_names):
         try:
             start_row = 1
@@ -155,6 +194,50 @@ class DataProfileSpreadsheets(object):
             print(e.args[0])
             raise   
     
+
+    def add_notes_sheet(self, wb):
+
+        def bold_cells(data):
+            for c in data:
+                c = Cell(ws, column="A", row=1, value=c)
+                c.font = Font(bold=True)
+                yield c
+
+        try: 
+            self.build_metadata()
+            md = self.metadata
+            cell_width = 100
+            ws = wb.create_sheet(title='notes', index=1)
+            syms = md['metadata']['explanation_of_symbols']
+            ws.append(bold_cells(['Explanation of Symbols:']))
+            for s in syms:
+                ws.append(['',s['expl']])
+            gen_notes = md['metadata']['notes_applicable_to_all_census_data_profiles']
+            ws.append(bold_cells(['Notes:']))
+            for gn in gen_notes:
+                ws.append(['',gn['note']])
+            notes = md['general']['notes']
+            for n in notes:
+                ws.append(['',n['note']])
+            col_widths = {'A': 2, 'B':cell_width}
+            for cw in col_widths.keys():
+                ws.column_dimensions[cw].width = col_widths[cw]
+                
+            # set row and cell properties
+            for row in ws[ws.dimensions]:
+                cell = row[1]
+                height_val = math.ceil(len(cell.value)/ cell_width) * 15 if cell.value is not None else 15
+                ws.row_dimensions[cell.row].height = height_val
+                cell.alignment = Alignment(wrap_text=True)
+                cell.fill = PatternFill(fill_type='solid', start_color='D7E4BC')
+                row[0].fill = PatternFill(fill_type='solid', start_color='D7E4BC')
+            
+
+        except Exception as e:
+            print(e.args[0])
+            raise   
+
+
     def geog_ws(self, geog_type, geog_name, wb):
         """
         Create a new worksheet in the workbook (wb), 
@@ -246,7 +329,6 @@ class DataProfileSpreadsheets(object):
             raise   
     
     
-    
     def add_links_to_index(self, wb, geogs, geog_types, file_name):
         """
         Add a new worksheet, with hyperlinks to all the other sheets.
@@ -290,6 +372,7 @@ class DataProfileSpreadsheets(object):
                 for geo in geogs:
                     self.geog_ws(geog_type, geo, wb)
             self.add_links_to_index(wb, geogs, geog_types, fname)
+            self.add_notes_sheet(wb)
 
             wb.save(filename=fname)   
         

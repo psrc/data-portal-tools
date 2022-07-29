@@ -74,7 +74,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Household_Travel_Survey_' in f:
+	if r'Demographic_Characteristics_From_ACS_2020_5-year' in f:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)

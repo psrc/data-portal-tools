@@ -12,7 +12,7 @@ datasets = {
 }
 
 for table_code in datasets.keys():
-    census_year = 2019
+    census_year = 2020
     census_product = 'acs5'
     long_title = datasets[table_code]['long_title']
     short_title = datasets[table_code]['short_title']
