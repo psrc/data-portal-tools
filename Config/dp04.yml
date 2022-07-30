@@ -1,5 +1,5 @@
 general:
-  dataset: American Community Survey
+  dataset: American Community Survey Table DP04, Selected Housing Characteristics
   datayear: Unknown
   notes:
     - note: test note from dp04.yml

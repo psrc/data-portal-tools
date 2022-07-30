@@ -1,0 +1,6 @@
+general:
+  dataset: American Community Survey Table DP05, Selected Demographic and Housing Characteristics 
+  datayear: Not recorded
+  notes:
+    - note: 'For more information on understanding race and Hispanic origin data, please see the Census 2010 Brief entitled, Overview of Race and Hispanic Origin: 2010, issued March 2011. (pdf format)'
+

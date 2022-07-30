@@ -1,0 +1,11 @@
+general:
+  dataset: American Community Survey Table DP03, Selected Economic Characteristics 
+  datayear: Not recorded
+  notes:
+    - note: 'Employment and unemployment estimates may vary from the official labor force data released by the Bureau of Labor Statistics because of differences in survey design and data collection. For guidance on differences in employment and unemployment estimates from different sources go to Labor Force Guidance.'
+    - note: Workers include members of the Armed Forces and civilians who were at work last week.
+    - note: Industry codes are 4-digit codes and are based on the North American Industry Classification System 2012. The Industry categories adhere to the guidelines issued in Clarification Memorandum No. 2, "NAICS Alternate Aggregation Structure for Use By U.S. Statistical Agencies," issued by the Office of Management and Budget.
+    - note: Occupation codes are 4-digit codes and are based on Standard Occupational Classification 2018.
+    - note: Logical coverage edits applying a rules-based assignment of Medicaid, Medicare and military health coverage were added as of 2009 -- please see https://www.census.gov/library/working-papers/2010/demo/coverage_edits_final.html for more details. The 2008 data table in American FactFinder does not incorporate these edits. Therefore, the estimates that appear in these tables are not comparable to the estimates in the 2009 and later tables. Select geographies of 2008 data comparable to the 2009 and later tables are available at https://www.census.gov/data/tables/timeseries/acs/1-year-re-run-health-insurance.html. The health insurance coverage category names were modified in 2010. See https://www.census.gov/topics/health/health-insurance/about/glossary.html#par_textimage_18 for a list of the insurance type definitions.
+    - note: Beginning in 2017, selected variable categories were updated, including age-categories, income-to-poverty ratio (IPR) categories, and the age universe for certain employment and education variables. See user note entitled "Health Insurance Table Updates" for further details.
+

@@ -8,7 +8,7 @@ datasets = {
     "DP05": {'short_title': 'Demographic Data Profle', 'long_title':'Demographic Characteristics Data Profile, ACS 2020 5-Year Data' }    
 }
 datasets = {
-    "DP04": {'short_title': 'test dp', 'long_title':'Housing Characteristics Data Profile, ACS 2020 5-Year Data' }
+    "DP02": {'short_title': 'test dp', 'long_title':'Social Characteristics Data Profile, ACS 2020 5-Year Data' }
 }
 
 for table_code in datasets.keys():

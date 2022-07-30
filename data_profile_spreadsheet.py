@@ -21,7 +21,7 @@ class DataProfileSpreadsheets(object):
             self.census_table_code = census_table_code
             self.short_title = short_title
             self.long_title = long_title
-            self.index_sheet_name = 'Tab Index'
+            self.index_sheet_name = 'Geography Index'
             self.geog_groups = {
                 'State-County-MSA': ['State', 'County', 'MSA'],
                 'City': ['City'],
@@ -207,12 +207,17 @@ class DataProfileSpreadsheets(object):
             self.build_metadata()
             md = self.metadata
             cell_width = 100
-            ws = wb.create_sheet(title='notes', index=1)
+            ws = wb.create_sheet(title='Notes', index=1)
+            d_set = md['general']['dataset']
+            ws.append(bold_cells([d_set]))
+            ws.append(bold_cells(['Each tab contains a distinct geography.  See the "{}" tab for easy navigation.'.format(self.index_sheet_name)]))
+            ws.append([])
             syms = md['metadata']['explanation_of_symbols']
             ws.append(bold_cells(['Explanation of Symbols:']))
             for s in syms:
                 ws.append(['',s['expl']])
             gen_notes = md['metadata']['notes_applicable_to_all_census_data_profiles']
+            ws.append([])
             ws.append(bold_cells(['Notes:']))
             for gn in gen_notes:
                 ws.append(['',gn['note']])
@@ -395,7 +400,7 @@ class DataProfileSpreadsheets(object):
             census_table = self.census_table_code
             geog_types = df.geography_type.unique()
             geog_groups = self.geog_groups
-            geog_groups = {'County': ['County']} ## Testing only!!!  Comment this out for production.
+            geog_groups = {'State': ['County']} ## Testing only!!!  Comment this out for production.
             for g_group_name in geog_groups.keys():
                 geog_types = geog_groups[g_group_name]
                 self.create_wb(g_group_name, geog_types)
