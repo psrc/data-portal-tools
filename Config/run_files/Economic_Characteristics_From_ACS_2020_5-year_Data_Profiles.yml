@@ -11,7 +11,7 @@ dataset:
         probability that the interval defined by the estimate minus the MOE and the
         estimate plus the MOE (the lower and upper confidence bounds) contains the
         true value. In addition to sampling variability, the ACS estimates are subject
-        to nonsampling error (Accuracy of the Data: https://www2.census.gov/programs-surveys/acs/tech_docs/accuracy/ACS_Accuracy_of_Data_2019.pdf).
+        to nonsampling error (Accuracy of the Data: https://www2.census.gov/programs-surveys/acs/tech_docs/accuracy/ACS_Accuracy_of_Data_2020.pdf).
         The effect of nonsampling error is not represented in these tables.'
       contact_city: Seattle
       contact_email: cnaito@psrc.org
@@ -63,7 +63,7 @@ dataset:
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/american-community-survey-2015-2019-five-year-estimates
       summary_purpose: ''
-      supplemental_info: 'The 2015-2019 American Community Survey (ACS) data generally
+      supplemental_info: 'The 2016-2020 American Community Survey (ACS) data generally
         reflect the September 2018 Office of Management and Budget (OMB) delineations
         of metropolitan and micropolitan statistical areas. In certain instances,
         the names, codes, and boundaries of the principal cities shown in ACS tables
@@ -88,10 +88,6 @@ dataset:
         income-to-poverty ratio (IPR) categories, and the age universe for certain
         employment and education variables. See user note entitled "Health Insurance
         Table Updates" for further details.
-
-        2019 ACS data products include updates to several categories of the existing
-        means of transportation question. For more information: Change to Means of
-        Transportation.
 
         Between 2018 and 2019 the American Community Survey retirement income question
         changed. These changes resulted in an increase in both the number of households
@@ -133,19 +129,19 @@ dataset:
 
         ACS Technical Documentation: https://www.census.gov/programs-surveys/acs/technical-documentation.html
 
-        ACS Data Profiles: https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/2019/ '
-      time_period: 2015-2019
+        ACS Data Profiles: https://www.census.gov/acs/www/data/data-tables-and-tools/data-profiles/2020/ '
+      time_period: 2016-2020
       update_cadence: Every year
     share_level: everyone
     snippet: null
     groups: PSRC Data Portal Content;hub- Economy;hub- Census & Demographics
     spatial_data: False
     tags: Employment;Income;Population;Census;ACS;ACS5yr;
-    title: Economic_Characteristics_From_ACS_2019_5-year_Data_Profiles
+    title: Economic_Characteristics_From_ACS_2020_5-year_Data_Profiles
   source:
     is_simple: false
     feature_dataset: ''
     has_donut_holes: false
     schema_name: null
-    sql_query: select * from data_portal.census_data_profile(2019, 'acs5', 'DP03')
+    sql_query: select * from data_portal.census_data_profile(2020, 'acs5', 'DP03')
     table_name: null

@@ -38,14 +38,14 @@ dataset:
     schema_name: 
     table_name: 
     sql_query: "SELECT [household_id]
-        ,[hhid] ,[hhgroup] ,[survey_year] ,[seattle_home] ,[sample_county] ,[final_home_puma10]
+        ,[hhid] ,[hhgroup] ,[survey_year] ,[seattle_home] ,[sample_county] ,[final_home_puma10], [final_home_tract10]
         ,[final_home_uvnum] ,[dayofweek], [hhsize] ,[vehicle_count] ,[lifecycle] ,[hhincome_broad] ,[hhincome_detailed]
         ,[hh_race_category] ,[car_share] ,[rent_own] ,[res_dur] ,[res_type] ,[prev_home_wa]
-        ,[prev_home_puma10] ,[prev_home_seattle] ,[res_factors_30min] ,[res_factors_afford] ,[res_factors_closefam] ,[res_factors_cultural]
+        ,[prev_home_puma10] , [prev_home_tract10], [prev_home_seattle] ,[res_factors_30min] ,[res_factors_afford] ,[res_factors_closefam] ,[res_factors_cultural]
         ,[res_factors_hhchange] ,[res_factors_hwy] ,[res_factors_school] ,[res_factors_space] ,[res_factors_transit] ,[res_factors_walk]
         ,[prev_res_factors_housing_cost] ,[prev_res_factors_income_change] ,[prev_res_factors_community_change] ,[prev_res_factors_hh_size] ,[prev_res_factors_more_space] ,[prev_res_factors_less_space]
         ,[prev_res_factors_employment] ,[prev_res_factors_school] ,[prev_res_factors_crime] ,[prev_res_factors_quality] ,[prev_res_factors_forced] ,[prev_res_factors_no_answer]
-        ,[prev_res_factors_other] ,[prev_res_factors_specify] ,[prev_res_factors_covid_flexibility] ,[prev_res_factors_covid_health] ,[broadband] ,[final_home_tract]
+        ,[prev_res_factors_other] ,[prev_res_factors_specify] ,[prev_res_factors_covid_flexibility] ,[prev_res_factors_covid_health] ,[broadband] 
         ,[cityofseattle] ,[home_city_name] ,[prev_res_factors_displaced] ,[numadults] ,[numchildren] ,[numworkers]
         ,[offpark_cost] ,[hh_weight_2021_ABS] ,[hh_weight_2017_v2021] ,[hh_weight_2019_v2021] ,[hh_weight_2017_2019_v2021]
       FROM [Elmer].[HHSurvey].[v_households]"

@@ -84,10 +84,6 @@ dataset:
         employment and education variables. See user note entitled "Health Insurance
         Table Updates" for further details.
 
-        2019 ACS data products include updates to several categories of the existing
-        means of transportation question. For more information: Change to Means of
-        Transportation.
-
         Between 2018 and 2019 the American Community Survey retirement income question
         changed. These changes resulted in an increase in both the number of households
         reporting retirement income and higher aggregate retirement income at the
@@ -140,5 +136,5 @@ dataset:
     feature_dataset: ''
     has_donut_holes: false
     schema_name: null
-    sql_query: select * from data_portal.census_data_profile(2019, 'acs5', 'DP03')
+    sql_query: select * from data_portal.census_data_profile(2019, 'acs1', 'DP03')
     table_name: null
