@@ -38,7 +38,7 @@ dataset:
     schema_name: 
     table_name: 
     sql_query: "SELECT [household_id]
-      ,[hhgroup] ,[survey_year] ,[sample_source] ,[seattle_home] ,[hh_race_category] ,[sample_county]
+      ,[hhgroup] ,[survey_year] ,[sample_source] ,[seattle_home] ,[hh_race_category], [sample_segment]
       ,[cityofseattle] ,[final_home_puma10] ,[final_home_uvnum] ,[hhsize] ,[vehicle_count] ,[lifecycle]
       ,[hhincome_broad] ,[hhincome_detailed] ,[car_share] ,[rent_own] ,[res_dur] ,[res_type]
       ,[prev_home_wa] ,[res_factors_30min] ,[res_factors_afford] ,[res_factors_closefam] ,[res_factors_hhchange] ,[res_factors_hwy]
