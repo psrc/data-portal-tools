@@ -4,6 +4,7 @@ import urllib
 import pyodbc
 import shutil
 import openpyxl
+from sqlalchemy import true
 import yaml
 import math
 from pathlib import Path
@@ -12,6 +13,7 @@ from openpyxl import Workbook
 from openpyxl.cell.cell import Cell
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
+from PortalExporter import PortalConnector
 
 class DataProfileSpreadsheets(object):
     def __init__(self, census_year, census_product, census_table_code, short_title, long_title):
@@ -23,16 +25,17 @@ class DataProfileSpreadsheets(object):
             self.long_title = long_title
             self.index_sheet_name = 'Geography Index'
             self.geog_groups = {
-                'State-County-MSA': ['State', 'County', 'MSA'],
+                'State_County_MSA': ['State', 'County', 'MSA'],
                 'City': ['City'],
                 'CDP': ['CDP']            
             }
-            self.decimal_estimate_vars = {
-                'DP02': [],
-                'DP03': [],
-                'DP04': ['DP04_0004', 'DP04_0005', 'DP04_0037', 'DP04_0048', 'DP04_0049'],
-                'DP05': []
-            }
+            # self.decimal_estimate_vars = {
+            #     'DP02': [],
+            #     'DP03': [],
+            #     'DP04': ['DP04_0004', 'DP04_0005', 'DP04_0037', 'DP04_0048', 'DP04_0049'],
+            #     'DP05': []
+            # }
+            self.output_dir = Path('./outputs')
 
         except Exception as e:
             print(e.args[0])
@@ -41,7 +44,7 @@ class DataProfileSpreadsheets(object):
     
     def build_metadata(self):
         """
-        builds metadata dict from data_profile.yml and a dataset-specific yaml file.
+        builds metadata dict from year-specific data_profile.yml and a dataset-specific yaml file.
         For the latter, it looks for one specific to the [table]-[year]-[data product].yml,
             if not found then [table]-[year].yml, 
             if that isn't found then [table].yml
@@ -50,8 +53,13 @@ class DataProfileSpreadsheets(object):
         try:
             self.metadata = {}
             dir_name = Path("./Config")
-            with open("./Config/data_profile.yml") as file:
-                y = yaml.load(file, Loader=yaml.FullLoader)
+            fpath = dir_name / "data_profile_{}.yml".format(str(self.census_year))
+            if fpath.is_file():
+                with open(fpath) as file:
+                    y = yaml.load(file, Loader=yaml.FullLoader)
+            else:
+                with open(dir_name / "data_profile.yml") as file:
+                    y = yaml.load(file, Loader=yaml.FullLoader)
             self.metadata['metadata'] = y['root']
             c_table = self.census_table_code.lower()
             c_year = str(self.census_year)
@@ -62,7 +70,7 @@ class DataProfileSpreadsheets(object):
                 with open(f_path) as file:
                     y = yaml.load(file, Loader=yaml.FullLoader)
             elif (dir_name / ("_".join([c_table, c_year]) + ".yml")).is_file():
-                with open(dir_name / ("_".join ([c_table, c_year] + ".yml"))) as file:
+                with open(dir_name / ("_".join([c_table, c_year]) + ".yml")) as file:
                     y = yaml.load(file, Loader=yaml.FullLoader)
             else:
                 with open(dir_name / (c_table + ".yml")) as file:
@@ -242,6 +250,17 @@ class DataProfileSpreadsheets(object):
             print(e.args[0])
             raise   
 
+    def get_num_format(self, cell_val):
+        try: 
+            if (cell_val % 0.1) > 0:
+                num_format = '#,##0.00'
+            elif (cell_val % 1) > 0:
+                num_format = '#,##0.0'
+            else:
+                num_format = "#,##0"
+        except Exception as e:
+            print(e.args[0])
+            raise   
 
     def geog_ws(self, geog_type, geog_name, wb):
         """
@@ -249,6 +268,13 @@ class DataProfileSpreadsheets(object):
             and fill it with the data profile data for this geog_name.
             Then format the page to make it pretty.
         """
+        def is_float(val):
+            try:
+                num = float(val)
+            except ValueError:
+                return False
+            return True
+
         try: 
             df = self.df
             data_profile_name = self.long_title
@@ -267,11 +293,12 @@ class DataProfileSpreadsheets(object):
             for cw in col_widths.keys():
                 ws.column_dimensions[cw].width = col_widths[cw]
             max_row = len(filtereddf.index) + header_row_size + 1
-            col_styles = {'C':{'align':'center', 'num':'0,##'}, 
-                        'D':{'align':'center', 'num':'0,##'},
-                        'E':{'align':'center', 'num':'0.0'},
-                        'F':{'align':'center', 'num':'0.0'}}
-            dec_vars = self.decimal_estimate_vars[self.census_table_code]
+            #col_styles = {'C':{'align':'center', 'num':'0,##'}, 
+            col_styles = {'C':{'align':'center', 'num':'General'}, 
+                        'D':{'align':'center', 'num':'General'},
+                        'E':{'align':'center', 'num':'#0.0'},
+                        'F':{'align':'center', 'num':'#0.0'}}
+            # dec_vars = self.decimal_estimate_vars[self.census_table_code]
             for r in range(header_row_size + 1, max_row):
                 if self.census_table_code == 'DP05':
                     indent_level = (filtereddf.depth[r - 2]) * 2
@@ -281,8 +308,10 @@ class DataProfileSpreadsheets(object):
                 for c in col_styles.keys():
                     cell = ws[c+str(r)]
                     cell.alignment = Alignment(horizontal=col_styles[c]['align']) 
-                    if filtereddf.variable_name[r-2] in dec_vars:
-                        cell.number_format = '0.00'
+                    #if filtereddf.variable_name[r-2] in dec_vars:
+                    if is_float(cell.value):
+                        if cell.value > 100:
+                            cell.number_format = '#,##0'
                     else:
                         cell.number_format = col_styles[c]['num']
 
@@ -341,9 +370,13 @@ class DataProfileSpreadsheets(object):
         try:
             index_sheet_name = self.index_sheet_name
             index_sheet = wb[index_sheet_name]
-            header_cell = index_sheet['A1']
+            index_sheet.column_dimensions['A'].width = 100
+            title_cell = index_sheet['A1']
+            title_cell.value = self.long_title
+            title_cell.font = Font(size=18, bold=True)
+            header_cell = index_sheet['A2']
             header_cell.value = "For summary data for a specific geography, click a link below:"
-            index_row = 2
+            index_row = 3
             for geog_type in geog_types:
                 geogs = self.geogs_in_geog_type(geog_type)
                 for g in geogs:
@@ -368,8 +401,10 @@ class DataProfileSpreadsheets(object):
             filename_stub = self.short_title.replace(" ", "_")
             vintage = self.census_year
             census_table = self.census_table_code
+            c_product = self.census_product
             wb = Workbook()
-            fname = "{}_{}_{}.xlsx".format(filename_stub, geog_group_name, vintage)
+            fname = "{}_{}_{}_{}.xlsx".format(filename_stub, geog_group_name, vintage, c_product)
+            fpath = self.output_dir / fname
             index_sheet = wb["Sheet"]
             index_sheet.title = self.index_sheet_name
             for geog_type in geog_types:
@@ -379,7 +414,8 @@ class DataProfileSpreadsheets(object):
             self.add_links_to_index(wb, geogs, geog_types, fname)
             self.add_notes_sheet(wb)
 
-            wb.save(filename=fname)   
+            wb.save(filename=fpath)   
+            return(fpath)
         
         except Exception as e:
             print(e.args[0])
@@ -394,16 +430,49 @@ class DataProfileSpreadsheets(object):
         try:
             self.create_data_profile_df()
             df = self.df
-            data_profile_name = self.long_title
-            short_title = self.short_title
+            # short_title = self.short_title
             vintage = self.census_year
-            census_table = self.census_table_code
+            # census_table = self.census_table_code
             geog_types = df.geography_type.unique()
-            geog_groups = self.geog_groups
             geog_groups = {'State': ['County']} ## Testing only!!!  Comment this out for production.
+            geog_groups = self.geog_groups
+            if self.census_product == 'acs1': # Census does not publish data profiles at CDP level for 1-year data
+                geog_groups.pop('CDP')
             for g_group_name in geog_groups.keys():
+                data_profile_name = '_by_'.join([self.long_title, g_group_name])
                 geog_types = geog_groups[g_group_name]
-                self.create_wb(g_group_name, geog_types)
+                filename = self.create_wb(g_group_name, geog_types)
+                self.export_workbook(filename=filename, portal_layer_name=data_profile_name)
+
+        except Exception as e:
+            print(e.args[0])
+            raise   
+
+    def export_workbook(self, filename, portal_layer_name):
+        """
+        Send a spreadsheet to Portal.  
+        Shares the layer with everyone.
+        
+        params:
+            filename: the local path to the spreadsheet
+            portal_layer_name: the name to be published under on Portal
+        """
+        try:
+            config_path = Path('Config') / 'auth.yml'
+            with open(config_path) as file:
+                auth = yaml.load(file, Loader=yaml.FullLoader)
+            portal_conn = PortalConnector(
+                portal_username = auth['arc_gis_online']['username'],
+                portal_pw=auth['arc_gis_online']['pw']
+            )
+            gis = portal_conn.gis
+            resource_properties = {
+                'title': portal_layer_name, 
+                'tags': ['data profile']}
+            exported = gis.content.add(resource_properties, data=str(filename))
+            portal_group = gis.groups.search(query='PSRC Data Portal Content')[0].id
+            census_group = gis.groups.search(query='hub- Census & Demographics')[0].id
+            exported.share(everyone=True, groups=[portal_group, census_group])
 
         except Exception as e:
             print(e.args[0])
