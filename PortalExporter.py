@@ -66,6 +66,7 @@ class DatabaseConnector(object):
 			self.database = database
 			self.connect()
 			self.gdb_sde_conn = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2022\data_portal\data_portal_project\aws-prod-sql.sde'
+			self.gdb_sde_conn = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2022\data_portal\export_without_triangles\elmergeo3.sde'
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -314,29 +315,30 @@ class PortalResource(object):
 		then create a nested directory dir_path/gdb
 		"""
 		try:
+			gdb_path = dir_path / 'gdb.gdb'
 			if os.path.exists(dir_path):
 				files = glob.glob(str(dir_path / '*'))
 				for f in files:
 					if '.gdb' in f:
 						shutil.rmtree(f)
-					elif f != 'workspace\\gdb':
+					elif f != str(gdb_path):
 						os.remove(f)
-				gdb_path = dir_path / 'gdb'
 				gdb_files = glob.glob(str(gdb_path / '*.gdb'))
 				for f in gdb_files:
 					shutil.rmtree(f)
 			else: 
 				os.makedirs(dir_path)
-				os.makedirs(dir_path / 'gdb')
+			os.makedirs(gdb_path)
+			return gdb_path
 
 		except Exception as e:
+			print("error in prepare_working_dir.  dir_path={}".format(dir_path))
 			print(e.args[0])
 			raise
 
 
 
 	def export_remote_featureclass(self, 
-					remote_fc, 
 					out_gdb, 
 					out_fc_name,
 					fields_to_exclude=[]
@@ -350,10 +352,13 @@ class PortalResource(object):
 		'''
 		try:
 			conn_path = self.db_connector.gdb_sde_conn
+			#conn_path = os.path.join(os.getcwd(), out_gdb)
 			arcpy.env.overwriteOutput = True
 			arcpy.env.workspace = conn_path
 			out_fc_path = str(out_gdb / out_fc_name)
-			temp_fc = remote_fc + "_temp"
+			featureclass_base = self.source['table_name']
+			temp_fc = featureclass_base + "_temp"
+			remote_fc = "{}/{}".format(self.source['feature_dataset'], featureclass_base)
 			arcpy.MakeFeatureLayer_management(remote_fc, temp_fc)
 			fields = arcpy.Describe(temp_fc).fieldInfo
 			for i in range(fields.count):
@@ -398,22 +403,19 @@ class PortalResource(object):
 		try:
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			portal_connector = self.portal_connector
 			db_connector = self.db_connector
-			working_dir = Path(self.working_folder)
-			self.prepare_working_dir(working_dir)
-			os.chdir(self.working_folder)
-			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
+			fldr = Path(self.working_folder)
+			gdb_path = self.prepare_working_dir(fldr)
 			self.make_file_gdb(gdb_path)
 			if self.source['is_simple']:# and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
-				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
+				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']
-				self.export_remote_featureclass(table_name,
-					gdb_path,
+				self.export_remote_featureclass( gdb_path,
 					title,
 					fields_to_exclude)
 			else:
+				os.chdir(self.working_folder)
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
@@ -421,12 +423,12 @@ class PortalResource(object):
 				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 				feat_class_name = gdb_path / title
 				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
+				os.chdir('../')
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = self.search_by_title()
 			exported.update(data=zipfile, item_properties=self.resource_properties)
 			params = {"name":self.title, 'targetSR':self.srid}
 			published = exported.publish(publish_parameters=params, overwrite=True)
-			os.chdir('../')
 			self.set_and_update_metadata(published)
 			self.set_editability(published)
 			share_group_ids = self.get_group_ids()
@@ -444,6 +446,7 @@ class PortalResource(object):
 			arcpy.management.CreateFileGDB(str(gdb_path.parent), gdb_path.stem)
 
 		except Exception as e:
+			print("error in make_file_gdb.  out_folder_path={},  gdb_path={}".format(str(gdb_path.parent), str(gdb_path)))
 			print(e.args[0])
 			raise
 		
@@ -457,16 +460,15 @@ class PortalResource(object):
 			gis = self.portal_connector.gis
 			db_connector = self.db_connector
 			fldr = Path(self.working_folder)
-			self.prepare_working_dir(fldr)
-			os.chdir(self.working_folder)
-			gdb_path = Path('.\gdb\\' + self.title + '.gdb')
+			gdb_path = self.prepare_working_dir(fldr)
 			self.make_file_gdb(gdb_path)
 			if self.source['is_simple']: # and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
-				self.remote_fc_def = "{}/{}.".format(self.source['feature_dataset'], table_name)
+				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']
-				self.export_remote_featureclass(table_name, gdb_path, title, fields_to_exclude)
+				self.export_remote_featureclass(gdb_path, title, fields_to_exclude)
 			else:
+				os.chdir(self.working_folder)
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
@@ -475,13 +477,13 @@ class PortalResource(object):
 				ttl = self.title + '.gdb'
 				feat_class_name =  gdb_path / self.title
 				feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
+				os.chdir('../')
 			res_properties = self.resource_properties
 			res_properties['type'] = 'File Geodatabase'
 			zipfile = self.gdb_to_zip(gdb_path)
 			exported = gis.content.add(self.resource_properties, data=zipfile)
 			params = {"name":self.title, 'targetSR':self.srid}
 			layer = exported.publish(publish_parameters=params)
-			os.chdir('../')
 			self.set_and_update_metadata(layer)
 			self.set_editability(layer)
 			share_group_ids = self.get_group_ids()
@@ -542,10 +544,6 @@ class PortalResource(object):
 			working_dir = Path(self.working_folder)
 			filename = self.resource_properties['title'] + '.csv'
 			csv_name = working_dir / filename
-			# if not os.path.exists(working_dir):
-			# 	os.makedirs(working_dir)
-			# if os.path.isfile(csv_name):
-			# 	os.remove(csv_name)
 			self.prepare_working_dir(working_dir)
 			df.to_csv(csv_name)
 			self.resource_properties['type'] = out_type
@@ -711,14 +709,9 @@ class PortalResource(object):
 			data_lineage = self.clean_metadata_string(data_lineage)
 			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = data_lineage
 
-
-			# summary_purpose_val = "{}  {}  {}".format(abstract, sup_info, tech_note)
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
 		
-
-			# Consts = ET.SubElement(resConst, 'Consts')
-			# useLimit = ET.SubElement(Consts, 'useLimit').text = self.metadata['constraints']
 
 			fields = self.metadata['fields']
 			eainfo = ET.SubElement(root, 'eainfo')
@@ -734,25 +727,8 @@ class PortalResource(object):
 			dqInfo = ET.SubElement(root, 'dqInfo')
 			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
 			statement = ET.SubElement(dataLineage, 'statement').text = self.metadata['data_lineage']
-
-
-			# print(flist)
-			# print('--------')
-
-			#new_metadata = xmltodict.unparse(doc, pretty=True)
-
-			#new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
-			# new_metadata = dicttoxml.dicttoxml(doc, item_func = my_item_func, attr_type=False)
-			# new_metadata = str(new_metadata.decode())
-			# new_metadata = new_metadata.replace('<root>','')
-			# new_metadata = new_metadata.replace('</root>','')
-			#print(new_metadata)
-			# textfile = open(metadata_file,'w')
-			# a = textfile.write(new_metadata)
-			# textfile.close()
 			tree.write(metadata_file, encoding='UTF-8', xml_declaration=True)
 			item.update(metadata=metadata_file)
-			#if os.path.exists(metadata_file): os.remove(metadata_file)
 
 		except Exception as e:
 			print('error in set_and_update_metadata')

@@ -64,6 +64,7 @@ def export(config):
 	except Exception as e:
 		print('Error for layer {}'.format(title))
 		print(e.args[0])
+		raise
 
 ##############################################################################
 #Example 1: export tables and/or view using define_simple_source
@@ -74,7 +75,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Demographic_Characteristics_From_ACS_2020_5-year' in f:
+	if r'Displacement_Risk_Data_test.yml' in f:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
