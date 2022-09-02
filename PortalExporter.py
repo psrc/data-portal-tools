@@ -128,6 +128,10 @@ class PortalResource(object):
 			}
 			self.title = params['title']
 			self.working_folder = 'workspace'
+			self.sde_folder = 'sde'
+			self.sde_name = 'elmergeo.sde'
+			self.sde_instance = 'AWS-PROD-SQL\Sockeye'
+			self.sde_database = 'ElmerGeo'
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
@@ -337,7 +341,6 @@ class PortalResource(object):
 			raise
 
 
-
 	def export_remote_featureclass(self, 
 					out_gdb, 
 					out_fc_name,
@@ -351,7 +354,8 @@ class PortalResource(object):
 			fields_to_exclude: a list of field names to exlude from out_fc_name
 		'''
 		try:
-			conn_path = self.db_connector.gdb_sde_conn
+			# conn_path = self.db_connector.gdb_sde_conn
+			conn_path = self.sde_path
 			#conn_path = os.path.join(os.getcwd(), out_gdb)
 			arcpy.env.overwriteOutput = True
 			arcpy.env.workspace = conn_path
@@ -398,7 +402,6 @@ class PortalResource(object):
 			raise
 
 
-
 	def republish_spatial(self):
 		try:
 			title = self.resource_properties['title']
@@ -407,6 +410,7 @@ class PortalResource(object):
 			fldr = Path(self.working_folder)
 			gdb_path = self.prepare_working_dir(fldr)
 			self.make_file_gdb(gdb_path)
+			self.set_up_sde()
 			if self.source['is_simple']:# and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
@@ -449,7 +453,28 @@ class PortalResource(object):
 			print("error in make_file_gdb.  out_folder_path={},  gdb_path={}".format(str(gdb_path.parent), str(gdb_path)))
 			print(e.args[0])
 			raise
-		
+	
+ 
+	def set_up_sde(self):
+		try:
+			sde_dir_name = './' + self.sde_folder
+			sde_full_name = str(Path(sde_dir_name) / self.sde_name)
+			if not os.path.exists(sde_full_name):
+				arcpy.management.CreateDatabaseConnection(sde_dir_name, 
+												self.sde_name, 
+												'SQL_SERVER',
+												self.sde_instance,
+												account_authentication='OPERATING_SYSTEM_AUTH',
+												database=self.sde_database
+				)
+			return_path = str(Path(sde_dir_name) / self.sde_name) 
+			self.sde_path = return_path
+
+		except Exception as e:
+			print("error in set_up_sde.")
+			print(e.args[0])
+			raise
+
 
 	def publish_spatial_as_new(self):
 		"""
@@ -462,6 +487,7 @@ class PortalResource(object):
 			fldr = Path(self.working_folder)
 			gdb_path = self.prepare_working_dir(fldr)
 			self.make_file_gdb(gdb_path)
+			self.set_up_sde()
 			if self.source['is_simple']: # and self.source['has_donut_holes']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
