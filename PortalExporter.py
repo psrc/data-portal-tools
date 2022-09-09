@@ -319,7 +319,9 @@ class PortalResource(object):
 		then create a nested directory dir_path/gdb
 		"""
 		try:
-			gdb_path = dir_path / 'gdb.gdb'
+			gdb_filename = self.title + '.gdb'
+			# gdb_path = dir_path / 'gdb.gdb'
+			gdb_path = dir_path / gdb_filename
 			if os.path.exists(dir_path):
 				files = glob.glob(str(dir_path / '*'))
 				for f in files:
