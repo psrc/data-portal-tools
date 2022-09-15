@@ -65,5 +65,7 @@ dataset:
       ,[origin_purpose_cat] ,[dest_purpose_cat] ,[mode_1] ,[mode_simple] ,[main_mode] ,[driver]
       ,[mode_acc] ,[park] ,[o_puma10] ,[o_rgcname], [o_tract10], [origin_county] ,[d_puma10] ,[d_rgcname], [d_tract10], [dest_county]
       ,[google_duration] ,[trip_path_distance] ,[speed_mph] ,[travelers_hh] ,[travelers_total] ,[travel_time]
+	    ,'Date: ' + cast(depart_time_timestamp as varchar(30)) as depart_time_string
+	    ,'Date: ' + cast(arrival_time_timestamp as varchar(30)) as arrival_time_string
       ,[trip_weight_2021_ABS_Panel_adult] ,[trip_weight_2021_ABS_Panel_respondent] ,[trip_weight_2017_v2021] ,[trip_weight_2019_v2021] ,[trip_weight_2017_2019_v2021] ,[trip_weight_2017_2019_v2021_adult]
   FROM [Elmer].[HHSurvey].[v_trips]"

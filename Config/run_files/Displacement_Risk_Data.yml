@@ -17,7 +17,7 @@ dataset:
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
       data_source: Puget Sound Regional Council
-      date_last_updated: '2018'
+      date_last_updated: '2022'
       description: 'Displacement risk is a composite of indicators representing five
         elements of neighborhood displacement risks: socio-demographics, transportation
         qualities, neighborhood characteristics, housing, and civic engagement. The
@@ -25,58 +25,102 @@ dataset:
         index of displacement risk for all census tracts in the region. Refer to Technical
         Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
       fields:
-      - description: this is a shapefile field for census tract data
-        title: FID
-      - description: this is a shapefile field for census tract data
-        title: OBJECTID
-      - description: this is a shapefile field for census tract data
-        title: statefp10
-      - description: this is a shapefile field for census tract data
-        title: countyfp10
-      - description: this is a shapefile field for census tract data
-        title: tractce10
-      - description: this is a shapefile field for census tract data
-        title: geoid10
-      - description: this is a shapefile field for census tract data
-        title: name10
-      - description: this is a shapefile field for census tract data
-        title: namelsad10
-      - description: this is a shapefile field for census tract data
-        title: mtfcc10
-      - description: this is a shapefile field for census tract data
-        title: funcstat10
-      - description: this is a shapefile field for census tract data
-        title: aland10
-      - description: this is a shapefile field for census tract data
-        title: awater10
-      - description: this is a shapefile field for census tract data
-        title: intptlat10
-      - description: this is a shapefile field for census tract data
-        title: intptlon10
-      - description: this is a shapefile field for census tract data
-        title: name_val
-      - description: this is a shapefile field for census tract data
-        title: sq_miles
-      - description: this is a shapefile field for census tract data
-        title: acres
-      - description: this is a shapefile field for census tract data
-        title: geoidstr
-      - description: this is a shapefile field for census tract data
-        title: perc
-      - description: this is a shapefile field for census tract data
-        title: perc_1
-      - description: 11-digit census tract number
-        title: tract_geoi
-      - description: (no description)
-        title: risk_score
-      - description: category of displacement risk - number
-        title: risk_level
-      - description: category of displacement risk - name
-        title: risk_name
-      - description: this is a shapefile field for census tract data
-        title: Shape__Area
-      - description: this is a shapefile field for census tract data
-        title: Shape__Length
+        - title: GEOID
+          description: tract ID
+        - title: POC_pct
+          description: Population of People of Color (percent)
+        - title: POC_level
+          description: Population of People of Color (level)
+        - title: linguistic_pct
+          description: Population 5 years and over who do not speak English very well (percent)
+        - title: linguistic_level
+          description: Population 5 years and over who do not speak English very well (level)
+        - title: education_pct
+          description: Population 25 years and over without bachelors degree (percent)
+        - title: education_level
+          description: Population 25 years and over without bachelors degree (level)
+        - title: rent_pct
+          description: Renter households (percent)
+        - title: rent_level
+          description: Renter households (level)
+        - title: cost_burden_pct
+          description: Cost burdened households (percent)
+        - title: sev_cost_burdened_pct
+          description: Severely cost burdened households (percent)
+        - title: cost_burden_pct
+          description: Cost burdened households (level)
+        - title: sev_cost_burdened_level
+          description: Severely cost burdened households (level)
+        - title: poverty_pct
+          description: Population below 200% of poverty level (percent)
+        - title: poverty_level
+          description: Population below 200% of poverty level (level)
+        - title: jobs_auto
+          description: Jobs within 30min auto travel time
+        - title: jobs_transit
+          description: Jobs within 45min transit travel time
+        - title: jobs_auto_level
+          description: Jobs within 30min auto travel time (level)
+        - title: jobs_transit_level
+          description: Jobs within 45min transit travel time (level)
+        - title: transit_now_pct
+          description: Population within quarter-mile of existing High Capacity Transit (percent)
+        - title: transit_now_level
+          description: Population within quarter-mile of existing High Capacity Transit (level)
+        - title: transit_future_pct
+          description: Area within quarter-mile of 2030 BRT and half-mile of other High Capacity Transit (percent)
+        - title: transit_future_level
+          description: Area within quarter-mile of 2030 BRT and half-mile of other High Capacity Transit (level)
+        - title: supermarket
+          description: Weighted average distance to supermarket (mile)
+        - title: pharmacy
+          description: Weighted average distance to pharmacy (mile)
+        - title: restaurant
+          description: Weighted average distance to restaurant (mile)
+        - title: supermarket_level
+          description: Weighted average distance to supermarket (level)
+        - title: pharmacy_level
+          description: Weighted average distance to pharmacy (level)
+        - title: restaurant_level
+          description: Weighted average distance to restaurant (level)
+        - title: park
+          description: Weighted average distance to park (mile)
+        - title: school
+          description: Weighted average distance to school (mile)
+        - title: park_level
+          description: Weighted average distance to park (level)
+        - title: school_level
+          description: Weighted average distance to school (level)
+        - title: near_high_inc
+          description: Adjacent to high income tract
+        - title: near_high_inc_level
+          description: Adjacent to high income tract (level)
+        - title: dev_potential_pct
+          description: Existing housing units potentially demolished for new development (percent)
+        - title: dev_potential_level
+          description: Existing housing units potentially demolished for new development (level)
+        - title: rent_ratio_0room
+          description: Median Gross Rent for 0room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_1room
+          description: Median Gross Rent for 1room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_2room
+          description: Median Gross Rent for 2room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_3room
+          description: Median Gross Rent for 3room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_0room_level
+          description: Median Gross Rent for 0room (level)
+        - title: rent_ratio_1room_level
+          description: Median Gross Rent for 1room (level)
+        - title: rent_ratio_2room_level
+          description: Median Gross Rent for 2room (level)
+        - title: rent_ratio_3room_level
+          description: Median Gross Rent for 3room (level)
+        - title: rent_ratio_weight
+          description: Median Gross Rent weight used to aggregate across all room sizes
+        - title: vote_pct
+          description: Population 18 years and over who voted in most recent presidential election (percent)
+        - title: vote_level
+          description: Population 18 years and over who voted in most recent presidential election (level)    
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/displacement-risk-mapping
       summary_purpose: ''
@@ -85,7 +129,7 @@ dataset:
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
       tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
-      time_period: '2018'
+      time_period: '2021'
       update_cadence: Periodically
     share_level: everyone
     snippet: null
