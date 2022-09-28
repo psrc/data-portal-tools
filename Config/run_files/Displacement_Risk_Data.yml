@@ -27,6 +27,12 @@ dataset:
       fields:
         - title: GEOID
           description: tract ID
+        - title: risk_score
+          description: Composite index risk score (number between 0 and 60)
+        - title: risk_level
+          description: Composite index risk level (1, 2, or 3)
+        - title: risk_level_name
+          description: Composite index risk level (name)
         - title: POC_pct
           description: Population of People of Color (percent)
         - title: POC_level
@@ -39,18 +45,20 @@ dataset:
           description: Population 25 years and over without bachelors degree (percent)
         - title: education_level
           description: Population 25 years and over without bachelors degree (level)
-        - title: rent_pct
+        - title: renter_pct
           description: Renter households (percent)
-        - title: rent_level
+        - title: renter_level
           description: Renter households (level)
-        - title: cost_burden_pct
+        - title: cost_burdened_pct
           description: Cost burdened households (percent)
         - title: sev_cost_burdened_pct
           description: Severely cost burdened households (percent)
-        - title: cost_burden_pct
+        - title: cost_burdened_level
           description: Cost burdened households (level)
         - title: sev_cost_burdened_level
           description: Severely cost burdened households (level)
+        - title: combined_burdened_level
+          description: Cost burdened and severely cost burdened households (level)
         - title: poverty_pct
           description: Population below 200% of poverty level (percent)
         - title: poverty_level
@@ -63,6 +71,8 @@ dataset:
           description: Jobs within 30min auto travel time (level)
         - title: jobs_transit_level
           description: Jobs within 45min transit travel time (level)
+        - title: jobs_level
+          description: Jobs within 30min auto travel time and within 45min transit travel time (level)
         - title: transit_now_pct
           description: Population within quarter-mile of existing High Capacity Transit (percent)
         - title: transit_now_level
@@ -83,6 +93,8 @@ dataset:
           description: Weighted average distance to pharmacy (level)
         - title: restaurant_level
           description: Weighted average distance to restaurant (level)
+        - title: core_business_level
+          description: Weighted average distance to supermarket, pharmacy, and restaurant (level)
         - title: park
           description: Weighted average distance to park (mile)
         - title: school
@@ -91,6 +103,8 @@ dataset:
           description: Weighted average distance to park (level)
         - title: school_level
           description: Weighted average distance to school (level)
+        - title: civic_infrastructure_level
+          description: Weighted average distance to park and school (level)
         - title: near_high_inc
           description: Adjacent to high income tract
         - title: near_high_inc_level
@@ -117,10 +131,12 @@ dataset:
           description: Median Gross Rent for 3room (level)
         - title: rent_ratio_weight
           description: Median Gross Rent weight used to aggregate across all room sizes
+        - title: rent_ratio_all_level
+          description: Median Gross Rent for all rooms (level)
         - title: vote_pct
           description: Population 18 years and over who voted in most recent presidential election (percent)
         - title: vote_level
-          description: Population 18 years and over who voted in most recent presidential election (level)    
+          description: Population 18 years and over who voted in most recent presidential election (level)      
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/displacement-risk-mapping
       summary_purpose: ''
