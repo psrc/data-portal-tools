@@ -4,31 +4,64 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 
+      assessment: N/A
       contact_city: Seattle
       contact_email: blee@psrc.org
       contact_name: Brian Lee
-      contact_phone: (206)464-7536
+      contact_phone: 206-971-3270
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: 
-      data_source: American Community Survey
-      date_last_updated: 
-      description: 
+      data_lineage: ''
+      data_source: ''
+      data_source: 'See Opportunity Mapping: Methodology and Technical Addendum (July
+        2019): https://www.psrc.org/sites/default/files/opportunitymapping.pdf'
+      date_last_updated: 12/2018
+      description: 'The Opportunity Mapping data includes census tract level information
+        on the composite index score as well as the intermediate scores for the five
+        key elements of neighborhood opportunity and positive life outcomes: education,
+        economic health, housing and neighborhood quality, mobility and transportation,
+        and health and environment. The level of opportunity score (very low, low,
+        moderate, high, very high) is determined by sorting all census tracts into
+        quintiles based on their index scores. '
       fields:
+      - description: Opportunity index category (numeric)
+        title: opp_class
+      - description: Education element category (numeric)
+        title: edu_class
+      - description: Economy element category (numeric)
+        title: econ_class
+      - description: Housing element category (numeric)
+        title: house_clas
+      - description: Transportation element category (numeric)
+        title: trans_clas
+      - description: Health element category (numeric)
+        title: health_cla
+      - description: Opportunity index category (name)
+        title: opp_index
+      - description: Education element category (name)
+        title: ed_index
+      - description: Economy element category (name)
+        title: econ_index
+      - description: Housing element category (name)
+        title: hous_index
+      - description: Transportation element category (name)
+        title: hlth_index
+      - description: Health element category (name)
+        title: tran_index
       organization_name: Puget Sound Regional Council
-      psrc_website: 'https://www.psrc.org/our-work/rtp '
+      psrc_website: https://www.psrc.org/opportunity-mapping
       summary_purpose: ''
       supplemental_info: ''
-      tech_note_link: ''
-      time_period: 
-      update_cadence: As needed
+      tech_note_link: 'Opportunity Mapping: Methodology and Technical Addendum (July
+        2019): https://www.psrc.org/sites/default/files/opportunitymapping.pdf'
+      time_period: '2018'
+      update_cadence: Periodically
     share_level: everyone
     snippet: null
     groups: hub- GIS;PSRC Data Portal Content
-    spatial_data: True
-    tags: portal,opportunity,equity
+    spatial_data: true
+    tags: Equity;
     title: Opportunity_Index_Equity_Tracts
   source:
     is_simple: true

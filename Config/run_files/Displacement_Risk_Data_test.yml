@@ -1,0 +1,146 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      contact_city: Seattle
+      contact_email: blee@psrc.org
+      contact_name: Brian Lee
+      contact_phone: 206-971-3270
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'Data collected from American Community Survey (ACS), U.S. Census
+        Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
+        of Housing & Urban Development (HUD); Google; County elections data; Puget
+        Sound Regional Council. '
+      data_source: Puget Sound Regional Council
+      date_last_updated: '2022'
+      description: 'Displacement risk is a composite of indicators representing five
+        elements of neighborhood displacement risks: socio-demographics, transportation
+        qualities, neighborhood characteristics, housing, and civic engagement. The
+        data from these five displacement indicators were compiled into a comprehensive
+        index of displacement risk for all census tracts in the region. Refer to Technical
+        Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      fields:
+        - title: GEOID
+          description: tract ID
+        - title: POC_pct
+          description: Population of People of Color (percent)
+        - title: POC_level
+          description: Population of People of Color (level)
+        - title: linguistic_pct
+          description: Population 5 years and over who do not speak English very well (percent)
+        - title: linguistic_level
+          description: Population 5 years and over who do not speak English very well (level)
+        - title: education_pct
+          description: Population 25 years and over without bachelors degree (percent)
+        - title: education_level
+          description: Population 25 years and over without bachelors degree (level)
+        - title: rent_pct
+          description: Renter households (percent)
+        - title: rent_level
+          description: Renter households (level)
+        - title: cost_burden_pct
+          description: Cost burdened households (percent)
+        - title: sev_cost_burdened_pct
+          description: Severely cost burdened households (percent)
+        - title: cost_burden_pct
+          description: Cost burdened households (level)
+        - title: sev_cost_burdened_level
+          description: Severely cost burdened households (level)
+        - title: poverty_pct
+          description: Population below 200% of poverty level (percent)
+        - title: poverty_level
+          description: Population below 200% of poverty level (level)
+        - title: jobs_auto
+          description: Jobs within 30min auto travel time
+        - title: jobs_transit
+          description: Jobs within 45min transit travel time
+        - title: jobs_auto_level
+          description: Jobs within 30min auto travel time (level)
+        - title: jobs_transit_level
+          description: Jobs within 45min transit travel time (level)
+        - title: transit_now_pct
+          description: Population within quarter-mile of existing High Capacity Transit (percent)
+        - title: transit_now_level
+          description: Population within quarter-mile of existing High Capacity Transit (level)
+        - title: transit_future_pct
+          description: Area within quarter-mile of 2030 BRT and half-mile of other High Capacity Transit (percent)
+        - title: transit_future_level
+          description: Area within quarter-mile of 2030 BRT and half-mile of other High Capacity Transit (level)
+        - title: supermarket
+          description: Weighted average distance to supermarket (mile)
+        - title: pharmacy
+          description: Weighted average distance to pharmacy (mile)
+        - title: restaurant
+          description: Weighted average distance to restaurant (mile)
+        - title: supermarket_level
+          description: Weighted average distance to supermarket (level)
+        - title: pharmacy_level
+          description: Weighted average distance to pharmacy (level)
+        - title: restaurant_level
+          description: Weighted average distance to restaurant (level)
+        - title: park
+          description: Weighted average distance to park (mile)
+        - title: school
+          description: Weighted average distance to school (mile)
+        - title: park_level
+          description: Weighted average distance to park (level)
+        - title: school_level
+          description: Weighted average distance to school (level)
+        - title: near_high_inc
+          description: Adjacent to high income tract
+        - title: near_high_inc_level
+          description: Adjacent to high income tract (level)
+        - title: dev_potential_pct
+          description: Existing housing units potentially demolished for new development (percent)
+        - title: dev_potential_level
+          description: Existing housing units potentially demolished for new development (level)
+        - title: rent_ratio_0room
+          description: Median Gross Rent for 0room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_1room
+          description: Median Gross Rent for 1room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_2room
+          description: Median Gross Rent for 2room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_3room
+          description: Median Gross Rent for 3room (ratio of tract MGR to county MGR)
+        - title: rent_ratio_0room_level
+          description: Median Gross Rent for 0room (level)
+        - title: rent_ratio_1room_level
+          description: Median Gross Rent for 1room (level)
+        - title: rent_ratio_2room_level
+          description: Median Gross Rent for 2room (level)
+        - title: rent_ratio_3room_level
+          description: Median Gross Rent for 3room (level)
+        - title: rent_ratio_weight
+          description: Median Gross Rent weight used to aggregate across all room sizes
+        - title: vote_pct
+          description: Population 18 years and over who voted in most recent presidential election (percent)
+        - title: vote_level
+          description: Population 18 years and over who voted in most recent presidential election (level)    
+      organization_name: Puget Sound Regional Council
+      psrc_website: https://www.psrc.org/displacement-risk-mapping
+      summary_purpose: ''
+      supplemental_info: 'Data collected from American Community Survey (ACS), U.S.
+        Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
+        of Housing & Urban Development (HUD); Google; County elections data; Puget
+        Sound Regional Council. '
+      tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      time_period: '2021'
+      update_cadence: Periodically
+    share_level: everyone
+    snippet: null
+    groups: hub- GIS;PSRC Data Portal Content;hub- Equity
+    spatial_data: True
+    tags: Equity; Census;Displacement Risk
+    title: Displacement_Risk_Data_test
+  source:
+    feature_dataset: 'equity'
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: displacement_risk

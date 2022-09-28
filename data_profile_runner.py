@@ -43,6 +43,22 @@ datasets =  [
         }
 ]
 
+datasets =  [
+        { 'census_year': 2021,
+        'census_product': 'acs1',
+        'specifications': {
+            "DP02": {'short_title': 'Social Characteristics Data Profle', 
+                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2021 1-Year Data'},
+            "DP03": {'short_title': 'Economic Data Profle', 
+                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2021 1-Year Data' },
+            "DP04": {'short_title': 'Housing Data Profle', 
+                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2021 1-Year Data' },
+            "DP05": {'short_title': 'Demographic Data Profle', 
+                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2021 1-Year Data' }    
+                }
+        }
+]
+
 
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
