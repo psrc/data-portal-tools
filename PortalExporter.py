@@ -733,9 +733,7 @@ class PortalResource(object):
 			sup_info = self.clean_metadata_string(sup_info)
 			suppInfo = ET.SubElement(dataIdInfo, 'suppInfo').text = sup_info
 
-			data_lineage = self.metadata['data_lineage'] 
-			data_lineage = self.clean_metadata_string(data_lineage)
-			idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = data_lineage
+			#idPurp = ET.SubElement(dataIdInfo, 'idPurp').text = data_lineage
 
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
@@ -753,8 +751,10 @@ class PortalResource(object):
 					enttypd.text = f['description']
 
 			dqInfo = ET.SubElement(root, 'dqInfo')
+			data_lineage = self.metadata['data_lineage'] 
+			data_lineage = self.clean_metadata_string(data_lineage)
 			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
-			statement = ET.SubElement(dataLineage, 'statement').text = self.metadata['data_lineage']
+			statement = ET.SubElement(dataLineage, 'statement').text = data_lineage
 			tree.write(metadata_file, encoding='UTF-8', xml_declaration=True)
 			item.update(metadata=metadata_file)
 
