@@ -37,5 +37,5 @@ dataset:
     has_donut_holes: false
     schema_name: 
     table_name: 
-    sql_query: select * from data_portal.macroeconomic('2018 Regional Macroeconomic Forecast')
+    sql_query: select * from data_portal.macroeconomic('2018 Regional Macroeconomic Forecast') order by data_year desc
 
