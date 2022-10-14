@@ -97,6 +97,7 @@ class PortalResource(object):
 			params,
 			source):
 		"""
+		Initiate a new PortalResource object.
 		Parameters:
 			p_connector: a PortalConnector object
 			db_connector: a DatabaseConnector object
@@ -200,6 +201,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def close_holes(self, poly: Polygon) -> Polygon:
 			"""
 			Close polygon holes by limitation to the exterior ring.
@@ -218,7 +220,17 @@ class PortalResource(object):
 				print(e.args[0])
 				raise
 
+
 	def add_to_zip(self, raw_file, zip_file, overwrite=False):
+		"""
+  		Add a file to a ZIP archive file.  
+    	
+     	Inputs:
+      		raw_file: (string): the name of the file to be added to the archive.
+        	zip_file: (string): the file name of the ZIP archive 
+         	overwrite: (True/False): a TRUE value overwrites any currently-existing
+          				contents of the ZIP file, while a FALSE value appends to it.
+            """
 		try:
 			if overwrite == True:
 				with zipfile.ZipFile(zip_file, 'w') as myzip:
@@ -252,9 +264,15 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def gdb_to_zip(self, file_gdb_name):
 		"""
-		file_gdb_name: a Path object
+		Create a local zip file from a file geodatabase.
+		
+  		input:
+    		file_gdb_name: a Path object for the file geodtabase to be zipped.
+		
+		Returns the name of the new zip file.
 		"""
 		try:
 			if '.gdb' in str(file_gdb_name):
@@ -272,6 +290,16 @@ class PortalResource(object):
 
 
 	def simplify_gdf(self, gdf):
+		"""
+  		Given a polygon geodataframe, fill in any holes in polygons.
+		Polygon holes can represent features such as lakes, but can cause 
+		strange triangle-shaped artifacts in geodataframes.  
+
+		input:
+			gdf: a geodataframe object
+
+		Returns a geodataframe
+    	"""
 		try:
 			geo_type = gdf.Shape_wkt.geom_type.unique()[0]
 			if geo_type == 'Polygon':
@@ -313,6 +341,7 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def prepare_working_dir(self, dir_path):
 		"""
 		remove layers in a geodatabase at dir_path (it if exists,
@@ -349,6 +378,7 @@ class PortalResource(object):
 					fields_to_exclude=[]
 			):
 		'''
+		Creates a local copy of a feature class in a geodatabase.
 		params:
 			remote_fc: String. The name of a featureclass in a remote geodatbase
 			out_gdb: Path() object. References a file geodatabase
@@ -405,6 +435,12 @@ class PortalResource(object):
 
 
 	def republish_spatial(self):
+		"""
+  		Copy a spatial layer from ElmerGeo into a local file geodatabase,
+    		then zip up that gdb, identify an existing layer on ArcOnline,
+			and overwrite that layer with the zipped gdb.  
+			Lastly, publish the updated layer.
+      	"""
 		try:
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
@@ -446,6 +482,11 @@ class PortalResource(object):
 
 
 	def make_file_gdb(self, gdb_path):
+		"""
+  		Creates a new empty local file geodatabase.
+    
+    	Input:  gdb_path.  The directory and file location for the geodatabase.
+     	"""
 		try:
 			if os.path.exists(gdb_path):
 				shutil.rmtree(gdb_path)
@@ -458,6 +499,9 @@ class PortalResource(object):
 	
  
 	def set_up_sde(self):
+		"""
+  		Creates an SDE file, i.e., a connection to a Geodatabase on SQL Server
+    	"""
 		try:
 			sde_dir_name = './' + self.sde_folder
 			sde_full_name = str(Path(sde_dir_name) / self.sde_name)
@@ -480,7 +524,8 @@ class PortalResource(object):
 
 	def publish_spatial_as_new(self):
 		"""
-		Export a resource from a geodatabase to a File Geodatabase layer on the data portal.
+		Export a resource from a ElmerGeo to a new File Geodatabase layer on Arc Online.
+			Then, publishes that layer as a new Portal layer.
 		"""
 		try:
 			title = self.resource_properties['title']
@@ -522,6 +567,11 @@ class PortalResource(object):
 			raise
 
 	def republish(self):
+		"""
+  		Create a tabular CSV data set on ArcOnline, 
+    	and publish it as a table on Portal.
+		Both these actions overwrite pre-existing objects.
+		"""
 		try: 
 			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
@@ -553,6 +603,7 @@ class PortalResource(object):
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
+
 
 	def publish_as_new(self):
 		"""
@@ -588,24 +639,19 @@ class PortalResource(object):
 			if os.path.exists(csv_name): os.remove(csv_name)
 			raise
 
-	def update_xml_node(self, doc, tag_list, value):
-		"""
-		find a tag (defined by tag_list) in a parsed xml document,
-		and update its value
-		"""
-		try:
-			pass
-
-		except Exception as e:
-			print(e.args[0])
-			raise
-
 
 	def upsert_element(self, existing_element, new_element_tag, new_element_text = ''):
-		"""Looks within existing_element for an element (new_element_tag).
+		"""
+  		Looks within existing_element (in an XML document) for an element (new_element_tag).
 		If found, it updates its text value according to new_element_text.
 		If not found, it adds it as a subElement and update its text according to new_element_text.
-		Returns the new elmement."""
+		Returns the new elmement.
+
+		Parameters:
+			existing_element: The XML element to search through
+			new_element_tag: The element tag to look for
+			new_element_text: The string to set the new element's text property to.
+  		"""
 		try:
 			sub_el = existing_element.find(new_element_tag)
 			if sub_el is None:
@@ -623,10 +669,16 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def clean_metadata_string(self, str):
 		"""
-		Clean str of any N/A's or None (NULL) values
+		Clean a string of any N/A's or None (NULL) values
 		  and wrap any HTTP links in <a> tags
+		
+		Parameter:
+			str: a string to be cleaned
+   
+		Returns a string
 		"""
 		try:
 			out_str = '' if str == 'N/A' else str
@@ -644,7 +696,14 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+
 	def set_and_update_metadata(self, item):
+		"""
+		Update the metadata for a published item in ArcOnline
+  
+		parameter:
+			item: the published item in ArcOnline.
+    	"""
 		try:
 			metadata_file = r'./workspace/metadata.xml'
 			#if not os.path.exists(metadata_file):
@@ -764,7 +823,15 @@ class PortalResource(object):
 			if os.path.exists(metadata_file): os.remove(metadata_file)
 			raise
 
+
 	def initialize_metadata_file(self, item):
+		"""
+		Create a metadata XML file locally from a template, 
+			then update an item in ArcOnline with the metadata XML file.
+   
+		Parameter:
+			item: An item in ArcOnline.
+  		"""
 		try:
 			metadata_template = r'./metadata_template.xml'
 			metadata_file = r'./workspace/metadata.xml'
@@ -784,7 +851,11 @@ class PortalResource(object):
 			if os.path.exists(metadata_file): os.remove(metadata_file)
 			raise
 
+
 	def print_df(self):
+		"""
+  		Print a data frame to the terminal window.  Used for testing only.
+    	"""
 		try:
 			print("printing dataframe:")
 			print(self.df)
@@ -796,7 +867,9 @@ class PortalResource(object):
 
 	def set_editability(self, layer):
 		'''
-		Disallow edits if self.allow_edits is set to False
+		Set the editability for a layer in ArcOnline.
+		Disallow edits if self.allow_edits is set to False,
+			otherwise allow CREATE, DELETE, UPDATE and EDITING 
 		'''
 		try:
 			if self.allow_edits == False:
@@ -814,6 +887,14 @@ class PortalResource(object):
 
 
 	def share(self, layer):
+		"""
+  		Set the sharing properties for a layer/item in ArcOnline so that
+			it is visible either globally or just by PSRC staff.
+		The audience is set per the "share_level" property of self 
+  			(see the __init__ procedure above)
+    
+    	Parameter:
+     		layer: A layer in ArcOnline"""
 		try:
 			sl = self.share_level
 			share_group_ids = self.get_group_ids()
