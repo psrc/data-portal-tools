@@ -18,7 +18,7 @@ class FormResults(object):
     def __init__(self, 
         in_file_name,
         in_sheet_name = 'Sheet1',
-        in_file_dir = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Projects\2022\data_portal\metadata_pipeline', 
+        in_file_dir = r'Y:\Data-Portal\Metadata',
         config_dir = r'.\Config\run_files',
         shared_column_def_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Question 1'
         ):
