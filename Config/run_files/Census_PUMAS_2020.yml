@@ -23,36 +23,32 @@ dataset:
         areas containing no fewer than 100,000 people each. They cover the entirety
         of the United States, Puerto Rico, Guam, and the U.S. Virgin Islands. '
       fields:
-      - description: Internal feature number
+      - description: Internal feature number/unique identifier
         title: OBJECTID
-      - description: (no description)
-        title: chng_type
-      - description: (no description)
-        title: eff_date
-      - description: (no description)
-        title: relate
+      - description: State FIPS Code
+        title: statefp20
+      - description: PUMA Code
+        title: pumace20
+      - description: A concatenation of the State FIPS code and the PUMA Code
+        title: geoid20
       - description: PUMA name.
-        title: name
-      - description: 2010 Decennial population of PUMA
-        title: pop10
-      - description: Part flag
-        title: partflg
-      - description: Vintage
-        title: vintage
-      - description: (no description)
-        title: z_min
-      - description: (no description)
-        title: z_max
-      - description: State FIPS code
-        title: statefp10
-      - description: 5-character PUMA ID
-        title: pumace10
-      - description: Old PUMA ID left over from delineation process
-        title: pumaold
-      - description: Area of feature
-        title: Shape_STAr
-      - description: Perimeter of feature
-        title: Shape_STLe
+        title: namelsad20
+      - description: MAF/TIGER feature class code
+        title: mtfcc20
+      - description: 2020 Census functional status
+        title: funcstat20
+      - description: 2020 Census land area
+        title: aland20
+      - description: 2020 Census water area
+        title: awater20
+      - description: 2020 Census latitude of the internal point
+        title: intptlat20
+      - description: 2020 Census longitude of the internal point
+        title: intptlon20
+      - description: Polygon feature
+        title: Shape
+      - description: 
+        title: GDB_GEOMATTR_DATA
       organization_name: Puget Sound Regional Council
       psrc_website: ''
       summary_purpose: ''
@@ -66,19 +62,19 @@ dataset:
         relationships and housing unit characteristics for occupied and vacant units.
         Sampling of people in institutions and other group quarters was done on a
         person-by-person basis.'
-      tech_note_link: https://usa.ipums.org/usa/resources/codebooks/2010_PUMS_codebook.pdf
-      time_period: 2010-2019
+      tech_note_link: https://www.census.gov/programs-surveys/acs/microdata/documentation.2020.html
+      time_period: 2020-2029
       update_cadence: Every 10 years
     share_level: everyone
     snippet: null
     groups: hub- GIS;PSRC Data Portal Content;hub- Census & Demographics
     spatial_data: True
     tags: Geographic Boundaries;Census;PUMA;
-    title: Census_PUMAS_2010
+    title: Census_PUMAS_2020
   source:
     is_simple: true
     feature_dataset: census
     has_donut_holes: false
     schema_name: dbo
-    table_name: REG10PUMA
+    table_name: REG20PUMA
     sql_query: 

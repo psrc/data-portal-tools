@@ -4,19 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: The data contained in this product are based on the Census 2000
-        sample. The data summarized from these files are estimates of the actual figures
-        that would have been obtained from a complete count. Estimates derived from
-        the census sample files are expected to differ from the100-percent figures
-        because they are subject to sampling and nonsampling errors. Sampling error
-        in data arises from the selection of people and housing units included in
-        the sample. Nonsampling error affects both sample and 100-percent data and
-        is introduced as a result of errors that may occur during the data collection
-        and processing phases of the census. This chapter provides a detailed discussion
-        of both types of errors and a description of the estimation procedures.In
-        the Public Use Microdata Samples (PUMS), the basic unit is an individual housing
-        unit and the people who live in occupied housing units or group quarters.
-        However, microdata records in these samples do not contain names or addresses.
+      assessment: 
       contact_city: Seattle
       contact_email: eclute@psrc.org
       contact_name: Eric Clute
