@@ -62,6 +62,6 @@ dataset:
       ,[wbt_bikemore_5] ,[commute_auto_time] ,[commute_auto_distance] , [work_tract10]
       ,[work_puma10] ,[worker] ,[employment_pre_covid] ,[commute_freq_pre_covid] ,[commute_mode_pre_covid] ,[telecommute_freq_pre_covid]
       ,[school_travel_last_week] ,[employment_change_employer] ,[employment_change_location] ,[employment_change_new_job] ,[employment_change_laid_off] ,[employment_change_left_workforce]
-      ,[employment_change_none] ,[workplace_pre_covid] ,[hh_weight_2021_ABS] ,[person_weight_2021_ABS_Panel_adult] ,[person_weight_2021_ABS_Panel_respondent] ,[hh_weight_2017_v2021]
-      ,[hh_weight_2019_v2021] ,[hh_weight_2017_2019_v2021] ,[hh_weight_2017_2019_v2021_adult] 
+      ,[employment_change_none] ,[workplace_pre_covid] ,[hh_weight_2021] ,[person_adult_weight_2021] ,[person_respondent_weight_2021] ,[hh_weight_2017]
+      ,[hh_weight_2019] ,[hh_weight_2017_2019] ,[hh_weight_2017_2019_adult] 
 	  FROM [Elmer].[HHSurvey].[v_persons]"

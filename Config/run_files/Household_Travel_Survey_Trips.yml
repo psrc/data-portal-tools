@@ -67,5 +67,5 @@ dataset:
       ,[google_duration] ,[trip_path_distance] ,[speed_mph] ,[travelers_hh] ,[travelers_total] ,[travel_time]
 	    ,'Date: ' + cast(depart_time_timestamp as varchar(30)) as depart_time_string
 	    ,'Date: ' + cast(arrival_time_timestamp as varchar(30)) as arrival_time_string
-      ,[trip_weight_2021_ABS_Panel_adult] ,[trip_weight_2021_ABS_Panel_respondent] ,[trip_weight_2017_v2021] ,[trip_weight_2019_v2021] ,[trip_weight_2017_2019_v2021] ,[trip_weight_2017_2019_v2021_adult]
+      ,[trip_adult_weight_2021] ,[trip_respondent_weight_2021] ,[trip_weight_2017] ,[trip_weight_2019] ,[trip_weight_2017_2019] ,[trip_adult_weight_2017_2019]
   FROM [Elmer].[HHSurvey].[v_trips]"
