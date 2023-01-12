@@ -20,18 +20,20 @@ class FormResults(object):
         in_sheet_name = 'Sheet1',
         in_file_dir = r'Y:\Data-Portal\Metadata',
         config_dir = r'.\Config\run_files',
-        shared_column_def_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Question 1'
+        shared_column_def_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Question 1',
+        fields_spreadsheet_path = r'C:\Users\cpeak\Repos\data-portal-tools\meta_workspace\fields.xlsx'
         ):
         try:
             # self.path = metadata_dir
             self.form_results_path = in_file_dir + '\\' + in_file_name
             self.shared_column_def_path = shared_column_def_path
+            self.fields_spreadsheet_path = fields_spreadsheet_path
             self.df = pd.read_excel(self.form_results_path, 
                             sheet_name=in_sheet_name, 
                             na_filter=False)
             self.set_column_dict()
             self.config_dir = config_dir
-            self.rename_columns()
+            #self.rename_columns()
             self.standardize_cols()
 
         except Exception as e:
@@ -100,21 +102,21 @@ class FormResults(object):
                     time_period: '{}'
                     tech_note_link: '{}'
                     update_cadence: '{}'
-        """.format(ser['Title'],
+        """.format(ser['DatasetName'], #was title
                     ser['Tags'],
-                    ser['Spatial Data'],
+                    ser['SpatialData'], #was Spatial Data
                     ser['ContactName'],
                     ser['ContactEmail'],
                     ser['ContactPhone'],
                     ser['Abstract'],
                     ser['DataSource'],
                     ser['DateLastUpdated'],
-                    ser['DataLineage'],
-                    ser['Assessment'],
-                    ser['Webpage'],
-                    ser['SupplementalInfo'],
+                    ser['DataCollectionProcess'], #was DataLineage
+                    ser['DataAssessment'], #was Assessment
+                    ser['WebpageLink'], #was Webpage
+                    ser['SupplementalInformation'], # Was SupplementalInfo
                     ser['TimePeriod'],
-                    ser['TechNoteLink'],
+                    ser['TechnicalNotes'], #was TechNoteLink
                     ser['UpdateCadence']
                     ),
                 yaml.FullLoader)
@@ -231,13 +233,30 @@ class FormResults(object):
         try:
             field_list = []
             for i, r in in_df.iterrows():
-                if r.Remove_Field != 'Yes':
+                if r.RemoveField != 'Yes':
                     if r['Description '] == r['Description ']:
                         desc = r['Description '] 
                     else:
                         desc = '(no description)'
-                    f_dict = {'title': r['Field_Name'], 'description': desc}
+                    f_dict = {'title': r['FieldName'], 'description': desc}
                     field_list.append(f_dict)
+            return field_list
+
+        except Exception as e:
+            print(e.args[0])
+            raise
+
+
+    def get_field_data2(self, row):
+        """
+        given a row from the data_sets data frame,
+        return the field definitions as a list of dictionaries.
+        """
+        try: 
+            data_set_id = row.DatasetID
+            df = pd.read_excel(self.fields_spreadsheet_path)
+            df = df[df.DatasetID == data_set_id]
+            field_list = self.df_to_list_of_dicts(df)
             return field_list
 
         except Exception as e:
@@ -290,7 +309,7 @@ class FormResults(object):
         try:
             for i, r in self.df.iterrows():
                 new_metadata = self.yamlize(r)
-                fd = self.get_field_data(r)
+                fd = self.get_field_data2(r)
                 new_metadata['dataset']['layer_params']['metadata']['fields'] = fd
                 title = self.get_title_from_metadata(new_metadata)
                 print('title: {}'.format(title))
