@@ -43,6 +43,8 @@ dataset:
           Data years 2000-2009 use 2000 Census tracts; years 2010-2020 use 2010 Census
           tracts.
         title: Tract
+      - description: The vintage of the tract geography, i.e. 2000, 2010 or 2020 Census tracts.
+        title: Tract_Vintage
       - description: 'Construction and Resources: NAICS 11, 21, 23'
         title: Const_Res
       - description: 'Finance, Insurance, and Real Estate Services: NAICS 52-53'
