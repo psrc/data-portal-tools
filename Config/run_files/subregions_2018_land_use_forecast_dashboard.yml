@@ -1,0 +1,42 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: ''
+      contact_city: Seattle
+      contact_email: pcaballero@psrc.org
+      contact_name: Peter Caballero
+      contact_phone: ''
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: ''
+      data_source: ''
+      date_last_updated: 12/16/2022
+      description: UrbanSim internal modeling controlling geography
+      fields:
+      - description: UrbanSim assigned subregional geography ID
+        title: subreg_id
+      - description: Subregional geography name
+        title: subreg_nam
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: 12/16/2022
+      update_cadence: ''
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: null
+    title: subregions_2018_land_use_forecast_dashboard
+  source:
+    feature_dataset: forecast
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: subregs18_dashboard

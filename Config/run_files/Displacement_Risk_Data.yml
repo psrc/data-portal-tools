@@ -22,8 +22,7 @@ dataset:
         elements of neighborhood displacement risks: socio-demographics, transportation
         qualities, neighborhood characteristics, housing, and civic engagement. The
         data from these five displacement indicators were compiled into a comprehensive
-        index of displacement risk for all census tracts in the region. Refer to Technical
-        Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+        index of displacement risk for all census tracts in the region. '
       fields:
         - title: GEOID
           description: tract ID
@@ -144,7 +143,7 @@ dataset:
         Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
-      tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      tech_note_link: 'Technical documentation: https://www.psrc.org/media/2749'
       time_period: '2021'
       update_cadence: Periodically
     share_level: everyone

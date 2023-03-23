@@ -5,59 +5,46 @@ from PortalExporter import PortalConnector
 import yaml
 
 datasets = [
-        { 'census_year': 2020,
-        'census_product': 'acs5',
-        'specifications': {
-                "DP02": {'short_title': 'test_dp_social_acs5_2020', 
-                         'long_title':'Social Characteristics Data Profile, ACS 5-year 2020' }
-                }
-        }
-]
-
-datasets =  [
-        {'census_year': 2020,
-        'census_product': 'acs5',
-        'specifications': {
-            "DP02": {'short_title': 'Social Characteristics Data Profle', 
-                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2020 5-Year Data'},
-            "DP03": {'short_title': 'Economic Data Profle', 
-                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2020 5-Year Data' },
-            "DP04": {'short_title': 'Housing Data Profle', 
-                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2020 5-Year Data' },
-            "DP05": {'short_title': 'Demographic Data Profle', 
-                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2020 5-Year Data' }    
-                }
-        },
-        { 'census_year': 2019,
-        'census_product': 'acs1',
-        'specifications': {
-            "DP02": {'short_title': 'Social Characteristics Data Profle', 
-                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2019 1-Year Data'},
-            "DP03": {'short_title': 'Economic Data Profle', 
-                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2019 1-Year Data' },
-            "DP04": {'short_title': 'Housing Data Profle', 
-                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2019 1-Year Data' },
-            "DP05": {'short_title': 'Demographic Data Profle', 
-                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2019 1-Year Data' }    
-                }
-        }
-]
-
-datasets =  [
         { 'census_year': 2021,
-        'census_product': 'acs1',
+        'census_product': 'acs5',
         'specifications': {
-            "DP02": {'short_title': 'Social Characteristics Data Profle', 
-                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2021 1-Year Data'},
-            "DP03": {'short_title': 'Economic Data Profle', 
-                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2021 1-Year Data' },
-            "DP04": {'short_title': 'Housing Data Profle', 
-                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2021 1-Year Data' },
-            "DP05": {'short_title': 'Demographic Data Profle', 
-                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2021 1-Year Data' }    
+                "DP02": {'short_title': 'test_dp_social_acs5_2021', 
+                         'long_title':'Social Characteristics Data Profile, ACS 5-year 2021' }
                 }
         }
 ]
+
+datasets =  [
+        {'census_year': 2021,
+        'census_product': 'acs5',
+        'specifications': {
+            "DP02": {'short_title': 'Social Characteristics Data Profle', 
+                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2021 5-Year Data'},
+            "DP03": {'short_title': 'Economic Data Profle', 
+                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2021 5-Year Data' },
+            "DP04": {'short_title': 'Housing Data Profle', 
+                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2021 5-Year Data' },
+            "DP05": {'short_title': 'Demographic Data Profle', 
+                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2021 5-Year Data' }    
+                }
+        }
+]
+
+# datasets =  [
+#         { 'census_year': 2021,
+#         'census_product': 'acs1',
+#         'specifications': {
+#             "DP02": {'short_title': 'Social Characteristics Data Profle', 
+#                     'long_title':'ACS Data Profile: Social Characteristics, ACS 2021 1-Year Data'},
+#             "DP03": {'short_title': 'Economic Data Profle', 
+#                     'long_title':'ACS Data Profile: Economic Characteristics, ACS 2021 1-Year Data' },
+#             "DP04": {'short_title': 'Housing Data Profle', 
+#                     'long_title':'ACS Data Profile: Housing Characteristics, ACS 2021 1-Year Data' },
+#             "DP05": {'short_title': 'Demographic Data Profle', 
+#                     'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2021 1-Year Data' }    
+#                 }
+#         }
+# ]
 
 
 with open(r'Config\\auth.yml') as file:

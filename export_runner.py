@@ -75,7 +75,8 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Covered_Employment_by' in f:
+	#if r'Covered_Employment_by' in f:
+	if f in ['Displacement_Risk_Data.yml', 'Opportunity_Index_Equity_Tracts.yml']:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)

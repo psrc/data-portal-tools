@@ -1,0 +1,44 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: ''
+      contact_city: Seattle
+      contact_email: pcaballero@psrc.org
+      contact_name: Peter Caballero
+      contact_phone: ''
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: ''
+      data_source: ''
+      date_last_updated: 12/16/2022
+      description: Land Use Vision - Implemented Targets (LUV-it) target control city geography
+      fields:
+      - description: UrbanSim assigned control id
+        title: control_id
+      - description: Control name
+        title: control_na
+      - description: County FIPS ID
+        title: county_id
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link: ''
+      time_period: 12/16/2022
+      update_cadence: ''
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: null
+    title: control_2018_land_use_forecast_dashboard
+  source:
+    feature_dataset: forecast
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: control18_dashboard
