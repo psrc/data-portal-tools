@@ -15,7 +15,7 @@ dataset:
       data_lineage: ''
       data_source: ''
       date_last_updated: 12/16/2022
-      description: UrbanSim internal modeling controlling geography
+      description: "LUV-it's modeled geography for allocating households, persons, and jobs. The subregs is nested within the local city Targets boundary and is a combination of Target geographies and high capacity transit geographies (HCTs). This geography is identical to the subregs geography. The distinction between the two geographies is the subregs geography is the geography used by UrbanSim to model. The control_hct geography is the reported out geography. "
       fields:
       - description: UrbanSim assigned subregional geography ID
         title: subreg_id
@@ -26,7 +26,7 @@ dataset:
       summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
-      time_period: 12/16/2022
+      time_period: '2022'
       update_cadence: ''
     share_level: everyone
     snippet: null

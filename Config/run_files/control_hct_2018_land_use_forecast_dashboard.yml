@@ -15,30 +15,28 @@ dataset:
       data_lineage: ''
       data_source: ''
       date_last_updated: 12/16/2022
-      description: "Local city Targets boundary representation collected from the cities, compiled by PSRC, and used as LUV-it's initial geography for allocating households, persons, and jobs."
+      description: "LUV-it's modeled geography for allocating households, persons, and jobs. The control_hct is nested within the local city Targets boundary and is a combination of Target geographies and high capacity transit geographies (HCTs). This geography is identical to the subregs geography. The distinction between the two geographies is the subregs geography is the geography used by UrbanSim to model. The control_hct geography is the reported out geography. "
       fields:
-      - description: UrbanSim assigned control id
-        title: control_id
-      - description: Control name
-        title: control_na
-      - description: County FIPS ID
-        title: county_id
+      - description: UrbanSim assigned control hct geography ID
+        title: chct_id
+      - description: Control HCT geography name
+        title: chct_nam
       organization_name: Puget Sound Regional Council
       psrc_website: ''
       summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
-      time_period: 12/16/2022
+      time_period: '2022'
       update_cadence: ''
     share_level: everyone
     snippet: null
     spatial_data: true
     tags: LUV; Forecast
-    title: control_2018_land_use_forecast_dashboard
+    title: control_hct_2018_land_use_forecast_dashboard
   source:
     feature_dataset: forecast
     has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: 
-    table_name: control18_dashboard
+    table_name: control_hct18_dashboard

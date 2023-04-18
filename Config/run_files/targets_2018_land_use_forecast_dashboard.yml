@@ -15,7 +15,7 @@ dataset:
       data_lineage: ''
       data_source: ''
       date_last_updated: 12/16/2022
-      description: Household and Population targets provided by jurisdictions
+      description: "Target geography was provided by jurisdictions that encompasses some combinations of their households, population, employment, and/or residential unit estimates. "
       fields:
       - description: UrbanSim assigned unique target id
         title: target_id
@@ -33,7 +33,7 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: null
+    tags: LUV; Forecast
     title: targets_2018_land_use_forecast_dashboard
   source:
     feature_dataset: forecast
