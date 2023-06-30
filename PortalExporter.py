@@ -566,6 +566,27 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def build_fields_json(self, df):
+		"""
+		Return a dictionary of field names and data types in a data frame,
+			with the data types in ESRI-friendly form.
+  		"""
+		try:
+			dtypes = zip(df.columns, df.dtypes)
+			type_translations = {"int64": "esriFieldTypeInteger", 
+								"object": "esriFieldTypeString", 
+								"float64": "esriFieldTypeDouble"}
+			fields = []
+			for f in dtypes:
+				pd_type = str(f[1])
+				type_dict = {"name": f[0], "type": type_translations[pd_type]}
+				fields.append(type_dict)
+			return(fields)
+
+		except Exception as e:
+			print(e.args[0])
+			raise
+
 	def republish(self):
 		"""
   		Create a tabular CSV data set on ArcOnline, 
@@ -592,7 +613,13 @@ class PortalResource(object):
 			self.resource_properties['type'] = out_type
 			exported = self.search_by_title()
 			exported.update(data=csv_name, item_properties=self.resource_properties)
-			params = {"type":"csv","locationType":"none","name":self.title}
+			field_mappings = self.build_fields_json(df)
+			params = {"type":"csv",
+             		"locationType":"none",
+                	"name":self.title,
+                  	"layerInfo": {"fields": field_mappings}
+                   }
+			print(df.dtypes)
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
