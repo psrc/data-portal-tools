@@ -655,7 +655,12 @@ class PortalResource(object):
 			self.resource_properties['type'] = out_type
 			title = self.resource_properties['title']
 			exported = portal_connector.gis.content.add(self.resource_properties, data=str(csv_name))
-			params = {"name":title,"type":"csv","locationType":"none"}
+			field_mappings = self.build_fields_json(df)
+			params = {"name":title,
+             	"type":"csv",
+              	"locationType":"none",
+				"layerInfo": {"fields": field_mappings}
+               }
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
