@@ -24,7 +24,7 @@ dataset:
         a wide variety of transportation options, including fast and convenient high
         capacity transit service, as well as investment in major public amenities."
       data_source: Puget Sound Regional Council
-      date_last_updated: 02/2021
+      date_last_updated: 06/2023
       description: 'This layers represents boundaries for the 29 designated regional
         growth centers in the central Puget Sound region. Each county or city, through
         an inter-jurisdictional process, has designated the center boundaries.
@@ -76,7 +76,7 @@ dataset:
         counties in the region. If boundary updates occur, PSRC will receive the updated
         boundary file from the city or county and make updates to this file.
       tech_note_link: https://www.psrc.org/sites/default/files/final_regional_centers_framework_march_22_version.pdf
-      time_period: '2021'
+      time_period: '2023'
       update_cadence: As needed
     share_level: everyone
     snippet: null

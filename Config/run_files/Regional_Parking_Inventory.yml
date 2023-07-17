@@ -4,38 +4,29 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: "In 2018 the data collection methodology changed significantly.\
-        \ Occupancy counts were no longer collected and PSRC`s internal staff used\
-        \ alternative methods to collect the capacity and costs information (i.e.\
-        \ departed from physical survey collection and moved towards online collection\
-        \ methods such as google maps, SDOT, etc.). In 2018 inventory took advantage\
-        \ of more online data collection strategies and although fieldwork remained\
-        \ a component, slightly different field collection methods were utilized.\_\
-        \nTo compare the 2013 and 2018 parking inventory data, PSRC tabulated and\
-        \ mapped the absolute and relative differences in the number of parking stalls\
-        \ between the two survey years. The tracts with percent increases or decreases\
-        \ in the number of parking stalls greater than 10% were identified as outliers\
-        \ and further examined at the block level. Ten census tracts had parking growth\
-        \ or decline of more than 10%. After closer investigation, the majority of\
-        \ these changes were due to several reasons. First, in some instances, there\
-        \ were differences in the number of surveyed blocks within the same tracks\
-        \ between 2013 and 2018 data collection. Second, some tracks had new developments\
-        \ and added parking capacity. There was one census block [tract 23801, block\
-        \ 1002] identified as an outlier with 629 parking stalls omitted from the\
-        \ 2018 parking inventory. It is important to note that there were survey collection\
-        \ changes between 2013 and 2018, as described above. This inventory took advantage\
-        \ of online data collection strategies. Although fieldwork remained a component,\
-        \ slightly different field collection methods were utilized.\nWhen comparing\
-        \ the changes between 2013 and 2018 parking data, one census block in Bellevue\
-        \ [tract 23801, block 1002] was found to have a decrease of 629 parking stalls.\
-        \ \_ There are 3 potential explanations for this discrepancy: mistake in counting\
-        \ in 2013, a change in status, or unintentional omission in 2018. Further\
-        \ research was conducted to determine the cause for this difference. Based\
-        \ on a search of the PSRC parcels database, there were 629 spaces assigned\
-        \ to this parcel in 2014. Staff at the City of Bellevue confirmed that there\
-        \ were no changes in the parking (structures or number of spaces) between\
-        \ 2013 and 2018. \_ To correct the data that were excluded from the 2018 survey\
-        \ counts, 629 parking spots were manually added to this block in the inventory."
+      assessment: "In general, less rate information was available and collected in 
+      2022 than in 2018. This may result in less precise comparisons of rate changes 
+      at more detailed geography levels. A greater variation in maximum capacity values 
+      was also noted, likely the result of a select areas with concentrated development 
+      and new procedures for flagging these records under construction. A wider use of 
+      online sources from the 2018 survey helped to identify new major developments and 
+      structures in addition to satellite imagery. 
+
+      In 2018 the data collection methodology changed significantly. Occupancy counts were no 
+      longer collected and PSRC`s internal staff used alternative methods to collect the 
+      capacity and costs information (i.e. departed from physical survey collection and 
+      moved towards online collection methods such as google maps, SDOT, etc.). In 2018 
+      inventory took advantage of more online data collection strategies and although 
+      fieldwork remained a component, slightly different field collection methods were 
+      utilized.  To compare the 2013 and 2018 parking inventory data, PSRC tabulated 
+      and mapped the absolute and relative differences in the number of parking stalls 
+      between the two survey years. The tracts with percent increases or decreases in 
+      the number of parking stalls greater than 10% were identified as outliers and 
+      further examined at the block level. Ten census tracts had parking growth or decline 
+      of more than 10%. After closer investigation, the majority of these changes were 
+      due to several reasons. First, in some instances, there were differences in the 
+      number of surveyed blocks within the same tracks between 2013 and 2018 data collection. 
+      Second, some tracks had new developments and added parking capacity."
       contact_city: Seattle
       contact_email: mrichards@psrc.org
       contact_name: Mary Richards
@@ -43,31 +34,20 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: "Prior to 2018, PSRC collected parking facility information every\
-        \ two to five years exclusively through fieldwork. PSRC revised the data collection\
-        \ process in 2018 by designing a new multi-phase approach. The changes include\
-        \ an online research procedure that collects data ahead of fieldwork, the\
-        \ use of Survey123 (ArcGIS) to record the data, and the establishment of an\
-        \ ETL (Extract, Transfer, Load) process to structure 2018 inventory within\
-        \ PSRC\u2019s central database.\nThe updated data collection process indlucded\
-        \ 3 primary steps. The first includes comparing Google Earth satellite imagery\
-        \ from 2013 and 2018 to detect landscape changes on parking properties. The\
-        \ second includes leveraging the availability of the large amounts of easily\
-        \ accessible data to help collect parking information online. This includes\
-        \ information such as parking capacities, rates, locations, and management\
-        \ company information. The third includes field work.\nThe addition of the\
-        \ online research process greatly expedites data collection. The application\
-        \ of these methods are able to capture 80% of parking facilities and spaces\
-        \ within three weeks (without requiring field work).\nPrior to 2018, the Parking\
-        \ Inventory data are collected every two years typically during the months\
-        \ March - June (Spring). However, the 2010 Parking Inventory was collected\
-        \ from September to December. The data collection teams were assigned selected\
-        \ study areas and parking zones within the region. The survey hours are from\
-        \ Monday to Thursday from 8:30 AM to 11:30 AM and 1:00 PM - 3:30 PM.\nThe\
-        \ 2018 Parking Inventory was conducted from May to September, to parallel\
-        \ the 2013 Parking Inventory, which PSRC conducted from March to July."
+      data_lineage: " Prior to 2018, PSRC collected parking facility information every 
+      two to five years exclusively through fieldwork. PSRC revised the data collection 
+      process in 2018 by designing a new multi-phase approach. The changes include an 
+      online research procedure that collects data ahead of fieldwork, the use of Survey123 
+      (ArcGIS) to record the data, and the establishment of an ETL (Extract, Transfer, Load) 
+      process to structure 2018 amd future inventory within PSRC's central database.
+
+      Data was collected according to updated procedures begun in the 2018 parking survey. 
+      The 2022 dataset reflects greater use of online resources and less reliance on field 
+      work and direct data collection. Online sources were referenced between late March and 
+      July of 2022, with field work conducted June 15-22, 2022. Data also reflects updated 
+      2020 census geographies."
       data_source: Puget Sound Regional Council
-      date_last_updated: 02/2020
+      date_last_updated: May 2023
       description: The parking Inventory dataset contains the number of parking facilities,
         number of stalls, lot types, and parking costs of off-street parking, public
         and private, free, and pay-to-park facilities. Data are available for cities
@@ -76,8 +56,8 @@ dataset:
       fields:
       - description: The year the data was collected
         title: year_of_survey
-      - description: 2010 Census block group id
-        title: block_group_geoid10
+      - description: Census block group id for the decade corresponding to the year_of_survey date.
+        title: block_group_geoid
       - description: The location of the paylot
         title: city
       - description: Number of hourly pay parking lots within the block group
@@ -137,7 +117,7 @@ dataset:
       summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
-      time_period: 2002-2018
+      time_period: 2002-2022
       update_cadence: 2-5 years
     share_level: everyone
     snippet: null
