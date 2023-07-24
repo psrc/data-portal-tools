@@ -29,12 +29,6 @@ class DataProfileSpreadsheets(object):
                 'City': ['City'],
                 'CDP': ['CDP']            
             }
-            # self.decimal_estimate_vars = {
-            #     'DP02': [],
-            #     'DP03': [],
-            #     'DP04': ['DP04_0004', 'DP04_0005', 'DP04_0037', 'DP04_0048', 'DP04_0049'],
-            #     'DP05': []
-            # }
             self.output_dir = Path('./outputs')
 
         except Exception as e:
@@ -341,10 +335,33 @@ class DataProfileSpreadsheets(object):
             title_cell.font = Font(size=18, bold=True)
 
             self.merge_cells_a_and_b(ws)
+            if self.census_product == 'Decennial' and self.census_year >= 2020:
+                self.add_special_subheadings(ws)
             
         except Exception as e:
             print(e.args[0])
             print("r value: {}".format(r))
+            raise   
+    
+    
+
+    def add_special_subheadings(self, ws):
+        try:
+            # print("I'm in add_special_subheadings.  max_row = {}".format(str(ws.max_row)))
+            for row in range(4, ws.max_row + 1):
+                cur_cell = ws.cell(row=row, column=2)
+                above_cell = ws.cell(row=row - 1, column=2)
+                test_str = '16 years and over'
+                head_str = '  Selected Age Categories'
+                if cur_cell.value and above_cell.value:
+                    if (cur_cell.value == test_str) and (above_cell.value != head_str):
+                        # print("current cell: {}".format(cur_cell.value))
+                        ws.insert_rows(row)
+                        new_cell = ws.cell(row=row, column=2)
+                        new_cell.value = head_str
+
+        except Exception as e:
+            print("exception in add_special_subheadings {}", format(e.args[0]))
             raise   
     
     
@@ -442,7 +459,7 @@ class DataProfileSpreadsheets(object):
                 data_profile_name = '_by_'.join([self.long_title, g_group_name])
                 geog_types = geog_groups[g_group_name]
                 filename = self.create_wb(g_group_name, geog_types)
-                self.export_workbook(filename=filename, portal_layer_name=data_profile_name)
+                #self.export_workbook(filename=filename, portal_layer_name=data_profile_name)
 
         except Exception as e:
             print(e.args[0])
