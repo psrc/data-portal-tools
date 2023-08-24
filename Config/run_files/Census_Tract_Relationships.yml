@@ -1,0 +1,44 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'The table was created by selecting 2010 census tracts with a centroid that falls within the corresponding 
+        2020 census tract. Due to that approach, this crosswalk is best suited for comparing tract-level data across time. 
+        Any analysis of the distribution of data (or area-based approaches) within a tract may require a different crosswalk, 
+        as small changes to the census tract boundaries are not reflected here.'
+      contact_city: Seattle
+      contact_email: eclute@psrc.org   
+      contact_name: Eric Clute
+      contact_phone: 
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 
+      data_source: U.S. Census Bureau
+      date_last_updated: 01/2023
+      description: 'Crosswalk tables allow data analyses across decennial census boundaries. This crosswalk allows census tract-level 
+        data, created using 2020 decennial census boundaries, to be compared to data created using 2010 decennial census boundaries.'
+      fields:
+      - description: The Census-defined unique identifier (geoid) for the 2010 tract
+        title: geoid10
+      - description: The Census-defined unique identifier (geoid) for the 2020 tract
+        title: geoid20
+      organization_name: Puget Sound Regional Council
+      psrc_website: ''
+      summary_purpose: ''
+      supplemental_info: 
+      tech_note_link: 
+      time_period: 2020-2029
+      update_cadence: Every 10 years
+    share_level: everyone
+    snippet: null
+    groups: hub- GIS;PSRC Data Portal Content;hub- Census & Demographics
+    spatial_data: False
+    tags: Geographic Boundaries;Census; Tracts;
+    title: Census_Tract_Relationships
+  source:
+    is_simple: False
+    schema_name: dbo
+    sql_query: select geoid10, geoid20 from census.v_geo_relationships_tracts
