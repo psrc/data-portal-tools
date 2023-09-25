@@ -459,7 +459,7 @@ class DataProfileSpreadsheets(object):
                 data_profile_name = '_by_'.join([self.long_title, g_group_name])
                 geog_types = geog_groups[g_group_name]
                 filename = self.create_wb(g_group_name, geog_types)
-                #self.export_workbook(filename=filename, portal_layer_name=data_profile_name)
+                self.export_workbook(filename=filename, portal_layer_name=data_profile_name)
 
         except Exception as e:
             print(e.args[0])

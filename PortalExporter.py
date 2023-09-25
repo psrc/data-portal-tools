@@ -619,7 +619,6 @@ class PortalResource(object):
                 	"name":self.title,
                   	"layerInfo": {"fields": field_mappings}
                    }
-			print(df.dtypes)
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
