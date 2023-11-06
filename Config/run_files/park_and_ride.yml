@@ -35,15 +35,13 @@ dataset:
         rate data and the data source for each of the locations that are surveyed.
       fields:
       - description: The year the data was collected
-        title: year
+        title: data_year
       - description: The name of the Park and Ride lot
-        title: park_and_ride_name
+        title: lot_name
       - description: The address of the lot
-        title: address
+        title: lot_address
       - description: The city in which the lot is located
         title: city
-      - description: The zip code in which the lot is located
-        title: zip_code
       - description: The county in which the lot is located
         title: county
       - description: 'A geography level similar to the county field for Kitsap, Piece,
@@ -56,9 +54,6 @@ dataset:
         title: occupancy
       - description: The percent of stalls occupied in the lot
         title: utilization_rate
-      - description: 'The agency that reports the data: Community Transit, King County
-          Metro Transit, Kitsap Transit, Pierce Transit, Sound Transit'
-        title: data_source
       - description: Lots are designated as permanent or leased. A permanent park-and-ride
           lot is either owned by a transit agency or other government entity, or under
           a long-term lease arrangement. A leased lot is under a short-term lease
@@ -66,8 +61,6 @@ dataset:
         title: ownership_status
       - description: Any explanatory notes about the data for that park and ride lot
         title: notes
-      - description: (no description)
-        title: ObjectId
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/park-and-ride-database
       summary_purpose: ''
@@ -78,13 +71,13 @@ dataset:
     share_level: everyone
     snippet: null
     groups: hub- GIS;PSRC Data Portal Content;hub- Transportation
-    spatial_data: True
+    spatial_data: False
     tags: Parking;Traffic/Congestion;
     title: Park_and_Ride
   source:
-    feature_dataset: 'transportation_roadways'
-    has_donut_holes: true
-    is_simple: true
-    schema_name: dbo
-    sql_query: null
-    table_name: PARK_AND_RIDES
+    feature_dataset: 
+    has_donut_holes: 
+    is_simple: 
+    schema_name: 
+    sql_query: select * from data_portal.v_park_and_rides order by data_year desc, prasset_id
+    table_name: 
