@@ -17,22 +17,16 @@ dataset:
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: The park and ride capacity and occupancy data are supplied by
-        each of the transit agencies. The collection and reporting system varies by
-        agency. Community Transit provides annual counts for capacity and utilized
-        parking spaces. King County Metro Transit provides annual capacity counts
-        and monthly averages for the number of utilized parking spaces. Kitsap Transit
-        provides counts for the capacity and utilized spaces at inconsistent intervals
-        (ranging 1-5 times a month), as well as annual averages. Pierce Transit provides
-        annual capacity counts and monthly, quarterly, and yearly averages for the
-        number of utilized parking spaces. Sound Transit provides monthly counts for
-        capacity and utilized parking spaces.
+      data_lineage: The park and ride capacity and occupancy data are supplied 
+        by each of the transit agencies. The collection and reporting system 
+        varies by agency by year. Community Transit provides annual counts for capacity and utilized parking spaces. King County Metro Transit provides annual capacity counts and monthly averages for the number of utilized parking spaces. Kitsap Transit provides counts for the capacity and utilized spaces at inconsistent intervals (ranging 1-5 times a month), as well as annual averages. Pierce Transit provides annual capacity counts and monthly, quarterly, and yearly averages for the number of utilized parking spaces. Sound Transit provides monthly counts for capacity and utilized parking spaces.
       data_source: Puget Sound Regional Council
-      date_last_updated: 03/2021
-      description: The Park and Ride database contains data on approximately 220 park
-        and ride locations in the Puget Sound region. This dataset includes the name
-        and address of the park and ride, yearly capacity, occupancy and utilization
-        rate data and the data source for each of the locations that are surveyed.
+      date_last_updated: 09/2023
+      description: The Park and Ride database contains data on approximately 220 
+        park and ride locations in the Puget Sound region. This dataset includes 
+        the name and address of the park and ride lot, yearly capacity, occupancy 
+        and utilization rate data and the data source for each of the locations 
+        that are surveyed by the region's five transit agencies.
       fields:
       - description: The year the data was collected
         title: data_year
@@ -64,9 +58,16 @@ dataset:
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/park-and-ride-database
       summary_purpose: ''
-      supplemental_info: ''
+      supplemental_info: 'The Park and Ride dataset includes a record for each lot and 
+        each year over the past two decades. There are some years when park and ride 
+        lots go offline, new lots are added, and/or old lots are re-added, so the 
+        number of lots each year varies. The tabular dataset includes x/y coordinates 
+        (x_coord and y_coord) so that it can be projected spatially. If projected 
+        spatially, there will be multiple points for the same lot (because each entry 
+        represents one lot for one year). The agency uses the projected coordinate 
+        system: NAD_1983_StatePlane_Washington_North_FIPS_4601_Feet.'
       tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
-      time_period: 2002-2020
+      time_period: 2002-2022
       update_cadence: Every year
     share_level: everyone
     snippet: null

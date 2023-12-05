@@ -75,11 +75,11 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	#if r'Covered_Employment_by' in f:
+	if r'park_and_ride' in f:
 	# if f in ['cities_2018_land_use_forecast_dashboard.yml',
     #       'control_2018_land_use_forecast_dashboard.yml',
     #       'control_hct_2018_land_use_forecast_dashboard.yml',
-	if f in ['Opportunity_Index_Equity_Tracts.yml']:
+	#if 'Income_Restricted_Housing_Database_2021' in f:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)

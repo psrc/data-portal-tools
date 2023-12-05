@@ -4,15 +4,15 @@ from PortalExporter import PortalConnector
 # from PortalExporter import DatabaseConnector
 import yaml
 
-datasets = [
-        { 'census_year': 2021,
-        'census_product': 'acs5',
-        'specifications': {
-                "DP02": {'short_title': 'test_dp_social_acs5_2021', 
-                         'long_title':'Social Characteristics Data Profile, ACS 5-year 2021' }
-                }
-        }
-]
+# datasets = [
+#         { 'census_year': 2021,
+#         'census_product': 'acs5',
+#         'specifications': {
+#                 "DP02": {'short_title': 'test_dp_social_acs5_2021', 
+#                          'long_title':'Social Characteristics Data Profile, ACS 5-year 2021' }
+#                 }
+#         }
+# ]
 
 datasets =  [
         {'census_year': 2022,
