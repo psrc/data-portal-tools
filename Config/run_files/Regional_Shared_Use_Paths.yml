@@ -1,0 +1,83 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: Please note that this inventory does not include data regarding
+        the conditions or other qualities of facilities.
+      contact_city: Seattle
+      contact_email: njohnson@psrc.org
+      contact_name: Nick Johnson
+      contact_phone: 480-464-7890
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: "PSRC used jurisdictional data collected in 2019 and 2020, with\
+        \ most datasets produced by the jurisdictions between 2015 and 2019. In cases\
+        \ where jurisdictional data was not available or unclear, in 2020 and 2021\
+        \ PSRC also collected supplementary data by reviewing aerial data from Google\
+        \ Maps and publicly available documents and maps. In consultation with PSRC\u2019\
+        s Bicycle and Pedestrian Advisory Committee, PSRC refined the criteria for\
+        \ shared use facilities on separate rights-of-way to only include shared use\
+        \ paths that afford public access to all active transportation users and provide\
+        \ connections between regional destinations, rather than internal circulation.\
+        \ Please note that this inventory does not include data regarding the conditions\
+        \ or other qualities of facilities."
+      data_source: Puget Sound Regional Council
+      date_last_updated: 08/2021
+      description: This shapefile documents the location of regional shared use path
+        facilities in the PSRC region. The non-motorized facilities (Facility Type
+        11 in TransRefEdges) were originally coded based on information provided by
+        local jurisdictions as part of the 2012 Regional Transportation Plan (RTP),
+        then reviewed and updated as part of the 2018 and 2022 RTP updates. The 2022
+        RTP update used jurisdictional data provided in 2019 and 2020, along with
+        supplementary data from aerial imagery and publicly available documents and
+        maps where jurisdictional data was not available. PSRC determined whether
+        facilities qualified as regional facilities based on whether they met the
+        minimum design criteria and provided connections to regional destinations.
+      fields:
+      - description: PSRC object ID
+        title: OBJECTID*
+      - description: 'Internal documentation of PSRC roadway edges (segments); useful
+          for referencing in communications to PSRC. '
+        title: psrc_edge_id
+      - description: Facility type within TransRefEdges
+        title: facility_type
+      - description: The name of the regional shared use path facility
+        title: fullname
+      - description: Notes about coding of facilities
+        title: edit_notes
+      - description: Length of the segment (in feet).
+        title: length_ft
+      - description: "Type of regional shared use path facility\n\u2022 Regional SUP:\
+          \ Regional shared use paths that meet criteria \n\u2022 SUP Path Connector:\
+          \ Off-street paths that fill in network gaps or provide connections\n\u2022\
+          \ SUP Street Connector: Local roads that fill in network gaps or provide\
+          \ connections\n\u2022 Arterial SUP: Shared Use Path segments already coded\
+          \ on arterials\n\n\n\n\n\n"
+        title: reg_shared
+      - description: (no description)
+        title: shape
+      - description: (no description)
+        title: shape.STLength()
+      organization_name: PSRC
+      psrc_website: ''
+      summary_purpose: 
+      supplemental_info: ''
+      tech_note_link: 'Please visit the Data Dictionary for more information on this
+        facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
+      time_period: 2015-2021
+      update_cadence: Every 4 years
+    share_level: everyone
+    snippet: null
+    spatial_data: true
+    tags: Bike/Ped;
+    title: regional_shared_use_paths
+  source:
+    is_simple: true
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: dbo
+    sql_query: null
+    table_name: REGIONAL_SUPS
