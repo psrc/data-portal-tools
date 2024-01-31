@@ -75,7 +75,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Census_PUMAS_20' in f:
+	if r'Manufacturing_Industrial_Centers_Points' in f:
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
