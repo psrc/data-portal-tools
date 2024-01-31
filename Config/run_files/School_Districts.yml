@@ -1,0 +1,77 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment:
+      contact_city: Seattle
+      contact_email: DHanson@psrc.org
+      contact_name: Drew Hanson
+      contact_phone: 206-971-3269
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 
+      data_source: Washington Office of Superintendent of Public Instruction
+      date_last_updated: January 2021
+      description: This layer represents the boundaries of 295 Public School Districts in the PSRC region. This data was compiled by the Washington Office of Superintendent of Public Instruction (OSPI) to provide boundary and attribute information for the 295 Public School Districts in the State of Washington. The polygons are the best representation of current district boundaries based on legal descriptions, county, and other available GIS data. Users should contact the local school district(s) to confirm the interpretation of district boundaries in questions.
+      fields:
+      - title: organzation
+        description: Unique organization code for database purposes (EDS)
+      - title: esd_code
+        description: Educational Service District unique code (EDS)
+      - title: esd_numb
+        description: Educational Service District number
+      - title: esd_name
+        description: Educational Service District name (EDS)
+      - title: lea_code
+        description: Local Educational Authority/District unique code (EDS)
+      - title: lea_name
+        description: Local Educational Authority/District name (EDS)
+      - title: short_name
+        description: Abbreviated District name (Calculated)
+      - title: physical_add
+        description: Physical Address of school (EDS)
+      - title: mailing_add
+        description: Mailing Address of school (EDS)
+      - title: administra
+        description: School Administrator's name (EDS)
+      - title: adminis_1
+        description: School Administrator's email (EDS)
+      - title: phone
+        description: District phone (EDS)
+      - title: website
+        description: District website URL (Edited)
+      - title: county
+        description: Primary District County (EDS)
+      - title: counties
+        description: All Counties with areas in District (GIS)
+      - title: congressio
+        description: All Congressional Districts with areas in District (EDS)
+      - title: legislativ
+        description: All Legislative Districts with areas in District (EDS)
+      - title: type
+        description: "Type of School District: Public School District, Charter District, or Tribal Compact (EDS)"
+      - title: transporta
+        description: Transportation Coordinator Regions
+      organization_name: Puget Sound Regional Council
+      psrc_website: https://www.psrc.org/park-and-ride-database
+      summary_purpose: ''
+      supplemental_info: ''
+      tech_note_link:
+      time_period: 
+      update_cadence:
+    share_level: everyone
+    snippet: null
+    groups: hub- GIS;PSRC Data Portal Content
+    spatial_data: True
+    tags: schools
+    title: School_Districts
+  source:
+    feature_dataset: political
+    has_donut_holes: false
+    is_simple: true
+    schema_name: dbo
+    sql_query: null
+    table_name: school_districts_no_water

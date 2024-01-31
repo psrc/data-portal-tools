@@ -8,9 +8,9 @@ dataset:
         so the underlying data collection methodologies differ. Also, the datasets
         were developed between 2015-2020, and so represent different levels of currency. '
       contact_city: Seattle
-      contact_email: kpearson@psrc.org
-      contact_name: Kim Pearson
-      contact_phone: 480-859-2671
+      contact_email: njohnson@psrc.org
+      contact_name: Nick Johnson
+      contact_phone: 480-464-7890
       contact_state: Washington
       contact_street_address: 1011 Western Ave. Ste. 500
       contact_zip: 98101
@@ -50,19 +50,9 @@ dataset:
       - description: Presence/completeness of pedestrian facilities on one side of
           the street. JI represents one side of the street.
         title: ji_ped_facilities
-      - description: Notes on the coding of the segment for pedestrian facilities
-        title: sidewalk_notes
       - description: Source of the data for coding pedestrian facilities, either Jurisdiction2020
           (for jurisdictional data) or Aerials2020 (for aerial data)
         title: sidewalk_source
-      - description: "Assessment of whether the street has complete, partial, or no\
-          \ facilities, when looking at both sides of the street together. \n\u2022\
-          \ Complete Facilities: Both sides of the street have complete pedestrian\
-          \ facilities.\n\u2022 Partial Facilities: Facilities are present, at least\
-          \ partially, on one or more sides of the street, but facilities are not\
-          \ complete on both sides of the street.\n\u2022 No Facilities: There are\
-          \ no facilities on either side of the street. "
-        title: ped_complete
       - description: Presence/completeness of bicycle facilities on one side of the
           street. IJ represents one side of the street.
         title: ij_bike_facilities
@@ -73,19 +63,9 @@ dataset:
         title: ij_bike_type
       - description: Type of bicycle facility, if present
         title: ji_bike_type
-      - description: Notes on the coding of the segment for bicycle facilities
-        title: bike_editor_notes
       - description: Source of the data for coding bicycle facilities, either Jurisdiction2020
           (for jurisdictional data) or Aerials2020 (for aerial data)
         title: bike_source
-      - description: "Assessment of whether the street has complete, partial, or no\
-          \ facilities, when looking at both sides of the street together. \n\u2022\
-          \ Complete Facilities: Both sides of the street have complete bicycle facilities.\n\
-          \u2022 Partial Facilities: Facilities are present, at least partially, on\
-          \ one or more sides of the street, but facilities are not complete on both\
-          \ sides of the street.\n\u2022 No Facilities: There are no facilities on\
-          \ either side of the street. "
-        title: bike_complete
       - description: Length of the roadway segment (in feet).
         title: length_ft
       - description: The name of the roadway
@@ -107,21 +87,9 @@ dataset:
     tags: Bike/Ped;
     title: Regional_Bike_and_Pedestrian_Facilities
   source:
-    is_simple: false
+    is_simple: True
     feature_dataset: ''
     has_donut_holes: false
     schema_name: dbo
-    sql_query: select bp.OBJECTID, bp.psrc_edge_id, bp.facility_type, ijpf.[value]
-      as ij_ped_facilities, jipf.[value] as ji_ped_facilities, bp.sidewalk_notes,
-      sws.[value] as sidewalk_source, ijbf.[value] as ij_bike_facilities_value, jibf.[value]
-      as ji_bike_facilities_value, ijbt.[value] as ij_bike_type, jibt.[value] as ji_bike_type,
-      bp.bike_editor_notes, bp.bike_source, bp.bike_complete, bp.ped_complete, bp.Shape.STAsText()
-      as Shape_wkt from dbo.REGIONAL_BIKEPED bp join dbo.fn_domain_values('dPedFacilities')
-      as ijpf on bp.ij_ped_facilities = ijpf.code join dbo.fn_domain_values('dPedFacilities')
-      as jipf on bp.ji_ped_facilities = jipf.code join dbo.fn_domain_values('dPedFacilities')
-      as ijbf on bp.ij_bike_facilities = ijbf.code join dbo.fn_domain_values('dPedFacilities')
-      as jibf on bp.ji_bike_facilities = jibf.code join dbo.fn_domain_values('dSideWalkSource')
-      as sws on bp.sidewalk_source = sws.code join dbo.fn_domain_values('dBikeLanes')
-      as ijbt on bp.ij_bike_type = ijbt.code join dbo.fn_domain_values('dBikeLanes')
-      as jibt on bp.ji_bike_type = jibt.code
+    sql_query: null
     table_name: REGIONAL_BIKEPED

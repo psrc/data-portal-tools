@@ -47,5 +47,5 @@ dataset:
         ,[prev_res_factors_employment] ,[prev_res_factors_school] ,[prev_res_factors_crime] ,[prev_res_factors_quality] ,[prev_res_factors_forced] ,[prev_res_factors_no_answer]
         ,[prev_res_factors_other] ,[prev_res_factors_specify] ,[prev_res_factors_covid_flexibility] ,[prev_res_factors_covid_health] ,[broadband] 
         ,[cityofseattle] ,[home_city_name] ,[prev_res_factors_displaced] ,[numadults] ,[numchildren] ,[numworkers]
-        ,[offpark_cost] ,[hh_weight_2021_ABS] ,[hh_weight_2017_v2021] ,[hh_weight_2019_v2021] ,[hh_weight_2017_2019_v2021]
+        ,[offpark_cost] ,[hh_weight_2021] ,[hh_weight_2017] ,[hh_weight_2019] ,[hh_weight_2017_2019]
       FROM [Elmer].[HHSurvey].[v_households]"

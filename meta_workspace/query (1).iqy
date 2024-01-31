@@ -1,0 +1,16 @@
+WEB
+1
+https://psrcwa.sharepoint.com/sites/DataPortal/_vti_bin/owssvr.dll?XMLDATA=1&List=d78a890b-a733-4bb5-a414-50b155e9f14c&View=A0745335-4033-4581-BD3A-DFAC1B7C0BC8&RowLimit=0&RootFolder=
+
+Selection=d78a890b-a733-4bb5-a414-50b155e9f14c-A0745335-4033-4581-BD3A-DFAC1B7C0BC8
+EditWebPage=
+Formatting=None
+PreFormattedTextToColumns=True
+ConsecutiveDelimitersAsOne=True
+SingleBlockTextImport=False
+DisableDateRecognition=False
+DisableRedirections=False
+SharePointApplication=https://psrcwa.sharepoint.com/sites/DataPortal/_vti_bin
+SharePointListView=A0745335-4033-4581-BD3A-DFAC1B7C0BC8
+SharePointListName=d78a890b-a733-4bb5-a414-50b155e9f14c
+RootFolder=

@@ -14,8 +14,7 @@ dataset:
       contact_zip: 98101
       data_lineage: ''
       data_source: ''
-      data_source: 'See Opportunity Mapping: Methodology and Technical Addendum (July
-        2019): https://www.psrc.org/sites/default/files/opportunitymapping.pdf'
+      data_source: Opportunity Index Equity Tracts https://psrc-psregcncl.hub.arcgis.com/maps/opportunity-index-equity-tracts
       date_last_updated: 12/2018
       description: 'The Opportunity Mapping data includes census tract level information
         on the composite index score as well as the intermediate scores for the five
@@ -50,11 +49,11 @@ dataset:
       - description: Health element category (name)
         title: tran_index
       organization_name: Puget Sound Regional Council
-      psrc_website: https://www.psrc.org/opportunity-mapping
+      psrc_website: https://www.psrc.org/our-work/opportunity-mapping
       summary_purpose: ''
       supplemental_info: ''
       tech_note_link: 'Opportunity Mapping: Methodology and Technical Addendum (July
-        2019): https://www.psrc.org/sites/default/files/opportunitymapping.pdf'
+        2019): https://www.psrc.org/media/3503'
       time_period: '2018'
       update_cadence: Periodically
     share_level: everyone

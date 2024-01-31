@@ -21,7 +21,7 @@ dataset:
         psrc_website: www.psrc.org
         description: The region's High-Capacity Transit Network
         data_source: Data Source to be added at a later date
-        date_last_updated: This will ultimately be derived automatically but for the moment is entered in the datasource yml.
+        date_last_updated: 
         constraints: 'this text should be in resource:Constraints:General:Use Limitations'
         data_lineage: This should be a description of the data collection process?
         assessment: 'This should go in Quality:Data Quality: Report'

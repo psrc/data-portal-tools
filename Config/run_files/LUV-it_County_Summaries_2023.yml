@@ -1,0 +1,112 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      assessment: 'The UrbanSim model’s structure, function, and data outputs are similar to previous versions of the LUV forecast product which have been reviewed by PSRC staff and external technical planning staff from PSRC member jurisdictions.  Additional development of the updated 2018 data inputs and methodology to develop control totals from adopted growth targets were also reviewed with the PSRC Land Use Technical Advisory Committee.  
+      Users should note the following:
+1) Urban boundaries represent 1/1/2022 jurisdictional boundaries. 
+2) Tract estimates may not match OFM or Census estimates for tracts due to slight boundary alignment issues when processing spatial data using GIS.
+3) Year 2020 outputs have been controlled to acutal estimates at the County, City, Target, and Control geographies (see below for definitions).  
+4) Employment Estimates represent total employment, incorporating estimates of jobs not in Covered Employment data by derived from ACS estimates to additional jobs.
+5) Please note that totals summed to county and the region will vary slighty depending on the reporting geography.  The reason is due to some misalignment between GIS shapefile used to overlay parcels and aggregate the model outputs.  For example, along the county border a line of 4 parcels might geographically fall into PIerce County when using the "county" GIS shapefile, but be assigned to a tract in King County when using the Census GIS shapefiles.  These differences are minor - at most 400 people at the county level - and therefore should have not have any measurable impact on the use of the LUV-it projections in models and other analysis.  
+'
+      contact_city: Seattle
+      contact_email: msimonson@psrc.org 
+      contact_name: Mark Simonson
+      contact_phone: 
+      contact_state: Washington
+      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: 'UrbanSim Run ID:   run_120.run_2023_05_11_12_57'
+      data_source: Puget Sound Regional Council
+      date_last_updated: May 2023
+      description: 'PSRC develops policy directed growth projections intended for use in regional travel modeling and other planning analyses, known as the Land Use Vision (LUV) forecast product.  The latest version is being called the Land Use Vision - Implemented Targets (LUV-it).  
+      
+      The key inputs to LUV-it are the VISION 2050 Regional Growth Strategy (RGS) and the countywide growth targets for 2044, developed to implement the RGS. Using these inputs, PSRC staff establish jurisdiction-level control totals of population, households, and employment which are then allocated within each jurisdiction using PSRCs UrbanSim land use model. PSRCs methodology acknowledged differences in how each county represented and translated the 2017-50 RGS growth allocations to 2044 growth targets.  
+      
+      While the adopted 2044 growth targets are significantly more aligned with the VISION 2050 RGS than previous iterations, some geographies show higher or lower growth than otherwise indicated by the RGS allocations. Where there are discrepancies, the forecast product reflects the growth trajectory established by the 2044 target to support comprehensive plan update modeling. LUV-it is a data product only and does not endorse countywide growth targets as consistent with VISION 2050.  '
+      fields:
+      - description: 
+        title: County
+      - description: Housing units occupied by one or more persons regardless of relationship to each other
+        title: Households
+      - description: Household Population
+        title: HHPop 
+      - description: Group Quarters Population, includes people living in institutational and non-institutional facilities such as skilled nursing homes, dormitories, military base barracks, and correctional facilities
+        title:  GQ
+      - description: Sum of Household and Group Quarters Population
+        title: TotPop
+      - description: Total Employment, All Sectors, Covered Jobs plus estimated Non-Covered Jobs
+        title: AllJobs
+      - description: Construction and Resource sector jobs, NAICS codes 11, 21, 23
+        title: Con-Res 
+      - description: Manufacturing, Wholesale, Transportation and Utilities sector jobs, NAICS codes 31-33, 22, 42, 48, 49
+        title: Manuf_WTU
+      - description: Retail and Food Services sector jobs, NAICS codes 44-45, 722
+        title: Retail
+      - description: Finance, Insurance, Real Estate, and Other Services (Not Food Services), NAICS codes 51-56, 62, 71, 721, 81
+        title: FIRES
+      - description: NAICS code 92 - Public Sector excluding education and including estimates of enlisted personnel assigned to military bases, both on land and homeported naval vessels.  
+        title: Gov
+      - description: Public and Private education (NAICS 61)
+        title: Edu
+      organization_name: Puget Sound Regional Council
+      psrc_website: 'https://www.psrc.org/'
+      summary_purpose: ''
+      supplemental_info: '
+Inputs:
+
+UrbanSim requires a base year set of data which includes the following key components:
+Parcel data representation on-the-ground year 2018 conditions in King, Kitsap, Pierce and Snohomish counties.
+Estimates of households and persons synthesized from 2018 estimates published by Washington state`s Office of Financial Management (OFM) and the American Community Survey results from the U.S. Census.
+Estimates of jobs by sector synthesized from 2018 estimates published by the Census Bureau`s Longitudinal Employer-Households Dynamics (LEHD) program, namely the LEHD Origin-Destination Employment Statistics (LODES) data. Unlike PSRC`s Covered Employment estimates, LODES data are available free of data suppression and confidentiality requirements. PSRC staff apply adjustments were possible from the QCEW data to enhance LODES estimates.  
+A Future Year Land Use (FLU) representation of allowed maximum development densities, expressed as maximum dwelling units per acre or floor area ratios, taken from each jurisdiction`s land use zoning regulations. Zoning data was collected and processed as of 2020.
+
+Methodology:
+
+Development of the LUV-it dataset can be divided into two stages: 1) annual control total development and 2) UrbanSim allocation.
+
+Annual control totals for households, population and employment are developed for jurisdictions and unincorporated county areas within the central Puget Sound region and, in some instances, additional subareas to better represent growth policies. These control totals are developed for every five years of the forecast period beginning with 2025 and extending to 2050, with the exception that 2044 is used instead of 2045 to align the outputs with the growth targets horizon year. The primary stages of developing the control totals are:
+
+Adjust and standardize adopted countywide growth targets: While all four counties adopted growth targets extending to the year 2044, there are numerous differences in the input data and assumptions used to arrive at the final targets. For all jurisdictions or sub-jurisdictions with a growth target (the Target Geographies), published figures were adjusted and baselined to 2020 to establish 2020-2044 changes in total population, households and jobs. From there, the growth targets were extrapolated to 2050 and interpolated backwards to derive intermediate year figures. 
+
+Expand from Target Geographies to Control Geographies:  To better align the modeled geographies with growth policies, additional breakouts were added to better account for resource areas and military bases, given assumptions about low or no growth in these areas. In some instances, affiliated UGAs were separated out from "parent" jurisdictions using prior policy interpretations from the VISION 2050 RGS. 
+
+Focus growth in areas served by High-Capacity Transit (HCT): The RGS established a regional goal of accommodating 66% of the region’s population growth and 75% of the employment growth into regional centers and HCT station areas. For LUV-it, this is represented by splitting growth in jurisdictions containing these areas into two subsets: aggregate HCT areas and aggregate non-HCT areas. Growth was initially allocated to these subsets consistent with the percent share of each jurisdiction’s land development capacity in the HCT and non-HCT portions (for example, if a city’s HCT areas contain 30% of its remaining residential development capacity, then an initial 30% of the total population/household growth for that jurisdiction was assigned to the HCT area). Those initial capacity-based growth shares were then adjusted upwards until the 65%/75% regional thresholds were achieved, with the scale of the adjustments tied to each jurisdiction’s remaining development capacity. Regardless of the starting or scaled up shares, a maximum of 90% of a jurisdiction’s overall growth was allocated to HCT areas (unless the initial HCT capacity share was higher than 90%). In the RGS, HCT areas for focused growth are defined as:
+
+½ mile radius around light rail stations, commuter rail stations, streetcar, and ferry terminals
+
+¼ mile radius around bus rapid transit (BRT) stations and stops
+
+All remaining regional growth center areas (mostly captured in the buffered HCT areas)
+
+UrbanSim, PSRC`s land use model, is designed to simulate land development and the location choices of households and jobs over time to produce a land use projection. Land development is a function of zoned densities and market forces (demand, real estate prices, and the profitability of new development), while the location choice decisions are simulated by modeling the various factors that households and businesses consider when moving to or relocating within a region (e.g., price, building size, proximity to other types of land use, commute times).  The LUV-it implementation of UrbanSim invokes jurisdiction-level control totals, so while UrbanSim is still operating at a parcel level, the model is constrained to direct growth only within each jurisdiction.  
+
+Beyond the representation of adopted growth targets, UrbanSim simulates other key growth policies, activities and plans as follows:
+
+Relaxed Development Capacity Constraints: UrbanSim normally interprets allowed unit densities as a hard constraint. For LUV-it, the model has been adapted to relax this constraint when a jurisdiction’s control total is larger than its currently planned/zoned capacity, so the control total can always be accommodated.
+ 
+Conditional Major Planned Developments (MPDs): UrbanSim allows modelers to insert known future developments—typically, large projects already given local approval to proceed. In Allocation Mode, these developments may be built, but not fully occupied, depending on the amount of household or employment growth in the jurisdiction’s control totals.
+
+Boosted growth in regional growth centers: Modeled capacity is given a 25% boost to reflect the collective impact of regional and local policies designed to focus growth in designated regional growth centers (boosts were not applied to designated manufacturing/industrial centers, recognizing the different role these areas play in accommodating job growth from industrial land use types).  
+
+Future transportation system impacts: UrbanSim is modeled in parallel with the PSRC SoundCast activity-based travel model, with outputs from UrbanSim converted to SoundCast inputs and vice versa, every 10 years in the simulation. The land use projections therefore receive updated inputs on how travel accessibilities (travel time and costs) will change given future year system improvements, pricing changes and increased usage from population and employment growth. 
+'
+      tech_note_link: 'https://www.psrc.org/projections-cities-and-other-places'
+      time_period: 2018, 2020, 2025, 2030, 2035, 2040, 2044, 2050
+      update_cadence: 
+    share_level: everyone
+    snippet: null
+    groups: hub- GIS;PSRC Data Portal Content
+    spatial_data: False
+    tags: LUVIT, small area forecasts, urbansim
+    title: LUV-it_County_Summaries_2023
+  source:
+    feature_dataset: political
+    has_donut_holes: true
+    is_simple: true
+    schema_name: small_areas
+    sql_query: null
+    table_name: v_luvit_2023_county

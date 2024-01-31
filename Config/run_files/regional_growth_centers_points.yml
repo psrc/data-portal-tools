@@ -10,8 +10,8 @@ dataset:
         have been compiled from other sources.  The PSRC does not accept responsibility
         for the quality of third-party data or data contributed by others.  Locations
         of all facilities are approximate.
-      contact_city: Seattle
       contact_email: DHanson@psrc.org
+      contact_city: Seattle
       contact_name: Drew Hanson
       contact_phone: 206-971-3269
       contact_state: Washington
@@ -83,11 +83,11 @@ dataset:
     groups: hub- GIS;PSRC Data Portal Content;hub- Land Use Data
     spatial_data: True
     tags: Centers/MICs;Geographic Boundaries;
-    title: Regional_Growth_Centers
+    title: Regional_Growth_Centers_Points
   source:
     feature_dataset: political
     has_donut_holes: false
     is_simple: true
     schema_name: dbo
     sql_query: null
-    table_name: URBAN_CENTERS
+    table_name: URBAN_CENTERS_POINTS
