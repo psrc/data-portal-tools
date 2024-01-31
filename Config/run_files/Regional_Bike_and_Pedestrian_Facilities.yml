@@ -87,13 +87,9 @@ dataset:
     tags: Bike/Ped;
     title: Regional_Bike_and_Pedestrian_Facilities
   source:
-    is_simple: false
+    is_simple: True
     feature_dataset: ''
     has_donut_holes: false
     schema_name: dbo
-    sql_query: select bp.OBJECTID, bp.psrc_edge_id, bp.facility_type, bp.ij_ped_facilities, 
-          bp.ji_ped_facilities, bp.sidewalk_source, bp.ij_bike_facilities, 
-          bp.ji_bike_facilities, bp.ij_bike_type, bp.ji_bike_type,
-          bp.bike_source, bp.Shape.STAsText() as Shape_wkt 
-      from dbo.REGIONAL_BIKEPED bp 
+    sql_query: null
     table_name: REGIONAL_BIKEPED

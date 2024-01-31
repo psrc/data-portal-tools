@@ -75,7 +75,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'park_and_ride' in f:
+	if r'Regional_Bike_and_Pedestrian_Facilities.yml' in f:
 	# if f in ['cities_2018_land_use_forecast_dashboard.yml',
     #       'control_2018_land_use_forecast_dashboard.yml',
     #       'control_hct_2018_land_use_forecast_dashboard.yml',
