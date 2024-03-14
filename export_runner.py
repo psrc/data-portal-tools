@@ -24,12 +24,11 @@ elmergeo_conn = DatabaseConnector(
 
 def export(config):
 	try:
-		layers = config.keys()
 
-		for l in layers:
-			params = config[l]['layer_params']
+		for k in config.keys():
+			params = config[k]['layer_params']
 			title = params['title']
-			source = config[l]['source']
+			source = config[k]['source']
 			is_spatial = params['spatial_data']
 			if is_spatial:
 				db_conn = elmergeo_conn
@@ -75,7 +74,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Regional_Bike_and_Pedestrian_Facilities.yml' in f:
+	if r'regional_growth_centers.yml' in f:
 	# if f in ['cities_2018_land_use_forecast_dashboard.yml',
     #       'control_2018_land_use_forecast_dashboard.yml',
     #       'control_hct_2018_land_use_forecast_dashboard.yml',
