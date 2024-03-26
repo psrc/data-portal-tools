@@ -15,7 +15,7 @@ dataset:
       contact_name: Mary Richards
       contact_phone: 206-464-7090
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: The park and ride capacity and occupancy data are supplied 
         by each of the transit agencies. The collection and reporting system 

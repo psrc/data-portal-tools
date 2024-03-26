@@ -17,7 +17,7 @@ dataset:
       contact_name: Mark Simonson
       contact_phone: 
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: 'UrbanSim Run ID:   run_120.run_2023_05_11_12_57'
       data_source: Puget Sound Regional Council

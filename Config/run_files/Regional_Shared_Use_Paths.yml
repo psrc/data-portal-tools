@@ -11,7 +11,7 @@ dataset:
       contact_name: Nick Johnson
       contact_phone: 480-464-7890
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: "PSRC used jurisdictional data collected in 2019 and 2020, with\
         \ most datasets produced by the jurisdictions between 2015 and 2019. In cases\
