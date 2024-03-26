@@ -10,7 +10,7 @@ dataset:
       contact_name: Peter Caballero
       contact_phone: ''
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: ''
       data_source: ''
@@ -31,7 +31,7 @@ dataset:
     share_level: everyone
     snippet: null
     spatial_data: true
-    tags: null
+    tags: forecast
     title: subregions_2018_land_use_forecast_dashboard
   source:
     feature_dataset: forecast
