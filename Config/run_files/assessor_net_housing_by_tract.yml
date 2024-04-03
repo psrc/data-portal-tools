@@ -19,6 +19,30 @@ dataset:
         contact_zip: 98104
         contact_phone: (206)971-3269
         fields:
+        - description: The year denoting when the assessor extracts were downloaded and processed
+          title: data_vintage
+        - description: Name of county
+          title: county
+        - description: 2020 Census Tract unique identification number
+          title: tract
+        - description: The year built for the development. Please note that for demolition records, the year corresponds to the associated new development and not the year in which the demolition took place.
+          title: year
+        - description: 
+          title: single family attached
+        - description:
+          title: single family detached
+        - description:
+          title: multifamily 2-4 units
+        - description:
+          title: multifamily 5-9 units
+        - description:
+          title: multifamily 10-19 units
+        - description:
+          title: multifamily 20-49 units
+        - description:
+          title: multifamily 50+ units
+        - description:
+          title: mobile homes
         organization_name: PSRC
         psrc_website: www.psrc.org
         description: 'The starting year in the time series will vary by county due to base year datasets differing from county to county. Based on existing base year datasets, the time series for reach county will be as follows:
