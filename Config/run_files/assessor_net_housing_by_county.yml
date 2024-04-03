@@ -1,0 +1,58 @@
+
+dataset:
+  layer_params:
+    title: 2010-2022 Assessor-Based Estimates of Housing Development by County
+    tags: portal, housing
+    allow_edits: False
+    groups: PSRC Data Portal Content
+    spatial_data: False
+    share_level: everyone
+    snippet: ''
+    accessInformation: 
+    licenseInfo:
+    metadata:
+        contact_name: Drew Hanson
+        contact_email: dhanson@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98104
+        contact_phone: (206)971-3269
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: 'The starting year in the time series will vary by county due to base year datasets differing from county to county. Based on existing base year datasets, the time series for reach county will be as follows:
+            King: 2010-Current Year 
+            Kitsap: 2010-Current Year
+            Pierce: 2012-Current Year
+            Snohomish: 2011-Current Year
+
+            Mobile Home Parks and Group Quarter Facilities are omitted from the final estimates
+
+            The "Single-Family Attached" structure type category is defined in each county by the following:
+            King: "Townhouse Plat" present use category in the parcel table
+            Kitsap: House type code "146 Townhouse" in the dwellings table
+            Pierce: Built-As IDs 61, 65, and 68 in the improvements built-as table
+            Snohomish: Property Class Codes 116 and 142 in the master table
+
+            Missing Unit/Building Counts
+            Snohomish: Unit counts for multi-family parcels were populated by using utility counts from the Snohomish County Public Utilities District (PUD). Building counts were populated by using a mix of utility data locations data and structure type information.
+            Kitsap: Unit counts for multi-family parcels are based on information in the NUM_COMM field in the original data provided. Unit counts for single-family, duplex, triplex, and mobile home structures are derived from the DUM_DWELL field.
+            
+            Each year, a new time series will be processed and published. Please note that we will re-process all data within the given time period which may result in the estimates changing from version to version based on updates made by the assessor.'
+        data_source: County Assessors for King, Pierce, Snohomish and Kitsap Counties, Snohomish County Public Utilities District, and PSRC
+        date_last_updated: '2023'
+        constraints: 
+        data_lineage: "PSRC utilizes assessor data extracts from King, Kitsap, Pierce, and Snohomish, counties to estimate housing development at the parcel level on an annual basis. A methodology was developed to relate current residential assessor records back to a base year to determine what type of development took place on a given parcel. Development activity types tracked are: 'New Development', 'Redevelopment', and 'Rebuild/Remodels'. For Redevelopment and Rebuild/Remodels, base year unit counts are categorized as 'demolitions' and subtracted from the new units built to calculate net change. These assessor estimates are summarized by county."
+        assessment: 
+        summary_purpose: ''
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2010 - 2022"
+        update_cadence: Annually
+  source:
+    is_simple: True
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 'data_portal'
+    table_name: 'v_assessor_net_housing_by_county'
