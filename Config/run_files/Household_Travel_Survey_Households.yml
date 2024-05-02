@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Households table from PSRC's Household Travel Survey, years 2017, 2019 and 2021
+    snippet: Households table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: 
     licenseInfo:
     metadata:
@@ -20,16 +20,16 @@ dataset:
         fields:
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The Households table from the combined 2017, 2019 and 2021 Household Travel Survey
+        description: The Households table from the combined 2017, 2019, 2021 and 2023 Household Travel Survey
         data_source: PSRC's Household Travel Survey program
-        date_last_updated: '2022'
+        date_last_updated: '2024'
         constraints: 
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
         summary_purpose: 
         supplemental_info: ''
         tech_note_link:
-        time_period: "2017 - 2021"
+        time_period: "2017 - 2023"
         update_cadence: Roughly every two years
   source:
     is_simple: False
@@ -37,15 +37,15 @@ dataset:
     has_donut_holes: false
     schema_name: 
     table_name: 
-    sql_query: "SELECT [household_id]
-        ,[hhid] ,[hhgroup] ,[survey_year], [sample_segment], [seattle_home] ,[sample_county] ,[final_home_puma10], [final_home_tract10]
-        ,[final_home_uvnum] ,[dayofweek], [hhsize] ,[vehicle_count] ,[lifecycle] ,[hhincome_broad] ,[hhincome_detailed]
-        ,[hh_race_category] ,[car_share] ,[rent_own] ,[res_dur] ,[res_type] ,[prev_home_wa]
-        ,[prev_home_puma10] , [prev_home_tract10], [prev_home_seattle] ,[res_factors_30min] ,[res_factors_afford] ,[res_factors_closefam] ,[res_factors_cultural]
-        ,[res_factors_hhchange] ,[res_factors_hwy] ,[res_factors_school] ,[res_factors_space] ,[res_factors_transit] ,[res_factors_walk]
-        ,[prev_res_factors_housing_cost] ,[prev_res_factors_income_change] ,[prev_res_factors_community_change] ,[prev_res_factors_hh_size] ,[prev_res_factors_more_space] ,[prev_res_factors_less_space]
-        ,[prev_res_factors_employment] ,[prev_res_factors_school] ,[prev_res_factors_crime] ,[prev_res_factors_quality] ,[prev_res_factors_forced] ,[prev_res_factors_no_answer]
-        ,[prev_res_factors_other] ,[prev_res_factors_specify] ,[prev_res_factors_covid_flexibility] ,[prev_res_factors_covid_health] ,[broadband] 
-        ,[cityofseattle] ,[home_city_name] ,[prev_res_factors_displaced] ,[numadults] ,[numchildren] ,[numworkers]
-        ,[offpark_cost] ,[hh_weight_2021] ,[hh_weight_2017] ,[hh_weight_2019] ,[hh_weight_2017_2019]
-      FROM [Elmer].[HHSurvey].[v_households]"
+    sql_query: "select  [household_id],
+    [hhgroup], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
+    [num_complete_wed], [num_complete_thu], [num_complete_fri], [num_days_complete_weekend], [num_complete_sat], [num_complete_sun], [num_trips], [hhsize],
+    [num_surveyable], [num_participants], [numadults], [numchildren], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
+    [hhincome_followup], [hhincome_broad], [psrc], [home_tract20], [home_jurisdiction], [home_rgcname], [home_uvnum], [home_county], [res_type],
+    [rent_own], [res_months], [res_dur], [prev_rent_own], [prev_res_type], [prev_home_wa], [prev_home_notwa_state], [prev_home_notwa_city],
+    [prev_home_notwa_zip], [prev_res_factors_housing_cost], [prev_res_factors_income_change], [prev_res_factors_community_change], 
+    [prev_res_factors_hh_size], [prev_res_factors_more_space], [prev_res_factors_less_space], [prev_res_factors_employment],
+    [prev_res_factors_amenities], [prev_res_factors_telework], [prev_res_factors_school], [prev_res_factors_crime], 
+    [prev_res_factors_quality], [prev_res_factors_forced], [prev_res_factors_other], [prev_res_factors_no_answer],
+    [prev_res_factors_specify], [broadband], [survey_year], [hh_race_category], [hh_weight] 
+from HHSurvey.v_households_labels"
