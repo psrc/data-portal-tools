@@ -579,7 +579,11 @@ class PortalResource(object):
 			fields = []
 			for f in dtypes:
 				pd_type = str(f[1])
-				type_dict = {"name": f[0], "type": type_translations[pd_type]}
+				col_name = f[0]
+				if col_name in ['data_vintage', 'year_built']:
+					type_dict = {"name": col_name, "type": "esriFieldTypeString"}
+				else:
+					type_dict = {"name": col_name, "type": type_translations[pd_type]}
 				fields.append(type_dict)
 			return(fields)
 
