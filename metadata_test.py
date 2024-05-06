@@ -1,77 +1,121 @@
-import yaml
-from PortalExporter import PortalResource
-# from PortalExporter import PortalResource
-#from PortalExporter import PortalSpatialResource
-from PortalExporter import PortalConnector
-from PortalExporter import DatabaseConnector
-import os
-import json
-import shutil
+from arcgis import features
+from arcgis import mapping
+import arcpy
+import sys
+from pathlib import Path
+from arcpy import metadata as md
+import os, shutil 
+import xml.dom.minidom as DOM
+from arcgis import GIS
 
 
-##############################################################################
-# Setup: construct connector (for Examples 1 and 2)
-##############################################################################
-with open(r'Config\\auth.yml') as file:
-	auth = yaml.load(file, Loader=yaml.FullLoader)
-portal_conn = PortalConnector(
-	portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'])
-elmer_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
-	database='Elmer')
-elmergeo_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
-	database='ElmerGeo')
+elmer_geo_conn_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Documents\ArcGIS\Projects\metadata_test\AWS-PROD-SQL.sde'
+arcpy.env.workspace = f"{elmer_geo_conn_path}"
+#aprx_path = r'C:\Users\scoe\Documents\publish_elmer_geo\elmer_geo\elmer_geo.aprx'
+dataset = 'political'
+centers = r"ElmerGeo.DBO.urban_centers"
+#outdir = r'C:\Users\scoe\Documents\publish_elmer_geo\service_definitions'
 
-dest_path = "./workspace/metadata/"
-run_files = os.listdir('./Config/run_files/')
-root_dir = os.getcwd()
+centers_path = Path(elmer_geo_conn_path)/dataset/centers
 
-def find_layer( resource):
-	try:
-		return_item = "no item"
-		title = resource.resource_properties['title']
-		gis = resource.portal_connector.gis
-		owner_clause = '; owner:{}'.format(gis.users.me.username)
-		content_list = gis.content.search(
-			query='title:{}{}'.format(title, owner_clause),
-			)
-		lyr = "no object"
-		for item in content_list:
-			if (item['title'] == title and 'Feature' in item['type']) :
-				# return_item = item
-				lyr = item
-				break	
-		return(lyr)
-        
-	except Exception as e:
-		print(e.args[0])
-		raise
+# Set the standard-format metadata XML file's path
+src_file_path = r'T:\2024March\cpeak\metadata.xml'
+target_item_md = md.Metadata(centers_path)
+target_item_md.isReadOnly
+mdata = md.Metadata(centers_path)
+dir(target_item_md)
+target_item_md.credits
+
+# Import and apply to target
+if not target_item_md.isReadOnly:
+    target_item_md.importMetadata(src_file_path)
+    target_item_md.save()
+    target_item_md.synchronize('ALWAYS')
+    target_item_md.save()
+    print(f"target item updated")
+
+target_item_md.importMetadata(src_file_path)
+target_item_md.save()
+target_item_md.synchronize('ALWAYS')
+target_item_md.save()
+    
+# loop through each dataset example
+for dataset in arcpy.ListDatasets():
+    dataset_name = dataset.split(".")[2]
+    for fc in arcpy.ListFeatureClasses("*", "", dataset_name):
+        print(f"{dataset}, {fc}")
+
+# create dict of datasets per feature classes
+fc_dict = {}
+for dataset in arcpy.ListDatasets():
+    dataset_name = dataset.split(".")[2]
+    for fc in arcpy.ListFeatureClasses("*", "", dataset_name):
+        fc_name = fc.split(".")[2]
+        # fc_dict[fc_name] = dataset_name
+
+
+metadata_path = Path('./workspace/metadata')
+
+def get_dataset(layer):
+    try:
+        return(fc_dict[l])
+    except Exception as e:
+        return('nothing')
+
+run_files = os.listdir(metadata_path)
+src_file_path = r'.'
+for f in run_files:
+    print(f"{metadata_path}\{f}")
+
+run_files = os.listdir(metadata_path)
+src_file_path = r'.'
+for f in run_files:
+    l = f.replace('_metadata.xml','').lower()
+    dataset = get_dataset(l)
+    # print(f"layer {l} is in dataset {dataset}")
+    layer_path = Path(elmer_geo_conn_path)/dataset/l 
+    target_item_md = md.Metadata(layer_path)
+    mdata_path = f"{metadata_path}\{f}"
+    new_md = md.Metadata(mdata_path)
+    target_item_md.copy(new_md)
+    target_item_md.save()
+    if l == 'block2000_nowater':
+        if not target_item_md.isReadOnly:
+            target_item_md.importMetadata(src_file_path)
+            target_item_md.save()
+            target_item_md.synchronize('ALWAYS')
+            target_item_md.save()
+            print(f"exported metadata for {l}")
+        else:
+            print(f"layer {l} is read-only")
+
+new_md = md.Metadata('./workspace/metadata/safety_rest_area_metadata.xml')
+print(new_md)
+
 
 for f in run_files:
-	os.chdir(root_dir)
-	if r'Displacement' not in f:
-		f_path = './Config/run_files/' + f
-		with open(f_path) as file:
-			config = yaml.load(file, Loader=yaml.FullLoader)
-			params = config['dataset']['layer_params']
-			is_spatial = params['spatial_data']
-			if is_spatial == True:
-				source = config['dataset']['source']
-				title = params['title']
-				my_resource = PortalResource(
-					p_connector=portal_conn,
-					db_connector=elmergeo_conn,
-					params=params,
-					source=source
-					)
-				lyr = find_layer(my_resource)
-				if lyr != 'no object':
-					mdata_file = lyr.metadata
-					
-					layer_file_name = f.replace(".yml", "")
-					m_path = f"{dest_path}{layer_file_name}_metadata.xml"
-					shutil.copy(mdata_file, dest_path)
-					new_path = f"{dest_path}/{layer_file_name}_metadata.xml"
-					shutil.move(f"{dest_path}/metadata.xml", new_path)
+    l = f.replace('_metadata.xml','').lower()
+    dataset = get_dataset(l)
+    # print(f"layer {l} is in dataset {dataset}")
+    layer_path = Path(elmer_geo_conn_path)/dataset/l 
+    target_item_md = md.Metadata(layer_path)
+    if target_item_md.isReadOnly:
+        print(f"{l}:         READONLY")
+    else:
+        print(f"{l}:not readonly")
+
+username = arcpy.Describe(elmer_geo_conn_path).connectionProperties.user
+conn_properties = arcpy.Describe(elmer_geo_conn_path).connectionProperties
+conn_properties = arcpy.Describe(elmer_geo_conn_path)
+print(conn_properties)
+conn_properties.dataType
+dir(conn_properties)
+arcpy.ListUsers()
+
+arcpy.Describe(elmer_geo_conn_path)
+
+arcpy.ListUsers(arcpy.env.workspace)[0]
+
+w = arcpy.env.workspace
+for u in arcpy.ListUsers(w):
+    print(u)
