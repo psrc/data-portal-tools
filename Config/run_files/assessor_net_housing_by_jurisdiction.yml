@@ -4,7 +4,7 @@ dataset:
     title: 2010-2022 Annual Housing Development Estimates by Jurisdiction
     tags: portal, housing
     allow_edits: False
-    groups: PSRC Data Portal Content
+    groups: PSRC Data Portal Content;hub- Housing
     spatial_data: False
     share_level: everyone
     snippet: ''
