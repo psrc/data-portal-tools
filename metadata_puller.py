@@ -23,14 +23,17 @@ for f in run_files:
 	with open(f_path) as file:
 		config = yaml.load(file, Loader=yaml.FullLoader)
 		params = config['dataset']['layer_params']
+		source = config['dataset']['source']
 		title = params['title']
 		is_spatial = params['spatial_data']
 		if is_spatial == True:
-			lyr = portal_conn.find_by_title(title)
-			if lyr != 'no object':
-				mdata_file = lyr.metadata
-				layer_file_name = f.replace(".yml", "")
-				m_path = f"{dest_path}{layer_file_name}_metadata.xml"
-				shutil.copy(mdata_file, dest_path)
-				new_path = f"{dest_path}/{layer_file_name}_metadata.xml"
-				shutil.move(f"{dest_path}/metadata.xml", new_path)
+			if source['is_simple'] == True:
+				lyr = portal_conn.find_by_title(title)
+				if lyr != 'no object':
+					mdata_file = lyr.metadata
+					# layer_file_name = f.replace(".yml", "")
+					layer_file_name = source['table_name']
+					m_path = f"{dest_path}{layer_file_name}_metadata.xml"
+					shutil.copy(mdata_file, dest_path)
+					new_path = f"{dest_path}/{layer_file_name}_metadata.xml"
+					shutil.move(f"{dest_path}/metadata.xml", new_path)

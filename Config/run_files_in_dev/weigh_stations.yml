@@ -12,7 +12,7 @@ dataset:
       contact_name: Gary Simonson
       contact_phone: 206-971-3276
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: WSDOT surveys all weigh stations across the state
       data_source: WSDOT

@@ -58,5 +58,6 @@ class PortalConnector(object):
 			return(lyr)
 
 		except Exception as e:
- 			print(e.args[0])
+			print(e.args[0])
 			raise
+

@@ -1,6 +1,5 @@
 from arcgis import features
 from arcgis import mapping
-import arcpy
 import sys
 from pathlib import Path
 from arcpy import metadata as md
@@ -10,6 +9,7 @@ from arcgis import GIS
 
 
 elmer_geo_conn_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Documents\ArcGIS\Projects\metadata_test\AWS-PROD-SQL.sde'
+elmer_geo_conn_path = r'T:\2024May\cpeak\AWS-PROD-SQL.sde'
 arcpy.env.workspace = f"{elmer_geo_conn_path}"
 #aprx_path = r'C:\Users\scoe\Documents\publish_elmer_geo\elmer_geo\elmer_geo.aprx'
 dataset = 'political'
@@ -19,7 +19,7 @@ centers = r"ElmerGeo.DBO.urban_centers"
 centers_path = Path(elmer_geo_conn_path)/dataset/centers
 
 # Set the standard-format metadata XML file's path
-src_file_path = r'T:\2024March\cpeak\metadata.xml'
+src_file_path = r'T:\2024May\cpeak\metadata.xml'
 target_item_md = md.Metadata(centers_path)
 target_item_md.isReadOnly
 mdata = md.Metadata(centers_path)
@@ -38,6 +38,9 @@ target_item_md.importMetadata(src_file_path)
 target_item_md.save()
 target_item_md.synchronize('ALWAYS')
 target_item_md.save()
+target_item_md.synchronize()
+target_item_md.xml
+target_item_md.title
     
 # loop through each dataset example
 for dataset in arcpy.ListDatasets():
@@ -51,7 +54,7 @@ for dataset in arcpy.ListDatasets():
     dataset_name = dataset.split(".")[2]
     for fc in arcpy.ListFeatureClasses("*", "", dataset_name):
         fc_name = fc.split(".")[2]
-        # fc_dict[fc_name] = dataset_name
+        fc_dict[fc_name] = dataset_name
 
 
 metadata_path = Path('./workspace/metadata')
@@ -81,7 +84,8 @@ for f in run_files:
     target_item_md.save()
     if l == 'block2000_nowater':
         if not target_item_md.isReadOnly:
-            target_item_md.importMetadata(src_file_path)
+            #target_item_md.importMetadata(src_file_path)
+            target_item_md.importMetadata(mdata_path)
             target_item_md.save()
             target_item_md.synchronize('ALWAYS')
             target_item_md.save()
