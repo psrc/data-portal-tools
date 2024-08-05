@@ -356,7 +356,7 @@ class PortalResource(object):
 				for f in files:
 					if '.gdb' in f:
 						shutil.rmtree(f)
-					elif f != str(gdb_path):
+					elif f != str(gdb_path) and f != 'workspace\\metadata':
 						os.remove(f)
 				gdb_files = glob.glob(str(gdb_path / '*.gdb'))
 				for f in gdb_files:
@@ -627,7 +627,7 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			os.remove(csv_name)
+			#os.remove(csv_name)
 
 		except Exception as e:
 			print(e.args[0])
