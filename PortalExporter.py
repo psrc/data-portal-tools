@@ -49,6 +49,7 @@ class PortalConnector(object):
 		"""
 		try:
 			self.gis = GIS(self.portal_url, self.username, self.pw)
+			#self.gis = GIS(self.portal_url, password=None)
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -472,7 +473,7 @@ class PortalResource(object):
 			params = {"name":self.title, 'targetSR':self.srid}
 			published = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published)
-			self.set_editability(published)
+			#self.set_editability(published)
 			share_group_ids = self.get_group_ids()
 			layer_shared = published.share(everyone=True,groups=share_group_ids)
 
@@ -621,9 +622,9 @@ class PortalResource(object):
                    }
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
-			self.set_editability(published_csv)
+			#self.set_editability(published_csv)
 			self.share(published_csv)
-			os.remove(csv_name)
+			#os.remove(csv_name)
 
 		except Exception as e:
 			print(e.args[0])
@@ -662,9 +663,9 @@ class PortalResource(object):
                }
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
-			self.set_editability(published_csv)
+			#self.set_editability(published_csv)
 			self.share(published_csv)
-			os.remove(csv_name)
+			#os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)

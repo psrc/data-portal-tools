@@ -12,9 +12,14 @@ import os
 ##############################################################################
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
+# portal_conn = PortalConnector(
+# 	portal_username=auth['arc_gis_online']['username'],
+# 	portal_pw=auth['arc_gis_online']['pw'])
 portal_conn = PortalConnector(
-	portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'])
+	portal_username=auth['enterprise']['username'],
+	portal_pw=auth['enterprise']['pw'],
+	portal_url='https://gis.psrc.org/portal'
+ )
 elmer_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
@@ -74,13 +79,9 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	# if r'regional_growth_centers.yml' in f:
-	# if f in ['cities_2018_land_use_forecast_dashboard.yml',
-    #       'control_2018_land_use_forecast_dashboard.yml',
-    #       'control_hct_2018_land_use_forecast_dashboard.yml',
-	#if 'Income_Restricted_Housing_Database_2021' in f:
-	print(f"exporting {f}")
-	f_path = './Config/run_files/' + f
-	with open(f_path) as file:
-		config = yaml.load(file, Loader=yaml.FullLoader)
-		export(config)
+	if r'Census_Tracts_2020' in f:
+		print(f"exporting {f}")
+		f_path = './Config/run_files/' + f
+		with open(f_path) as file:
+			config = yaml.load(file, Loader=yaml.FullLoader)
+			export(config)
