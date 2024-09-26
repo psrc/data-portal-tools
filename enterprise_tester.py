@@ -5,6 +5,7 @@ from PortalExporter import PortalResource
 from PortalExporter import PortalConnector
 from PortalExporter import DatabaseConnector
 import os
+from arcgis.gis import GIS
 
 
 ##############################################################################
@@ -13,14 +14,16 @@ import os
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
 portal_conn = PortalConnector(
-	portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'])
+	portal_username=auth['enterprise']['username'],
+	portal_pw=auth['enterprise']['pw'])
 elmer_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
 elmergeo_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='ElmerGeo')
+
+
 
 def export(config):
 	try:
@@ -65,21 +68,21 @@ def export(config):
 		print(e.args[0])
 		raise
 
+
+
 ##############################################################################
 #Example 1: export tables and/or view using define_simple_source
 #  Use the config info in config\config.yml
 ##############################################################################
 # for each yaml file in folder
-run_files = os.listdir('./Config/run_files/')
-root_dir = os.getcwd()
-for f in run_files:
-	os.chdir(root_dir)
-	# if r'assessor_net_housing_by_' in f:
-	if f in ['Household_Travel_Survey_Persons.yml',
-		  'Household_Travel_Survey_Households.yml',
-		  'Household_Travel_Survey_Trips.yml']:
-		print(f"exporting {f}")
-		f_path = './Config/run_files/' + f
-		with open(f_path) as file:
-			config = yaml.load(file, Loader=yaml.FullLoader)
-			export(config)
+# run_files = os.listdir('./Config/run_files/')
+# root_dir = os.getcwd()
+# for f in run_files:
+# 	os.chdir(root_dir)
+# 	# if r'assessor_net_housing_by_' in f:
+# 	if f in ['Household_Travel_Survey_Persons.yml']:
+# 		print(f"exporting {f}")
+# 		f_path = './Config/run_files/' + f
+# 		with open(f_path) as file:
+# 			config = yaml.load(file, Loader=yaml.FullLoader)
+# 			export(config)

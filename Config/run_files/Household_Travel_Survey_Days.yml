@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Days table from PSRC's Household Travel Survey, years 2017, 2019 and 2021
+    snippet: Days table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: A Data Science Team Member
     licenseInfo: The text to appear under Terms of Use in AGOL
     metadata:
@@ -20,21 +20,30 @@ dataset:
         fields:
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The Days table from the combined 2017, 2019 and 2021 Household Travel Survey
+        description: The Days table from the combined 2017, 2019, 2021 and 2023 Household Travel Survey
         data_source: PSRC's Household Travel Survey program
-        date_last_updated: '2022'
+        date_last_updated: '2024'
         constraints: 
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
         summary_purpose: 
         supplemental_info: ''
         tech_note_link:
-        time_period: "2017 - 2021"
+        time_period: "2017 - 2023"
         update_cadence: Roughly every two years
   source:
-    is_simple: True
+    is_simple: False
     feature_dataset: ''
     has_donut_holes: false
-    schema_name: hhsurvey
-    table_name: v_days
-    sql_query:
+    schema_name: 
+    table_name:
+    sql_query: "SELECT 
+      [day_id], [household_id], [person_id], [pernum], [daynum], [day_iscomplete], [hh_day_iscomplete], [summary_complete],
+      [is_participant], [surveyable], [proxy_complete], [travel_date], [travel_day], [travel_dow], [num_trips], [num_complete_trip_surveys],
+      [loc_start], [loc_end], [telework_time], [deliver_food], [deliver_work], [deliver_grocery], [deliver_package], [deliver_office],
+      [deliver_elsewhere], [deliver_other], [deliver_none], [attend_school_1], [attend_school_2], [attend_school_3], [attend_school_998], [attend_school_999],
+      [no_school_sick], [no_school_online_home], [no_school_online_other], [no_school_vacation], [no_school_closed], [no_school_other], [no_school_dont_know], [no_school_no_answer],
+      [trips_yesno], [notravel_madetrips], [notravel_vacation], [notravel_telecommute], [notravel_housework], [notravel_kidsbreak], [notravel_notransport], [notravel_sick],
+      [notravel_delivery], [notravel_kidshomeschool], [notravel_weather], [notravel_not_sure], [notravel_other], [day_pct_trips_flagged], [day_weight_2023], [survey_year],
+      [day_weight]
+  from HHSurvey.v_days_labels"

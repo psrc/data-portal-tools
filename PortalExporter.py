@@ -356,7 +356,7 @@ class PortalResource(object):
 				for f in files:
 					if '.gdb' in f:
 						shutil.rmtree(f)
-					elif f != str(gdb_path):
+					elif f != str(gdb_path) and f != 'workspace\\metadata':
 						os.remove(f)
 				gdb_files = glob.glob(str(gdb_path / '*.gdb'))
 				for f in gdb_files:
@@ -579,7 +579,11 @@ class PortalResource(object):
 			fields = []
 			for f in dtypes:
 				pd_type = str(f[1])
-				type_dict = {"name": f[0], "type": type_translations[pd_type]}
+				col_name = f[0]
+				if col_name in ['data_vintage', 'year_built']:
+					type_dict = {"name": col_name, "type": "esriFieldTypeString"}
+				else:
+					type_dict = {"name": col_name, "type": type_translations[pd_type]}
 				fields.append(type_dict)
 			return(fields)
 
@@ -623,7 +627,7 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_csv)
 			self.set_editability(published_csv)
 			self.share(published_csv)
-			os.remove(csv_name)
+			#os.remove(csv_name)
 
 		except Exception as e:
 			print(e.args[0])

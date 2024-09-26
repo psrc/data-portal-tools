@@ -21,7 +21,7 @@ dataset:
         by each of the transit agencies. The collection and reporting system 
         varies by agency by year. Community Transit provides annual counts for capacity and utilized parking spaces. King County Metro Transit provides annual capacity counts and monthly averages for the number of utilized parking spaces. Kitsap Transit provides counts for the capacity and utilized spaces at inconsistent intervals (ranging 1-5 times a month), as well as annual averages. Pierce Transit provides annual capacity counts and monthly, quarterly, and yearly averages for the number of utilized parking spaces. Sound Transit provides monthly counts for capacity and utilized parking spaces.
       data_source: Puget Sound Regional Council
-      date_last_updated: 09/2023
+      date_last_updated: 05/2024
       description: The Park and Ride database contains data on approximately 220 
         park and ride locations in the Puget Sound region. This dataset includes 
         the name and address of the park and ride lot, yearly capacity, occupancy 
@@ -67,7 +67,7 @@ dataset:
         represents one lot for one year). The agency uses the projected coordinate 
         system: NAD_1983_StatePlane_Washington_North_FIPS_4601_Feet.'
       tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
-      time_period: 2002-2022
+      time_period: 2002-2023
       update_cadence: Every year
     share_level: everyone
     snippet: null
