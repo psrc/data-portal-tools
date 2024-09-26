@@ -1,10 +1,10 @@
 
 dataset:
   layer_params:
-    title: 2010-2022 Assessor-Based Estimates of Housing Development by Tract
+    title: 2010-2022 Annual Housing Development Estimates by Census Tract
     tags: portal, housing
     allow_edits: False
-    groups: PSRC Data Portal Content
+    groups: PSRC Data Portal Content;hub- Housing
     spatial_data: False
     share_level: everyone
     snippet: ''
@@ -19,18 +19,20 @@ dataset:
         contact_zip: 98104
         contact_phone: (206)971-3269
         fields:
+        - description: a row ordering field, based on [data_vintage], [county], [jurisdiction], [year_built]
+          title: row_num
         - description: The year denoting when the assessor extracts were downloaded and processed
           title: data_vintage
         - description: Name of county
           title: county
         - description: 2020 Census Tract unique identification number
-          title: tract
+          title: tract_2020
         - description: The year built for the development. Please note that for demolition records, the year corresponds to the associated new development and not the year in which the demolition took place.
           title: year
-        - description: 
-          title: single family attached
         - description:
           title: single family detached
+        - description: 
+          title: single family attached
         - description:
           title: multifamily 2-4 units
         - description:
@@ -45,29 +47,35 @@ dataset:
           title: mobile homes
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: 'The starting year in the time series will vary by county due to base year datasets differing from county to county. Based on existing base year datasets, the time series for reach county will be as follows:
-            King: 2010-Current Year 
-            Kitsap: 2010-Current Year
-            Pierce: 2012-Current Year
-            Snohomish: 2011-Current Year
+        description: "PSRC utilizes assessor data extracts for King, Kitsap, Pierce, and Snohomish counties to estimate housing development at the parcel level for each year in this time series. The methodology utilizes variables that identify Residential Uses, Number of Units, and Number of Buildings together with a Year Built variable to estimate new housing units built annually by structure type. The most current vintage of residential assessor records are then related back to a base year record set to determine what type of development took place on a given parcel. Development activity types tracked are: 'New Development', 'Redevelopment', and 'Rebuild/Remodels'. For Redevelopment and Rebuild/Remodels, base year unit counts are categorized as 'Demolitions' and subtracted from the inventory to calculate net change. The annual net housing unit estimates are summarized by county, jurisdiction, and census tract. 
+          <br/><br/>The starting year in the time series will vary by county due to base year datasets differing from county to county. The time series for each county is as follows: 
+          <ul>
+          <li>King County: 2010-Current Year  </li>
+          <li>Kitsap County: 2010-Current Year </li>
+          <li>Pierce County: 2012-Current Year </li>
+          <li>Snohomish County: 2011-Current Year </li>
+          </ul>
 
-            Mobile Home Parks and Group Quarter Facilities are omitted from the final estimates
+          <br/>A new time series will be processed and published each year. Please note the estimates may shift from version to version due to updates in the data inputs and methodology refinements. 
 
-            The "Single-Family Attached" structure type category is defined in each county by the following:
-            King: "Townhouse Plat" present use category in the parcel table
-            Kitsap: House type code "146 Townhouse" in the dwellings table
-            Pierce: Built-As IDs 61, 65, and 68 in the improvements built-as table
-            Snohomish: Property Class Codes 116 and 142 in the master table
+          <br/><br/>Group Quarter Facilities are omitted from the final estimates. Unit counts for Mobile Home Parks are held constant except when an existing park is closed or redeveloped or a new park is opened.  
 
-            Missing Unit/Building Counts
-            Snohomish: Unit counts for multi-family parcels were populated by using utility counts from the Snohomish County Public Utilities District (PUD). Building counts were populated by using a mix of utility data locations data and structure type information.
-            Kitsap: Unit counts for multi-family parcels are based on information in the NUM_COMM field in the original data provided. Unit counts for single-family, duplex, triplex, and mobile home structures are derived from the DUM_DWELL field.
-            
-            Each year, a new time series will be processed and published. Please note that we will re-process all data within the given time period which may result in the estimates changing from version to version based on updates made by the assessor.'
-        data_source: County Assessors for King, Pierce, Snohomish and Kitsap Counties, Snohomish County Public Utilities District, and PSRC
+          <br/><br/>The 'Single-Family Attached' structure type category is defined in each county by the following: 
+          <ul>
+          <li>King: 'Townhouse Plat' present use category in the parcel table </li>
+          <li>Kitsap: House type code '146 Townhouse' in the dwellings table </li>
+          <li>Pierce: Built-As IDs 61, 65, and 68 in the improvements built-as table </li>
+          <li>Snohomish: Property Class Codes 116 and 142 in the master table </li>
+          </ul>
+          <br/>Missing Unit/Building Counts 
+
+          <br/><br/>Housing unit and building counts are not available in the Snohomish County assessor datasets. Unit counts for single family parcels were assumed to = 1. Unit counts for multi-family parcels were populated by using utility hookup counts from the Snohomish County Public Utilities District (PUD). Building counts were populated by using a mix of utility customer property data and structure type information. 
+
+          <br/><br/>Kitsap: Unit counts are accessed through a supplemental data request to the Kitsap County Department of Community Development "
+        data_source: PSRC, County Assessor, Snohomish Public Utilities District
         date_last_updated: '2023'
         constraints: 
-        data_lineage: "PSRC utilizes assessor data extracts from King, Kitsap, Pierce, and Snohomish, counties to estimate housing development at the parcel level on an annual basis. A methodology was developed to relate current residential assessor records back to a base year to determine what type of development took place on a given parcel. Development activity types tracked are: 'New Development', 'Redevelopment', and 'Rebuild/Remodels'. For Redevelopment and Rebuild/Remodels, base year unit counts are categorized as 'demolitions' and subtracted from the new units built to calculate net change. These assessor estimates are summarized by county."
+        data_lineage: "PSRC utilizes assessor data extracts for King, Kitsap, Pierce, and Snohomish counties to estimate housing development at the parcel level for each year in this time series. The methodology utilizes variables that identify Residential Uses, Number of Units, and Number of Buildings together with a Year Built variable to estimate new housing units built annually by structure type. The most current vintage of residential assessor records are then related back to a base year record set to determine what type of development took place on a given parcel. Development activity types tracked are: 'New Development', 'Redevelopment', and 'Rebuild/Remodels'. For Redevelopment and Rebuild/Remodels, base year unit counts are categorized as 'Demolitions' and subtracted from the inventory to calculate net change. The annual net housing unit estimates are summarized by county, jurisdiction, and census tract.  "
         assessment: 
         summary_purpose: ''
         supplemental_info: ''

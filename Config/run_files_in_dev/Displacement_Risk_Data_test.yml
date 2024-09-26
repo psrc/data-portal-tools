@@ -10,7 +10,7 @@ dataset:
       contact_name: Brian Lee
       contact_phone: 206-971-3270
       contact_state: Washington
-      contact_street_address: 1011 Western Ave. Ste. 500
+      contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
       data_lineage: 'Data collected from American Community Survey (ACS), U.S. Census
         Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
