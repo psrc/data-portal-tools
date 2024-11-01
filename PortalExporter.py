@@ -5,6 +5,7 @@ from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
 import urllib
 import pyodbc
+import sqlalchemy
 import zipfile
 import glob
 import yaml
@@ -83,7 +84,8 @@ class DatabaseConnector(object):
 				"SERVER={}; DATABASE={}; trusted_connection=yes".format(
 					self.db_server,
 					self.database)
-			self.sql_conn = pyodbc.connect(conn_string)
+			engine = sqlalchemy.create_engine("mssql+pyodbc:///?odbc_connect=%s" % conn_string)
+			self.sql_conn = engine
 		except Exception as e:
 			print(e.args[0])
 			raise
