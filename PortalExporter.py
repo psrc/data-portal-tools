@@ -1,3 +1,4 @@
+#from matplotlib import rc_file
 from numpy import NaN
 import pandas as pd
 from arcgis.gis import GIS
@@ -282,6 +283,7 @@ class PortalResource(object):
 			else:
 				zip_name = file_gdb_name + '.zip'
 				folder_to_be_zipped = str(file_gdb_name)
+
 			out_zip_name = shutil.make_archive(zip_name, 'zip', folder_to_be_zipped)
 			return out_zip_name
 
@@ -407,6 +409,9 @@ class PortalResource(object):
 											temp_fc2, 
 											field_info=fields)
 			arcpy.management.CopyFeatures(temp_fc2, out_fc_path)
+			arcpy.Delete_management(temp_fc2)
+			arcpy.ClearWorkspaceCache_management()
+			arcpy.env.workspace = None
 
 		except Exception as e:
 			print("error in export_remote_featureclass")
