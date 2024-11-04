@@ -40,8 +40,9 @@ dataset:
     sql_query: "select
         [trip_id], [household_id], [person_id], [day_id], [pernum], [daynum], [tripnum], [travel_day],
         [travel_date], [travel_dow], [day_iscomplete], [svy_complete], [depart_date], [depart_dow], [depart_time_hour], [depart_time_minute],
-        [depart_time_second], [arrive_date], [arrive_dow], [arrival_time_hour], [arrival_time_minute], [arrival_time_second], [o_in_region], [origin_rgcname], [origin_county],
-        [origin_jurisdiction], [origin_tract20], [d_in_region], [dest_rgcname], [dest_county], [dest_jurisdiction], [dest_tract20], [distance_meters], [distance_miles],
+        [depart_time_second], [arrive_date], [arrive_dow], [arrival_time_hour], [arrival_time_minute], [arrival_time_second], [o_in_region], 
+        [origin_rgcname], [origin_county], [origin_jurisdiction], [origin_tract10], [origin_tract20], [d_in_region], [dest_rgcname], [dest_county], 
+        [dest_jurisdiction], [dest_tract10], [dest_tract20], [distance_meters], [distance_miles],
         [duration_minutes], [duration_seconds], [speed_mph], [speed_flag], [dwell_mins], [days_first_trip], [days_last_trip], [origin_purpose_cat],
         [origin_purpose], [origin_name], [dest_purpose_cat], [dest_purpose], [dest_purpose_other], [dest_name], [mode_type], [mode_1],
         [mode_2], [mode_3], [mode_4], [mode_other_specify], [mode_acc], [mode_egr], [travelers_total], [travelers_hh],
@@ -49,4 +50,4 @@ dataset:
         [hhmember8], [hhmember9], [hhmember10], [hhmember11], [hhmember12], [driver], [change_vehicles], [taxi_cost_known],
         [taxi_cost_int], [analyst_split], [analyst_merged], [analyst_split_loop], [copied_trip], [user_split], [user_merged], [user_added],
         [flag_teleport], [trace_quality_flag], [pt_density], [point_dist_index], [survey_year], [hh_day_iscomplete], [trip_weight]
-    from HHSurvey.v_trips_labels"
+      from HHSurvey.v_trips_labels"

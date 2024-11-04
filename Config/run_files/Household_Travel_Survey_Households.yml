@@ -37,16 +37,16 @@ dataset:
     has_donut_holes: false
     schema_name: 
     table_name: 
-    sql_query: "select  [household_id],
-    [hhgroup], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
-    [num_complete_wed], [num_complete_thu], [num_complete_fri], [num_days_complete_weekend], [num_complete_sat], [num_complete_sun], [num_trips], [hhsize],
-    [num_surveyable], [num_participants], [numadults], [numchildren], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
-    [hhincome_followup], [hhincome_broad], [psrc], [home_tract20], [home_jurisdiction], [home_rgcname], [home_uvnum], [home_county], [res_type],
-    [rent_own], [res_months], [res_dur], [prev_rent_own], [prev_res_type], [prev_home_rgcname], [prev_home_jurisdiction], [prev_home_tract20], 
-    [prev_home_county], [prev_home_wa], [prev_home_notwa_state], [prev_home_notwa_city],
-    [prev_home_notwa_zip], [prev_res_factors_housing_cost], [prev_res_factors_income_change], [prev_res_factors_community_change], 
-    [prev_res_factors_hh_size], [prev_res_factors_more_space], [prev_res_factors_less_space], [prev_res_factors_employment],
-    [prev_res_factors_amenities], [prev_res_factors_telework], [prev_res_factors_school], [prev_res_factors_crime], 
-    [prev_res_factors_quality], [prev_res_factors_forced], [prev_res_factors_other], [prev_res_factors_no_answer],
-    [prev_res_factors_specify], [broadband], [survey_year], [hh_race_category], [hh_weight] 
-from HHSurvey.v_households_labels"
+    sql_query: " select  [household_id],
+      [hhgroup], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
+      [num_complete_wed], [num_complete_thu], [num_complete_fri], [num_days_complete_weekend], [num_complete_sat], [num_complete_sun], [num_trips], [hhsize],
+      [num_surveyable], [num_participants], [numadults], [numchildren], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
+      [hhincome_followup], [hhincome_broad], [home_tract20], [home_jurisdiction], [home_rgcname], [home_county], [res_type],
+      [rent_own], [res_months], [res_dur], [prev_rent_own], [prev_res_type], [prev_home_rgcname], [prev_home_jurisdiction], [prev_home_tract20], 
+      [prev_home_county], [prev_home_wa], [prev_home_notwa_state], [prev_home_notwa_city],
+      [prev_home_notwa_zip], [prev_res_factors_housing_cost], [prev_res_factors_income_change], [prev_res_factors_community_change], 
+      [prev_res_factors_hh_size], [prev_res_factors_more_space], [prev_res_factors_less_space], [prev_res_factors_employment],
+      [prev_res_factors_amenities], [prev_res_factors_telework], [prev_res_factors_school], [prev_res_factors_crime], 
+      [prev_res_factors_quality], [prev_res_factors_forced], [prev_res_factors_other], [prev_res_factors_no_answer],
+      [prev_res_factors_specify], [broadband], [survey_year], [hh_race_category], [hh_weight] 
+      from HHSurvey.v_households_labels"
