@@ -74,10 +74,8 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	# if r'assessor_net_housing_by_' in f:
-	if f in ['Household_Travel_Survey_Persons.yml',
-		  'Household_Travel_Survey_Households.yml',
-		  'Household_Travel_Survey_Trips.yml']:
+	if r'City_Boundaries' in f:
+	# if f in ['Covered_Employment_by_City_-_NAICS.yml']:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
