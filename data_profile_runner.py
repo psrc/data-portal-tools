@@ -30,6 +30,16 @@ datasets =  [
         }
 ]
 
+datasets =  [
+        {'census_year': 2020,
+        'census_product': 'Decennial',
+        'specifications': {
+            "DP1": {'short_title': 'General Population and Housing Characteristics Data Profle', 
+                    'long_title':'Decennial Data Profile: General Population and Housing Characteristics, 2020'},
+                }
+        }
+]
+
 # datasets =  [
 #         { 'census_year': 2021,
 #         'census_product': 'acs1',
