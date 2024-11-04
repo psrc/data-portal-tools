@@ -30,7 +30,7 @@ dataset:
         one job, each job would appear in the database.
       data_source: Washington State Employment Security Department (ESD), Boeing,
         Microsoft, Washington Office of Superintendent of Public Instruction (OSPI)
-      date_last_updated: 07/2021
+      date_last_updated: 06/2024
       description: Covered Employment Estimates summarize employment from PSRC`s point-level
         workplace employment dataset. The data represents a census of covered employers
         within the Puget Sound Region.
@@ -101,7 +101,7 @@ dataset:
       summary_purpose: ''
       supplemental_info: ''
       tech_note_link: ''
-      time_period: 2000-2022
+      time_period: 2000-2023
       update_cadence: Every year
     share_level: everyone
     snippet: null
@@ -110,9 +110,11 @@ dataset:
     tags: Employment;Jobs;
     title: Covered_Employment_by_City_-_NAICS
   source:
-    is_simple: true
+    is_simple: false
     feature_dataset: ''
     has_donut_holes: false
     schema_name: employment_summaries
-    sql_query: null
-    table_name: v_covered_employment_by_city_by_naics2
+    sql_query: "select *
+      from employment_summaries.v_covered_employment_by_city_by_naics2 
+      order by data_year desc, County, City"
+    table_name: 
