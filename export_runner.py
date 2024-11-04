@@ -15,6 +15,11 @@ with open(r'Config\\auth.yml') as file:
 portal_conn = PortalConnector(
 	portal_username=auth['arc_gis_online']['username'],
 	portal_pw=auth['arc_gis_online']['pw'])
+# portal_conn = PortalConnector(
+# 	portal_username=auth['enterprise']['username'],
+# 	portal_pw=auth['enterprise']['pw'],
+# 	portal_url='https://gis.psrc.org/portal'
+#  )
 elmer_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
@@ -75,7 +80,6 @@ root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
 	if r'City_Boundaries' in f:
-	# if f in ['Covered_Employment_by_City_-_NAICS.yml']:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:

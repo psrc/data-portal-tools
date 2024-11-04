@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      assessment: 'Refer to Technical Documentation: https://www.psrc.org/media/2749'
       contact_city: Seattle
       contact_email: blee@psrc.org
       contact_name: Brian Lee
@@ -139,7 +139,7 @@ dataset:
         Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
-      tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      tech_note_link: ''
       time_period: '2018'
       update_cadence: Periodically
     share_level: everyone

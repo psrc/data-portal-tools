@@ -1,13 +1,16 @@
-import yaml
 from PortalConnector import PortalConnector
+import yaml
 import os
 import shutil
+from Layer import Layer
+import importlib
+# importlib.reload(Layer)
 
 
 # Setup: construct connector, etc
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
-portal_conn = PortalConnector(
+portal_conn = portalconnector(
 	portal_username=auth['arc_gis_online']['username'],
 	portal_pw=auth['arc_gis_online']['pw'])
 
@@ -26,6 +29,7 @@ for f in run_files:
 		source = config['dataset']['source']
 		title = params['title']
 		is_spatial = params['spatial_data']
+		
 		if is_spatial == True:
 			if source['is_simple'] == True:
 				lyr = portal_conn.find_by_title(title)

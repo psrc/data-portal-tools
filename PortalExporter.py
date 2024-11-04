@@ -1,9 +1,11 @@
+#from matplotlib import rc_file
 from numpy import NaN
 import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
 import urllib
 import pyodbc
+import sqlalchemy
 import zipfile
 import glob
 import yaml
@@ -49,6 +51,7 @@ class PortalConnector(object):
 		"""
 		try:
 			self.gis = GIS(self.portal_url, self.username, self.pw)
+			#self.gis = GIS(self.portal_url, password=None)
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -81,7 +84,8 @@ class DatabaseConnector(object):
 				"SERVER={}; DATABASE={}; trusted_connection=yes".format(
 					self.db_server,
 					self.database)
-			self.sql_conn = pyodbc.connect(conn_string)
+			engine = sqlalchemy.create_engine("mssql+pyodbc:///?odbc_connect=%s" % conn_string)
+			self.sql_conn = engine
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -281,6 +285,7 @@ class PortalResource(object):
 			else:
 				zip_name = file_gdb_name + '.zip'
 				folder_to_be_zipped = str(file_gdb_name)
+
 			out_zip_name = shutil.make_archive(zip_name, 'zip', folder_to_be_zipped)
 			return out_zip_name
 
@@ -406,6 +411,9 @@ class PortalResource(object):
 											temp_fc2, 
 											field_info=fields)
 			arcpy.management.CopyFeatures(temp_fc2, out_fc_path)
+			arcpy.Delete_management(temp_fc2)
+			arcpy.ClearWorkspaceCache_management()
+			arcpy.env.workspace = None
 
 		except Exception as e:
 			print("error in export_remote_featureclass")
@@ -472,7 +480,7 @@ class PortalResource(object):
 			params = {"name":self.title, 'targetSR':self.srid}
 			published = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published)
-			self.set_editability(published)
+			#self.set_editability(published)
 			share_group_ids = self.get_group_ids()
 			layer_shared = published.share(everyone=True,groups=share_group_ids)
 
@@ -625,7 +633,7 @@ class PortalResource(object):
                    }
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
 			self.set_and_update_metadata(published_csv)
-			self.set_editability(published_csv)
+			#self.set_editability(published_csv)
 			self.share(published_csv)
 			#os.remove(csv_name)
 
@@ -666,9 +674,9 @@ class PortalResource(object):
                }
 			published_csv = exported.publish(publish_parameters=params)
 			self.set_and_update_metadata(published_csv)
-			self.set_editability(published_csv)
+			#self.set_editability(published_csv)
 			self.share(published_csv)
-			os.remove(csv_name)
+			#os.remove(csv_name)
 		except Exception as e:
 			print(e.args[0])
 			if os.path.exists(csv_name): os.remove(csv_name)

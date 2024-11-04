@@ -22,6 +22,14 @@ class PortalConnector(object):
 			print(e.args[0])
 			raise
 
+	@property
+	def portal_url(self):
+		return self._portal_url
+
+	@portal_url.setter 
+	def portal_url(self, value): 
+		self._portal_url = value
+
 
 	def connect(self):
 		"""
