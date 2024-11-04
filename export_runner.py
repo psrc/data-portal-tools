@@ -12,14 +12,14 @@ import os
 ##############################################################################
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
-# portal_conn = PortalConnector(
-# 	portal_username=auth['arc_gis_online']['username'],
-# 	portal_pw=auth['arc_gis_online']['pw'])
 portal_conn = PortalConnector(
-	portal_username=auth['enterprise']['username'],
-	portal_pw=auth['enterprise']['pw'],
-	portal_url='https://gis.psrc.org/portal'
- )
+	portal_username=auth['arc_gis_online']['username'],
+	portal_pw=auth['arc_gis_online']['pw'])
+# portal_conn = PortalConnector(
+# 	portal_username=auth['enterprise']['username'],
+# 	portal_pw=auth['enterprise']['pw'],
+# 	portal_url='https://gis.psrc.org/portal'
+#  )
 elmer_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
 	database='Elmer')
@@ -79,7 +79,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Census_Tracts_2020' in f:
+	if r'City_Boundaries' in f:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
