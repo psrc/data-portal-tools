@@ -496,5 +496,5 @@ class DataProfileSpreadsheets(object):
             raise   
 
 
-class DecennialDataProfileSpreadsheet(DataProfileSpreadsheet):
+class DecennialDataProfileSpreadsheet(DataProfileSpreadsheets):
     pass
