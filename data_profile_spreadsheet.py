@@ -48,6 +48,7 @@ class DataProfileSpreadsheets(object):
             self.metadata = {}
             dir_name = Path("./Config")
             fpath = dir_name / "data_profile_{}.yml".format(str(self.census_year))
+            fpath_product = dir_name / "data_profile_{}_{}.yml".format(str(self.census_product, self.census_year))
             if fpath.is_file():
                 with open(fpath) as file:
                     y = yaml.load(file, Loader=yaml.FullLoader)
