@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Persons table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
+    snippet: Version 2023.2 of the Persons table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: A Data Science Team Member
     licenseInfo: The text to appear under Terms of Use in AGOL
     metadata:
@@ -22,7 +22,7 @@ dataset:
         psrc_website: www.psrc.org
         description: The persons table from the combined 2017, 2019, 2021 and 2023 Household Travel Survey
         data_source: PSRC's Household Travel Survey program
-        date_last_updated: '2024'
+        date_last_updated: 'December 2024 '
         constraints: 
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
@@ -42,11 +42,11 @@ dataset:
         [surveyable], [is_participant], [proxy_parent], [proxy], [relationship], [age], [gender], [sexuality],
         [race_afam], [race_aiak], [race_asian], [race_hapi], [race_white], [race_other], [race_noanswer], [race_other_specify],
         [race_category], [ethnicity_1], [ethnicity_2], [ethnicity_3], [ethnicity_4], [ethnicity_997], [ethnicity_999], [ethnicity_other],
-        [employment], [workplace], [jobs_count], [commute_freq], [commute_mode], [commute_dur], [telecommute_freq], [hours_work],
+        [employment], [workplace], [jobs_count], [commute_freq], [work_mode], [commute_dur], [telecommute_freq], [hours_work],
         [office_available], [industry], [industry_other], [commute_subsidy_1], [commute_subsidy_2], [commute_subsidy_3], [commute_subsidy_4], [commute_subsidy_5],
         [commute_subsidy_6], [commute_subsidy_7], [commute_subsidy_996], [commute_subsidy_998], [commute_subsidy_use_1], [commute_subsidy_use_2], [commute_subsidy_use_3], [commute_subsidy_use_4],
         [commute_subsidy_use_5], [commute_subsidy_use_6], [commute_subsidy_use_7], [commute_subsidy_use_996], [work_in_region], [work_rgcname], [work_county], [work_jurisdiction],
-        [work_tract20], [education], [student], [schooltype], [school_mode_typical], [school_freq], [remote_class_freq], [school_in_region],
+        [work_tract20], [education], [adult_student], [schooltype], [school_mode_typical], [school_freq], [remote_class_freq], [school_in_region],
         [school_rgcname], [school_county], [school_jurisdiction], [school_tract20], [second_home], [second_home_in_region], [license], [vehicleused], [ev_typical_charge_1],
         [ev_typical_charge_2], [ev_typical_charge_3], [ev_typical_charge_4], [ev_typical_charge_5], [ev_typical_charge_6], [ev_typical_charge_997], [share_1],
         [share_2], [share_3], [share_4], [share_5], [share_996], [transit_freq], [transit_pass], [tnc_freq],

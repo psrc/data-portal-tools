@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Trips table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
+    snippet: Version 2023.2 of the Trips table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: 
     licenseInfo: 
     metadata:
@@ -22,7 +22,7 @@ dataset:
         psrc_website: www.psrc.org
         description: The Trips table from the combined 2017, 2019, 2021 and 2023 Household Travel Survey
         data_source: PSRC's Household Travel Survey program
-        date_last_updated: '2024'
+        date_last_updated: 'December 2024'
         constraints: 
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
@@ -44,7 +44,7 @@ dataset:
         [origin_rgcname], [origin_county], [origin_jurisdiction], [origin_tract10], [origin_tract20], [d_in_region], [dest_rgcname], [dest_county], 
         [dest_jurisdiction], [dest_tract10], [dest_tract20], [distance_meters], [distance_miles],
         [duration_minutes], [duration_seconds], [speed_mph], [speed_flag], [dwell_mins], [days_first_trip], [days_last_trip], [origin_purpose_cat],
-        [origin_purpose], [origin_name], [dest_purpose_cat], [dest_purpose], [dest_purpose_other], [dest_name], [mode_type], [mode_1],
+        [origin_purpose], [origin_name], [dest_purpose_cat], [dest_purpose], [dest_purpose_other], [dest_name], [mode_class], [mode_1],
         [mode_2], [mode_3], [mode_4], [mode_other_specify], [mode_acc], [mode_egr], [travelers_total], [travelers_hh],
         [travelers_nonhh], [hhmember1], [hhmember2], [hhmember3], [hhmember4], [hhmember5], [hhmember6], [hhmember7],
         [hhmember8], [hhmember9], [hhmember10], [hhmember11], [hhmember12], [driver], [change_vehicles], [taxi_cost_known],
