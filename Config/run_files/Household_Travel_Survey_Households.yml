@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Version 2023.2 of the Households table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
+    snippet: Version 2023.4 of the Households table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: 
     licenseInfo:
     metadata:
@@ -38,7 +38,7 @@ dataset:
     schema_name: 
     table_name: 
     sql_query: " select  [household_id],
-      [hhgroup], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
+      [hhgroup], [sample_segment], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
       [num_complete_wed], [num_complete_thu], [num_complete_fri], [num_days_complete_weekend], [num_complete_sat], [num_complete_sun], [num_trips], [hhsize],
       [num_surveyable], [num_participants], [numadults], [numchildren], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
       [hhincome_followup], [hhincome_broad], [home_tract20], [home_jurisdiction], [home_rgcname], [home_county], [res_type],
