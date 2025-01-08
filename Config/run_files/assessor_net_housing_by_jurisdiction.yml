@@ -1,7 +1,7 @@
 
 dataset:
   layer_params:
-    title: 2010-2022 Annual Housing Development Estimates by Jurisdiction
+    title: 2010-2023 Annual Housing Development Estimates by Jurisdiction
     tags: portal, housing
     allow_edits: False
     groups: PSRC Data Portal Content;hub- Housing
@@ -73,14 +73,14 @@ dataset:
 
           <br/><br/>Kitsap: Unit counts are accessed through a supplemental data request to the Kitsap County Department of Community Development "
         data_source: PSRC, County Assessor, Snohomish Public Utilities District
-        date_last_updated: '2023'
+        date_last_updated: '2024'
         constraints: 
         data_lineage: "PSRC utilizes assessor data extracts for King, Kitsap, Pierce, and Snohomish counties to estimate housing development at the parcel level for each year in this time series. The methodology utilizes variables that identify Residential Uses, Number of Units, and Number of Buildings together with a Year Built variable to estimate new housing units built annually by structure type. The most current vintage of residential assessor records are then related back to a base year record set to determine what type of development took place on a given parcel. Development activity types tracked are: 'New Development', 'Redevelopment', and 'Rebuild/Remodels'. For Redevelopment and Rebuild/Remodels, base year unit counts are categorized as 'Demolitions' and subtracted from the inventory to calculate net change. The annual net housing unit estimates are summarized by county, jurisdiction, and census tract.  "
         assessment: 
         summary_purpose: ''
         supplemental_info: ''
         tech_note_link:
-        time_period: "2010 - 2022"
+        time_period: "2010 - 2023"
         update_cadence: Annually
   source:
     is_simple: True
