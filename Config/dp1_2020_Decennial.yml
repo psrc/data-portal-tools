@@ -1,0 +1,5 @@
+general:
+  dataset: Decennial Table DP1, Data Profile
+  datayear: 2020
+  notes:
+    - note: this is a sample note
