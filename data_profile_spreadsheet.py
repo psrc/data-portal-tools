@@ -79,7 +79,7 @@ class DataProfileSpreadsheets(object):
 
     def create_data_profile_df(self):
         try:
-            conn_string = "DRIVER={ODBC Driver 17 for SQL Server}; SERVER=AWS-PROD-SQL\Sockeye; DATABASE=Elmer; trusted_connection=yes"
+            conn_string = "DRIVER={ODBC Driver 17 for SQL Server}; SERVER=SQLserver; DATABASE=Elmer; trusted_connection=yes"
             sql_conn = pyodbc.connect(conn_string)
             sql_statement = "select * from data_portal.census_data_profile({}, '{}', '{}')".format(self.census_year, 
                                                                                                 self.census_product, 

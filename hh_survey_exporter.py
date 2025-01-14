@@ -3,7 +3,7 @@ from PortalExporter import PortalConnector
 from Config import config
 
 try:
-	portal_conn = PortalConnector(portal_username=config.arc_gis_online['username'], portal_pw=config.arc_gis_online['pw'], db_server='AWS-PROD-SQL\Sockeye', database='Elmer')
+	portal_conn = PortalConnector(portal_username=config.arc_gis_online['username'], portal_pw=config.arc_gis_online['pw'], db_server='SQLserver', database='Elmer')
 
 	public_views = {'households':'v_households_2017_2019_public',
 					'days':'v_days_2017_2019_public',
