@@ -21,7 +21,7 @@ portal_conn = PortalConnector(
 # 	portal_url='https://gis.psrc.org/portal'
 #  )
 elmer_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
+	db_server='SQLserver\.',
 	database='Elmer')
 elmergeo_conn = DatabaseConnector(
 	db_server='AWS-PROD-SQL\Sockeye',
