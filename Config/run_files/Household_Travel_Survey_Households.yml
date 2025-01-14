@@ -40,7 +40,7 @@ dataset:
     sql_query: " select  [household_id],
       [hhgroup], [sample_segment], [traveldate_start], [traveldate_end], [numdayscomplete], [hh_is_complete], [num_days_complete_weekday], [num_complete_mon], [num_complete_tue],
       [num_complete_wed], [num_complete_thu], [num_complete_fri], [num_days_complete_weekend], [num_complete_sat], [num_complete_sun], [num_trips], [hhsize],
-      [num_surveyable], [num_participants], [numadults], [numchildren], [lifecycle], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
+      [num_surveyable], [num_participants], [numadults], [numchildren], [lifecycle_class], [numworkers], [num_students], [vehicle_count], [hhincome_detailed],
       [hhincome_followup], [hhincome_broad], [home_tract20], [home_jurisdiction], [home_rgcname], [home_county], [res_type],
       [rent_own], [res_months], [res_dur], [prev_rent_own], [prev_res_type], [prev_home_rgcname], [prev_home_jurisdiction], [prev_home_tract20], 
       [prev_home_county], [prev_home_wa], [prev_home_notwa_state], [prev_home_notwa_city],
