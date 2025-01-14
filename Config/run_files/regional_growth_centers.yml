@@ -75,7 +75,7 @@ dataset:
       supplemental_info: The data was originally assembled from various cities and
         counties in the region. If boundary updates occur, PSRC will receive the updated
         boundary file from the city or county and make updates to this file.
-      tech_note_link: https://www.psrc.org/sites/default/files/final_regional_centers_framework_march_22_version.pdf
+      tech_note_link: https://www.psrc.org/media/3038
       time_period: '2023'
       update_cadence: As needed
     share_level: everyone
