@@ -3,6 +3,7 @@ from numpy import NaN
 import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
+from arcgis.gis._impl._content_manager import SharingLevel
 import urllib
 import pyodbc
 import sqlalchemy
@@ -933,6 +934,7 @@ class PortalResource(object):
 		"""
   		Set the sharing properties for a layer/item in ArcOnline so that
 			it is visible either globally or just by PSRC staff.
+		Also set the group membership for the item.
 		The audience is set per the "share_level" property of self 
   			(see the __init__ procedure above)
     
@@ -940,11 +942,15 @@ class PortalResource(object):
      		layer: A layer in ArcOnline"""
 		try:
 			sl = self.share_level
-			share_group_ids = self.get_group_ids()
+			item_sharing_mgr = layer.sharing
 			if sl == 'everyone':
-				layer.share(everyone=True,groups=share_group_ids)
+				item_sharing_mgr.sharing_level = SharingLevel.EVERYONE
 			elif sl == 'org':
-				layer.share(everyone=False, org=True,groups=share_group_ids)
+				item_sharing_mgr.sharing_level = SharingLevel.ORG 
+			item_grp_sharing_mgr = item_sharing_mgr.groups
+			share_group_ids = self.get_group_ids()
+			for grp in share_group_ids:
+				item_grp_sharing_mgr.add(group=grp)
 		except Exception as e:
 			print(e.args[0])
 			raise
