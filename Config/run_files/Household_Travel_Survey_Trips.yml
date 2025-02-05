@@ -6,7 +6,7 @@ dataset:
     groups: PSRC Data Portal Content;Household Travel Survey Content
     spatial_data: False
     share_level: everyone
-    snippet: Version 2023.4 of the Trips table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
+    snippet: Version 2023.5 of the Trips table from PSRC's Household Travel Survey, years 2017, 2019, 2021 and 2023
     accessInformation: 
     licenseInfo: 
     metadata:
