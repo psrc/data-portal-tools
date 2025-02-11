@@ -7,31 +7,31 @@ dataset:
     spatial_data: True
     share_level: everyone
     snippet: 
-    accessInformation: A Data Science Team Member
-    licenseInfo: The text to appear under Terms of Use in AGOL
+    accessInformation: null
+    licenseInfo: null
     metadata:
-        contact_name: Chris Peak
-        contact_email: cpeak@psrc.org
+        contact_name: Erin Hogan & Stefan Coe
+        contact_email: ehogan@psrc.org
         contact_street_address: 1201 3rd Ave. Ste 500
         contact_city: Seattle
         contact_state: Washington
         contact_zip: 98104
-        contact_phone: (206)464-7536
+        contact_phone: (206)971-3054
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The region's High-Capacity Transit Network
-        data_source: Data Source to be added at a later date
-        date_last_updated: 
-        constraints: 'this text should be in resource:Constraints:General:Use Limitations'
-        data_lineage: This should be a description of the data collection process?
-        assessment: 'This should go in Quality:Data Quality: Report'
+        description: 'The 2050 High Capacity Transit network is a compilation of data collected from transit agencies in the region. This represents planned high capacity transit service (as of May 2021) that will be available by 2050. (These plans may have changed since the data was collected.) This data was collected for the 2022-2050 Regional Transportation Plan and includes "unprogrammed" services that fall outside the financially-constrained plan. "High Capacity Transit" is generally defined as services within an urbanized region operating principally on exclusive rights-of-way. This includes: bus rapid transit (BRT), ferries (including passenger-only ferries), and all rail modes (light rail, streetcar, monorail, commuter rail).'
+        data_source: Various transit agencies in the PSRC region
+        date_last_updated: May 2021
+        constraints: null
+        data_lineage: 
+        assessment: 
         fields: 
         organization_name: Puget Sound Regional Council
         summary_purpose: The Region's High-Capacity Transit Lines
         supplemental_info: 
         tech_note_link: 
         time_period: 
-        update_cadence: 
+        update_cadence: Every 4 years (updated as prt of RTP development)
   source:
     is_simple: true
     feature_dataset: transportation_transit
