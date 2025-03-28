@@ -21,10 +21,10 @@ portal_conn = PortalConnector(
 # 	portal_url='https://gis.psrc.org/portal'
 #  )
 elmer_conn = DatabaseConnector(
-	db_server='SQLserver\.',
+	db_server='SQLserver',
 	database='Elmer')
 elmergeo_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
+	db_server='SQLserver',
 	database='ElmerGeo')
 
 def export(config):
@@ -79,7 +79,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'City_Boundaries' in f:
+	if r'park_and_ride.yml' in f:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:

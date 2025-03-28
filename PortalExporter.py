@@ -136,7 +136,7 @@ class PortalResource(object):
 			self.working_folder = 'workspace'
 			self.sde_folder = 'sde'
 			self.sde_name = 'elmergeo.sde'
-			self.sde_instance = 'AWS-PROD-SQL\Sockeye'
+			self.sde_instance = 'SQLserver'
 			self.sde_database = 'ElmerGeo'
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']

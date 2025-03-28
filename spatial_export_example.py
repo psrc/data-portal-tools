@@ -10,7 +10,7 @@ spatial_conn = PortalConnector(
 
 
 db_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
+	db_server='SQLserver',
 	database='ElmerGeo')
 
 my_pub = PortalResource(

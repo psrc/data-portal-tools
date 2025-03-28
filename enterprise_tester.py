@@ -20,7 +20,7 @@ elmer_conn = DatabaseConnector(
 	db_server='SQLserver',
 	database='Elmer')
 elmergeo_conn = DatabaseConnector(
-	db_server='AWS-PROD-SQL\Sockeye',
+	db_server='SQLserver',
 	database='ElmerGeo')
 
 
