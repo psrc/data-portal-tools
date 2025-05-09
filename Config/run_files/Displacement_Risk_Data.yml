@@ -17,7 +17,7 @@ dataset:
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
       data_source: Puget Sound Regional Council
-      date_last_updated: '2018'
+      date_last_updated: '2021'
       description: 'Displacement risk is a composite of indicators representing five elements of neighborhood displacement risks: socio-demographics, transportation qualities, neighborhood characteristics, housing, and civic engagement. The data from these five displacement indicators were compiled into a comprehensive index of displacement risk for all census tracts in the region. Refer to Technical Documentation: https://www.psrc.org/media/2749'
       fields:
         - title: GEOID
@@ -140,7 +140,7 @@ dataset:
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
       tech_note_link: ''
-      time_period: '2018'
+      time_period: '2021'
       update_cadence: Periodically
     share_level: everyone
     snippet: null
