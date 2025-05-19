@@ -21,7 +21,7 @@ dataset:
         Regional Transportation Plan analysis.
       data_source: American Community Survey
       date_last_updated: December/2021
-      description: "The Equity Focus Area dataset identifies the census tracts that\
+      summary: "The Equity Focus Area dataset identifies the census tracts that\
         \ have concentrations of equity populations above the regional average in\
         \ King, Kitsap, Pierce, and Snohomish counties. The 2011-2016 U.S. Census\
         \ Bureau\u2019s 5-year American Community Survey data was analyzed for this\
@@ -129,9 +129,9 @@ dataset:
         title: Shape__Length
       organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/our-work/rtp '
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: 2011-2016
       update_cadence: As needed
     share_level: everyone

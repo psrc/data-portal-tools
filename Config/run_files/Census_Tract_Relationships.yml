@@ -18,7 +18,7 @@ dataset:
       data_lineage: 
       data_source: U.S. Census Bureau
       date_last_updated: 01/2023
-      description: 'Crosswalk tables allow data analyses across decennial census boundaries. This crosswalk allows census tract-level 
+      summary: 'Crosswalk tables allow data analyses across decennial census boundaries. This crosswalk allows census tract-level 
         data, created using 2020 decennial census boundaries, to be compared to data created using 2010 decennial census boundaries.'
       fields:
       - description: The Census-defined unique identifier (geoid) for the 2010 tract
@@ -27,9 +27,9 @@ dataset:
         title: geoid20
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 
-      tech_note_link: 
+      summary_addendum: 
       time_period: 2020-2029
       update_cadence: Every 10 years
     share_level: everyone

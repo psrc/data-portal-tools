@@ -26,7 +26,7 @@ dataset:
         formerly surveyed via the decennial census long-form sample. '
       data_source: American Community Survey
       date_last_updated: 10/2020
-      description: 'This dataset contains ACS 1y estimates for selected housing characteristics
+      summary: 'This dataset contains ACS 1y estimates for selected housing characteristics
         of the population. Topics include occupancy and structure, housing value and
         costs, utilities, etc. The data are available at a range of geographic levels
         in Washington and within the 4-county PSRC region (King, Kitsap, Pierce, and
@@ -63,7 +63,7 @@ dataset:
         title: ObjectId
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/american-community-survey-2019-one-year-estimates
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'Ancestry listed in this table refers to the total number
         of people who responded with a particular ancestry; for example, the estimate
         given for Russian represents the number of people who listed Russian as either
@@ -176,7 +176,7 @@ dataset:
         population reflect the year of entry into the U.S. by people who were born
         in Puerto Rico or U.S. Island Areas or born outside the U.S. to a U.S. citizen
         parent and who subsequently moved to the U.S.'
-      tech_note_link: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
+      summary_addendum: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
 
         ACS Technical Documentation: https://www.census.gov/programs-surveys/acs/technical-documentation.html'
       time_period: '2019'

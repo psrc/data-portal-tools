@@ -17,7 +17,7 @@ dataset:
         includes VISION 2050 regional geography classifications.
       data_source: Puget Sound Regional Council
       date_last_updated: 12/2024
-      description: The city boundaries are updated on a quarterly basis using annexation
+      summary: The city boundaries are updated on a quarterly basis using annexation
         information from OFM (https://ofm.wa.gov/washington-data-research/annexations-and-municipal-boundary-changes).
         VISION 2050 regional geography classifications were added to the dataset in
         2020.
@@ -40,9 +40,9 @@ dataset:
         title: acres_gis
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: '2024'
       update_cadence: Quarterly
     share_level: everyone

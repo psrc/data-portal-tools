@@ -18,7 +18,7 @@ dataset:
         Sound Regional Council. '
       data_source: Puget Sound Regional Council
       date_last_updated: '2022'
-      description: 'Displacement risk is a composite of indicators representing five
+      summary: 'Displacement risk is a composite of indicators representing five
         elements of neighborhood displacement risks: socio-demographics, transportation
         qualities, neighborhood characteristics, housing, and civic engagement. The
         data from these five displacement indicators were compiled into a comprehensive
@@ -123,12 +123,12 @@ dataset:
           description: Population 18 years and over who voted in most recent presidential election (level)    
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/displacement-risk-mapping
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'Data collected from American Community Survey (ACS), U.S.
         Census Bureau; Consolidated Housing Affordability Strategy (CHAS), U.S. Department
         of Housing & Urban Development (HUD); Google; County elections data; Puget
         Sound Regional Council. '
-      tech_note_link: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      summary_addendum: 'Technical documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
       time_period: '2021'
       update_cadence: Periodically
     share_level: everyone

@@ -15,13 +15,13 @@ dataset:
       data_lineage: 
       data_source: American Community Survey
       date_last_updated: 
-      description: 
+      summary: 
       fields:
       organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/our-work/rtp '
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: 2018
       update_cadence: As needed
     share_level: everyone

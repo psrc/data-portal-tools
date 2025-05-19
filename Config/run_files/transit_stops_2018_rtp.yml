@@ -15,13 +15,13 @@ dataset:
       data_lineage: 
       data_source: 
       date_last_updated: 
-      description: 
+      summary: 
       fields:
       organization_name: PSRC
       psrc_website: https://www.psrc.org
-      summary_purpose: 
+      summary_footer: 
       supplemental_info: ''
-      tech_note_link: 
+      summary_addendum: 
       time_period: 
       update_cadence: 
     share_level: everyone

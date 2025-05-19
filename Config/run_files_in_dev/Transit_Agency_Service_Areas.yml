@@ -24,7 +24,7 @@ dataset:
         transit authority). '
       data_source: Input from transit (bus) agencies
       date_last_updated: '2018'
-      description: The Transit District Boundary Maps layer represents general service
+      summary: The Transit District Boundary Maps layer represents general service
         district boundaries of public transit agencies (except ferry agencies) in
         the central Puget Sound, including Community Transit, Everett Transit, King
         County Metro, Kitsap Transit, Pierce Transit, and Sound Transit.
@@ -46,8 +46,8 @@ dataset:
       - description: Shape area
         title: Shape_Area
       psrc_website: nan
-      summary_purpose: 
-      tech_note_link: nan
+      summary_footer: 
+      summary_addendum: nan
       time_period: '2018'
       update_cadence: As needed
     share_level: everyone

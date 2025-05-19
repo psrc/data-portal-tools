@@ -69,7 +69,7 @@ dataset:
         \ the 2013 Parking Inventory, which PSRC conducted from March to July."
       data_source: Puget Sound Regional Council
       date_last_updated: 02/2020
-      description: The parking Inventory dataset contains the number of parking facilities,
+      summary: The parking Inventory dataset contains the number of parking facilities,
         number of stalls, lot types, and parking costs of off-street parking, public
         and private, free, and pay-to-park facilities. Data are available for cities
         (Bellevue, Bremerton, Everette, Seattle, Tacoma), the University District
@@ -135,9 +135,9 @@ dataset:
         title: ObjectId
       organization_name: PSRC
       psrc_website: https://www.psrc.org/parking-inventory
-      summary_purpose: 
+      summary_footer: 
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: 2002-2018
       update_cadence: 2-5 years
     share_level: everyone

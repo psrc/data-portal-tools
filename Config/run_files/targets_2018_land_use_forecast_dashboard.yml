@@ -15,7 +15,7 @@ dataset:
       data_lineage: ''
       data_source: ''
       date_last_updated: 12/16/2022
-      description: "Target geography was provided by jurisdictions that encompasses some combinations of their households, population, employment, and/or residential unit estimates. "
+      summary: "Target geography was provided by jurisdictions that encompasses some combinations of their households, population, employment, and/or residential unit estimates. "
       fields:
       - description: UrbanSim assigned unique target id
         title: target_id
@@ -25,9 +25,9 @@ dataset:
         title: county_id
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: 12/16/2022
       update_cadence: ''
     share_level: everyone

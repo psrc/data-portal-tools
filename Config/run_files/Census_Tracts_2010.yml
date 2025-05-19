@@ -25,7 +25,7 @@ dataset:
       data_lineage: ' '
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
-      description: "Census tracts are small, relatively permanent geographic entities within counties (or the statistical equivalents of counties) delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts are to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions."
+      summary: "Census tracts are small, relatively permanent geographic entities within counties (or the statistical equivalents of counties) delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts are to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions."
       fields:
       - description: (no description)
         title: FID
@@ -67,7 +67,7 @@ dataset:
         title: Shape__Length
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: The TIGER/Line Files are shapefiles and related database
         files (.dbf) that are an extract of selected geographic and cartographic information
         from the U.S. Census Bureau`s Master Address File / Topologically Integrated
@@ -75,7 +75,7 @@ dataset:
         represents a seamless national file with no overlaps or gaps between parts,
         however, each TIGER/Line File is designed to stand alone as an independent
         data set, or they can be combined to cover the entire nation.
-      tech_note_link: 'Technical Documentation:  https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2010/TGRSHP10SF1.pdf'
+      summary_addendum: 'Technical Documentation:  https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2010/TGRSHP10SF1.pdf'
       time_period: 2010-2019
       update_cadence: Every 10 years
     share_level: everyone

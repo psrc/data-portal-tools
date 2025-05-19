@@ -19,7 +19,7 @@ dataset:
         records provided by OFM.
       data_source: Puget Sound Regional Council
       date_last_updated: 08/2021
-      description: "Regional Geographies, as designated in Vision 2050. Please note\
+      summary: "Regional Geographies, as designated in Vision 2050. Please note\
         \ that this layer currently only shows areas within the Urban Growth Area.\n\
         In VISION 2050\u2019s Regional Growth Strategy, the region\u2019s landscape\
         \ has been divided into nine types of geographies based on their size, function,\
@@ -72,9 +72,9 @@ dataset:
         title: Shape__Length
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/sites/default/files/vision-growth-targets-guidance.pdf
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: '2021'
       update_cadence: As needed
     share_level: everyone

@@ -16,7 +16,7 @@ dataset:
         consultants from jurisdictions
       data_source: Joint Transportation Committee 2016 Road-Rail Conflict Study
       date_last_updated: 01/2016
-      description: The At-Grade Rail Crossings dataset highlights the location of
+      summary: The At-Grade Rail Crossings dataset highlights the location of
         2,180 roadway/railway crossings across the state that are active, public and
         at-grade.
       fields:
@@ -258,9 +258,9 @@ dataset:
         title: FUNCTION_C
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: '2016'
       update_cadence: As needed
     share_level: everyone

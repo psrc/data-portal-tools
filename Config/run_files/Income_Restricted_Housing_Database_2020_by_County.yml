@@ -15,7 +15,7 @@ dataset:
       data_lineage: 
       data_source: WSHFC, ARCH, BHA, HASCO, HUD, KCHA, PCHA, USDA, THA, KHA, SHA, SOH
       date_last_updated: 4/1/2023
-      description: "This dataset contains income restricted housing units across the 4-county PSRC region (King, 
+      summary: "This dataset contains income restricted housing units across the 4-county PSRC region (King, 
         Kitsap, Pierce, and Snohomish Counties). They are summarized here by county, and then grouped into various AMI (area 
         median income) bands. A breakdown of unit size by number of bedrooms is also included."
       fields:
@@ -41,9 +41,9 @@ dataset:
         title: bedroom_Unknown
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/covered-employment-estimates
-      summary_purpose: 'Each data provider was asked to provide a list of income restricted properties/units within their portfolio and in service on or before December 31, 2020. Data from some providers was disaggregated by funding source, which was then consolidated into one record per property. '
+      summary_footer: 'Each data provider was asked to provide a list of income restricted properties/units within their portfolio and in service on or before December 31, 2020. Data from some providers was disaggregated by funding source, which was then consolidated into one record per property. '
       supplemental_info: ''
-      tech_note_link: All jurisdictions within the 4-county PSRC region are included, even those with zero income restricted units. Note that while we attempt to capture all income restricted units in the region, the IRHD (Income Restricted Housing Database) is not an exhaustive list. Some properties also include units that are not income restricted - it was not always possible to disaggregate these units. For example, the bedroom size data includes some market rate units. Where the data was available in King County, units created through various incentive programs were included, such as IZ (incentive zoning), MHA (Mandatory Housing Affordability) and MFTE (Multi Family Tax Exemption) units. Units created under these programs across the region are undercounted due to data availability. 
+      summary_addendum: All jurisdictions within the 4-county PSRC region are included, even those with zero income restricted units. Note that while we attempt to capture all income restricted units in the region, the IRHD (Income Restricted Housing Database) is not an exhaustive list. Some properties also include units that are not income restricted - it was not always possible to disaggregate these units. For example, the bedroom size data includes some market rate units. Where the data was available in King County, units created through various incentive programs were included, such as IZ (incentive zoning), MHA (Mandatory Housing Affordability) and MFTE (Multi Family Tax Exemption) units. Units created under these programs across the region are undercounted due to data availability. 
       time_period: 2020
       update_cadence: Annually
     share_level: everyone

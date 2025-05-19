@@ -22,7 +22,7 @@ dataset:
       data_lineage: 'UrbanSim Run ID:   run_120.run_2023_05_11_12_57'
       data_source: Puget Sound Regional Council
       date_last_updated: May 2023
-      description: 'PSRC develops policy directed growth projections intended for use in regional travel modeling and other planning analyses, known as the Land Use Vision (LUV) forecast product.  The latest version is being called the Land Use Vision - Implemented Targets (LUV-it).  
+      summary: 'PSRC develops policy directed growth projections intended for use in regional travel modeling and other planning analyses, known as the Land Use Vision (LUV) forecast product.  The latest version is being called the Land Use Vision - Implemented Targets (LUV-it).  
       
       The key inputs to LUV-it are the VISION 2050 Regional Growth Strategy (RGS) and the countywide growth targets for 2044, developed to implement the RGS. Using these inputs, PSRC staff establish jurisdiction-level control totals of population, households, and employment which are then allocated within each jurisdiction using PSRCs UrbanSim land use model. PSRCs methodology acknowledged differences in how each county represented and translated the 2017-50 RGS growth allocations to 2044 growth targets.  
       
@@ -58,7 +58,7 @@ dataset:
         title: Edu
       organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/'
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: '
 Inputs:
 
@@ -98,7 +98,7 @@ Boosted growth in regional growth centers: Modeled capacity is given a 25% boost
 
 Future transportation system impacts: UrbanSim is modeled in parallel with the PSRC SoundCast activity-based travel model, with outputs from UrbanSim converted to SoundCast inputs and vice versa, every 10 years in the simulation. The land use projections therefore receive updated inputs on how travel accessibilities (travel time and costs) will change given future year system improvements, pricing changes and increased usage from population and employment growth. 
 '
-      tech_note_link: 'https://www.psrc.org/projections-cities-and-other-places'
+      summary_addendum: 'https://www.psrc.org/projections-cities-and-other-places'
       time_period: 2018, 2020, 2025, 2030, 2035, 2040, 2044, 2050
       update_cadence: 
     share_level: everyone

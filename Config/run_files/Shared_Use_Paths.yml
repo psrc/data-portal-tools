@@ -26,7 +26,7 @@ dataset:
         \ or other qualities of facilities."
       data_source: Puget Sound Regional Council
       date_last_updated: 08/2021
-      description: This shapefile documents the location of regional shared use path
+      summary: This shapefile documents the location of regional shared use path
         facilities in the PSRC region. The non-motorized facilities (Facility Type
         11 in TransRefEdges) were originally coded based on information provided by
         local jurisdictions as part of the 2012 Regional Transportation Plan (RTP),
@@ -63,9 +63,9 @@ dataset:
         title: shape.STLength()
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: 'Please visit the Data Dictionary for more information on this
+      summary_addendum: 'Please visit the Data Dictionary for more information on this
         facility inventory: https://www.psrc.org/sites/default/files/bikeped2021jan21-2021webmapdatadictionary.pdf'
       time_period: 2015-2021
       update_cadence: Every 4 years

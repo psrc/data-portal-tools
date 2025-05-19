@@ -21,7 +21,7 @@ dataset:
         and were constructed by PSRC staff with input by member jurisdictions.
       data_source: Puget Sound Regional Council
       date_last_updated: '2011'
-      description: 'FAZ 2010 - Forecast Analysis Zones boundaries.  These are aggregations
+      summary: 'FAZ 2010 - Forecast Analysis Zones boundaries.  These are aggregations
         of TAZs with each FAZ containing between 1 and 20 TAZ.  There are 219 of them
         in the 4-county region.  FAZs are the units of the geographic boundary system
         used by PSRC to model and report its small area Forecasts of Population, Households,
@@ -45,9 +45,9 @@ dataset:
         title: Shape__Length
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: The boundaries for this FAZ shapefile extend out into the water.  For
+      summary_addendum: The boundaries for this FAZ shapefile extend out into the water.  For
         display and calculation purposes it would be better to use another version
         that has its boundaries clipped at the shoreline (faz2010_no_water.shp).  Also
         although the number of FAZs didn`t change (219) from FAZ 2000 to FAZ 2010,

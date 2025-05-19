@@ -41,7 +41,7 @@ dataset:
         and American Indian, Alaska Native, and Native Hawaiian areas.'
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
-      description: Block Group boundaries for 2010. Block groups are clusters of blocks
+      summary: Block Group boundaries for 2010. Block groups are clusters of blocks
         within the same census tract that have the same first digit of their 4-character
         census block number from the same decennial census.
       fields:
@@ -83,7 +83,7 @@ dataset:
         title: SHAPE_Area
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: In 2016, changes were made to the computer and Internet use
         questions, involving the wording as well as the response options. A crosswalk
         was used to map pre-2016 data to the post-2016 categories, enabling creation
@@ -94,7 +94,7 @@ dataset:
         represents a seamless national file with no overlaps or gaps between parts,
         however, each TIGER/Line File is designed to stand alone as an independent
         data set, or they can be combined to cover the entire nation.
-      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2010/TGRSHP10SF1.pdf'
+      summary_addendum: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2010/TGRSHP10SF1.pdf'
       time_period: 2010-2019
       update_cadence: Every 10 years
     share_level: everyone

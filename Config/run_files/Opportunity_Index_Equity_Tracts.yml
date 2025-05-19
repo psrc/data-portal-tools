@@ -16,7 +16,7 @@ dataset:
       data_source: ''
       data_source: Opportunity Index Equity Tracts https://psrc-psregcncl.hub.arcgis.com/maps/opportunity-index-equity-tracts
       date_last_updated: 12/2018
-      description: 'The Opportunity Mapping data includes census tract level information
+      summary: 'The Opportunity Mapping data includes census tract level information
         on the composite index score as well as the intermediate scores for the five
         key elements of neighborhood opportunity and positive life outcomes: education,
         economic health, housing and neighborhood quality, mobility and transportation,
@@ -50,9 +50,9 @@ dataset:
         title: tran_index
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/our-work/opportunity-mapping
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: 'Opportunity Mapping: Methodology and Technical Addendum (July
+      summary_addendum: 'Opportunity Mapping: Methodology and Technical Addendum (July
         2019): https://www.psrc.org/media/3503'
       time_period: '2018'
       update_cadence: Periodically

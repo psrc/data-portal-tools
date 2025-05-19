@@ -15,7 +15,7 @@ dataset:
       data_lineage: Compilation of layers collected in LUV-it process (gathering Targets at the city level)
       data_source: ''
       date_last_updated: 12-16-2022
-      description: "PSRC cities polygon layer used in the 2018 parcel baseyear db (for UrbanSim and the LUV-it project). The data represents 2022 city boundaries. "
+      summary: "PSRC cities polygon layer used in the 2018 parcel baseyear db (for UrbanSim and the LUV-it project). The data represents 2022 city boundaries. "
       fields:
       - description: County FIPS ID
         title: county_id
@@ -25,9 +25,9 @@ dataset:
         title: city_name
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: '2022'
       update_cadence: ''
     share_level: everyone

@@ -15,7 +15,7 @@ dataset:
       data_lineage: 
       data_source: Washington Office of Superintendent of Public Instruction
       date_last_updated: January 2021
-      description: This layer represents the boundaries of 295 Public School Districts in the PSRC region. This data was compiled by the Washington Office of Superintendent of Public Instruction (OSPI) to provide boundary and attribute information for the 295 Public School Districts in the State of Washington. The polygons are the best representation of current district boundaries based on legal descriptions, county, and other available GIS data. Users should contact the local school district(s) to confirm the interpretation of district boundaries in questions.
+      summary: This layer represents the boundaries of 295 Public School Districts in the PSRC region. This data was compiled by the Washington Office of Superintendent of Public Instruction (OSPI) to provide boundary and attribute information for the 295 Public School Districts in the State of Washington. The polygons are the best representation of current district boundaries based on legal descriptions, county, and other available GIS data. Users should contact the local school district(s) to confirm the interpretation of district boundaries in questions.
       fields:
       - title: organzation
         description: Unique organization code for database purposes (EDS)
@@ -57,9 +57,9 @@ dataset:
         description: Transportation Coordinator Regions
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/park-and-ride-database
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link:
+      summary_addendum:
       time_period: 
       update_cadence:
     share_level: everyone

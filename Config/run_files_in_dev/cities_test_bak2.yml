@@ -21,7 +21,7 @@ dataset:
         2020.
       data_source: Puget Sound Regional Council
       date_last_updated: 06/2001
-      description: The cities shapefile includes geographic boundaries for all cities
+      summary: The cities shapefile includes geographic boundaries for all cities
         located in King, Snohomish, Pierce, and Kitsap counties. This dataset also
         includes VISION 2050 regional geography classifications.
       fields:
@@ -43,7 +43,7 @@ dataset:
         title: acres_gis
       organization_name: PSRC
       psrc_website: www.psrc.org
-      summary_purpose: summary purpose
+      summary_footer: summary purpose
     share_level: everyone
     snippet: null
     spatial_data: true

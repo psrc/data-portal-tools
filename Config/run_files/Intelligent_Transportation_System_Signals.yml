@@ -19,7 +19,7 @@ dataset:
         along the National Highway System.
       data_source: Puget Sound Regional Council
       date_last_updated: 04/2019
-      description: 'This dataset includes all signalized intersections along the National
+      summary: 'This dataset includes all signalized intersections along the National
         Highway System within the PSRC region. For each signalized intersection, there
         are a series of flags associated with different ITS tools. '
       fields:
@@ -58,9 +58,9 @@ dataset:
         title: ped_signal
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: ''
-      tech_note_link: ''
+      summary_addendum: ''
       time_period: '2018'
       update_cadence: As needed
     share_level: everyone

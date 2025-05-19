@@ -18,7 +18,7 @@ dataset:
         use them to disseminate their respective period estimates.
       data_source: U.S. Census Bureau
       date_last_updated: 04/2022
-      description: 'Public Use Microdata Areas (PUMAs) are non-overlapping, statistical
+      summary: 'Public Use Microdata Areas (PUMAs) are non-overlapping, statistical
         geographic areas that partition each state or equivalent entity into geographic
         areas containing no fewer than 100,000 people each. They cover the entirety
         of the United States, Puerto Rico, Guam, and the U.S. Virgin Islands. '
@@ -55,7 +55,7 @@ dataset:
         title: Shape_STLe
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'The delineation of new PUMAs occurs after the completion
         of the decennial census as part of a program involving the State Data Centers
         (SDCs). Decennial census population counts and updated census tracts are critical
@@ -66,7 +66,7 @@ dataset:
         relationships and housing unit characteristics for occupied and vacant units.
         Sampling of people in institutions and other group quarters was done on a
         person-by-person basis.'
-      tech_note_link: https://usa.ipums.org/usa/resources/codebooks/2010_PUMS_codebook.pdf
+      summary_addendum: https://usa.ipums.org/usa/resources/codebooks/2010_PUMS_codebook.pdf
       time_period: 2010-2019
       update_cadence: Every 10 years
     share_level: everyone

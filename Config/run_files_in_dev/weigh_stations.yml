@@ -17,7 +17,7 @@ dataset:
       data_lineage: WSDOT surveys all weigh stations across the state
       data_source: WSDOT
       date_last_updated: 01/2020
-      description: The weigh stations dataset contains all of the truck weigh stations
+      summary: The weigh stations dataset contains all of the truck weigh stations
         locations, as well as information about parking and amenities at the facilities.
       fields:
       - description: (no description)
@@ -51,8 +51,8 @@ dataset:
       - description: (no description)
         title: latlong
       psrc_website: www.psrc.org
-      summary_purpose: summary purpose
-      tech_note_link: 
+      summary_footer: summary purpose
+      summary_addendum: 
       time_period: '2020'
       update_cadence: Every few years
     share_level: everyone

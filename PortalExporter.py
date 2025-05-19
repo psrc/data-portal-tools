@@ -821,16 +821,18 @@ class PortalResource(object):
 			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
 			#add Description (dataIdInfo/idPurp)
-			abstract = self.metadata['description']
+			abstract = self.metadata['summary']
 			abstract = self.clean_metadata_string(abstract)
-			tech_note_link = self.metadata['tech_note_link']
-			tech_note_link = self.clean_metadata_string(tech_note_link)
-			abstract = abstract + '<br/><br/>' + tech_note_link
+			summary_addendum = self.metadata['summary_addendum']
+			summary_addendum = self.clean_metadata_string(summary_addendum)
+			summary_footer = self.metadata['summary_footer']
+			summary_footer = self.clean_metadata_string(summary_footer)
+			abstract = abstract + '<br/><br/>' + summary_addendum + '<br/><br/>' + summary_footer
 			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = abstract
 
-			assessment = self.metadata['assessment']
-			assessment = self.clean_metadata_string(assessment)
-			useLimit = ET.SubElement(consts, 'useLimit').text = assessment
+			use_constraints = self.metadata['use_constraints']
+			use_constraints = self.clean_metadata_string(use_constraints)
+			useLimit = ET.SubElement(consts, 'useLimit').text = use_constraints
 
 			sup_info = self.metadata['supplemental_info']
 			sup_info = self.clean_metadata_string(sup_info)

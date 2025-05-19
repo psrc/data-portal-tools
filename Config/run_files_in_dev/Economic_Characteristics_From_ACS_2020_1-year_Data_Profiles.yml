@@ -26,7 +26,7 @@ dataset:
         formerly surveyed via the decennial census long-form sample '
       data_source: American Community Survey
       date_last_updated: 10/2020
-      description: 'This dataset contains ACS 1y estimates for selected economic characteristics
+      summary: 'This dataset contains ACS 1y estimates for selected economic characteristics
         of the population. Topics include income, employment, occupation, commuting
         to work, etc. The data are available at a range of geographic levels in Washington
         and within the 4-county PSRC region (King, Kitsap, Pierce, and Snohomish Counties):
@@ -63,7 +63,7 @@ dataset:
         title: ObjectId
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/american-community-survey-2020-one-year-estimates
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'Employment and unemployment estimates may vary from the
         official labor force data released by the Bureau of Labor Statistics because
         of differences in survey design and data collection. For guidance on differences
@@ -124,7 +124,7 @@ dataset:
         reflect boundaries of urban areas defined based on Census 2010 data. As a
         result, data for urban and rural areas from the ACS do not necessarily reflect
         the results of ongoing urbanization.'
-      tech_note_link: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
+      summary_addendum: 'ACS Handbook for Data Users: https://www.census.gov/programs-surveys/acs/guidance/handbooks.html
 
         ACS Technical Documentation: https://www.census.gov/programs-surveys/acs/technical-documentation.html'
       time_period: '2020'

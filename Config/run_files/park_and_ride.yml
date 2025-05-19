@@ -22,7 +22,7 @@ dataset:
         varies by agency by year. Community Transit provides annual counts for capacity and utilized parking spaces. King County Metro Transit provides annual capacity counts and monthly averages for the number of utilized parking spaces. Kitsap Transit provides counts for the capacity and utilized spaces at inconsistent intervals (ranging 1-5 times a month), as well as annual averages. Pierce Transit provides annual capacity counts and monthly, quarterly, and yearly averages for the number of utilized parking spaces. Sound Transit provides monthly counts for capacity and utilized parking spaces.
       data_source: Puget Sound Regional Council
       date_last_updated: 03/2025
-      description: The Park and Ride database contains data on approximately 220 
+      summary: The Park and Ride database contains data on approximately 220 
         park and ride locations in the Puget Sound region. This dataset includes 
         the name and address of the park and ride lot, yearly capacity, occupancy 
         and utilization rate data and the data source for each of the locations 
@@ -57,7 +57,7 @@ dataset:
         title: notes
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/park-and-ride-database
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'The Park and Ride dataset includes a record for each lot and 
         each year over the past two decades. There are some years when park and ride 
         lots go offline, new lots are added, and/or old lots are re-added, so the 
@@ -66,7 +66,7 @@ dataset:
         spatially, there will be multiple points for the same lot (because each entry 
         represents one lot for one year). The agency uses the projected coordinate 
         system: NAD_1983_StatePlane_Washington_North_FIPS_4601_Feet.'
-      tech_note_link: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
+      summary_addendum: 'Park-and-Ride Trends Dashboard: https://www.psrc.org/park-and-ride-database/dashboard'
       time_period: 2002-2024
       update_cadence: Every year
     share_level: everyone

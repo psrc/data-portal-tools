@@ -26,7 +26,7 @@ dataset:
         character of the tabulation block number identifies the block group.'
       data_source: U.S. Census Bureau
       date_last_updated: 11/2021
-      description: Census block boundaries for 2000
+      summary: Census block boundaries for 2000
       fields:
       - description: (no description)
         title: FID
@@ -69,7 +69,7 @@ dataset:
         title: Shape__Length
       organization_name: Puget Sound Regional Council
       psrc_website: ''
-      summary_purpose: ''
+      summary_footer: ''
       supplemental_info: 'The 2015-2019 American Community Survey (ACS) data generally
         reflect the September 2018 Office of Management and Budget (OMB) delineations
         of metropolitan and micropolitan statistical areas. In certain instances,
@@ -96,7 +96,7 @@ dataset:
         a result, all 2000 Census blocks nest within every other 2000 Census geographic
         area, so that Census Bureau statistical data can be tabulated at the block
         level and aggregated up to the appropriate geographic areas.'
-      tech_note_link: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
+      summary_addendum: 'Technical Documentation: https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tiger2k/tiger2k.pdf'
       time_period: 2000-2009
       update_cadence: Every 10 years
     share_level: everyone
