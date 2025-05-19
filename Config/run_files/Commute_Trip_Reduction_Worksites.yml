@@ -5,7 +5,7 @@ dataset:
     groups: 'hub- GIS;hub- Transportation;PSRC Data Portal Content'
     licenseInfo: null
     metadata:
-      assessment: N/A
+      use_constraints: N/A
       contact_city: Seattle
       contact_email: mkoch@psrc.org
       contact_name: Mitch Koch

@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: For most current data, it is best to check with individual transit
+      use_constraints: For most current data, it is best to check with individual transit
         agencies
       constraints: nan
       contact_city: Seattle

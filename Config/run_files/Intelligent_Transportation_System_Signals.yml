@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: The various datasets received were cross-checked with each other
+      use_constraints: The various datasets received were cross-checked with each other
         and with other resources to make corrections where necessary and minimize
         errors.
       contact_city: Seattle

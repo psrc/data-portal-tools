@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'The table was created by selecting 2010 census tracts with a centroid that falls within the corresponding 
+      use_constraints: 'The table was created by selecting 2010 census tracts with a centroid that falls within the corresponding 
         2020 census tract. Due to that approach, this crosswalk is best suited for comparing tract-level data across time. 
         Any analysis of the distribution of data (or area-based approaches) within a tract may require a different crosswalk, 
         as small changes to the census tract boundaries are not reflected here.'

@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: This is the old TAZ system which has since been replaced by the
+      use_constraints: This is the old TAZ system which has since been replaced by the
         3700-zone TAZ 2010 system.  One shortcoming due to a desire to follow the
         arterial grid when creating the 2010 zones is that they don`t nest inside
         the 2000 zone system.

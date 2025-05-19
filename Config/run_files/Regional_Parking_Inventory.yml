@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: "In general, less rate information was available and collected in 
+      use_constraints: "In general, less rate information was available and collected in 
       2022 than in 2018. This may result in less precise comparisons of rate changes 
       at more detailed geography levels. A greater variation in maximum capacity values 
       was also noted, likely the result of a select areas with concentrated development 

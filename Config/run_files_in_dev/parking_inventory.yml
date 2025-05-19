@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: "In 2018 the data collection methodology changed significantly.\
+      use_constraints: "In 2018 the data collection methodology changed significantly.\
         \ Occupancy counts were no longer collected and PSRC`s internal staff used\
         \ alternative methods to collect the capacity and costs information (i.e.\
         \ departed from physical survey collection and moved towards online collection\

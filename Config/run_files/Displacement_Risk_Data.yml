@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'Refer to Technical Documentation: https://www.psrc.org/media/2749'
+      use_constraints: 'Refer to Technical Documentation: https://www.psrc.org/media/2749'
       contact_city: Seattle
       contact_email: blee@psrc.org
       contact_name: Brian Lee

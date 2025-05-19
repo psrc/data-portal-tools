@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'The information was based on best available information as of 07/2020,
+      use_constraints: 'The information was based on best available information as of 07/2020,
         and the dataset is intended to be a snapshot of TDM programs in Central Puget
         Sound region cities in 2019. '
       contact_city: Seattle

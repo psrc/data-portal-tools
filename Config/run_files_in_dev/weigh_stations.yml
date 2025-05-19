@@ -6,7 +6,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 
+      use_constraints: 
       contact_city: Seattle
       contact_email: gsimonson@psrc.org
       contact_name: Gary Simonson

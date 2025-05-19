@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'This dataset currently only includes the regional geographies that
+      use_constraints: 'This dataset currently only includes the regional geographies that
         are inside the Urban Growth Area. '
       contact_city: Seattle
       contact_email: dhanson@psrc.org

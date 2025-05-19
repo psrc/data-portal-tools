@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'The information contained herein was developed for general regional
+      use_constraints: 'The information contained herein was developed for general regional
         land use and transportation planning purposes. The users of this information
         must determine its suitability for any other purpose. Some of this data may
         have been compiled from other sources. The PSRC does not accept responsibility

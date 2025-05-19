@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: Boundaries extend into the water rather than adhere to the shoreline.  Therefore
+      use_constraints: Boundaries extend into the water rather than adhere to the shoreline.  Therefore
         for zones with shoreline the areas don`t represent land areas and are inappropriate
         to use for density or other area-based calculations.
       contact_city: Seattle

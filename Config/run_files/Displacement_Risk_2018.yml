@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
+      use_constraints: 'Refer to Technical Documentation: https://www.psrc.org/sites/default/files/displacementrisk.pdf'
       contact_city: Seattle
       contact_email: blee@psrc.org
       contact_name: Brian Lee

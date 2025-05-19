@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: The data contained in this product are based on the Census 2000
+      use_constraints: The data contained in this product are based on the Census 2000
         sample. The data summarized from these files are estimates of the actual figures
         that would have been obtained from a complete count. Estimates derived from
         the census sample files are expected to differ from the100-percent figures

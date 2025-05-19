@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: The Puget Sound Regional Council protects confidential employer
+      use_constraints: The Puget Sound Regional Council protects confidential employer
         information through data suppression, as stipulated by ESD. Data from individual
         employers is not shared; where aggregate employment values represent fewer
         than three reporting firms, or when a single employer accounts for more than

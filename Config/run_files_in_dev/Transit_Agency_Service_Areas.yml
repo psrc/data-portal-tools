@@ -7,7 +7,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: nan
+      use_constraints: nan
       contact_city: Seattle
       contact_email: jkim@psrc.org
       contact_name: Jean Kim

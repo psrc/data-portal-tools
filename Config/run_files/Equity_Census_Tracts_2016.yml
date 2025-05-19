@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: "One caveat of the analysis method used for the Equity Focus Area\
+      use_constraints: "One caveat of the analysis method used for the Equity Focus Area\
         \ (EFA) dataset is that it does not account for the relative proportion of\
         \ populations of interest within the tracts. For example, a tract with 80%\
         \ people of color and a tract with 40% people of color would both be counted\

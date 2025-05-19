@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'The shapefile is based on datasets collected by different agencies,
+      use_constraints: 'The shapefile is based on datasets collected by different agencies,
         so the underlying data collection methodologies differ. Also, the datasets
         were developed between 2015-2020, and so represent different levels of currency. '
       contact_city: Seattle

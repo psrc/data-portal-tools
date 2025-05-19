@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'This particular shapefile extends out into the water so be aware
+      use_constraints: 'This particular shapefile extends out into the water so be aware
         that the zonal areas and lengths are not representative of the land area in
         all cases.  '
       contact_city: Seattle

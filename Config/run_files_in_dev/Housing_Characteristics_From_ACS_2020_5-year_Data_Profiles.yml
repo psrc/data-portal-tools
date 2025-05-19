@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'Data are based on a sample and are subject to sampling variability.
+      use_constraints: 'Data are based on a sample and are subject to sampling variability.
         The degree of uncertainty for an estimate arising from sampling variability
         is represented through the use of a margin of error (MOE). The value shown
         here is the 90% MOE. The MOE can be interpreted roughly as providing a 90%

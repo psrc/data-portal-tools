@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: Data are summarized by jurisdiction and then by county, including county unicorporated areas.
+      use_constraints: Data are summarized by jurisdiction and then by county, including county unicorporated areas.
       contact_city: Seattle
       contact_email: eclute@psrc.org
       contact_name: Eric Clute

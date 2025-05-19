@@ -6,7 +6,7 @@ dataset:
     allow_edits: false
     licenseInfo: some text here
     metadata:
-      assessment: nan
+      use_constraints: nan
       constraints: nan
       contact_city: Seattle
       contact_email: DHanson@psrc.org

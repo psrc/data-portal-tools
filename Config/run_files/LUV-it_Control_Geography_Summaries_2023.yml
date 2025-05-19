@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'The UrbanSim model’s structure, function, and data outputs are similar to previous versions of the LUV forecast product which have been reviewed by PSRC staff and external technical planning staff from PSRC member jurisdictions.  Additional development of the updated 2018 data inputs and methodology to develop control totals from adopted growth targets were also reviewed with the PSRC Land Use Technical Advisory Committee.  
+      use_constraints: 'The UrbanSim model’s structure, function, and data outputs are similar to previous versions of the LUV forecast product which have been reviewed by PSRC staff and external technical planning staff from PSRC member jurisdictions.  Additional development of the updated 2018 data inputs and methodology to develop control totals from adopted growth targets were also reviewed with the PSRC Land Use Technical Advisory Committee.  
       Users should note the following:
 1) Urban boundaries represent 1/1/2022 jurisdictional boundaries. 
 2) Tract estimates may not match OFM or Census estimates for tracts due to slight boundary alignment issues when processing spatial data using GIS.

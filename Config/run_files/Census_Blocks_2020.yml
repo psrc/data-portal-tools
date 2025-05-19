@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: 'Since the release of the Census 2000 versions of the TIGER/Line
+      use_constraints: 'Since the release of the Census 2000 versions of the TIGER/Line
         files, the Census Bureau has shifted and reshaped most linear features, including
         those that form legal or statistical area boundaries.
 

@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      assessment: Please note that this inventory does not include data regarding
+      use_constraints: Please note that this inventory does not include data regarding
         the conditions or other qualities of facilities.
       contact_city: Seattle
       contact_email: njohnson@psrc.org
