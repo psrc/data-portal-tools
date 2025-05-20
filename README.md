@@ -15,6 +15,52 @@ The main code is run by executing the file __export_runner.py__, which in turn l
 * _allow_edits_ (True or False): (feature pending) This will control whether the layer will be editable in Arc Online. 
 * _tags_ (string): A comma-delimited list of tags for the layer in ArcGIS Online
 
+### Config file structure ###
+
+The yaml files in folder `Config\run_files` define the details of each layer to be published.  These details include things like the source data to be published, metadata, and some other related information.  The elements in the yaml are defined as follows
+
+- `layer_params`
+  - `accessInformation`:
+  - `allow_edits`: This should be set to False, unless you want users to be able to edit the data set
+  - `licenseInfo`: If you want to publish the data with any particular license, you can specify the license here. 
+  - `metadata`
+    - `contact_city`:  Seattle
+    - `contact_email`: email address of the PSRC staff member
+    - `contact_name`:  The PSRC staff member available to respond to questions about the data set
+    - `contact_phone`:  The phone number of the PSRC staff member 
+    - `contact_state`:  Washington
+    - `contact_street_address`:  1201 3rd Ave. Ste. 500
+    - `contact_zip`: 98101
+    - `data_lineage`:
+    - `fields`: a list of pairs of `title` and  `description` elements, with one pair for each field in the data set
+        - `- title`: The title of a column
+        - `  description`: The description of the column
+    - `data_source`: Organizations or locations that originally provided the data to PSRC, even if it has been reshaped since.
+    - `date_last_updated`:  The date of the last modification to the data. 
+    - `organization_name`: Puget Sound Regional Council
+    - `psrc_website`: URL of web page discussing the program or project around the data (or just www.psrc.org)
+    - `summary`: A description of the data set.  This could be a short sentence or a long paragraph.
+    - `summary_addendum`:  Anything entered here will appear as a secondary paragraph in the description/summary
+    - `summary_footer`: Anything entered here will appear as a third paragraph in the description/summary
+    - `supplemental_info`: This is appended as an element in the layer's metadata xml, but is not currently included in ESRI's metadata display.  
+    - `time_period`: The span of time represented by the data.  
+    - `update_cadence`: The frequency at which the data set gets updated
+  - `share_level`: a member of the set ["everyone", "org", "owner"].  This determines how widely the data will be shared.  Usually this will be "everyone".
+  - `snippet`: If provided, this is appended to the top of the layer's summary.  It is often a very brief description of the data, with or without a version number.
+  - `groups`: Groups are groupings of data on the Data Portal.
+  - `spatial_data`: [True, False].  True means it is a spatial layer, False means it will be published in tabular format.
+  - `tags`: Any tags to be associated with the layer, for searchability.  At least one tag should be supplied. 
+  - `title`: The title
+- `source`
+  - `is_simple`: Set this to True if the spatial layer does not contain polygons with donut holes.  For tabular data, set to True if the table will be exported in its entirety as it exists in Elmer (False if it is defined by a `sql_query`)
+  - `feature_dataset`: If the spatial layer exists as a layer in ElmerGeo, list its feature dataset container here
+  - `has_donut_holes`: deprected column.  Ignored
+  - `schema_name`: The schema in which a table resides in Elmer (ignored unless `is_simple == True AND spatial_data == False`)
+  - `sql_query`: A Select query runnable against Elmer (if `spatial_data == False`) or against ElmerGeo (if `spatial_data == True`).
+  - `table_name`: The name of a table in Elmer (ignored unless `is_simple == True AND spatial_data == False`)
+
+
+
 ### Internals ###
 See the module `PortalExporter` for classes to use for import and export from our internally-facing SQL Server databases.  The module contains several classes:
  * __PortalConnector__ provides a connection object that binds an internally-facing database to the data portal.
