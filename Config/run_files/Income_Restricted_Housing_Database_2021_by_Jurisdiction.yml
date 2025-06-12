@@ -1,7 +1,7 @@
 dataset:
   layer_params:
     accessInformation: null
-    allow_edits: false
+    allow_edits: False
     licenseInfo: null
     metadata:
       use_constraints: Data are summarized by jurisdiction and then by county, including county unicorporated areas.

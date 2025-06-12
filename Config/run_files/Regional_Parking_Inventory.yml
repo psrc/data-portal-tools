@@ -5,28 +5,28 @@ dataset:
     licenseInfo: null
     metadata:
       use_constraints: "In general, less rate information was available and collected in 
-      2022 than in 2018. This may result in less precise comparisons of rate changes 
-      at more detailed geography levels. A greater variation in maximum capacity values 
-      was also noted, likely the result of a select areas with concentrated development 
-      and new procedures for flagging these records under construction. A wider use of 
-      online sources from the 2018 survey helped to identify new major developments and 
-      structures in addition to satellite imagery. 
+        2022 than in 2018. This may result in less precise comparisons of rate changes 
+        at more detailed geography levels. A greater variation in maximum capacity values 
+        was also noted, likely the result of a select areas with concentrated development 
+        and new procedures for flagging these records under construction. A wider use of 
+        online sources from the 2018 survey helped to identify new major developments and 
+        structures in addition to satellite imagery. 
 
-      In 2018 the data collection methodology changed significantly. Occupancy counts were no 
-      longer collected and PSRC`s internal staff used alternative methods to collect the 
-      capacity and costs information (i.e. departed from physical survey collection and 
-      moved towards online collection methods such as google maps, SDOT, etc.). In 2018 
-      inventory took advantage of more online data collection strategies and although 
-      fieldwork remained a component, slightly different field collection methods were 
-      utilized.  To compare the 2013 and 2018 parking inventory data, PSRC tabulated 
-      and mapped the absolute and relative differences in the number of parking stalls 
-      between the two survey years. The tracts with percent increases or decreases in 
-      the number of parking stalls greater than 10% were identified as outliers and 
-      further examined at the block level. Ten census tracts had parking growth or decline 
-      of more than 10%. After closer investigation, the majority of these changes were 
-      due to several reasons. First, in some instances, there were differences in the 
-      number of surveyed blocks within the same tracks between 2013 and 2018 data collection. 
-      Second, some tracks had new developments and added parking capacity."
+        In 2018 the data collection methodology changed significantly. Occupancy counts were no 
+        longer collected and PSRC`s internal staff used alternative methods to collect the 
+        capacity and costs information (i.e. departed from physical survey collection and 
+        moved towards online collection methods such as google maps, SDOT, etc.). In 2018 
+        inventory took advantage of more online data collection strategies and although 
+        fieldwork remained a component, slightly different field collection methods were 
+        utilized.  To compare the 2013 and 2018 parking inventory data, PSRC tabulated 
+        and mapped the absolute and relative differences in the number of parking stalls 
+        between the two survey years. The tracts with percent increases or decreases in 
+        the number of parking stalls greater than 10% were identified as outliers and 
+        further examined at the block level. Ten census tracts had parking growth or decline 
+        of more than 10%. After closer investigation, the majority of these changes were 
+        due to several reasons. First, in some instances, there were differences in the 
+        number of surveyed blocks within the same tracks between 2013 and 2018 data collection. 
+        Second, some tracks had new developments and added parking capacity."
       contact_city: Seattle
       contact_email: mrichards@psrc.org
       contact_name: Mary Richards
@@ -34,18 +34,8 @@ dataset:
       contact_state: Washington
       contact_street_address: 1201 3rd Ave. Ste. 500
       contact_zip: 98101
-      data_lineage: " Prior to 2018, PSRC collected parking facility information every 
-      two to five years exclusively through fieldwork. PSRC revised the data collection 
-      process in 2018 by designing a new multi-phase approach. The changes include an 
-      online research procedure that collects data ahead of fieldwork, the use of Survey123 
-      (ArcGIS) to record the data, and the establishment of an ETL (Extract, Transfer, Load) 
-      process to structure 2018 amd future inventory within PSRC's central database.
-
-      Data was collected according to updated procedures begun in the 2018 parking survey. 
-      The 2022 dataset reflects greater use of online resources and less reliance on field 
-      work and direct data collection. Online sources were referenced between late March and 
-      July of 2022, with field work conducted June 15-22, 2022. Data also reflects updated 
-      2020 census geographies."
+      data_lineage: " Prior to 2018, PSRC collected parking facility information every two to five years exclusively through fieldwork. PSRC revised the data collection process in 2018 by designing a new multi-phase approach. The changes include an online research procedure that collects data ahead of fieldwork, the use of Survey123 (ArcGIS) to record the data, and the establishment of an ETL (Extract, Transfer, Load) process to structure 2018 amd future inventory within PSRC's central database.
+        Data was collected according to updated procedures begun in the 2018 parking survey.  The 2022 dataset reflects greater use of online resources and less reliance on field work and direct data collection. Online sources were referenced between late March and July of 2022, with field work conducted June 15-22, 2022. Data also reflects updated 2020 census geographies."
       data_source: Puget Sound Regional Council
       date_last_updated: May 2023
       summary: The parking Inventory dataset contains the number of parking facilities,
