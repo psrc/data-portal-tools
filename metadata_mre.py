@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 from arcgis import GIS
 
 
-elmer_geo_conn_path = r'T:\2024May\cpeak\AWS-PROD-SQL.sde'
+elmer_geo_conn_path = r'C:\Users\cpeak\OneDrive - Puget Sound Regional Council\Documents\ArcGIS\Projects\MyProject13\SQLServer-SQLserver-ElmerGeo.sde'
 arcpy.env.workspace = f"{elmer_geo_conn_path}"
 
 # create dict of datasets per feature classes

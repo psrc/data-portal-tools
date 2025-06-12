@@ -4,17 +4,19 @@ import os
 import shutil
 from Layer import Layer
 import importlib
+from pathlib import Path
 # importlib.reload(Layer)
 
 
 # Setup: construct connector, etc
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
-portal_conn = portalconnector(
+portal_conn = PortalConnector(
 	portal_username=auth['arc_gis_online']['username'],
 	portal_pw=auth['arc_gis_online']['pw'])
 
-dest_path = "./workspace/metadata/"
+dest_path = Path("./workspace/metadata/")
+
 run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 
@@ -29,6 +31,7 @@ for f in run_files:
 		source = config['dataset']['source']
 		title = params['title']
 		is_spatial = params['spatial_data']
+		print(f"Processing layer {title}...")
 		
 		if is_spatial == True:
 			if source['is_simple'] == True:
@@ -41,3 +44,5 @@ for f in run_files:
 					shutil.copy(mdata_file, dest_path)
 					new_path = f"{dest_path}/{layer_file_name}_metadata.xml"
 					shutil.move(f"{dest_path}/metadata.xml", new_path)
+
+print("Completed metadata pull.")
