@@ -518,8 +518,8 @@ class PortalResource(object):
 		"""
 		try:
 			self.set_and_update_metadata(published_item)
-			if is_new:
-				self.set_editability(published_item)
+			# if is_new:
+			self.set_editability(published_item)
 			share_group_ids = self.get_group_ids()
 			if self.share_level == 'everyone':
 				layer_shared = published_item.share(everyone=True, groups=share_group_ids)
