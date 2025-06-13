@@ -443,28 +443,19 @@ class PortalResource(object):
 			raise
 
 
-	def republish_spatial(self):
+	def _prepare_spatial_data(self, gdb_path):
 		"""
-  		Copy a spatial layer from ElmerGeo into a local file geodatabase,
-    		then zip up that gdb, identify an existing layer on ArcOnline,
-			and overwrite that layer with the zipped gdb.  
-			Lastly, publish the updated layer.
-      	"""
+		Helper method to prepare spatial data for publishing.
+		Returns the path to the created zip file.
+		"""
 		try:
 			title = self.resource_properties['title']
-			gis = self.portal_connector.gis
-			db_connector = self.db_connector
-			fldr = Path(self.working_folder)
-			gdb_path = self.prepare_working_dir(fldr)
-			self.make_file_gdb(gdb_path)
-			self.set_up_sde()
-			if self.source['is_simple']:# and self.source['has_donut_holes']:
+			
+			if self.source['is_simple']:
 				table_name = self.source['table_name']
 				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']
-				self.export_remote_featureclass( gdb_path,
-					title,
-					fields_to_exclude)
+				self.export_remote_featureclass(gdb_path, title, fields_to_exclude)
 			else:
 				os.chdir(self.working_folder)
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
@@ -475,15 +466,94 @@ class PortalResource(object):
 				feat_class_name = gdb_path / title
 				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
 				os.chdir('../')
-			zipfile = self.gdb_to_zip(gdb_path)
+			
+			return self.gdb_to_zip(gdb_path)
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def _prepare_tabular_data(self):
+		"""
+		Helper method to prepare tabular data for publishing.
+		Returns the dataframe and CSV file path.
+		"""
+		try:
+			db_connector = self.db_connector
+			df = pd.read_sql(sql=self.sql, con=db_connector.sql_conn)
+			self.df = df
+			
+			working_dir = Path(self.working_folder)
+			filename = self.resource_properties['title'] + '.csv'
+			csv_name = working_dir / filename
+			
+			if not os.path.exists(working_dir):
+				os.makedirs(working_dir)
+			if os.path.isfile(csv_name):
+				os.remove(csv_name)
+			
+			df.to_csv(csv_name)
+			return df, csv_name
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def _setup_spatial_environment(self):
+		"""
+		Helper method to set up the spatial publishing environment.
+		Returns the geodatabase path.
+		"""
+		try:
+			fldr = Path(self.working_folder)
+			gdb_path = self.prepare_working_dir(fldr)
+			self.make_file_gdb(gdb_path)
+			self.set_up_sde()
+			return gdb_path
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def _finalize_spatial_publishing(self, published_item, is_new=False):
+		"""
+		Helper method to finalize spatial item publishing with metadata and sharing.
+		"""
+		try:
+			self.set_and_update_metadata(published_item)
+			if is_new:
+				self.set_editability(published_item)
+			share_group_ids = self.get_group_ids()
+			layer_shared = published_item.share(everyone=True, groups=share_group_ids)
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def _finalize_tabular_publishing(self, published_item):
+		"""
+		Helper method to finalize tabular item publishing with metadata and sharing.
+		"""
+		try:
+			self.set_and_update_metadata(published_item)
+			self.share(published_item)
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+	def republish_spatial(self):
+		"""
+  		Copy a spatial layer from ElmerGeo into a local file geodatabase,
+    		then zip up that gdb, identify an existing layer on ArcOnline,
+			and overwrite that layer with the zipped gdb.  
+			Lastly, publish the updated layer.
+      	"""
+		try:
+			gdb_path = self._setup_spatial_environment()
+			zipfile = self._prepare_spatial_data(gdb_path)
+			
 			exported = self.search_by_title()
 			exported.update(data=zipfile, item_properties=self.resource_properties)
-			params = {"name":self.title, 'targetSR':self.srid}
+			params = {"name": self.title, 'targetSR': self.srid}
 			published = exported.publish(publish_parameters=params, overwrite=True)
-			self.set_and_update_metadata(published)
-			#self.set_editability(published)
-			share_group_ids = self.get_group_ids()
-			layer_shared = published.share(everyone=True,groups=share_group_ids)
+			
+			self._finalize_spatial_publishing(published, is_new=False)
 
 		except Exception as e:
 			print(e.args[0])
@@ -537,39 +607,17 @@ class PortalResource(object):
 			Then, publishes that layer as a new Portal layer.
 		"""
 		try:
-			title = self.resource_properties['title']
 			gis = self.portal_connector.gis
-			db_connector = self.db_connector
-			fldr = Path(self.working_folder)
-			gdb_path = self.prepare_working_dir(fldr)
-			self.make_file_gdb(gdb_path)
-			self.set_up_sde()
-			if self.source['is_simple']: # and self.source['has_donut_holes']:
-				table_name = self.source['table_name']
-				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
-				fields_to_exclude = self.source['fields_to_exclude']
-				self.export_remote_featureclass(gdb_path, title, fields_to_exclude)
-			else:
-				os.chdir(self.working_folder)
-				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
-				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
-				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
-				gdf = self.simplify_gdf(gdf)
-				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
-				ttl = self.title + '.gdb'
-				feat_class_name =  gdb_path / self.title
-				feat_class = sdf.spatial.to_featureclass(location=gdb_path / self.title)
-				os.chdir('../')
-			res_properties = self.resource_properties
+			gdb_path = self._setup_spatial_environment()
+			zipfile = self._prepare_spatial_data(gdb_path)
+			
+			res_properties = self.resource_properties.copy()
 			res_properties['type'] = 'File Geodatabase'
-			zipfile = self.gdb_to_zip(gdb_path)
-			exported = gis.content.add(self.resource_properties, data=zipfile)
-			params = {"name":self.title, 'targetSR':self.srid}
+			exported = gis.content.add(res_properties, data=zipfile)
+			params = {"name": self.title, 'targetSR': self.srid}
 			layer = exported.publish(publish_parameters=params)
-			self.set_and_update_metadata(layer)
-			self.set_editability(layer)
-			share_group_ids = self.get_group_ids()
-			layer_shared = layer.share(everyone=True,groups=share_group_ids)
+			
+			self._finalize_spatial_publishing(layer, is_new=True)
 
 		except Exception as e:
 			print(e.args[0])
@@ -607,40 +655,27 @@ class PortalResource(object):
 		Both these actions overwrite pre-existing objects.
 		"""
 		try: 
-			title = self.resource_properties['title']
-			gis = self.portal_connector.gis
-			out_type = "CSV"
-			csv_name = r'.\temp_data_export_csv.csv'
-			db_connector = self.db_connector
-			df = pd.read_sql(
-				sql=self.sql,
-				con=db_connector.sql_conn)
-			self.df = df
-			working_dir = self.working_folder
-			csv_name = working_dir + '\\' + self.resource_properties['title'] + '.csv'
-			if not os.path.exists(working_dir):
-				os.makedirs(working_dir)
-			if os.path.isfile(csv_name):
-				os.remove(csv_name)
-			df.to_csv(csv_name)
-			self.resource_properties['type'] = out_type
+			df, csv_name = self._prepare_tabular_data()
+			
+			self.resource_properties['type'] = "CSV"
 			exported = self.search_by_title()
-			exported.update(data=csv_name, item_properties=self.resource_properties)
+			exported.update(data=str(csv_name), item_properties=self.resource_properties)
+			
 			field_mappings = self.build_fields_json(df)
-			params = {"type":"csv",
-             		"locationType":"none",
-                	"name":self.title,
-                  	"layerInfo": {"fields": field_mappings}
-                   }
+			params = {
+				"type": "csv",
+				"locationType": "none",
+				"name": self.title,
+				"layerInfo": {"fields": field_mappings}
+			}
 			published_csv = exported.publish(publish_parameters=params, overwrite=True)
-			self.set_and_update_metadata(published_csv)
-			#self.set_editability(published_csv)
-			self.share(published_csv)
-			#os.remove(csv_name)
+			
+			self._finalize_tabular_publishing(published_csv)
 
 		except Exception as e:
 			print(e.args[0])
-			if os.path.exists(csv_name): os.remove(csv_name)
+			if 'csv_name' in locals() and os.path.exists(csv_name): 
+				os.remove(csv_name)
 			raise
 
 
@@ -651,36 +686,28 @@ class PortalResource(object):
 		then publish the CSV to the data portal.
 		"""
 		try:
-			out_type = "CSV"
-			csv_name = r'.\temp_data_export_csv.csv'
-			portal_connector = self.portal_connector
-			db_connector = self.db_connector
-			df = pd.read_sql(
-				sql=self.sql,
-				con=db_connector.sql_conn)
-			self.df = df
 			working_dir = Path(self.working_folder)
-			filename = self.resource_properties['title'] + '.csv'
-			csv_name = working_dir / filename
 			self.prepare_working_dir(working_dir)
-			df.to_csv(csv_name)
-			self.resource_properties['type'] = out_type
-			title = self.resource_properties['title']
-			exported = portal_connector.gis.content.add(self.resource_properties, data=str(csv_name))
+			df, csv_name = self._prepare_tabular_data()
+			
+			self.resource_properties['type'] = "CSV"
+			exported = self.portal_connector.gis.content.add(self.resource_properties, data=str(csv_name))
+			
 			field_mappings = self.build_fields_json(df)
-			params = {"name":title,
-             	"type":"csv",
-              	"locationType":"none",
+			params = {
+				"name":self.resource_properties['title'],
+				"type":"csv",
+				"locationType":"none",
 				"layerInfo": {"fields": field_mappings}
-               }
+			}
 			published_csv = exported.publish(publish_parameters=params)
-			self.set_and_update_metadata(published_csv)
-			#self.set_editability(published_csv)
-			self.share(published_csv)
-			#os.remove(csv_name)
+			
+			self._finalize_tabular_publishing(published_csv)
+
 		except Exception as e:
 			print(e.args[0])
-			if os.path.exists(csv_name): os.remove(csv_name)
+			if 'csv_name' in locals() and os.path.exists(csv_name): 
+				os.remove(csv_name)
 			raise
 
 
@@ -1052,7 +1079,3 @@ class PortalResource(object):
 		except Exception as e:
 			print(e.args[0])
 			raise
-
-
-
-
