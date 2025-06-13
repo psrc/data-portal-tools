@@ -521,7 +521,12 @@ class PortalResource(object):
 			if is_new:
 				self.set_editability(published_item)
 			share_group_ids = self.get_group_ids()
-			layer_shared = published_item.share(everyone=True, groups=share_group_ids)
+			if self.share_level == 'everyone':
+				layer_shared = published_item.share(everyone=True, groups=share_group_ids)
+			elif self.share_level == 'org':
+				layer_shared = published_item.share(org=True, groups=share_group_ids)
+			else:
+				layer_shared = published_item.share(everyone=False, groups=share_group_ids)
 		except Exception as e:
 			print(e.args[0])
 			raise
