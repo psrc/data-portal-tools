@@ -2,8 +2,8 @@ import yaml
 from PortalExporter import PortalResource
 # from PortalExporter import PortalResource
 #from PortalExporter import PortalSpatialResource
-from PortalExporter import PortalConnector
-from PortalExporter import DatabaseConnector
+from PortalConnector import PortalConnector
+from DatabaseConnector import DatabaseConnector
 import os
 
 
@@ -79,7 +79,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'park_and_ride.yml' in f:
+	if r'City_Points.yml' in f:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
