@@ -13,8 +13,9 @@ import os
 with open(r'Config\\auth.yml') as file:
 	auth = yaml.load(file, Loader=yaml.FullLoader)
 portal_conn = PortalConnector(
-	portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'])
+	portal_username=os.getenv('AGOL_ADMIN_USERNAME'),
+	portal_pw=os.getenv('AGOL_ADMIN_PW')
+ )
 # portal_conn = PortalConnector(
 # 	portal_username=auth['enterprise']['username'],
 # 	portal_pw=auth['enterprise']['pw'],
