@@ -16,11 +16,13 @@ dataset:
         located in King, Snohomish, Pierce, and Kitsap counties. This dataset also
         includes VISION 2050 regional geography classifications.
       data_source: Puget Sound Regional Council
-      date_last_updated: 12/2024
-      summary: The city boundaries are updated on a quarterly basis using annexation
+      date_last_updated: 6/2025
+      summary: 'The city boundaries are updated on a quarterly basis using annexation
         information from OFM (https://ofm.wa.gov/washington-data-research/annexations-and-municipal-boundary-changes).
         VISION 2050 regional geography classifications were added to the dataset in
-        2020.
+        2020.  <br/>
+        UPDATE HISTORY: </br>
+        2025-06-30: Updated the name of "Sea Tac" to "SeaTac" (without the space)'
       fields:
       - description: Name of city
         title: city_name
@@ -43,7 +45,7 @@ dataset:
       summary_footer: ''
       supplemental_info: ''
       summary_addendum: ''
-      time_period: '2024'
+      time_period: '2025'
       update_cadence: Quarterly
     share_level: everyone
     snippet: null
