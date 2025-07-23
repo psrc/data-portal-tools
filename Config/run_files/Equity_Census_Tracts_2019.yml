@@ -29,7 +29,10 @@ dataset:
         \ incomes (below 200% of federal poverty level), youth (5-17), older adults\
         \ (65+), people with disabilities, and people with limited English proficiency\
         \ (who don`t speak English very well). This dataset was used for the 2022-2050\
-        \ Regional Transportation Plan analysis."
+        \ Regional Transportation Plan analysis. \n This dataset does not represent\
+        \ the most recent data, which has been updated with the 2019-2023 5-year ACS\
+        \ data and employs a revised methodology. For more detail about the methodology\
+        \ used to generate this dataset, please view the [full metadata](https://www.arcgis.com/sharing/rest/content/items/86406d2687654560988ad6f4e5773ea2/info/metadata/metadata.xml?format=default&output=html) "
       fields:
       - description: Object ID
         title: OBJECTID
@@ -130,7 +133,11 @@ dataset:
       organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/our-work/rtp '
       summary_footer: ''
-      supplemental_info: ''
+      supplemental_info: 'This dataset identifies census tracts that have concentrations 
+      of the six equity populations that are below or above the regional average for each 
+      individual group. To indicate areas with a higher concentration of these equity 
+      populations, an additional threshold of 50% is applied. More information is available in the 
+      [RTP Appendix F](https://www.psrc.org/media/5940).'
       summary_addendum: ''
       time_period: 2015-2019
       update_cadence: As needed
