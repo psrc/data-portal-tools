@@ -15,7 +15,7 @@ portal = PortalConnector(
  )
 
 # Find references to a feature layer
-results = portal.find_items_referencing_feature_layer("Urban_Growth_Area")
+results = portal.find_items_referencing_feature_layer("Equity_Census_Tracts_2019")
 
 # Process results
 for item in results:
