@@ -30,7 +30,7 @@ dataset:
         one job, each job would appear in the database.
       data_source: Washington State Employment Security Department (ESD), Boeing,
         Microsoft, Washington Office of Superintendent of Public Instruction (OSPI)
-      date_last_updated: 06/2024
+      date_last_updated: 07/2025
       summary: Covered Employment Estimates summarize employment from PSRC`s point-level
         workplace employment dataset. The data represents a census of covered employers
         within the Puget Sound Region.
@@ -76,7 +76,7 @@ dataset:
         are used as control totals, and applied proportionally to each record`s employment
         data to arrive at a total matching that of ESD.
       summary_addendum: ''
-      time_period: 2000-2023
+      time_period: 2000-2024
       update_cadence: Every year
     share_level: everyone
     snippet: null

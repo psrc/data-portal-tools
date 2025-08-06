@@ -80,7 +80,7 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Equity_Focus_Areas_2019.yml' in f:
+	if r'Equity_Focus_Areas.yml' in f:
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:

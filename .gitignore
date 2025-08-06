@@ -10,3 +10,4 @@ working/*
 workspace/*
 gdb/*
 *.zip
+*.sde

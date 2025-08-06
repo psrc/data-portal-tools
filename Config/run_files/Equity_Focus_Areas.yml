@@ -1,0 +1,163 @@
+dataset:
+  layer_params:
+    accessInformation: null
+    allow_edits: false
+    licenseInfo: null
+    metadata:
+      use_constraints: "One caveat of the analysis method used for the Equity Focus Area\
+        \ (EFA) dataset is that it does not account for the relative proportion of\
+        \ populations of interest within the tracts. For example, a tract with 80%\
+        \ people of color and a tract with 50% people of color would both be counted\
+        \ equally as \u201Cpeople of color EFA,\u201D although there is wide variation\
+        \ in their proportionate population."
+      contact_city: Seattle
+      contact_email: mrichards@psrc.org
+      contact_name: Mary Richards
+      contact_phone: 206-971-3275
+      contact_state: Washington
+      contact_street_address: 1201 3rd Ave. Ste. 500
+      contact_zip: 98101
+      data_lineage: The Equity Focus Area dataset was developed for the 2026-2054
+        Regional Transportation Plan analysis.
+      data_source: American Community Survey
+      date_last_updated: July/2025
+      summary: "The Equity Focus Area dataset identifies the census tracts that\
+        \ have concentrations of equity populations above the regional average in\
+        \ King, Kitsap, Pierce, and Snohomish counties. The 2019-2023 U.S. Census\
+        \ Bureau\u2019s 5-year American Community Survey data was analyzed for this\
+        \ dataset. Equity focus populations include people of color, people with low\
+        \ incomes (below 200% of federal poverty level), youth (5-17), older adults\
+        \ (65+), people with disabilities, and people with limited English proficiency\
+        \ (who don`t speak English very well). This dataset was used for the 2026-2054\
+        \ Regional Transportation Plan analysis.\
+        \ This dataset represents the most recent data, which employs a revised\ 
+        \ methodology - different from the methodology used for the previous 'Equity\
+        \ Focus Areas 2019' dataset. For more detail about the methodology used to\
+        \ generate this dataset, please view the full metadata."
+      fields:
+      - description: Object ID
+        title: OBJECTID
+      - description: Geo ID
+        title: geoid
+      - description: Tract overall qualifies as EFA; 0 = no, 1 = yes, 2 = yes 
+          and % share of at least one equity population is 1 standard deviation above regional average
+        title: efa_overall
+      - description: Regional average % share people of color
+        title: reg_poc_pct
+      - description: Tract % share people of color
+        title: poc_pct_est
+      - description: Margin of error for tract % share people of color estimate
+        title: poc_pct_moe
+      - description: Reliability rating for tract % share people of color estimate based on coefficient 
+          of variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 30 to 
+          <50, Use with extreme caution = CV 50+
+        title: poc_reliability
+      - description: 1 standard deviation value for regional average % share people of color
+        title: poc_1sd
+      - description: Tract qualifies as EFA based on % share people of color; 0 = no, 1 = yes, 2 = yes 
+          and % share is 1 standard deviation above regional average
+        title: efa_poc
+      - description: Regional average % share low-income population
+        title: reg_pov200_pct
+      - description: Tract % share low-income population
+        title: pov200_prt_est
+      - description: Margin of error for tract % share low-income population estimate
+        title: pov200_prt_moe
+      - description: Reliability rating for tract % share low-income population estimate based on coefficient
+          of variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 30 to <50, 
+          Use with extreme caution = CV 50+
+        title: pov200_reliability
+      - description: 1 standard deviation value for regional average % share low-income population
+        title: pov200_1sd
+      - description: Tract qualifies as EFA based on % share low-income population; 0 = no, 1 = yes, 2 = yes 
+          and % share is 1 standard deviation above regional average
+        title: efa_pov200
+      - description: Regional average % share limited English proficient speakers
+        title: reg_lep_pct
+      - description: Tract % share limited English proficient speakers
+        title: lep_pct_est
+      - description: Margin of error for tract % share limited English proficient speakers estimate
+        title: lep_pct_moe
+      - description: Reliability rating for tract % share limited English proficient speakers estimate based 
+          on coefficient of variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 
+          30 to <50, Use with extreme caution = CV 50+
+        title: lep_reliability
+      - description: 1 standard deviation value for regional average % share limited English proficient speakers
+        title: lep_1sd
+      - description: Tract qualifies as EFA based on % share limited English proficient speakers; 0 = no, 1 = yes, 
+          2 = yes and % share is 1 standard deviation above regional average
+        title: efa_lep
+      - description: Regional average % share youth population (5-17 years)
+        title: reg_youth_pct
+      - description: Tract % share youth population (5-17 years)
+        title: youth_pct_est
+      - description: Margin of error for tract % share youth population estimate
+        title: youth_pct_moe
+      - description: Reliability rating for tract % share youth population estimate based on coefficient of 
+          variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 30 to <50, Use 
+          with extreme caution = CV 50+
+        title: youth_reliability
+      - description: 1 standard deviation value for regional average % share youth population
+        title: youth_1sd
+      - description: Tract qualifies as EFA based on % share youth population; 0 = no, 1 = yes, 2 = yes and % 
+          share is 1 standard deviation above regional average
+        title: efa_youth
+      - description: Regional average % share older adult population (65 years or older)
+        title: reg_older_pct
+      - description: Tract % share older adult population (65 years or older)
+        title: older_pct_est
+      - description: Margin of error for tract % share older adult population estimate
+        title: older_pct_moe
+      - description: Reliability rating for tract % share older adult population estimate based on coefficient 
+          of variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 30 to <50, 
+          Use with extreme caution = CV 50+
+        title: older_reliability
+      - description: 1 standard deviation value for regional average % share older adult population
+        title: older_1sd
+      - description: Tract qualifies as EFA based on % share older adult population; 0 = no, 1 = yes, 2 = yes and 
+          % share is 1 standard deviation above regional average
+        title: efa_older
+      - description: Regional average % share people with one or more disabilities
+        title: reg_dis_pct
+      - description: Tract % share people with one or more disabilities
+        title: dis_pct_est
+      - description: Margin of error for tract % share people with one or more disabilities estimate
+        title: dis_pct_moe
+      - description: Reliability rating for tract % share people with one or more disabilities estimate based on 
+          coefficient of variation (CV) statistic; Good = CV < 15, Fair = CV 15 to <30, Use with caution = CV 30 
+          to <50, Use with extreme caution = CV 50+
+        title: dis_reliability
+      - description: 1 standard deviation value for regional average % share people with one or more disabilities
+        title: dis_1sd
+      - description: Tract qualifies as EFA based on % share people with one or more disabilities; 0 = no, 
+          1 = yes, 2 = yes and % share is 1 standard deviation above regional average
+        title: efa_dis
+      - description: Area of shape
+        title: Shape__Area
+      - description: Length of shape
+        title: Shape__Length
+      organization_name: Puget Sound Regional Council
+      psrc_website: 'https://www.psrc.org/our-work/rtp'
+      summary_footer: ''
+      supplemental_info: 'This dataset identifies census tracts that have concentrations 
+      of the six equity populations that are below or above the regional average for each 
+      individual group. To indicate areas with a higher concentration of these equity 
+      populations, an additional threshold of one standard deviation above the regional 
+      average is applied. More information is available in the 
+      [documentation](link).'
+      summary_addendum: ''
+      time_period: 2019-2023
+      update_cadence: As needed
+    share_level: everyone
+    snippet: null
+    groups: hub- GIS;PSRC Data Portal Content;hub- Equity
+    spatial_data: True
+    tags: Equity;Population;
+    title: Equity_Focus_Areas
+  source:
+    feature_dataset: equity
+    has_donut_holes: true
+    is_simple: true
+    schema_name: dbo
+    sql_query: 
+    table_name: equity_focus_areas_2023
