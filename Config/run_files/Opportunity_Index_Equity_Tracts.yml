@@ -67,5 +67,5 @@ dataset:
     has_donut_holes: true
     feature_dataset: equity
     schema_name: dbo
-    table_name: equity_tracts
+    table_name: opportunity_index
     sql_query: 
