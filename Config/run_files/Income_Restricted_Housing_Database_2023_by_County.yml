@@ -4,7 +4,7 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      use_constraints: Data are summarized by jurisdiction and then by county, including county unicorporated areas.
+      use_constraints: Data are summarized by county.
       contact_city: Seattle
       contact_email: eclute@psrc.org
       contact_name: Eric Clute
@@ -14,12 +14,11 @@ dataset:
       contact_zip: 98101
       data_lineage: 
       data_source: WSHFC, ARCH, BHA, HASCO, HUD, KCHA, PCHA, USDA, THA, KHA, SHA, SOH
-      date_last_updated: 5/1/2025
-      summary: "This dataset contains income restricted housing units across the 4-county PSRC region (King, Kitsap, Pierce, and Snohomish Counties). They are summarized here by jurisdiction then by county, and then grouped into various AMI (area median income) bands. A breakdown of unit size by number of bedrooms is also included. 
-        This dataset was updated May 1, 2025 to capture improvements in the geographic placement of properties, and corrections to the unit counts for some properties in Snohomish County"
+      date_last_updated: 9/19/2025
+      summary: "This dataset contains income restricted housing units across the 4-county PSRC region (King, 
+        Kitsap, Pierce, and Snohomish Counties). They are summarized here by county, and then grouped into various AMI (area 
+        median income) bands. A breakdown of unit size by number of bedrooms is also included."
       fields:
-      - description: "Jurisdictions throughout the PSRC region: King, Kitsap, Pierce, and Snohomish Counties."
-        title: Jurisdiction
       - description: "Includes the entire PSRC region: King, Kitsap, Pierce and Snohomish Counties."
         title: county
       - description: Includes all known income-restricted units in the database, but is very likely an undercount. 
@@ -46,7 +45,7 @@ dataset:
         title: bedroom_Unknown
       organization_name: Puget Sound Regional Council
       psrc_website: https://www.psrc.org/covered-employment-estimates
-      summary_footer: 'Each data provider was asked to provide a list of income restricted properties/units within their portfolio and in service on or before December 31, 2022. Data from some providers was disaggregated by funding source, which was then consolidated into one record per property. '
+      summary_footer: 'Each data provider was asked to provide a list of income restricted properties/units within their portfolio and in service on or before December 31, 2023. Data from some providers was disaggregated by funding source, which was then consolidated into one record per property. '
       supplemental_info: ''
       summary_addendum: All jurisdictions within the 4-county PSRC region are included, even those with zero income restricted units. Note that while we attempt to capture all income restricted units in the region, the IRHD (Income Restricted Housing Database) is not an exhaustive list. Some properties also include units that are not income restricted - it was not always possible to disaggregate these units. For example, the bedroom size data includes some market rate units. Where the data was available in King County, units created through various incentive programs were included, such as IZ (incentive zoning), MHA (Mandatory Housing Affordability) and MFTE (Multi Family Tax Exemption) units. Units created under these programs across the region are undercounted due to data availability. 
       time_period: 2023
@@ -55,13 +54,13 @@ dataset:
     snippet: null
     groups: PSRC Data Portal Content;hub- Housing
     spatial_data: False
-    tags: portal; housing; irhd
-    title: Income_Restricted_Housing_Database_2023_by_Jurisdiction
+    tags: portal; irhd; housing
+    title: Income_Restricted_Housing_Database_2023_by_County
   source:
     is_simple: False
     feature_dataset: ''
     has_donut_holes: false
     schema_name: irhd
-    sql_query: "select * from irhd.summarize_by_jurisdiction(2023) order by cnty_name, juris"
+    sql_query: "SELECT * FROM irhd.summarize_by_county(2023)"
     table_name: 
 
