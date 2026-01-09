@@ -674,6 +674,39 @@ class PortalResource(object):
 			raise
 
 
+	def _get_metadata_value(self, keys, default=''):
+		"""
+		Get a metadata value from self.metadata, checking multiple possible key names.
+		Returns the first matching key's value, or the default if none found.
+		
+		Parameters:
+			keys: A string (single key) or list of strings (multiple possible keys/aliases)
+			default: Default value to return if no key is found (default: '')
+		
+		Returns:
+			The metadata value as a string, or the default value
+		"""
+		try:
+			# Convert single key to list for uniform handling
+			if isinstance(keys, str):
+				keys = [keys]
+			
+			for key in keys:
+				if key in self.metadata and self.metadata[key] is not None:
+					value = self.metadata[key]
+					# Convert to string and handle 'None' string
+					if value == 'None' or value == 'nan':
+						continue
+					return str(value) if value else default
+			
+			return default
+		
+		except Exception as e:
+			print(f"error in _get_metadata_value. keys={keys}")
+			print(e.args[0])
+			return default
+
+
 	def clean_metadata_string(self, str):
 		"""
 		Clean a string of any N/A's or None (NULL) values
@@ -781,20 +814,28 @@ class PortalResource(object):
 			linkage = ET.SubElement(cntOnlineRes, 'linkage').text = self.metadata['psrc_website']
 
 			#add Description (dataIdInfo/idPurp)
-			abstract = self.metadata['summary']
+			# Use helper to get 'summary' or fall back to 'description'
+			abstract = self._get_metadata_value(['summary', 'description'], '')
 			abstract = self.clean_metadata_string(abstract)
-			summary_addendum = self.metadata['summary_addendum']
+			# Get optional addendum and footer fields with empty string defaults
+			summary_addendum = self._get_metadata_value('summary_addendum', '')
 			summary_addendum = self.clean_metadata_string(summary_addendum)
-			summary_footer = self.metadata['summary_footer']
+			summary_footer = self._get_metadata_value('summary_footer', '')
 			summary_footer = self.clean_metadata_string(summary_footer)
-			abstract = abstract + '<br/><br/>' + summary_addendum + '<br/><br/>' + summary_footer
+			# Only add separators if there's content
+			if summary_addendum:
+				abstract = abstract + '<br/><br/>' + summary_addendum
+			if summary_footer:
+				abstract = abstract + '<br/><br/>' + summary_footer
 			idAbs = ET.SubElement(dataIdInfo, 'idAbs').text = abstract
 
-			use_constraints = self.metadata['use_constraints']
+			# Use helper to get 'use_constraints' or fall back to 'constraints'
+			use_constraints = self._get_metadata_value(['use_constraints', 'constraints'], '')
 			use_constraints = self.clean_metadata_string(use_constraints)
 			useLimit = ET.SubElement(consts, 'useLimit').text = use_constraints
 
-			sup_info = self.metadata['supplemental_info']
+			# Get optional supplemental_info with empty string default
+			sup_info = self._get_metadata_value(['supplemental_info', 'supplementalInfo'], '')
 			sup_info = self.clean_metadata_string(sup_info)
 			suppInfo = ET.SubElement(dataIdInfo, 'suppInfo').text = sup_info
 
