@@ -11,3 +11,4 @@ workspace/*
 gdb/*
 *.zip
 *.sde
+.vscode/settings.json

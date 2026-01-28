@@ -4,12 +4,12 @@ dataset:
     allow_edits: false
     licenseInfo: null
     metadata:
-      use_constraints: "One caveat of the analysis method used for the Equity Focus Area\
-        \ (EFA) dataset is that it does not account for the relative proportion of\
-        \ populations of interest within the tracts. For example, a tract with 80%\
-        \ people of color and a tract with 50% people of color would both be counted\
-        \ equally as \u201Cpeople of color EFA,\u201D although there is wide variation\
-        \ in their proportionate population."
+      use_constraints: "One caveat of the analysis method used for the Equity Focus Area
+        (EFA) dataset is that it does not account for the relative proportion of
+        populations of interest within the tracts. For example, a tract with 80% 
+        people of color and a tract with 50% people of color would both be counted
+        equally as people of color EFA, although there is wide variation
+        in their proportionate population."
       contact_city: Seattle
       contact_email: mrichards@psrc.org
       contact_name: Mary Richards
@@ -21,19 +21,19 @@ dataset:
         Regional Transportation Plan analysis.
       data_source: American Community Survey
       date_last_updated: July/2025
-      summary: "The Equity Focus Area dataset identifies the census tracts that\
-        \ have concentrations of equity populations above the regional average in\
-        \ King, Kitsap, Pierce, and Snohomish counties. The 2019-2023 U.S. Census\
-        \ Bureau\u2019s 5-year American Community Survey data was analyzed for this\
-        \ dataset. Equity focus populations include people of color, people with low\
-        \ incomes (below 200% of federal poverty level), youth (5-17), older adults\
-        \ (65+), people with disabilities, and people with limited English proficiency\
-        \ (who don`t speak English very well). This dataset was used for the 2026-2054\
-        \ Regional Transportation Plan analysis.\
-        \ This dataset represents the most recent data, which employs a revised\ 
-        \ methodology - different from the methodology used for the previous 'Equity\
-        \ Focus Areas 2019' dataset. For more detail about the methodology used to\
-        \ generate this dataset, please view the full metadata."
+      summary: "The Equity Focus Area dataset identifies the census tracts that
+        have concentrations of equity populations above the regional average in
+        King, Kitsap, Pierce, and Snohomish counties. The 2019-2023 U.S. Census
+        Bureau's 5-year American Community Survey data was analyzed for this
+        dataset. Equity focus populations include people of color, people with low
+        incomes (below 200% of federal poverty level), youth (5-17), older adults
+        (65+), people with disabilities, and people with limited English proficiency
+        (who don't speak English very well). This dataset was used for the 2026-2054
+        Regional Transportation Plan analysis.
+        This dataset represents the most recent data, which employs a revised
+        methodology - different from the methodology used for the previous 'Equity
+        Focus Areas 2019' dataset. For more detail about the methodology used to
+        generate this dataset, please view the full metadata."
       fields:
       - description: Object ID
         title: OBJECTID
@@ -139,12 +139,11 @@ dataset:
       organization_name: Puget Sound Regional Council
       psrc_website: 'https://www.psrc.org/our-work/rtp'
       summary_footer: ''
-      supplemental_info: 'This dataset identifies census tracts that have concentrations 
-      of the six equity populations that are below or above the regional average for each 
-      individual group. To indicate areas with a higher concentration of these equity 
-      populations, an additional threshold of one standard deviation above the regional 
-      average is applied. More information is available in the 
-      [documentation](link).'
+      supplemental_info: "This dataset identifies census tracts that have concentrations 
+        of the six equity populations that are below or above the regional average for each 
+        individual group. To indicate areas with a higher concentration of these equity 
+        populations, an additional threshold of one standard deviation above the regional 
+        average is applied."
       summary_addendum: ''
       time_period: 2019-2023
       update_cadence: As needed

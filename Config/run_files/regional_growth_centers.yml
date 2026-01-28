@@ -24,7 +24,7 @@ dataset:
         a wide variety of transportation options, including fast and convenient high
         capacity transit service, as well as investment in major public amenities."
       data_source: Puget Sound Regional Council
-      date_last_updated: 06/2023
+      date_last_updated: 01/2026
       summary: 'This layers represents boundaries for the 29 designated regional
         growth centers in the central Puget Sound region. Each county or city, through
         an inter-jurisdictional process, has designated the center boundaries.
@@ -74,12 +74,12 @@ dataset:
       summary_footer: ''
       supplemental_info: The data was originally assembled from various cities and
         counties in the region. If boundary updates occur, PSRC will receive the updated
-        boundary file from the city or county and make updates to this file.
+        boundary file from the city or county and make updates to this file.  
       summary_addendum: https://www.psrc.org/media/3038
       time_period: '2023'
       update_cadence: As needed
     share_level: everyone
-    snippet: null
+    snippet: Updated in January 2026 to include a boundary change to the Lakewood Regional Growth Center, adopted in 2025.
     groups: hub- GIS;PSRC Data Portal Content;hub- Land Use Data
     spatial_data: True
     tags: Centers/MICs;Geographic Boundaries;
