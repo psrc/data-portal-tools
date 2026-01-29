@@ -7,6 +7,19 @@ This repo is intended to house classes to be used for import and export to PSRC'
 #### Setup ####
 You will need to create two environment variables to store your ArcGIS username and password.  I gave these variables the names AGOL_ADMIN_USERNAME and AGOL_ADMIN_PW, but you can choose other names as you like.  They are referenced in the code in [export_runner.py](export_runner.py#16) so make sure you update those lines to reflect your environment variable names.
 
+This conda setup routine worked as of 1/29/2026.  Since the ArcGIS Online is continuously evolving, you might need to make sure you have a fresh version of the arcgis library.  
+
+These libraries might need to be reinstalled and updated to keep aligned with both the ArcPro versions you have on your desktops and the current version of arcgis api for python that is needed for AGOL.
+```    
+conda create -n dpt10 python=3.12
+conda activate dpt10
+conda install pathlib 
+conda install pandas
+conda install -c conda-forge geopandas
+conda install -c esri arcgis
+conda install -c esri arcpy=3.3
+```
+
 #### To export a layer from ElmerGeo or a table from Elmer:  ####
 1. Create a config file (in yaml format) for the layer/table in the /Config/run_files directory.  Give it a filename that is very close or identical to the layer name itself.
 1. Open the file _export_runner.py_ and adjust the final block to search for your new yaml file. 
