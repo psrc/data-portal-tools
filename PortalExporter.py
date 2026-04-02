@@ -1,9 +1,16 @@
 #from matplotlib import rc_file
-from numpy import NaN
+from numpy import nan
 import pandas as pd
-from arcgis.gis import GIS
-from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
-from arcgis.gis._impl._content_manager import SharingLevel
+
+try: 
+	from arcgis.gis import GIS
+	from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
+	from arcgis.gis._impl._content_manager import SharingLevel
+	import to_SpatiallyEnabledDataFrame
+	ARCGIS_AVAILABLE = True
+except ImportError: 
+	ARCGIS_AVAILABLE = False
+    
 import urllib
 import pyodbc
 import sqlalchemy
@@ -16,13 +23,18 @@ from shapely import wkt
 from shapely.geometry.polygon import Polygon
 import time
 import json
-import to_SpatiallyEnabledDataFrame
 from pathlib import Path
 import geopandas as gpd
 #import fiona
 import xml.etree.ElementTree as ET
-import arcpy
 import shutil
+
+try:
+	import arcpy
+	ARCPY_AVAILABLE = True
+except ImportError:
+	ARCPY_AVAILABLE = False
+
 
 
 class PortalResource(object):
@@ -470,16 +482,21 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
-	def republish_spatial(self):
+	def republish_spatial(self, zip_path=None):
 		"""
-  		Copy a spatial layer from ElmerGeo into a local file geodatabase,
+	    If zip_path is provided, skips the local GDB export/zip steps
+    		and uses the pre-existing zip file directly.
+    	Otherwise, copy a spatial layer from ElmerGeo into a local file geodatabase,
     		then zip up that gdb, identify an existing layer on ArcOnline,
 			and overwrite that layer with the zipped gdb.  
-			Lastly, publish the updated layer.
+		Lastly, publish the updated layer.
       	"""
 		try:
-			gdb_path = self._setup_spatial_environment()
-			zipfile = self._prepare_spatial_data(gdb_path)
+			if zip_path is None:
+				gdb_path = self._setup_spatial_environment()
+				zipfile = self._prepare_spatial_data(gdb_path)
+			else: 
+				zipfile = zip_path
 			
 			exported = self.search_by_title()
 			exported.update(data=zipfile, item_properties=self.resource_properties)
