@@ -1,6 +1,6 @@
 #from matplotlib.pyplot import table
 from data_profile_spreadsheet import DataProfileSpreadsheets
-from PortalExporter import PortalConnector
+from PortalConnector import PortalConnector
 # from PortalExporter import DatabaseConnector
 import yaml
 
@@ -15,17 +15,17 @@ import yaml
 # ]
 
 datasets =  [
-        {'census_year': 2023,
+        {'census_year': 2024,
         'census_product': 'acs5',
         'specifications': {
             "DP02": {'short_title': 'Social Characteristics Data Profle', 
-                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2023 5-Year Data'},
+                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2024 5-Year Data'},
             "DP03": {'short_title': 'Economic Data Profle', 
-                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2023 5-Year Data' },
+                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2024 5-Year Data' },
             "DP04": {'short_title': 'Housing Data Profle', 
-                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2023 5-Year Data' },
+                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2024 5-Year Data' },
             "DP05": {'short_title': 'Demographic Data Profle', 
-                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2023 5-Year Data' }    
+                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2024 5-Year Data' }    
                 }
         }
 ]
