@@ -63,7 +63,8 @@ def export(config):
 					my_pub.define_source_from_query(
 						sql_query=source['sql_query']
 					)
-			my_pub.export()
+			#my_pub.export()
+			my_pub.republish_spatial(zip_path=r'C:/Users/cpeak/Repos/data-portal-tools/workspace/Regional_Growth_Centers.zip')
 			print("exported {}".format(title))
 
 	except Exception as e:
@@ -80,7 +81,8 @@ run_files = os.listdir('./Config/run_files/')
 root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
-	if r'Equity_Focus_Areas.yml' in f:
+	#if r'Regional_Growth_Centers' in f:
+	if (f == 'regional_growth_centers.yml'):
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
