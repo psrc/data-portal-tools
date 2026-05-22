@@ -1,0 +1,54 @@
+dataset:
+  layer_params:
+    title: Household_Travel_Survey_Trips
+    tags: portal, household travel survey
+    allow_edits: False
+    groups: PSRC Data Portal Content;Household Travel Survey Content
+    spatial_data: False
+    share_level: everyone
+    snippet: Version 2026.1 of the Trips table from PSRC's Household Travel Survey, years 2017, 2019, 2021, 2023 and 2025
+    accessInformation: 
+    licenseInfo: 
+    metadata:
+        contact_name: Brian Lee
+        contact_email: blee@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98104
+        contact_phone: (206)464-7536
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: The Trips table from the combined 2017 through 2025 Household Travel Survey
+        data_source: PSRC's Household Travel Survey program
+        date_last_updated: 'April 2025'
+        constraints: 
+        data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
+        assessment: 
+        summary_purpose: 
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2017 - 2025"
+        update_cadence: Roughly every two years
+  source:
+    is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 
+    table_name: 
+    sql_query: "SELECT [trip_id] ,[survey_year] ,[household_id] ,[person_id] ,[pernum] ,[tripnum] ,[traveldate] ,[daynum]
+            ,[depart_time_timestamp] ,[arrival_time_timestamp] ,[distance_miles] ,[travel_time] ,[travelers_hh] ,[travelers_nonhh]
+            ,[travelers_total] ,[origin_purpose] ,[origin_purpose_cat] ,[origin_purpose_cat_5] ,[dest_purpose] ,[dest_purpose_cat]
+            ,[dest_purpose_cat_5] ,[dest_purpose_other] ,[mode_1] ,[mode_2] ,[mode_3] ,[mode_4] ,[mode_class] ,[mode_class_5]
+            ,[driver] ,[mode_acc] ,[mode_egr] ,[speed_mph] ,[mode_other_specify] ,[origin_county] ,[origin_rgcname]
+            ,[origin_jurisdiction] ,[origin_tract_2010] ,[origin_tract_2020] ,[dest_county] ,[dest_rgcname]
+            ,[dest_jurisdiction] ,[dest_tract_2010] ,[dest_tract_2020] ,[dest_is_home] ,[dest_is_work] ,[modes]
+            ,[arrival_time_hour] ,[arrival_time_minute] ,[arrival_time_second] ,[arrive_date] ,[arrive_dow] ,[copied_trip]
+            ,[d_bg] ,[d_in_region] ,[d_puma10] ,[day_id] ,[depart_date] ,[depart_dow] ,[depart_time_hour]
+            ,[depart_time_minute] ,[depart_time_second] ,[duration_minutes] ,[dwell_mins] ,[flag_teleport] ,[o_bg] ,[o_in_region]
+            ,[o_puma10] ,[speed_flag] ,[transit_quality_flag] ,[travel_date] ,[travel_dow] ,[traveldate_end] ,[traveldate_start]
+            ,[user_merged] ,[user_split] ,[linked_trip_id] ,[linked_trip_num] ,[n_legs] ,[distance_meters]
+            ,[distance_beeline_meters] ,[duration_seconds] ,[dest_zip] ,[initial_tripid] ,[trip_weight]
+        FROM [Elmer].[HHSurvey].[v_trips]
+        WHERE survey_year <> 1719"

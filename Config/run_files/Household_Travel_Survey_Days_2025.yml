@@ -1,0 +1,49 @@
+dataset:
+  layer_params:
+    title: Household_Travel_Survey_Days
+    tags: portal, household travel survey
+    allow_edits: False
+    groups: PSRC Data Portal Content;Household Travel Survey Content
+    spatial_data: False
+    share_level: everyone
+    snippet: Versions 2026.1 of the Days table from PSRC's Household Travel Survey, years 2017, 2019, 2021, 2023 and 2025
+    accessInformation: A Data Science Team Member
+    licenseInfo: The text to appear under Terms of Use in AGOL
+    metadata:
+        contact_name: Brian Lee
+        contact_email: blee@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98101
+        contact_phone: (206) 971-3270
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: The Days table from the combined 2017 through 2025 Household Travel Survey
+        data_source: PSRC's Household Travel Survey program
+        date_last_updated: 'April 2026'
+        constraints: 
+        data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
+        assessment: 
+        summary_purpose: 
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2017 - 2025"
+        update_cadence: Roughly every two years
+  source:
+    is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 
+    table_name:
+    sql_query: "SELECT [day_id] ,[survey_year] ,[daynum] ,[household_id] ,[num_trips] ,[pernum] ,[person_id] ,[travel_date] ,[attend_school_1] ,[attend_school_2]
+            ,[attend_school_3] ,[attend_school_998] ,[attend_school_999] ,[deliver_elsewhere] ,[deliver_food] ,[deliver_grocery] ,[deliver_none] ,[deliver_office]
+            ,[deliver_other] ,[deliver_package] ,[deliver_work] ,[is_participant] ,[loc_end] ,[loc_start] ,[proxy_complete] ,[summary_complete]
+            ,[surveyable] ,[telework_time] ,[travel_day] ,[travel_dow] ,[no_travel] ,[no_school_sick] ,[no_school_online_home] ,[no_school_online_other]
+            ,[no_school_vacation] ,[no_school_closed] ,[no_school_other] ,[no_school_dont_know] ,[no_school_no_answer] ,[notravel_madetrips] ,[notravel_vacation] ,[notravel_telecommute]
+            ,[notravel_housework] ,[notravel_kidsbreak] ,[notravel_notransport] ,[notravel_sick] ,[notravel_delivery]
+            ,[notravel_kidshomeschool] ,[notravel_weather] ,[notravel_not_sure]
+            ,[notravel_other] ,[day_weight]
+        FROM [Elmer].[HHSurvey].[v_days]
+        WHERE survey_year <> 1719"

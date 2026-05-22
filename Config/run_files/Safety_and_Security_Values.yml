@@ -1,0 +1,57 @@
+dataset:
+  layer_params:
+    title: Safety_and_Security_Values
+    tags: portal, household travel survey
+    allow_edits: False
+    groups: PSRC Data Portal Content;Household Travel Survey Content
+    spatial_data: False
+    share_level: everyone
+    snippet: Version 2026.1 of the Safety and Security data as collected as a follow-up project to the 2025 wave of the Household Travel Survey
+    accessInformation: 
+    licenseInfo:
+    metadata:
+        contact_name: Brian Lee
+        contact_email: blee@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98101
+        contact_phone: 
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: The Safety and Security Survey Data that was done as a follow-up project with the 2025 wave of the Household Travel Survey
+        data_source: PSRC's Safety and Security survey
+        date_last_updated: 'May 2026'
+        constraints: 
+        data_lineage: "" 
+        assessment: 
+        summary_purpose: 
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2025"
+        update_cadence: ??? 
+  source:
+    is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 
+    table_name: 
+    sql_query: " 
+      select *
+      from safety_survey.value_labels_2025 as v 
+      where exists (
+          select 1
+          from INFORMATION_SCHEMA.columns as c  
+          where c.TABLE_SCHEMA = 'safety_survey' 
+              and c.TABLE_NAME in ('v_responses_2025')
+              and c.column_name = v.variable
+              and c.COLUMN_NAME not in (
+                  'ip_lon', 'ip_lat', 
+                  'work_loc_1', 'work_loc_2', 'work_loc_3', 'work_loc_4', 'work_loc_5',
+                  'home_lon', 'home_lat', 
+                  'work_lon', 'work_lat', 'work_loc_flag',
+                  'home_loc_1', 'home_loc_2', 'home_loc_3', 'home_loc_4', 'home_loc_5'
+              )
+      )     
+    "

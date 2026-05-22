@@ -1,0 +1,68 @@
+dataset:
+  layer_params:
+    title: Household_Travel_Survey_Variables
+    tags: portal, household travel survey
+    allow_edits: False
+    groups: PSRC Data Portal Content;Household Travel Survey Content
+    spatial_data: False
+    share_level: everyone
+    snippet: Version 2026.1 of the Variables data dictionary for the Household Travel Survey
+    accessInformation: 
+    licenseInfo:
+    metadata:
+        contact_name: Brian Lee
+        contact_email: blee@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98101
+        contact_phone: (206)464-7536
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: Variables (codebook/data dictionary) table from the combined 2017 through 2025 Household Travel Survey
+        data_source: PSRC's Household Travel Survey program
+        date_last_updated: 'April 2026'
+        constraints: 
+        data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
+        assessment: 
+        summary_purpose: 
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2017 - 2025"
+        update_cadence: Roughly every two years
+  source:
+    is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 
+    table_name: 
+    sql_query: "
+      select variable, hh, person, day, trip, vehicle, [description],
+          data_type, logic
+      from HHSurvey.variables_2025 as v  
+      where  exists (
+          select 1
+          from INFORMATION_SCHEMA.columns as c  
+          where c.TABLE_SCHEMA = 'HHSurvey' 
+              and c.TABLE_NAME in ('v_households', 'v_persons', 'v_trips', 'v_days', 'v_vehicles')
+              and c.column_name = v.variable
+              and c.column_name not in (
+                  'prev_home_lat', 'prev_home_lng',
+                  'reported_lat', 'reported_lng',
+                  'sample_lat', 'sample_lng', 
+                  'home_bg_2010', 'home_bg_2020', 
+                  'sample_home_bg', 
+                  'home_lat', 'home_lng', 
+                  'school_bg',
+                  'school_loc_lat', 'school_loc_lng',
+                  'second_home_lat', 'second_home_lon',
+                  'work_bg', 'work_lat', 'work_lng',
+                  'origin_lat', 'origin_lng',
+                  'dest_lat', 'dest_lng',
+                  'origin_x_coord', 'origin_y_coord',
+                  'dest_x_coord', 'dest_y_coord',
+                  'd_bg', 'o_bg'
+              )
+      )
+      "

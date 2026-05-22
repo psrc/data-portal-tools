@@ -1,0 +1,57 @@
+dataset:
+  layer_params:
+    title: Household_Travel_Survey_Persons
+    tags: portal, household travel survey
+    allow_edits: False
+    groups: PSRC Data Portal Content;Household Travel Survey Content
+    spatial_data: False
+    share_level: everyone
+    snippet: Version 2026.1 of the Persons table from PSRC's Household Travel Survey, years 2017, 2019, 2021, 2023 and 2025
+    accessInformation: A Data Science Team Member
+    licenseInfo: The text to appear under Terms of Use in AGOL
+    metadata:
+        contact_name: Brian Lee
+        contact_email: blee@psrc.org
+        contact_street_address: 1201 3rd Ave. Ste 500
+        contact_city: Seattle
+        contact_state: Washington
+        contact_zip: 98104
+        contact_phone: 
+        fields:
+        organization_name: PSRC
+        psrc_website: www.psrc.org
+        description: The persons table from the combined 2017 through 2025 Household Travel Survey
+        data_source: PSRC's Household Travel Survey program
+        date_last_updated: 'April 2026'
+        constraints: 
+        data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
+        assessment: 
+        summary_purpose: 
+        supplemental_info: ''
+        tech_note_link:
+        time_period: "2017 - 2025"
+        update_cadence: Roughly every two years
+  source:
+    is_simple: False
+    feature_dataset: ''
+    has_donut_holes: false
+    schema_name: 
+    table_name: 
+    sql_query: "SELECT [person_id] ,[survey_year] ,[ethnicity_other] ,[household_id] ,[industry_other] ,[can_drive] ,[num_trips] ,[numdayscomplete]
+            ,[pernum] ,[race_other_specify] ,[school_puma10] ,[school_rgcname] ,[school_jurisdiction] ,[school_county] ,[school_tract_2020] ,[work_puma10]
+            ,[work_rgcname] ,[work_jurisdiction] ,[work_county] ,[work_tract_2020] ,[bike_freq] ,[carshare_freq] ,[commute_freq]
+            ,[commute_subsidy_1] ,[commute_subsidy_2] ,[commute_subsidy_3] ,[commute_subsidy_4] ,[commute_subsidy_5] ,[commute_subsidy_6]
+            ,[commute_subsidy_7] ,[commute_subsidy_996] ,[commute_subsidy_998] ,[commute_subsidy_use_1] ,[commute_subsidy_use_2]
+            ,[commute_subsidy_use_3] ,[commute_subsidy_use_4] ,[commute_subsidy_use_5] ,[commute_subsidy_use_6] ,[commute_subsidy_use_7]
+            ,[commute_subsidy_use_996] ,[disability_person] ,[education] ,[employment] ,[ethnicity_1] ,[ethnicity_2] ,[ethnicity_3] ,[ethnicity_4]
+            ,[ethnicity_997] ,[ethnicity_999] ,[race_hisp] ,[ev_typical_charge_1] ,[ev_typical_charge_2] ,[ev_typical_charge_3] ,[ev_typical_charge_4]
+            ,[ev_typical_charge_5] ,[ev_typical_charge_6] ,[ev_typical_charge_997] ,[gender] ,[hours_work] ,[industry] ,[is_participant] ,[mobility_aides]
+            ,[office_available] ,[participate] ,[person_is_complete] ,[proxy] ,[proxy_parent] ,[race_afam] ,[race_aiak] ,[race_asian] ,[race_hapi]
+            ,[race_noanswer] ,[race_other] ,[race_white] ,[race_category] ,[relationship] ,[remote_class_freq] ,[school_freq] ,[school_in_region] ,[school_mode_typical]
+            ,[schooltype] ,[second_home] ,[second_home_in_region] ,[sexuality] ,[share_1] ,[share_2] ,[share_3] ,[share_4] ,[share_5]
+            ,[share_996] ,[smartphone_type] ,[adult_student] ,[surveyable] ,[telecommute_freq] ,[commute_subsidy_parking] ,[commute_subsidy_transit] ,[tnc_freq]
+            ,[transit_freq] ,[walk_freq] ,[work_in_region] ,[work_mode] ,[workplace] ,[age] ,[age_detailed] ,[drive_for_work] ,[paid_work]
+            ,[return_from_leave] ,[transportation_statement_car] ,[transportation_statement_environ] ,[transportation_statement_retail] ,[transportation_statement_telework]
+            ,[transportation_statement_transit] ,[transportation_statement_travel] ,[transportation_statement_walk] ,[work_from_home] ,[person_weight]
+        FROM [Elmer].[HHSurvey].[v_persons]
+        WHERE survey_year <> 1719"
