@@ -8,14 +8,16 @@ import os
 ##############################################################################
 # Setup: construct connector (for Examples 1 and 2)
 ##############################################################################
-enterprise_user = os.getenv("ENTERPRISE_PORTAL_ADVANCED_USERNAME")
-enterprise_pw = os.getenv("ENTERPRISE_PORTAL_ADVANCED_PW")
+# enterprise_user = os.getenv("ENTERPRISE_PORTAL_ADVANCED_USERNAME")
+# enterprise_pw = os.getenv("ENTERPRISE_PORTAL_ADVANCED_PW")
 enterprise_client_id = os.getenv("ENTERPRISE_PORTAL_CLIENT_ID")
+agol_user = os.getenv('AGOL_ADMIN_USERNAME')
+agol_pw = os.getenv('AGOL_ADMIN_PW')
 # with open(r'Config\\auth.yml') as file:
 # 	auth = yaml.load(file, Loader=yaml.FullLoader)
 portal_conn = PortalConnector(
-	portal_username=os.getenv('AGOL_ADMIN_USERNAME'),
-	portal_pw=os.getenv('AGOL_ADMIN_PW')
+	portal_username=agol_user,
+	portal_pw=agol_pw
  )
 enterprise_conn = PortalConnector(
 	 portal_url='https://gis.psrc.org/portal',
