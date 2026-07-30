@@ -2,9 +2,12 @@
 
 This repo is intended to house classes to be used for import and export to PSRC's data portal hosted on ArcGIS Online.  
 
+This has been confirmed to work as of ArcGIS Pro 3.7.1
+
 ### How to run it ###
 
 #### Setup ####
+
 First, your agency Enterprise GIS Portal must have an "Application" object in its contents.  PSRC has one called "PSRC Python Scripting" which should be available for the agency to use.  The important thing about this object is its Client ID, which is a unique ID that will allow the script to authenticate as a valid member of the organization, and thus to access the layers in the Enterprise Portal.  Find that object in the Portal, and copy the contents of the Client ID to an environment variable ENTERPRISE_PORTAL_CLIENT_ID on your machine.  
 
 You will need to create two other environment variables AGOL_ADMIN_USERNAME and AGOL_ADMIN_PW, which will store your ArcGIS username and password.  
