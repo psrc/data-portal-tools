@@ -24,8 +24,8 @@ class DatabaseConnector(object):
 		Make connections to the PSRC database
 		"""
 		try:
-			conn_string = "DRIVER={{ODBC Driver 17 for SQL Server}}; " \
-				"SERVER={}; DATABASE={}; trusted_connection=yes".format(
+			conn_string = "DRIVER={{ODBC Driver 18 for SQL Server}}; " \
+				"SERVER={}; DATABASE={}; trusted_connection=yes; TrustServerCertificate=yes".format(
 					self.db_server,
 					self.database)
 			engine = sqlalchemy.create_engine("mssql+pyodbc:///?odbc_connect=%s" % conn_string)

@@ -2,21 +2,30 @@ from arcgis.gis import GIS
 
 class PortalConnector(object):
 
-	def __init__(self, 
-              portal_username, 
-              portal_pw, 
-              portal_url="https://psregcncl.maps.arcgis.com"):
+	def __init__(self,
+              portal_username=None,
+              portal_pw=None,
+              portal_url="https://psregcncl.maps.arcgis.com",
+              client_id=None,
+              profile=None):
 		"""
 		Define the parameters by which the portal_connector can connect a database to a data portal.
 		Parameters:
-			portal_username: ArcGIS Online/Data Portal username
-			portal_pw: ArcGIS Online/Data Portal password
+			portal_username: ArcGIS Online/Data Portal username. Omit if client_id is provided.
+			portal_pw: ArcGIS Online/Data Portal password. Omit if client_id is provided.
 			portal_url: An ArcGIS Online portal or Enterprise
+			client_id: OAuth client ID for interactive, browser-based sign-in. Use this
+				instead of portal_username/portal_pw for portals that require OAuth
+				(e.g. an Enterprise Portal with no username/password login).
+			profile: name under which to cache the OAuth token locally, so later
+				connections can reuse it without a new browser login. Only used with client_id.
 		"""
 		try:
 			self.username = portal_username
 			self.pw = portal_pw
 			self.portal_url = portal_url
+			self.client_id = client_id
+			self.profile = profile
 			self.connect()
 		except Exception as e:
 			print(e.args[0])
@@ -36,7 +45,10 @@ class PortalConnector(object):
 		Make connections to the data portal
 		"""
 		try:
-			self.gis = GIS(self.portal_url, self.username, self.pw)
+			if self.client_id:
+				self.gis = GIS(self.portal_url, client_id=self.client_id, profile=self.profile)
+			else:
+				self.gis = GIS(self.portal_url, self.username, self.pw)
 		except Exception as e:
 			print(e.args[0])
 			raise

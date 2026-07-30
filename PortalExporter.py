@@ -2,15 +2,15 @@
 from numpy import nan
 import pandas as pd
 
-try: 
+try:
 	from arcgis.gis import GIS
 	from arcgis.features import FeatureLayerCollection, GeoAccessor, GeoSeriesAccessor
 	from arcgis.gis._impl._content_manager import SharingLevel
 	import to_SpatiallyEnabledDataFrame
 	ARCGIS_AVAILABLE = True
-except ImportError: 
+except ImportError:
 	ARCGIS_AVAILABLE = False
-    
+
 import urllib
 import pyodbc
 import sqlalchemy
@@ -44,13 +44,15 @@ class PortalResource(object):
 
 	def __init__(self,
 			p_connector,
+			enterprise_connector,
 			db_connector,
 			params,
 			source):
 		"""
 		Initiate a new PortalResource object.
 		Parameters:
-			p_connector: a PortalConnector object
+			p_connector: a PortalConnector object connected to ArcGIS Online
+			enterprise_connector: a PortalConnector object connected to the Enterprise Portal
 			db_connector: a DatabaseConnector object
 			in_schema (string): the schema for the data set in the database.
 			in_recordset_name (string): the name of the table or view
@@ -60,6 +62,7 @@ class PortalResource(object):
 		"""
 		try:
 			self.portal_connector = p_connector
+			self.enterprise_connector = enterprise_connector
 			self.db_connector = db_connector
 			self.params = params
 			if 'groups' in params:
@@ -68,7 +71,7 @@ class PortalResource(object):
 				self.params['groups'] = []
 			self.metadata = params['metadata']
 			tag_string = params['tags']
-			tag_string = tag_string[:-1] if tag_string[-1] in [',',';'] else tag_string		
+			tag_string = tag_string[:-1] if tag_string[-1] in [',',';'] else tag_string
 			tag_list = re.split('[,;]', tag_string)
 			self.resource_properties = {
 				'title': params['title'],
@@ -80,10 +83,6 @@ class PortalResource(object):
 			}
 			self.title = params['title']
 			self.working_folder = 'workspace'
-			self.sde_folder = 'sde'
-			self.sde_name = 'elmergeo.sde'
-			self.sde_instance = 'SQLserver'
-			self.sde_database = 'ElmerGeo'
 			# self.contact_name = params['contact_name']
 			# self.contact_email = params['contact_email']
 			self.share_level = params['share_level']
@@ -161,7 +160,7 @@ class PortalResource(object):
 			Example:
 				df.geometry.apply(lambda p: close_holes(p))
 			"""
-			try: 
+			try:
 				if poly.interiors:
 					return Polygon(list(poly.exterior.coords))
 				else:
@@ -174,11 +173,11 @@ class PortalResource(object):
 
 	def add_to_zip(self, raw_file, zip_file, overwrite=False):
 		"""
-  		Add a file to a ZIP archive file.  
-    	
+  		Add a file to a ZIP archive file.
+
      	Inputs:
       		raw_file: (string): the name of the file to be added to the archive.
-        	zip_file: (string): the file name of the ZIP archive 
+        	zip_file: (string): the file name of the ZIP archive
          	overwrite: (True/False): a TRUE value overwrites any currently-existing
           				contents of the ZIP file, while a FALSE value appends to it.
             """
@@ -186,7 +185,7 @@ class PortalResource(object):
 			if overwrite == True:
 				with zipfile.ZipFile(zip_file, 'w') as myzip:
 					myzip.write(raw_file)
-			else: 
+			else:
 				with zipfile.ZipFile(zip_file, 'a') as myzip:
 					myzip.write(raw_file)
 
@@ -219,13 +218,16 @@ class PortalResource(object):
 	def gdb_to_zip(self, file_gdb_name):
 		"""
 		Create a local zip file from a file geodatabase.
-		
+
   		input:
     		file_gdb_name: a Path object for the file geodtabase to be zipped.
-		
+
 		Returns the name of the new zip file.
 		"""
 		try:
+			if ARCPY_AVAILABLE:
+				arcpy.ClearWorkspaceCache_management()
+
 			if '.gdb' in str(file_gdb_name):
 				zip_name = file_gdb_name.stem
 				folder_to_be_zipped = str(file_gdb_name.parents[0])
@@ -244,8 +246,8 @@ class PortalResource(object):
 	def simplify_gdf(self, gdf):
 		"""
   		Given a polygon geodataframe, fill in any holes in polygons.
-		Polygon holes can represent features such as lakes, but can cause 
-		strange triangle-shaped artifacts in geodataframes.  
+		Polygon holes can represent features such as lakes, but can cause
+		strange triangle-shaped artifacts in geodataframes.
 
 		input:
 			gdf: a geodataframe object
@@ -265,10 +267,10 @@ class PortalResource(object):
 
 
 	def shorten_column_names(self, gdf):
-		''' 
+		'''
 		Create a dictionary of column names, with the keys being a short abstracted reference to the full-length col names.
 		Set this dictionary as self.column_dict
-		Resets gdf.columns to the list of new abstracted columns names ['col1', 'col2'...] 
+		Resets gdf.columns to the list of new abstracted columns names ['col1', 'col2'...]
 		'''
 		try:
 			col_list = gdf.columns.to_list()
@@ -281,7 +283,7 @@ class PortalResource(object):
 					d[new_col] = c
 					new_col_list.append(new_col)
 				else:
-					d[c] = c 
+					d[c] = c
 					new_col_list.append(c)
 				i+=1
 			self.column_dict = d
@@ -313,7 +315,7 @@ class PortalResource(object):
 				gdb_files = glob.glob(str(gdb_path / '*.gdb'))
 				for f in gdb_files:
 					shutil.rmtree(f)
-			else: 
+			else:
 				os.makedirs(dir_path)
 			os.makedirs(gdb_path)
 			return gdb_path
@@ -324,46 +326,28 @@ class PortalResource(object):
 			raise
 
 
-	def export_remote_featureclass(self, 
-					out_gdb, 
-					out_fc_name,
-					fields_to_exclude=[]
-			):
-		'''
-		Creates a local copy of a feature class in a geodatabase.
-		params:
-			remote_fc: String. The name of a featureclass in a remote geodatbase
-			out_gdb: Path() object. References a file geodatabase
-			out_fc_name: String.  The name of the layer to be exported to out_gdb
-			fields_to_exclude: a list of field names to exlude from out_fc_name
-		'''
+	def get_enterprise_item(self, table_name):
+		"""
+		Find the Feature Layer item on the Enterprise Portal whose title matches
+		table_name.  Enterprise Portal layers are never renamed away from the
+		geodatabase table name they were published from.
+		Parameters:
+			table_name: the name of a table/feature class in the geodatabase,
+				which is also the title of the corresponding Enterprise Portal item.
+		"""
 		try:
-			# conn_path = self.db_connector.gdb_sde_conn
-			conn_path = self.sde_path
-			#conn_path = os.path.join(os.getcwd(), out_gdb)
-			arcpy.env.overwriteOutput = True
-			arcpy.env.workspace = conn_path
-			out_fc_path = str(out_gdb / out_fc_name)
-			featureclass_base = self.source['table_name']
-			temp_fc = featureclass_base + "_temp"
-			remote_fc = "{}/{}".format(self.source['feature_dataset'], featureclass_base)
-			arcpy.MakeFeatureLayer_management(remote_fc, temp_fc)
-			fields = arcpy.Describe(temp_fc).fieldInfo
-			for i in range(fields.count):
-				field_name = fields.getFieldName(i)
-				if field_name in fields_to_exclude:
-					fields.setVisible(i, 'HIDDEN')
-			temp_fc2 = temp_fc + '2'
-			arcpy.MakeFeatureLayer_management(temp_fc, 
-											temp_fc2, 
-											field_info=fields)
-			arcpy.management.CopyFeatures(temp_fc2, out_fc_path)
-			arcpy.Delete_management(temp_fc2)
-			arcpy.ClearWorkspaceCache_management()
-			arcpy.env.workspace = None
+			gis = self.enterprise_connector.gis
+			search_results = gis.content.search(
+				query='title:{}'.format(table_name),
+				item_type='Feature Layer')
+			exact_match = [i for i in search_results if i.title == table_name]
+			if not exact_match:
+				raise ValueError(
+					"No Enterprise Portal item found with title '{}'".format(table_name))
+			return exact_match[0]
 
 		except Exception as e:
-			print("error in export_remote_featureclass")
+			print("error in get_enterprise_item")
 			print(e.args[0])
 			raise
 
@@ -396,12 +380,17 @@ class PortalResource(object):
 		"""
 		try:
 			title = self.resource_properties['title']
-			
+
 			if self.source['is_simple']:
 				table_name = self.source['table_name']
-				self.remote_fc_def = "{}/{}".format(self.source['feature_dataset'], table_name)
 				fields_to_exclude = self.source['fields_to_exclude']
-				self.export_remote_featureclass(gdb_path, title, fields_to_exclude)
+				enterprise_item = self.get_enterprise_item(table_name)
+				enterprise_flc = FeatureLayerCollection.fromitem(enterprise_item)
+				layer = enterprise_flc.layers[0]
+				sdf = layer.query(out_fields='*', as_df=True)
+				sdf = sdf.drop(columns=fields_to_exclude, errors='ignore')
+				feat_class_name = gdb_path / title
+				sdf.spatial.to_featureclass(location=feat_class_name)
 			else:
 				os.chdir(self.working_folder)
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
@@ -412,7 +401,7 @@ class PortalResource(object):
 				feat_class_name = gdb_path / title
 				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
 				os.chdir('../')
-			
+
 			return self.gdb_to_zip(gdb_path)
 		except Exception as e:
 			print(e.args[0])
@@ -427,16 +416,16 @@ class PortalResource(object):
 			db_connector = self.db_connector
 			df = pd.read_sql(sql=self.sql, con=db_connector.sql_conn)
 			self.df = df
-			
+
 			working_dir = Path(self.working_folder)
 			filename = self.resource_properties['title'] + '.csv'
 			csv_name = working_dir / filename
-			
+
 			if not os.path.exists(working_dir):
 				os.makedirs(working_dir)
 			if os.path.isfile(csv_name):
 				os.remove(csv_name)
-			
+
 			df.to_csv(csv_name)
 			return df, csv_name
 		except Exception as e:
@@ -452,7 +441,6 @@ class PortalResource(object):
 			fldr = Path(self.working_folder)
 			gdb_path = self.prepare_working_dir(fldr)
 			self.make_file_gdb(gdb_path)
-			self.set_up_sde()
 			return gdb_path
 		except Exception as e:
 			print(e.args[0])
@@ -482,28 +470,49 @@ class PortalResource(object):
 			print(e.args[0])
 			raise
 
+	def find_existing_feature_layer(self, title):
+		"""
+		Find an existing hosted Feature Layer item on ArcGIS Online matching title,
+		owned by the connecting user.
+		Returns None if no exact match is found.
+		"""
+		try:
+			gis = self.portal_connector.gis
+			owner_clause = '; owner:{}'.format(gis.users.me.username)
+			search_results = gis.content.search(
+				query='title:{}{}'.format(title, owner_clause),
+				item_type='Feature Layer')
+			exact_match = [i for i in search_results if i.title == title]
+			return exact_match[0] if exact_match else None
+
+		except Exception as e:
+			print("error in find_existing_feature_layer")
+			print(e.args[0])
+			raise
+
+
 	def republish_spatial(self, zip_path=None):
 		"""
 	    If zip_path is provided, skips the local GDB export/zip steps
     		and uses the pre-existing zip file directly.
-    	Otherwise, copy a spatial layer from ElmerGeo into a local file geodatabase,
-    		then zip up that gdb, identify an existing layer on ArcOnline,
-			and overwrite that layer with the zipped gdb.  
-		Lastly, publish the updated layer.
+    	Otherwise, prepare a local file geodatabase of the spatial layer,
+    		then zip up that gdb, and overwrite the matching existing layer on ArcGIS Online.
       	"""
 		try:
 			if zip_path is None:
 				gdb_path = self._setup_spatial_environment()
 				zipfile = self._prepare_spatial_data(gdb_path)
-			else: 
+			else:
 				zipfile = zip_path
-			
-			exported = self.search_by_title()
-			exported.update(data=zipfile, item_properties=self.resource_properties)
-			params = {"name": self.title, 'targetSR': self.srid}
-			published = exported.publish(publish_parameters=params, overwrite=True)
-			
-			self._finalize_spatial_publishing(published, is_new=False)
+
+			existing_item = self.find_existing_feature_layer(self.title)
+			if existing_item is None:
+				raise ValueError(
+					"No existing AGOL Feature Layer found with title '{}'".format(self.title))
+			flc = FeatureLayerCollection.fromitem(existing_item)
+			flc.manager.overwrite(zipfile)
+
+			self._finalize_spatial_publishing(existing_item, is_new=False)
 
 		except Exception as e:
 			print(e.args[0])
@@ -513,7 +522,7 @@ class PortalResource(object):
 	def make_file_gdb(self, gdb_path):
 		"""
   		Creates a new empty local file geodatabase.
-    
+
     	Input:  gdb_path.  The directory and file location for the geodatabase.
      	"""
 		try:
@@ -525,31 +534,6 @@ class PortalResource(object):
 			print("error in make_file_gdb.  out_folder_path={},  gdb_path={}".format(str(gdb_path.parent), str(gdb_path)))
 			print(e.args[0])
 			raise
-	
- 
-	def set_up_sde(self):
-		"""
-  		Creates an SDE file, i.e., a connection to a Geodatabase on SQL Server
-    	"""
-		try:
-			sde_dir_name = './' + self.sde_folder
-			sde_full_name = str(Path(sde_dir_name) / self.sde_name)
-			if not os.path.exists(sde_full_name):
-				arcpy.management.CreateDatabaseConnection(sde_dir_name, 
-												self.sde_name, 
-												'SQL_SERVER',
-												self.sde_instance,
-												account_authentication='OPERATING_SYSTEM_AUTH',
-												database=self.sde_database
-				)
-			return_path = str(Path(sde_dir_name) / self.sde_name) 
-			self.sde_path = return_path
-
-		except Exception as e:
-			print("error in set_up_sde.")
-			print(e.args[0])
-			raise
-
 
 	def publish_spatial_as_new(self):
 		"""
@@ -560,13 +544,13 @@ class PortalResource(object):
 			gis = self.portal_connector.gis
 			gdb_path = self._setup_spatial_environment()
 			zipfile = self._prepare_spatial_data(gdb_path)
-			
+
 			res_properties = self.resource_properties.copy()
 			res_properties['type'] = 'File Geodatabase'
 			exported = gis.content.add(res_properties, data=zipfile)
 			params = {"name": self.title, 'targetSR': self.srid}
 			layer = exported.publish(publish_parameters=params)
-			
+
 			self._finalize_spatial_publishing(layer, is_new=True)
 
 		except Exception as e:
@@ -580,8 +564,9 @@ class PortalResource(object):
   		"""
 		try:
 			dtypes = zip(df.columns, df.dtypes)
-			type_translations = {"int64": "esriFieldTypeInteger", 
-								"object": "esriFieldTypeString", 
+			type_translations = {"int64": "esriFieldTypeInteger",
+								"object": "esriFieldTypeString",
+								"str": "esriFieldTypeString",
 								"float64": "esriFieldTypeDouble"}
 			fields = []
 			for f in dtypes:
@@ -600,32 +585,35 @@ class PortalResource(object):
 
 	def republish(self):
 		"""
-  		Create a tabular CSV data set on ArcOnline, 
-    	and publish it as a table on Portal.
-		Both these actions overwrite pre-existing objects.
+  		Refresh the existing hosted table by truncating it and re-adding the
+    	current SQL data via edit_features, in chunks.
+     	Both item.publish(overwrite=True) and FeatureLayerCollection.manager.overwrite()
+      	fail with an "already linked to service" error for CSV-sourced hosted
+       	tables in this arcgis package version, so neither is used here.
 		"""
-		try: 
-			df, csv_name = self._prepare_tabular_data()
-			
-			self.resource_properties['type'] = "CSV"
-			exported = self.search_by_title()
-			exported.update(data=str(csv_name), item_properties=self.resource_properties)
-			
-			field_mappings = self.build_fields_json(df)
-			params = {
-				"type": "csv",
-				"locationType": "none",
-				"name": self.title,
-				"layerInfo": {"fields": field_mappings}
-			}
-			published_csv = exported.publish(publish_parameters=params, overwrite=True)
-			
-			self._finalize_tabular_publishing(published_csv)
+		try:
+			df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
+
+			existing_item = self.find_existing_feature_layer(self.title)
+			if existing_item is None:
+				raise ValueError(
+					"No existing AGOL table found with title '{}'".format(self.title))
+
+			flc = FeatureLayerCollection.fromitem(existing_item)
+			table = flc.tables[0]
+			table.manager.truncate()
+
+			records = df.astype(object).where(pd.notnull(df), None).to_dict(orient="records")
+			chunk_size = 500
+			for start in range(0, len(records), chunk_size):
+				chunk = records[start:start + chunk_size]
+				adds = [{"attributes": row} for row in chunk]
+				table.edit_features(adds=adds)
+
+			self._finalize_tabular_publishing(existing_item)
 
 		except Exception as e:
 			print(e.args[0])
-			if 'csv_name' in locals() and os.path.exists(csv_name): 
-				os.remove(csv_name)
 			raise
 
 
@@ -639,10 +627,10 @@ class PortalResource(object):
 			working_dir = Path(self.working_folder)
 			self.prepare_working_dir(working_dir)
 			df, csv_name = self._prepare_tabular_data()
-			
+
 			self.resource_properties['type'] = "CSV"
 			exported = self.portal_connector.gis.content.add(self.resource_properties, data=str(csv_name))
-			
+
 			field_mappings = self.build_fields_json(df)
 			params = {
 				"name":self.resource_properties['title'],
@@ -651,12 +639,12 @@ class PortalResource(object):
 				"layerInfo": {"fields": field_mappings}
 			}
 			published_csv = exported.publish(publish_parameters=params)
-			
+
 			self._finalize_tabular_publishing(published_csv)
 
 		except Exception as e:
 			print(e.args[0])
-			if 'csv_name' in locals() and os.path.exists(csv_name): 
+			if 'csv_name' in locals() and os.path.exists(csv_name):
 				os.remove(csv_name)
 			raise
 
@@ -685,7 +673,7 @@ class PortalResource(object):
 
 		except Exception as e:
 			print("error in upsert_element.  existing_element = {}, new_element_tag = {}".format(
-				existing_element, 
+				existing_element,
 				new_element_tag))
 			print(e.args[0])
 			raise
@@ -695,11 +683,11 @@ class PortalResource(object):
 		"""
 		Get a metadata value from self.metadata, checking multiple possible key names.
 		Returns the first matching key's value, or the default if none found.
-		
+
 		Parameters:
 			keys: A string (single key) or list of strings (multiple possible keys/aliases)
 			default: Default value to return if no key is found (default: '')
-		
+
 		Returns:
 			The metadata value as a string, or the default value
 		"""
@@ -707,7 +695,7 @@ class PortalResource(object):
 			# Convert single key to list for uniform handling
 			if isinstance(keys, str):
 				keys = [keys]
-			
+
 			for key in keys:
 				if key in self.metadata and self.metadata[key] is not None:
 					value = self.metadata[key]
@@ -715,9 +703,9 @@ class PortalResource(object):
 					if value == 'None' or value == 'nan':
 						continue
 					return str(value) if value else default
-			
+
 			return default
-		
+
 		except Exception as e:
 			print(f"error in _get_metadata_value. keys={keys}")
 			print(e.args[0])
@@ -728,10 +716,10 @@ class PortalResource(object):
 		"""
 		Clean a string of any N/A's or None (NULL) values
 		  and wrap any HTTP links in <a> tags
-		
+
 		Parameter:
 			str: a string to be cleaned
-   
+
 		Returns a string
 		"""
 		try:
@@ -754,7 +742,7 @@ class PortalResource(object):
 	def set_and_update_metadata(self, item):
 		"""
 		Update the metadata for a published item in ArcOnline
-  
+
 		parameter:
 			item: the published item in ArcOnline.
     	"""
@@ -860,7 +848,7 @@ class PortalResource(object):
 
 			idCredit = root.find('./dataIdInfo/idCredit')
 			idCredit.text = self.metadata['data_source']
-		
+
 
 			fields = self.metadata['fields']
 			eainfo = ET.SubElement(root, 'eainfo')
@@ -874,7 +862,7 @@ class PortalResource(object):
 					enttypd.text = f['description']
 
 			dqInfo = ET.SubElement(root, 'dqInfo')
-			data_lineage = self.metadata['data_lineage'] 
+			data_lineage = self.metadata['data_lineage']
 			data_lineage = self.clean_metadata_string(data_lineage)
 			dataLineage = ET.SubElement(dqInfo, 'dataLineage')
 			statement = ET.SubElement(dataLineage, 'statement').text = data_lineage
@@ -890,9 +878,9 @@ class PortalResource(object):
 
 	def initialize_metadata_file(self, item):
 		"""
-		Create a metadata XML file locally from a template, 
+		Create a metadata XML file locally from a template,
 			then update an item in ArcOnline with the metadata XML file.
-   
+
 		Parameter:
 			item: An item in ArcOnline.
   		"""
@@ -933,7 +921,7 @@ class PortalResource(object):
 		'''
 		Set the editability for a layer in ArcOnline.
 		Disallow edits if self.allow_edits is set to False,
-			otherwise allow CREATE, DELETE, UPDATE and EDITING 
+			otherwise allow CREATE, DELETE, UPDATE and EDITING
 		'''
 		try:
 			if self.allow_edits == False:
@@ -955,9 +943,9 @@ class PortalResource(object):
   		Set the sharing properties for a layer/item in ArcOnline so that
 			it is visible either globally or just by PSRC staff.
 		Also set the group membership for the item.
-		The audience is set per the "share_level" property of self 
+		The audience is set per the "share_level" property of self
   			(see the __init__ procedure above)
-    
+
     	Parameter:
      		layer: A layer in ArcOnline"""
 		try:
@@ -966,7 +954,7 @@ class PortalResource(object):
 			if sl == 'everyone':
 				item_sharing_mgr.sharing_level = SharingLevel.EVERYONE
 			elif sl == 'org':
-				item_sharing_mgr.sharing_level = SharingLevel.ORG 
+				item_sharing_mgr.sharing_level = SharingLevel.ORG
 			item_grp_sharing_mgr = item_sharing_mgr.groups
 			share_group_ids = self.get_group_ids()
 			for grp in share_group_ids:
@@ -980,7 +968,7 @@ class PortalResource(object):
 		"""
 		Search self.gis for layers with a given title (self.title),
 		which is of the same type (Shapefile or tabular CSV) as self,
-		and which is also owned by the current user. 
+		and which is also owned by the current user.
 		Return the first layer that is an exact match.
 		If no match is found, returns the string "no item"
 		"""
@@ -996,7 +984,7 @@ class PortalResource(object):
 			for item in content_list:
 				if item['title'] == title:
 					return_item = item
-					break	
+					break
 			return return_item
 
 		except Exception as e:
@@ -1007,19 +995,20 @@ class PortalResource(object):
 	def export(self):
 		"""
 		check if self is already published on the data portal.
-		  If yes then delete resource, then publish as new
+		  If yes then republish (overwrite the existing item)
 		  If no then publish as new
 		"""
 		try:
-			found_item = self.search_by_title()
-			if found_item != "no item":
-				if self.is_spatial:
+			if self.is_spatial:
+				found_item = self.find_existing_feature_layer(self.title)
+				if found_item is not None:
 					self.republish_spatial()
 				else:
-					self.republish()
-			else: 
-				if self.is_spatial:
 					self.publish_spatial_as_new()
+			else:
+				found_item = self.find_existing_feature_layer(self.title)
+				if found_item is not None:
+					self.republish()
 				else:
 					self.publish_as_new()
 

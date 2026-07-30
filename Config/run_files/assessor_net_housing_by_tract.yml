@@ -67,7 +67,7 @@ dataset:
           <li>Pierce: Built-As IDs 61, 65, and 68 in the improvements built-as table </li>
           <li>Snohomish: Property Class Codes 116 and 142 in the master table </li>
           </ul>
-          <br/>Missing Unit/Building Counts 
+          <br/>Missing Unit/Building Counts
 
           <br/><br/>Housing unit and building counts are not available in the Snohomish County assessor datasets. Unit counts for single family parcels were assumed to = 1. Unit counts for multi-family parcels were populated by using utility hookup counts from the Snohomish County Public Utilities District (PUD). Building counts were populated by using a mix of utility customer property data and structure type information. 
 

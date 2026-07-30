@@ -1,7 +1,5 @@
 import yaml
 from PortalExporter import PortalResource
-# from PortalExporter import PortalResource
-#from PortalExporter import PortalSpatialResource
 from PortalConnector import PortalConnector
 from DatabaseConnector import DatabaseConnector
 import os
@@ -10,11 +8,18 @@ import os
 ##############################################################################
 # Setup: construct connector (for Examples 1 and 2)
 ##############################################################################
-with open(r'Config\\auth.yml') as file:
-	auth = yaml.load(file, Loader=yaml.FullLoader)
+enterprise_user = os.getenv("ENTERPRISE_PORTAL_ADVANCED_USERNAME")
+enterprise_pw = os.getenv("ENTERPRISE_PORTAL_ADVANCED_PW")
+enterprise_client_id = os.getenv("ENTERPRISE_PORTAL_CLIENT_ID")
+# with open(r'Config\\auth.yml') as file:
+# 	auth = yaml.load(file, Loader=yaml.FullLoader)
 portal_conn = PortalConnector(
 	portal_username=os.getenv('AGOL_ADMIN_USERNAME'),
 	portal_pw=os.getenv('AGOL_ADMIN_PW')
+ )
+enterprise_conn = PortalConnector(
+	 portal_url='https://gis.psrc.org/portal',
+	 client_id=enterprise_client_id
  )
 # portal_conn = PortalConnector(
 # 	portal_username=auth['enterprise']['username'],
@@ -42,15 +47,13 @@ def export(config):
 				db_conn = elmer_conn
 			my_pub = PortalResource(
 				p_connector=portal_conn,
+				enterprise_connector=enterprise_conn,
 				db_connector=db_conn,
 				params=params,
 				source=source
 				)
 			if is_spatial:
-				if source['is_simple']:
-					my_pub.define_spatial_source_layer(
-						layer_name=source['table_name'])
-				else:
+				if not source['is_simple']:
 					my_pub.define_source_from_query(
 						sql_query=source['sql_query']
 					)
@@ -63,8 +66,7 @@ def export(config):
 					my_pub.define_source_from_query(
 						sql_query=source['sql_query']
 					)
-			#my_pub.export()
-			my_pub.republish_spatial(zip_path=r'C:/Users/cpeak/Repos/data-portal-tools/workspace/Regional_Growth_Centers.zip')
+			my_pub.export()
 			print("exported {}".format(title))
 
 	except Exception as e:
@@ -82,10 +84,10 @@ root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
 	#if r'Regional_Growth_Centers' in f:
-	if (f == 'regional_growth_centers.yml'):
+	if (f.lower() == 'city_boundaries.yml'):
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
 			config = yaml.load(file, Loader=yaml.FullLoader)
 			export(config)
-
+print("completed export_runner.py")
