@@ -94,8 +94,6 @@ dataset:
     tags: Equity; Census;Displacement Risk
     title: Displacement_Risk_2018
   source:
-    feature_dataset: 'equity'
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

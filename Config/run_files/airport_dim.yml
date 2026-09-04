@@ -32,7 +32,6 @@ dataset:
     title: airport_dim4
   source:
     is_simple: true
-    has_donut_holes: false
     schema_name: faa
     table_name: cargo_facts
     sql_query: 

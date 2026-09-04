@@ -65,8 +65,6 @@ dataset:
     tags: Trucks;Freight;
     title: Safety_Rest_Areas
   source:
-    feature_dataset: transportation_freight
-    has_donut_holes: false
     is_simple: true
     schema_name: dbo
     sql_query: null

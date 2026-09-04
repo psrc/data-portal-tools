@@ -19,10 +19,10 @@ dataset:
         contact_phone: (206)971-3054
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: 'The 2050 High Capacity Transit network is a compilation of data collected from transit agencies in the region. This represents planned high capacity transit service (as of May 2021) that will be available by 2050. (These plans may have changed since the data was collected.) This data was collected for the 2022-2050 Regional Transportation Plan and includes "unprogrammed" services that fall outside the financially-constrained plan. "High Capacity Transit" is generally defined as services within an urbanized region operating principally on exclusive rights-of-way. This includes: bus rapid transit (BRT), ferries (including passenger-only ferries), and all rail modes (light rail, streetcar, monorail, commuter rail).'
+        summary: 'The 2050 High Capacity Transit network is a compilation of data collected from transit agencies in the region. This represents planned high capacity transit service (as of May 2021) that will be available by 2050. (These plans may have changed since the data was collected.) This data was collected for the 2022-2050 Regional Transportation Plan and includes "unprogrammed" services that fall outside the financially-constrained plan. "High Capacity Transit" is generally defined as services within an urbanized region operating principally on exclusive rights-of-way. This includes: bus rapid transit (BRT), ferries (including passenger-only ferries), and all rail modes (light rail, streetcar, monorail, commuter rail).'
         data_source: Various transit agencies in the PSRC region
         date_last_updated: May 2021
-        constraints: null
+        use_constraints: null
         data_lineage: 
         assessment: 
         fields: 
@@ -34,8 +34,6 @@ dataset:
         update_cadence: Every 4 years (updated as prt of RTP development)
   source:
     is_simple: true
-    feature_dataset: transportation_transit
-    has_donut_holes: false
     schema_name: dbo
     table_name:  HCT_TRANS
     sql_query: 

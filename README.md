@@ -75,7 +75,6 @@ The yaml files in folder `Config\run_files` define the details of each layer to 
 - `source`
   - `is_simple`: Set this to True if the spatial layer does not contain polygons with donut holes.  For tabular data, set to True if the table will be exported in its entirety as it exists in Elmer (False if it is defined by a `sql_query`)
   - `feature_dataset`: If the spatial layer exists as a layer in ElmerGeo, list its feature dataset container here
-  - `has_donut_holes`: deprected column.  Ignored
   - `schema_name`: The schema in which a table resides in Elmer (ignored unless `is_simple == True AND spatial_data == False`)
   - `sql_query`: A Select query runnable against Elmer (if `spatial_data == False`) or against ElmerGeo (if `spatial_data == True`).
   - `table_name`: The name of a table in Elmer (ignored unless `is_simple == True AND spatial_data == False`)

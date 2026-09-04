@@ -20,10 +20,10 @@ dataset:
         fields:
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The Variables data dictionary (a.k.a.) codebook) for the Safety and Security Survey Data that was done as a follow-up project with the 2025 wave of the Household Travel Survey
+        summary: The Variables data dictionary (a.k.a.) codebook) for the Safety and Security Survey Data that was done as a follow-up project with the 2025 wave of the Household Travel Survey
         data_source: PSRC's Safety and Security survey
         date_last_updated: 'May 2026'
-        constraints: 
+        use_constraints: 
         data_lineage: "" 
         assessment: 
         summary_purpose: 
@@ -33,8 +33,6 @@ dataset:
         update_cadence: 
   source:
     is_simple: False
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: 
     table_name: 
     sql_query: " 

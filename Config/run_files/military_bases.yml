@@ -39,8 +39,6 @@ dataset:
     tags: Geographic Boundaries;Military;
     title: Military_Bases
   source:
-    feature_dataset: political
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

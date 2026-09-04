@@ -32,8 +32,6 @@ dataset:
     title: Transit_Stops_2018_RTP
   source:
     is_simple: true
-    feature_dataset: rtp_2022
-    has_donut_holes: true
     schema_name: dbo
     sql_query: null
     table_name: transit_stops_2018_rtp

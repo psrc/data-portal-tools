@@ -20,10 +20,10 @@ dataset:
         fields:
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: The Trips table from the combined 2017 through 2025 Household Travel Survey
+        summary: The Trips table from the combined 2017 through 2025 Household Travel Survey
         data_source: PSRC's Household Travel Survey program
         date_last_updated: 'April 2025'
-        constraints: 
+        use_constraints: 
         data_lineage: "The Puget Sound Regional Travel Studies collect data across King, Kitsap, Pierce, and Snohomish counties using an online and GPS smartphone app-based survey data approach." 
         assessment: 
         summary_purpose: 
@@ -33,8 +33,6 @@ dataset:
         update_cadence: Roughly every two years
   source:
     is_simple: False
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: 
     table_name: 
     sql_query: "SELECT [trip_id] ,[survey_year] ,[household_id] ,[person_id] ,[pernum] ,[tripnum] ,[traveldate] ,[daynum]

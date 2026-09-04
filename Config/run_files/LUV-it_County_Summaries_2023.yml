@@ -104,8 +104,6 @@ Future transportation system impacts: UrbanSim is modeled in parallel with the P
     tags: LUVIT, small area forecasts, urbansim
     title: LUV-it_County_Summaries_2023
   source:
-    feature_dataset: political
-    has_donut_holes: true
     is_simple: true
     schema_name: small_areas
     sql_query: null

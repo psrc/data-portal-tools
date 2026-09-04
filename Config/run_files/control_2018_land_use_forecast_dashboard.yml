@@ -36,8 +36,6 @@ dataset:
     tags: LUV; Forecast
     title: control_2018_land_use_forecast_dashboard
   source:
-    feature_dataset: forecast
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: 

@@ -32,7 +32,6 @@ dataset:
     title: jurisdiction_dim
   source:
     is_simple: true
-    has_donut_holes: false
     schema_name: ofm
     table_name: jurisdiction_dim
     sql_query: 

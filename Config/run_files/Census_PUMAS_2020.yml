@@ -73,8 +73,6 @@ dataset:
     title: Census_PUMAS_2020
   source:
     is_simple: true
-    feature_dataset: census
-    has_donut_holes: false
     schema_name: dbo
     table_name: REG20PUMA
     sql_query: 

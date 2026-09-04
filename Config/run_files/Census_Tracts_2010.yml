@@ -85,8 +85,6 @@ dataset:
     tags: Geographic Boundaries;Census; Tracts;
     title: Census_Tracts_2010
   source:
-    feature_dataset: census
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: 

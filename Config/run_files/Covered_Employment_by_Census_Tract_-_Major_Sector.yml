@@ -82,8 +82,6 @@ dataset:
     title: Covered_Employment_by_Census_Tract_-_Major_Sector
   source:
     is_simple: true
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: employment_summaries
     sql_query: null
     table_name: v_covered_employment_by_tract_by_major_sector

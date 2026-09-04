@@ -63,8 +63,6 @@ dataset:
     title: Weigh_Stations
   source:
     is_simple: false
-    feature_dataset: transportation_freight
-    has_donut_holes: false
     schema_name: dbo
     sql_query: select Shape.STAsText() as Shape_wkt, OBJECTID, [name],
       scale_house, corridor, lat, long_, mile_post, mp_display, city,

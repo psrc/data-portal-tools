@@ -77,8 +77,6 @@ dataset:
     title: Census_PUMAS_2010
   source:
     is_simple: true
-    feature_dataset: census
-    has_donut_holes: false
     schema_name: dbo
     table_name: REG10PUMA
     sql_query: 

@@ -69,8 +69,6 @@ dataset:
     tags: schools
     title: School_Districts
   source:
-    feature_dataset: political
-    has_donut_holes: false
     is_simple: true
     schema_name: dbo
     sql_query: null

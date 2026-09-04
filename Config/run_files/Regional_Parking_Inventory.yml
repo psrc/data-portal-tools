@@ -116,8 +116,6 @@ dataset:
     tags: Parking;
     title: Regional_Parking_Inventory
   source:
-    feature_dataset: ''
-    has_donut_holes: false
     is_simple: true
     schema_name: data_portal
     sql_query: null

@@ -88,8 +88,6 @@ dataset:
     title: Regional_Bike_and_Pedestrian_Facilities
   source:
     is_simple: True
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: dbo
     sql_query: null
     table_name: REGIONAL_BIKEPED

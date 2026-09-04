@@ -117,8 +117,6 @@ dataset:
     tags: Geographic Boundaries;Census; Blocks;
     title: Census_Blocks_2010
   source:
-    feature_dataset: census
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: 

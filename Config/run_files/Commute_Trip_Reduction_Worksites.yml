@@ -163,8 +163,6 @@ dataset:
     tags: Traffic/Congestion;Employment;
     title: Commute_Trip_Reduction_Worksites
   source:
-    feature_dataset: transportation_tdm
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

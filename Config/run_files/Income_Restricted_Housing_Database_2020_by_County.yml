@@ -54,8 +54,6 @@ dataset:
     title: Income_Restricted_Housing_Database_2020_by_County
   source:
     is_simple: False
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: irhd
     sql_query: "SELECT * FROM irhd.summarize_by_county(2020)"
     table_name: 

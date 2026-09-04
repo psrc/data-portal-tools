@@ -19,10 +19,10 @@ dataset:
         contact_phone: 
         organization_name: PSRC
         psrc_website: www.psrc.org
-        description: PSRC's forecast of the region's households, persons, jobs, and other economic and demographic variables through the year 2050.
+        summary: PSRC's forecast of the region's households, persons, jobs, and other economic and demographic variables through the year 2050.
         data_source: 
         date_last_updated: '2018'
-        constraints: 
+        use_constraints: 
         data_lineage: The current Regional Macroeconomic Forecast was most recently updated for the 2018 The Macroeconomic Forecast is an input to PSRC's land use and travel forecasting, and provides the growth assumptions used in our regional growth strategy. It is developed by PSRC with help and review by technical staff from state and local government.
         assessment: 
         summary_purpose: 
@@ -33,8 +33,6 @@ dataset:
         update_cadence: 
   source:
     is_simple: false
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: 
     table_name: 
     sql_query: select * from data_portal.macroeconomic('2018 Regional Macroeconomic Forecast') order by data_year desc

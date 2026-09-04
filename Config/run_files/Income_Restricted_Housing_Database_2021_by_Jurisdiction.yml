@@ -55,8 +55,6 @@ dataset:
     title: Income_Restricted_Housing_Database_2021_by_Jurisdiction
   source:
     is_simple: False
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: irhd
     sql_query: "select * from irhd.summarize_by_jurisdiction(2021) order by cnty_name, juris"
     table_name: 

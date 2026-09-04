@@ -56,8 +56,6 @@ dataset:
     tags: Geographic Boundaries;Cities;
     title: City_Boundaries
   source:
-    feature_dataset: political
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: null

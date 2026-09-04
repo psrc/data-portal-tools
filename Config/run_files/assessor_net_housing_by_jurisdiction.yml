@@ -86,7 +86,5 @@ dataset:
         update_cadence: Annually
   source:
     is_simple: True
-    feature_dataset: ''
-    has_donut_holes: false
     schema_name: 'data_portal'
     table_name: 'v_assessor_net_housing_by_jurisdiction'

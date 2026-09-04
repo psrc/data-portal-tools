@@ -104,8 +104,6 @@ dataset:
     tags: Geographic Boundaries;Census; Block Groups;
     title: Census_Block_Groups_2010
   source:
-    feature_dataset: census
-    has_donut_holes: true
     is_simple: true
     schema_name: dbo
     sql_query: 
