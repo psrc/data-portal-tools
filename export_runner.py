@@ -21,7 +21,8 @@ portal_conn = PortalConnector(
  )
 enterprise_conn = PortalConnector(
 	 portal_url='https://gis.psrc.org/portal',
-	 client_id=enterprise_client_id
+	 client_id=enterprise_client_id,
+	 profile='psrc_enterprise'
  )
 # portal_conn = PortalConnector(
 # 	portal_username=auth['enterprise']['username'],
@@ -86,7 +87,7 @@ root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
 	#if r'Regional_Growth_Centers' in f:
-	if (f.lower() == 'city_boundaries.yml'):
+	if (f.lower() == 'weigh_stations.yml'):
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
