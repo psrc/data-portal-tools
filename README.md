@@ -72,6 +72,7 @@ The yaml files in folder `Config\run_files` define the details of each layer to 
   - `spatial_data`: [True, False].  True means it is a spatial layer, False means it will be published in tabular format.
   - `tags`: Any tags to be associated with the layer, for searchability.  At least one tag should be supplied. 
   - `title`: The title
+  - 'use_constraints`: Any special information regarding appropriate use of the data layer.
 - `source`
   - `is_simple`: Set this to True if the spatial layer does not contain polygons with donut holes.  For tabular data, set to True if the table will be exported in its entirety as it exists in Elmer (False if it is defined by a `sql_query`)
   - `feature_dataset`: If the spatial layer exists as a layer in ElmerGeo, list its feature dataset container here
