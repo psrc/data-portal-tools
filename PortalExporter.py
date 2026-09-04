@@ -28,6 +28,8 @@ import geopandas as gpd
 #import fiona
 import xml.etree.ElementTree as ET
 import shutil
+from typing import Any, Dict, List, Optional
+from pydantic import BaseModel, field_validator
 
 try:
 	import arcpy
@@ -35,6 +37,46 @@ try:
 except ImportError:
 	ARCPY_AVAILABLE = False
 
+
+class LayerParams(BaseModel):
+	"""
+	Validates the 'layer_params' block of a run_files yaml config.
+	"""
+	title: str
+	tags: str
+	snippet: Optional[str] = None
+	licenseInfo: Optional[str] = None
+	share_level: str
+	allow_edits: bool
+	spatial_data: bool
+	metadata: Dict[str, Any]
+	groups: List[str] = []
+	srid: int = 2285
+
+	@field_validator('groups', mode='before')
+	@classmethod
+	def split_groups(cls, v):
+		if isinstance(v, str):
+			return v.split(';')
+		return v or []
+
+
+class SourceConfig(BaseModel):
+	"""
+	Validates the 'source' block of a run_files yaml config.
+	"""
+	is_simple: bool
+	sql_query: Optional[str] = None
+	table_name: Optional[str] = None
+	schema_name: Optional[str] = None
+	fields_to_exclude: List[str] = []
+
+	@field_validator('fields_to_exclude', mode='before')
+	@classmethod
+	def split_fields_to_exclude(cls, v):
+		if isinstance(v, str):
+			return v.split(',')
+		return v or []
 
 
 class PortalResource(object):
@@ -64,41 +106,24 @@ class PortalResource(object):
 			self.portal_connector = p_connector
 			self.enterprise_connector = enterprise_connector
 			self.db_connector = db_connector
-			self.params = params
-			if 'groups' in params:
-				self.params['groups'] = params['groups'].split(';')
-			else:
-				self.params['groups'] = []
-			self.metadata = params['metadata']
-			tag_string = params['tags']
+			self.params = LayerParams(**params)
+			self.metadata = self.params.metadata
+			tag_string = self.params.tags
 			tag_string = tag_string[:-1] if tag_string[-1] in [',',';'] else tag_string
 			tag_list = re.split('[,;]', tag_string)
 			self.resource_properties = {
-				'title': params['title'],
+				'title': self.params.title,
 				'tags': tag_list,
-				#'description': params['description'],
-				'snippet': params['snippet'],
-				#'accessInformation': self.metadata['description'],
-				'licenseInfo': params['licenseInfo']
+				'snippet': self.params.snippet,
+				'licenseInfo': self.params.licenseInfo
 			}
-			self.title = params['title']
+			self.title = self.params.title
 			self.working_folder = 'workspace'
-			# self.contact_name = params['contact_name']
-			# self.contact_email = params['contact_email']
-			self.share_level = params['share_level']
-			self.allow_edits = params['allow_edits']
-			self.is_spatial = params['spatial_data']
-			if 'params' not in params.keys():
-				self.srid = {'wkid':2285}
-			else:
-				self.srid = {'wkid':int(params['srid'])}
-			self.source = source
-			if 'fields_to_exclude' in self.source:
-				self.source['fields_to_exclude'] = source['fields_to_exclude'].split(',')
-			else:
-				self.source['fields_to_exclude'] = []
-			# self.organization_name = params['organization_name']
-			# self.constraints = params['constraints']
+			self.share_level = self.params.share_level
+			self.allow_edits = self.params.allow_edits
+			self.is_spatial = self.params.spatial_data
+			self.srid = {'wkid': self.params.srid}
+			self.source = SourceConfig(**source)
 		except Exception as e:
 			print(e.args[0])
 			raise
@@ -355,12 +380,12 @@ class PortalResource(object):
 	def get_group_ids(self):
 		"""
 		Returns a list of ID's of any groups in self.gis
-		that are included in self.params['groups'].
+		that are included in self.params.groups.
 		"""
 
 		try:
 			gis = self.portal_connector.gis
-			groups = self.params['groups']
+			groups = self.params.groups
 			group_ids = []
 			for grp in gis.groups.search(query=""):
 				if grp.title in groups:
@@ -381,9 +406,9 @@ class PortalResource(object):
 		try:
 			title = self.resource_properties['title']
 
-			if self.source['is_simple']:
-				table_name = self.source['table_name']
-				fields_to_exclude = self.source['fields_to_exclude']
+			if self.source.is_simple:
+				table_name = self.source.table_name
+				fields_to_exclude = self.source.fields_to_exclude
 				enterprise_item = self.get_enterprise_item(table_name)
 				enterprise_flc = FeatureLayerCollection.fromitem(enterprise_item)
 				layer = enterprise_flc.layers[0]
@@ -392,7 +417,6 @@ class PortalResource(object):
 				feat_class_name = gdb_path / title
 				sdf.spatial.to_featureclass(location=feat_class_name)
 			else:
-				os.chdir(self.working_folder)
 				df = pd.read_sql(sql=self.sql, con=self.db_connector.sql_conn)
 				df['Shape_wkt'] = df['Shape_wkt'].apply(wkt.loads)
 				gdf = gpd.GeoDataFrame(df, geometry='Shape_wkt')
@@ -400,7 +424,6 @@ class PortalResource(object):
 				sdf = gdf.to_SpatiallyEnabledDataFrame(spatial_reference = 2285)
 				feat_class_name = gdb_path / title
 				out_feature_class = sdf.spatial.to_featureclass(location=feat_class_name)
-				os.chdir('../')
 
 			return self.gdb_to_zip(gdb_path)
 		except Exception as e:

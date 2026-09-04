@@ -78,7 +78,7 @@ dataset:
   source:
     feature_dataset: 
     has_donut_holes: 
-    is_simple: 
+    is_simple: false
     schema_name: 
     sql_query: select * from data_portal.v_park_and_rides order by data_year desc, prasset_id
     table_name: 
