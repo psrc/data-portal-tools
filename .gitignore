@@ -5,7 +5,6 @@ Config/config_test.yml
 test_exporter.py
 __pycache__/*.pyc
 .ipynb_checkpoints*
-*.ipynb
 working/*
 workspace/*
 gdb/*
