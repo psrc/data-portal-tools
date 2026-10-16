@@ -477,6 +477,7 @@ class PortalResource(object):
 			self.set_and_update_metadata(published_item)
 			# if is_new:
 			self.set_editability(published_item)
+			self.set_exportable(published_item)
 			self.share(published_item)
 		except Exception as e:
 			print(e.args[0])
@@ -488,6 +489,7 @@ class PortalResource(object):
 		"""
 		try:
 			self.set_and_update_metadata(published_item)
+			self.set_exportable(published_item)
 			self.share(published_item)
 		except Exception as e:
 			print(e.args[0])
@@ -948,14 +950,31 @@ class PortalResource(object):
 		'''
 		try:
 			if self.allow_edits == False:
-				capabilities_dict = {'capabilities':'Query', 'syncEnabled': False}
+				capabilities_dict = {'capabilities':'Query,Extract', 'syncEnabled': False}
 				published_flc = FeatureLayerCollection.fromitem(layer)
 				published_flc.manager.update_definition(capabilities_dict)
 			elif self.allow_edits == True:
-				capabilities_dict = {'capabilities':'Create,Delete,Query,Update,Editing',
+				capabilities_dict = {'capabilities':'Create,Delete,Query,Update,Editing,Extract',
 									'syncEnabled': False}
 				published_flc = FeatureLayerCollection.fromitem(layer)
 				published_flc.manager.update_definition(capabilities_dict)
+		except Exception as e:
+			print(e.args[0])
+			raise
+
+
+	def set_exportable(self, layer):
+		'''
+		Ensure the Extract capability is enabled for a layer or table in ArcOnline,
+			so users can export the data.  Existing capabilities are preserved.
+		'''
+		try:
+			published_flc = FeatureLayerCollection.fromitem(layer)
+			current = published_flc.properties.get('capabilities', 'Query')
+			capabilities = [c.strip() for c in current.split(',') if c.strip()]
+			if 'Extract' not in capabilities:
+				capabilities.append('Extract')
+				published_flc.manager.update_definition({'capabilities': ','.join(capabilities)})
 		except Exception as e:
 			print(e.args[0])
 			raise
