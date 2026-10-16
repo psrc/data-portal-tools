@@ -15,6 +15,13 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from PortalExporter import PortalConnector
 
+# Added to the description of every workbook published to Portal
+EDGE_NOTE = (
+    '<p><strong>Using Microsoft Edge?</strong> If the download returns a 404 error, '
+    'go to Edge Settings → Downloads (<code>edge://settings/downloads</code>) and turn off '
+    '<em>"Open Office files in the browser,"</em> then try again.</p>'
+)
+
 class DataProfileSpreadsheets(object):
     def __init__(self, census_year, census_product, census_table_code, short_title, long_title):
         try:
@@ -486,7 +493,8 @@ class DataProfileSpreadsheets(object):
             gis = portal_conn.gis
             resource_properties = {
                 'title': portal_layer_name, 
-                'tags': ['data profile']}
+                'tags': ['data profile'],
+                'description': EDGE_NOTE}
             exported = gis.content.add(resource_properties, data=str(filename))
             portal_group = gis.groups.search(query='PSRC Data Portal Content')[0].id
             census_group = gis.groups.search(query='hub- Census & Demographics')[0].id
