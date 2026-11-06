@@ -10,13 +10,13 @@ datasets =  [
         {'census_year': 2024,
         'census_product': 'acs1',
         'specifications': {
-            "DP02": {'short_title': 'Social Characteristics Data Profle', 
+            "DP02": {'short_title': 'Social Characteristics Data Profile', 
                     'long_title':'ACS Data Profile: Social Characteristics, ACS 2024 1-Year Data'},
-            "DP03": {'short_title': 'Economic Data Profle', 
+            "DP03": {'short_title': 'Economic Data Profile', 
                     'long_title':'ACS Data Profile: Economic Characteristics, ACS 2024 1-Year Data' },
-            "DP04": {'short_title': 'Housing Data Profle', 
+            "DP04": {'short_title': 'Housing Data Profile', 
                     'long_title':'ACS Data Profile: Housing Characteristics, ACS 2024 1-Year Data' },
-            "DP05": {'short_title': 'Demographic Data Profle', 
+            "DP05": {'short_title': 'Demographic Data Profile', 
                     'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2024 1-Year Data' }    
                 }
         }

@@ -15,6 +15,7 @@ from openpyxl.cell.cell import Cell
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from PortalConnector import PortalConnector
+from arcgis.gis._impl._content_manager import SharingLevel
 
 # Added to the description of every workbook published to Portal
 EDGE_NOTE = (
@@ -506,7 +507,10 @@ class DataProfileSpreadsheets(object):
             exported = gis.content.add(resource_properties, data=str(filename))
             portal_group = gis.groups.search(query='PSRC Data Portal Content')[0].id
             census_group = gis.groups.search(query='hub- Census & Demographics')[0].id
-            exported.share(everyone=True, groups=[portal_group, census_group])
+            sharing_mgr = exported.sharing
+            sharing_mgr.sharing_level = SharingLevel.EVERYONE
+            for grp in [portal_group, census_group]:
+                sharing_mgr.groups.add(group=grp)
 
         except Exception as e:
             print(e.args[0])
