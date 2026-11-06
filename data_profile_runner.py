@@ -1,67 +1,39 @@
+import os
 #from matplotlib.pyplot import table
 from data_profile_spreadsheet import DataProfileSpreadsheets
 from PortalConnector import PortalConnector
 # from PortalExporter import DatabaseConnector
 import yaml
 
-# datasets = [
-#         { 'census_year': 2021,
-#         'census_product': 'acs5',
-#         'specifications': {
-#                 "DP02": {'short_title': 'test_dp_social_acs5_2021', 
-#                          'long_title':'Social Characteristics Data Profile, ACS 5-year 2021' }
-#                 }
-#         }
-# ]
 
 datasets =  [
         {'census_year': 2024,
-        'census_product': 'acs5',
+        'census_product': 'acs1',
         'specifications': {
             "DP02": {'short_title': 'Social Characteristics Data Profle', 
-                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2024 5-Year Data'},
+                    'long_title':'ACS Data Profile: Social Characteristics, ACS 2024 1-Year Data'},
             "DP03": {'short_title': 'Economic Data Profle', 
-                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2024 5-Year Data' },
+                    'long_title':'ACS Data Profile: Economic Characteristics, ACS 2024 1-Year Data' },
             "DP04": {'short_title': 'Housing Data Profle', 
-                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2024 5-Year Data' },
+                    'long_title':'ACS Data Profile: Housing Characteristics, ACS 2024 1-Year Data' },
             "DP05": {'short_title': 'Demographic Data Profle', 
-                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2024 5-Year Data' }    
+                    'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2024 1-Year Data' }    
                 }
         }
 ]
 
-# datasets =  [
-#         {'census_year': 2020,
-#         'census_product': 'Decennial',
-#         'specifications': {
-#             "DP1": {'short_title': 'General Population and Housing Characteristics Data Profle', 
-#                     'long_title':'Decennial Data Profile: General Population and Housing Characteristics, 2020'},
-#                 }
-#         }
-# ]
 
-# datasets =  [
-#         { 'census_year': 2021,
-#         'census_product': 'acs1',
-#         'specifications': {
-#             "DP02": {'short_title': 'Social Characteristics Data Profle', 
-#                     'long_title':'ACS Data Profile: Social Characteristics, ACS 2021 1-Year Data'},
-#             "DP03": {'short_title': 'Economic Data Profle', 
-#                     'long_title':'ACS Data Profile: Economic Characteristics, ACS 2021 1-Year Data' },
-#             "DP04": {'short_title': 'Housing Data Profle', 
-#                     'long_title':'ACS Data Profile: Housing Characteristics, ACS 2021 1-Year Data' },
-#             "DP05": {'short_title': 'Demographic Data Profle', 
-#                     'long_title':'ACS Data Profile: Demographic Characteristics, ACS 2021 1-Year Data' }    
-#                 }
-#         }
-# ]
+agol_user = os.getenv('AGOL_ADMIN_USERNAME')
+agol_pw = os.getenv('AGOL_ADMIN_PW')
 
-
-with open(r'Config\\auth.yml') as file:
-	auth = yaml.load(file, Loader=yaml.FullLoader)
+# with open(r'Config\\auth.yml') as file:
+# 	auth = yaml.load(file, Loader=yaml.FullLoader)
+# portal_conn = PortalConnector(
+# 	portal_username=auth['arc_gis_online']['username'],
+# 	portal_pw=auth['arc_gis_online']['pw'])
 portal_conn = PortalConnector(
-	portal_username=auth['arc_gis_online']['username'],
-	portal_pw=auth['arc_gis_online']['pw'])
+	portal_username=agol_user,
+	portal_pw=agol_pw)
 gis = portal_conn.gis
 
 for data_group in datasets:

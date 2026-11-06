@@ -1,3 +1,4 @@
+import os
 from attr import NOTHING
 import pandas as pd
 import urllib
@@ -13,7 +14,7 @@ from openpyxl import Workbook
 from openpyxl.cell.cell import Cell
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
-from PortalExporter import PortalConnector
+from PortalConnector import PortalConnector
 
 # Added to the description of every workbook published to Portal
 EDGE_NOTE = (
@@ -86,7 +87,7 @@ class DataProfileSpreadsheets(object):
 
     def create_data_profile_df(self):
         try:
-            conn_string = "DRIVER={ODBC Driver 17 for SQL Server}; SERVER=SQLserver; DATABASE=Elmer; trusted_connection=yes"
+            conn_string = "DRIVER={ODBC Driver 18 for SQL Server}; SERVER=SQLserver; DATABASE=Elmer; trusted_connection=yes; TrustServerCertificate=yes"
             sql_conn = pyodbc.connect(conn_string)
             sql_statement = "select * from data_portal.census_data_profile({}, '{}', '{}')".format(self.census_year, 
                                                                                                 self.census_product, 
@@ -483,12 +484,19 @@ class DataProfileSpreadsheets(object):
             portal_layer_name: the name to be published under on Portal
         """
         try:
-            config_path = Path('Config') / 'auth.yml'
-            with open(config_path) as file:
-                auth = yaml.load(file, Loader=yaml.FullLoader)
+            #config_path = Path('Config') / 'auth.yml'
+            agol_user = os.getenv('AGOL_ADMIN_USERNAME')
+            agol_pw = os.getenv('AGOL_ADMIN_PW')
+
+            # with open(config_path) as file:
+            #     auth = yaml.load(file, Loader=yaml.FullLoader)
+            # portal_conn = PortalConnector(
+            #     portal_username = auth['arc_gis_online']['username'],
+            #     portal_pw=auth['arc_gis_online']['pw']
+            # )
             portal_conn = PortalConnector(
-                portal_username = auth['arc_gis_online']['username'],
-                portal_pw=auth['arc_gis_online']['pw']
+                portal_username = agol_user,
+                portal_pw=agol_pw
             )
             gis = portal_conn.gis
             resource_properties = {

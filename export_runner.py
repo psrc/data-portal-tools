@@ -87,7 +87,9 @@ root_dir = os.getcwd()
 for f in run_files:
 	os.chdir(root_dir)
 	#if r'Regional_Growth_Centers' in f:
-	if (f.lower() == 'weigh_stations.yml'):
+	#if (f.lower() == 'assessor_net_housing_by_tract_staged.yml'):
+	fl = f.lower()
+	if fl.startswith('assessor_net_housing_by_') and fl.endswith('_staged.yml'):
 		print(f"exporting {f}")
 		f_path = './Config/run_files/' + f
 		with open(f_path) as file:
